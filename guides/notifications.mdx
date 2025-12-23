@@ -1,0 +1,250 @@
+---
+title: Notifications
+description: Stay informed about important events and updates in Ordinal with customizable notifications
+---
+
+Notifications in Ordinal help you stay on top of critical events, workflow updates, and team activities. You can configure notifications to be delivered through multiple channels and customize them to match your team's needs.
+
+## What are notifications
+
+Notifications are real-time alerts that inform you about important events in your Ordinal workspace. They help you:
+
+- Track workflow progress and status changes
+- Monitor system events and errors
+- Stay updated on team activities
+- Receive alerts for critical issues
+
+Notifications can be triggered by various events such as workflow completions, failures, data updates, or custom conditions you define.
+
+## Notification channels
+
+Ordinal supports multiple notification channels to ensure you receive alerts where you work:
+
+### Slack notifications
+
+Slack is the primary notification channel for most teams. You can send notifications to:
+
+- **Public channels** - Share updates with your entire team
+- **Private channels** - Keep sensitive information restricted
+- **Direct messages** - Send personal notifications to specific users
+
+To set up Slack notifications:
+
+1. Navigate to your workspace settings
+2. Select **Integrations** and find Slack
+3. Click **Connect to Slack** and authorize Ordinal
+4. Choose the default channel for notifications
+
+### Email notifications
+
+Email notifications provide a reliable fallback channel. Configure email alerts for:
+
+- Workflow failures and errors
+- Daily or weekly digest reports
+- Critical system alerts
+- Custom event triggers
+
+### In-app notifications
+
+In-app notifications appear directly in the Ordinal interface. They provide:
+
+- Real-time updates without leaving the platform
+- A notification center to review past alerts
+- Quick actions to respond to events
+
+## Creating notifications
+
+You can create notifications at different levels in Ordinal:
+
+### Workflow notifications
+
+Add notifications to specific workflows to track their execution:
+
+1. Open your workflow in the editor
+2. Add a **Notification** step to your workflow
+3. Configure the notification trigger (on success, failure, or always)
+4. Select your notification channel
+5. Customize the message content
+
+```yaml
+- name: Send completion notification
+  type: notification
+  channel: slack
+  target: "#data-team"
+  message: "Workflow {{workflow.name}} completed successfully"
+  trigger: on_success
+```
+
+### Event-based notifications
+
+Set up notifications that trigger based on specific events:
+
+1. Go to **Settings** > **Notifications**
+2. Click **Create notification rule**
+3. Select the event type (workflow status, data quality, system event)
+4. Define the conditions that trigger the notification
+5. Choose the notification channel and recipients
+
+### Scheduled notifications
+
+Create recurring notifications for regular updates:
+
+- Daily summaries of workflow executions
+- Weekly reports on data quality metrics
+- Monthly usage statistics
+- Custom scheduled digests
+
+## Editing notifications
+
+To modify existing notifications:
+
+1. Navigate to **Settings** > **Notifications**
+2. Find the notification you want to edit
+3. Click the notification name to open the editor
+4. Update the configuration:
+   - Change the trigger conditions
+   - Modify the message template
+   - Update recipients or channels
+   - Adjust the notification frequency
+5. Click **Save changes**
+
+You can also temporarily disable notifications without deleting them by toggling the **Enabled** switch.
+
+## Notification templates
+
+Use templates to create consistent, informative notifications:
+
+### Message variables
+
+Include dynamic content in your notifications using variables:
+
+- `{{workflow.name}}` - The workflow name
+- `{{workflow.status}}` - Current workflow status
+- `{{workflow.duration}}` - Execution time
+- `{{user.name}}` - User who triggered the event
+- `{{timestamp}}` - Event timestamp
+- `{{error.message}}` - Error details (if applicable)
+
+### Example templates
+
+**Success notification:**
+```
+✅ Workflow "{{workflow.name}}" completed successfully in {{workflow.duration}}
+Triggered by: {{user.name}}
+Time: {{timestamp}}
+```
+
+**Failure notification:**
+```
+❌ Workflow "{{workflow.name}}" failed
+Error: {{error.message}}
+Duration: {{workflow.duration}}
+Action required: Review logs and retry
+```
+
+**Custom alert:**
+```
+⚠️ Data quality threshold exceeded
+Dataset: {{dataset.name}}
+Metric: {{metric.name}}
+Current value: {{metric.value}}
+Threshold: {{threshold.value}}
+```
+
+## Managing notification preferences
+
+Control how and when you receive notifications:
+
+### Personal preferences
+
+Each user can customize their notification settings:
+
+1. Click your profile icon and select **Preferences**
+2. Go to the **Notifications** tab
+3. Configure:
+   - Which events trigger notifications
+   - Preferred notification channels
+   - Quiet hours (do not disturb periods)
+   - Notification frequency (immediate, batched, digest)
+
+### Team settings
+
+Workspace admins can set default notification policies:
+
+- Define which events require notifications
+- Set up notification routing rules
+- Configure escalation policies
+- Manage notification rate limits
+
+## Best practices
+
+Follow these guidelines for effective notifications:
+
+- **Be selective** - Only notify for events that require attention
+- **Use appropriate channels** - Send critical alerts to Slack, summaries to email
+- **Write clear messages** - Include context and actionable information
+- **Avoid notification fatigue** - Batch non-urgent updates
+- **Test your notifications** - Verify they work before deploying to production
+- **Review regularly** - Audit and clean up unused notification rules
+
+## Troubleshooting
+
+### Notifications not being delivered
+
+If you're not receiving notifications:
+
+1. Check that the notification rule is enabled
+2. Verify your channel configuration (Slack connection, email address)
+3. Review the notification conditions - ensure they're being met
+4. Check your personal notification preferences
+5. Look for errors in the notification logs
+
+### Slack notifications failing
+
+Common Slack notification issues:
+
+- **Permission errors** - Reinstall the Slack integration with proper permissions
+- **Channel not found** - Verify the channel name and that the bot is invited
+- **Rate limiting** - Reduce notification frequency or batch messages
+
+### Duplicate notifications
+
+If you're receiving duplicate notifications:
+
+1. Check for overlapping notification rules
+2. Review workflow-level and workspace-level notifications
+3. Verify that multiple integrations aren't configured for the same channel
+
+## Advanced configuration
+
+### Conditional notifications
+
+Create sophisticated notification logic:
+
+```yaml
+- name: Conditional alert
+  type: notification
+  condition: "{{workflow.duration}} > 300 AND {{workflow.status}} == 'success'"
+  channel: slack
+  target: "#performance-alerts"
+  message: "Workflow {{workflow.name}} took longer than expected: {{workflow.duration}}s"
+```
+
+### Notification webhooks
+
+Send notifications to custom endpoints:
+
+1. Create a webhook notification rule
+2. Specify the webhook URL
+3. Configure the payload format (JSON, form data)
+4. Add authentication headers if required
+5. Test the webhook connection
+
+### Integration with external tools
+
+Connect Ordinal notifications to:
+
+- PagerDuty for incident management
+- Jira for automatic ticket creation
+- Datadog for monitoring and alerting
+- Custom webhooks for proprietary systems
