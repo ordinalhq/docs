@@ -17,35 +17,86 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
+            "icon": "house",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "getting-started/overview",
+              "getting-started/quickstart",
+              "getting-started/concepts"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Social Profiles",
+            "icon": "circle-info",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "social-profiles/overview",
+              "social-profiles/linkedin",
+              "social-profiles/twitter",
+              "social-profiles/instagram",
+              "social-profiles/threads",
+              "social-profiles/facebook",
+              "social-profiles/tiktok",
+              "social-profiles/youtube-shorts",
+              "social-profiles/webflow",
+              "social-profiles/slack",
+              "social-profiles/discord"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Posts, Campaigns, and Calendar",
+            "icon": "calendar",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "calendar/overview",
+              {
+                "group": "Posts",
+                "icon": "file-lines",
+                "pages": [
+                  "posts/drafting-posts",
+                  "posts/scheduling-posts",
+                  "posts/cross-posting"
+                ]
+              },
+              "campaigns/overview",
+              "posts/auto-engagements",
+              "posts/marketing-boost-channels",
+              "posts/ideas",
+              "posts/labels",
+              "posts/statuses"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Collaboration and Approvals",
+            "icon": "circle-check",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "collaboration/approvals",
+              "collaboration/commenting",
+              "collaboration/notifications",
+              "collaboration/account-access"
+            ]
+          },
+          {
+            "group": "Analytics and Reporting",
+            "icon": "chart-line",
+            "pages": [
+              "analytics/shortlinks",
+              "analytics/overview"
+            ]
+          },
+          {
+            "group": "Account and Billing",
+            "icon": "user",
+            "pages": [
+              "account/managing-your-profile",
+              "account/subscription-plans",
+              "account/billing-and-payments"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "pages": [
+              "integrations/slack",
+              "integrations/dub"
             ]
           }
         ]
