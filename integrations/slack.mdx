@@ -10,11 +10,31 @@ Integrate Slack with Ordinal to receive notifications, coordinate approvals, and
 
 ## Connecting Slack
 
-1. Go to **Settings** → **Integrations**
-2. Find **Slack** and click **Connect**
-3. Select your Slack workspace
-4. Choose channels Ordinal can access
-5. Authorize the connection
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings** → **Integrations** in your dashboard.
+  </Step>
+  <Step title="Find Slack">
+    Locate **Slack** in the integrations list and click **Connect**.
+  </Step>
+  <Step title="Select Workspace">
+    Choose your Slack workspace from the authorization screen.
+  </Step>
+  <Step title="Choose Channels">
+    Select which channels Ordinal can post to.
+    
+    <Tip>
+    Start with a dedicated channel like #social-media to keep notifications organized.
+    </Tip>
+  </Step>
+  <Step title="Authorize">
+    Click **Authorize** to complete the connection.
+    
+    <Check>
+    Slack shows as "Connected" in your integrations list.
+    </Check>
+  </Step>
+</Steps>
 
 ## Features
 
@@ -33,12 +53,16 @@ Handle approvals directly in Slack:
 - Approve or reject with buttons
 - Add feedback in thread
 
-### Team Coordination
+<Tip>
+Slack approvals let your team review content without logging into Ordinal.
+</Tip>
 
-Coordinate content activities:
-- Boost channel notifications
-- Content calendar updates
-- Performance alerts
+### Marketing Boost Channels
+
+Notify your team when content needs engagement:
+- Send boost requests to dedicated channels
+- One-click links to engage with posts
+- Track participation
 
 ## Configuration
 
@@ -55,11 +79,24 @@ Set up channels for different notification types:
 
 ### Notification Preferences
 
-Customize what gets sent to Slack:
-1. Go to **Settings** → **Integrations** → **Slack**
-2. Select notification types
-3. Choose destination channels
-4. Save preferences
+<Steps>
+  <Step title="Open Slack Settings">
+    Go to **Settings** → **Integrations** → **Slack**.
+  </Step>
+  <Step title="Select Notification Types">
+    Choose which notifications to send to Slack.
+  </Step>
+  <Step title="Map Channels">
+    Assign each notification type to a specific channel.
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply your preferences.
+    
+    <Check>
+    Notifications will now appear in your configured Slack channels.
+    </Check>
+  </Step>
+</Steps>
 
 ## Slack Commands
 
@@ -72,10 +109,23 @@ Use slash commands in Slack:
 
 <AccordionGroup>
   <Accordion title="Not receiving notifications">
-    Check that the correct channel is selected and Ordinal has permission to post.
+    Check that the correct channel is selected and Ordinal has permission to post. Verify the channel is public or Ordinal is invited to private channels.
   </Accordion>
-  <Accordion title="Reconnecting Slack">
-    Disconnect and reconnect if you've changed Slack workspace settings.
+  <Accordion title="Approval buttons not working">
+    Make sure you're still logged into Ordinal. Button actions require an active session.
+  </Accordion>
+  <Accordion title="Need to reconnect">
+    If workspace settings changed, disconnect Slack in Ordinal and reconnect to refresh permissions.
   </Accordion>
 </AccordionGroup>
 
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Set Up Boost Channels" icon="users-medical" href="/posts/marketing-boost-channels">
+    Coordinate team engagement via Slack.
+  </Card>
+  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
+    Fine-tune your notification preferences.
+  </Card>
+</CardGroup>

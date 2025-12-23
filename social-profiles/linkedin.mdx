@@ -10,11 +10,28 @@ Connect your LinkedIn personal profiles and company pages to Ordinal to schedule
 
 ## Connecting LinkedIn
 
-1. Go to **Social Profiles** → **Add Profile**
-2. Select **LinkedIn**
-3. Choose to connect a personal profile or company page
-4. Authorize Ordinal in the LinkedIn popup
-5. Your LinkedIn account is now connected
+<Steps>
+  <Step title="Open Add Profile">
+    Go to **Social Profiles** → **Add Profile** in your dashboard.
+  </Step>
+  <Step title="Select LinkedIn">
+    Choose **LinkedIn** from the list of available platforms.
+  </Step>
+  <Step title="Choose Account Type">
+    Select whether you want to connect a personal profile or a company page.
+    
+    <Tip>
+    Company pages offer additional features like article publishing and follower analytics.
+    </Tip>
+  </Step>
+  <Step title="Authorize Access">
+    Log in to LinkedIn and authorize Ordinal in the popup window.
+    
+    <Check>
+    Your LinkedIn profile appears in the Social Profiles list with a green "Connected" status.
+    </Check>
+  </Step>
+</Steps>
 
 ## Supported Content Types
 
@@ -28,7 +45,7 @@ Connect your LinkedIn personal profiles and company pages to Ordinal to schedule
 
 <AccordionGroup>
   <Accordion title="Optimal posting times">
-    LinkedIn engagement peaks during business hours, particularly Tuesday through Thursday, 8-10 AM and 12 PM.
+    LinkedIn engagement peaks during business hours, particularly Tuesday through Thursday, 8-10 AM and 12 PM in your audience's timezone.
   </Accordion>
   <Accordion title="Content recommendations">
     Mix professional insights, industry news, and personal stories for better engagement.
@@ -40,7 +57,35 @@ Connect your LinkedIn personal profiles and company pages to Ordinal to schedule
 
 ## Limitations
 
+<Warning>
+Be aware of these LinkedIn-specific limitations when scheduling content.
+</Warning>
+
 - LinkedIn API limits the number of posts per day
 - Some features may only be available for company pages
 - Video scheduling requires LinkedIn's native scheduling
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Can't connect my company page">
+    You must be an admin of the LinkedIn company page to connect it. Check your page admin settings in LinkedIn.
+  </Accordion>
+  <Accordion title="Authorization expired">
+    LinkedIn tokens expire periodically. Disconnect and reconnect your profile in Social Profiles settings.
+  </Accordion>
+  <Accordion title="Document posts not working">
+    Ensure your PDF is under 100MB and has fewer than 300 pages. LinkedIn may reject larger files.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create Your First Post" icon="pen-to-square" href="/posts/drafting-posts">
+    Learn how to compose LinkedIn content.
+  </Card>
+  <Card title="Schedule Posts" icon="clock" href="/posts/scheduling-posts">
+    Schedule content for optimal times.
+  </Card>
+</CardGroup>

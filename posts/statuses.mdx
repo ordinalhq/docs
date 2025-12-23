@@ -23,13 +23,33 @@ Ordinal includes built-in statuses:
 
 ## Custom Statuses
 
-Create custom statuses for your workflow:
+Create custom statuses to match your workflow:
 
-1. Go to **Statuses** → **New Status**
-2. Enter status name
-3. Choose a color
-4. Set the position in your workflow
-5. Save the status
+<Steps>
+  <Step title="Navigate to Statuses">
+    Go to **Statuses** → **New Status** in your dashboard.
+  </Step>
+  <Step title="Enter Status Name">
+    Choose a clear, descriptive name.
+  </Step>
+  <Step title="Choose a Color">
+    Select a color for visual identification.
+  </Step>
+  <Step title="Set Workflow Position">
+    Place the status in your workflow sequence (e.g., after Draft, before Approved).
+    
+    <Tip>
+    Keep workflow order logical—status should flow naturally from creation to publication.
+    </Tip>
+  </Step>
+  <Step title="Save">
+    Click **Save** to create your custom status.
+    
+    <Check>
+    Your new status appears in the workflow and is available for posts.
+    </Check>
+  </Step>
+</Steps>
 
 ### Custom Status Examples
 
@@ -44,9 +64,13 @@ Create custom statuses for your workflow:
 ### Moving Posts Through Statuses
 
 Posts move through statuses as they progress:
-- Manually update status
-- Automatic progression (e.g., approved → scheduled)
-- Status changes trigger notifications
+- Manually update status from the post detail view
+- Automatic progression (e.g., approved → scheduled when scheduled)
+- Status changes trigger notifications to relevant team members
+
+<Check>
+Status changes are logged in the post's activity history for audit purposes.
+</Check>
 
 ### Status-Based Views
 
@@ -62,9 +86,42 @@ Get notified on status changes:
 - When a post fails to publish
 - When posts need your review
 
+<Tip>
+Configure status notifications in Settings → Notifications to stay informed without being overwhelmed.
+</Tip>
+
 ## Best Practices
 
-<Accordion title="Keep it simple">
-Don't create too many statuses. 5-7 is usually sufficient for most workflows.
-</Accordion>
+<AccordionGroup>
+  <Accordion title="Keep it simple">
+    Don't create too many statuses. 5-7 is usually sufficient for most workflows.
+  </Accordion>
+  <Accordion title="Clear naming">
+    Use status names that clearly indicate what action is needed or what state the post is in.
+  </Accordion>
+  <Accordion title="Logical flow">
+    Arrange statuses in the order posts typically progress through your workflow.
+  </Accordion>
+</AccordionGroup>
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Status not changing automatically">
+    Automatic status changes only occur for specific actions (scheduling, publishing). Manual status updates require user action.
+  </Accordion>
+  <Accordion title="Can't delete custom status">
+    Move all posts off the status before deleting. Posts must be reassigned to another status first.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Set Up Approvals" icon="circle-check" href="/collaboration/approvals">
+    Add review gates to your workflow.
+  </Card>
+  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
+    Get alerted on status changes.
+  </Card>
+</CardGroup>

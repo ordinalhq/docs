@@ -12,38 +12,89 @@ Manage your personal Ordinal account settings, preferences, and profile informat
 
 ### Update Your Profile
 
-1. Click your avatar in the top right
-2. Select **Profile Settings**
-3. Update your information
-4. Save changes
+<Steps>
+  <Step title="Open Profile Settings">
+    Click your avatar in the top right corner of the screen.
+  </Step>
+  <Step title="Select Profile Settings">
+    Click **Profile Settings** from the dropdown menu.
+  </Step>
+  <Step title="Update Your Information">
+    Edit your name, avatar, timezone, or language preferences.
+  </Step>
+  <Step title="Save Changes">
+    Click **Save** to apply your updates.
+    
+    <Check>
+    Your profile is updated across the entire workspace.
+    </Check>
+  </Step>
+</Steps>
 
 ### Profile Fields
 
-- **Name** - Your display name
+- **Name** - Your display name visible to team members
 - **Email** - Login email (verified)
-- **Avatar** - Profile picture
-- **Timezone** - Your local timezone
+- **Avatar** - Profile picture shown in comments and activity
+- **Timezone** - Your local timezone for scheduling
 - **Language** - Interface language
+
+<Tip>
+Setting the correct timezone ensures scheduled posts go out at the times you intend.
+</Tip>
 
 ## Security
 
 ### Change Password
 
-1. Go to **Profile Settings** → **Security**
-2. Click **Change Password**
-3. Enter current password
-4. Enter new password twice
-5. Save changes
+<Steps>
+  <Step title="Open Security Settings">
+    Go to **Profile Settings** → **Security**.
+  </Step>
+  <Step title="Click Change Password">
+    Click the **Change Password** button.
+  </Step>
+  <Step title="Enter Passwords">
+    Enter your current password, then your new password twice.
+  </Step>
+  <Step title="Save">
+    Click **Save** to update your password.
+    
+    <Check>
+    Your password is updated. You may need to log in again on other devices.
+    </Check>
+  </Step>
+</Steps>
 
 ### Two-Factor Authentication
 
 Enable 2FA for additional security:
 
-1. Go to **Profile Settings** → **Security**
-2. Click **Enable 2FA**
-3. Scan QR code with authenticator app
-4. Enter verification code
-5. Save backup codes
+<Steps>
+  <Step title="Open Security Settings">
+    Go to **Profile Settings** → **Security**.
+  </Step>
+  <Step title="Enable 2FA">
+    Click **Enable 2FA**.
+  </Step>
+  <Step title="Scan QR Code">
+    Scan the QR code with your authenticator app (Google Authenticator, Authy, etc.).
+  </Step>
+  <Step title="Enter Verification Code">
+    Enter the 6-digit code from your authenticator app.
+  </Step>
+  <Step title="Save Backup Codes">
+    Download or copy your backup codes and store them securely.
+    
+    <Warning>
+    Keep backup codes in a safe place. They're the only way to recover your account if you lose access to your authenticator app.
+    </Warning>
+    
+    <Check>
+    2FA is now enabled on your account.
+    </Check>
+  </Step>
+</Steps>
 
 ### Active Sessions
 
@@ -83,3 +134,27 @@ Connect personal tools:
 - Calendar sync
 - Browser extensions
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Can't change email">
+    Email changes require verification. Contact support if you need to change your login email.
+  </Accordion>
+  <Accordion title="Lost 2FA device">
+    Use one of your backup codes to log in, then disable and re-enable 2FA with a new device.
+  </Accordion>
+  <Accordion title="Session showing unknown location">
+    VPNs and mobile networks can show unexpected locations. If you don't recognize a session, revoke it immediately and change your password.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Manage Subscription" icon="credit-card" href="/account/subscription-plans">
+    View and change your plan.
+  </Card>
+  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
+    Set up your alert preferences.
+  </Card>
+</CardGroup>

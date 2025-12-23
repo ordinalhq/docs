@@ -18,11 +18,27 @@ Dub.co is a modern link management platform that provides:
 
 ## Connecting Dub.co
 
-1. Go to **Settings** → **Integrations**
-2. Find **Dub.co** and click **Connect**
-3. Enter your Dub.co API key
-4. Select your default workspace
-5. Save connection
+<Steps>
+  <Step title="Get Your API Key">
+    Log in to your Dub.co account and navigate to API settings to copy your API key.
+  </Step>
+  <Step title="Open Integrations">
+    In Ordinal, go to **Settings** → **Integrations**.
+  </Step>
+  <Step title="Find Dub.co">
+    Locate **Dub.co** and click **Connect**.
+  </Step>
+  <Step title="Enter API Key">
+    Paste your Dub.co API key.
+  </Step>
+  <Step title="Select Workspace">
+    Choose your default Dub.co workspace.
+    
+    <Check>
+    Dub.co shows as "Connected" in your integrations list.
+    </Check>
+  </Step>
+</Steps>
 
 ## Features
 
@@ -45,18 +61,35 @@ Access Dub.co's advanced analytics:
 
 Manage links created in Ordinal:
 - Links sync to your Dub.co dashboard
-- Edit destinations anytime
+- Edit destinations anytime without changing the short link
 - Bulk link management
 
 ## Configuration
 
 ### Default Settings
 
-Set Dub.co as your default link shortener:
-1. Go to **Settings** → **Integrations** → **Dub.co**
-2. Enable **Use as default shortener**
-3. Select default domain
-4. Save settings
+<Steps>
+  <Step title="Open Dub.co Settings">
+    Go to **Settings** → **Integrations** → **Dub.co**.
+  </Step>
+  <Step title="Set as Default">
+    Enable **Use as default shortener** to use Dub.co for all new links.
+  </Step>
+  <Step title="Select Domain">
+    Choose your default custom domain from Dub.co.
+    
+    <Tip>
+    Select your primary brand domain to ensure consistent link appearance across all posts.
+    </Tip>
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply settings.
+    
+    <Check>
+    All new shortlinks will now use Dub.co with your custom domain.
+    </Check>
+  </Step>
+</Steps>
 
 ### UTM Defaults
 
@@ -82,3 +115,27 @@ Configure default UTM parameters:
   </Card>
 </CardGroup>
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="API key not working">
+    Verify your API key is correct and has the necessary permissions. Generate a new key if needed.
+  </Accordion>
+  <Accordion title="Custom domain not appearing">
+    Ensure your custom domain is verified and active in Dub.co before it will appear in Ordinal.
+  </Accordion>
+  <Accordion title="Links not syncing">
+    Check your Dub.co workspace settings. Links sync automatically but may take a few minutes to appear.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create Shortlinks" icon="link" href="/analytics/shortlinks">
+    Start using Dub.co for links.
+  </Card>
+  <Card title="View Analytics" icon="chart-line" href="/analytics/overview">
+    Track link performance.
+  </Card>
+</CardGroup>

@@ -10,11 +10,28 @@ Connect Slack to Ordinal to schedule messages to your team channels. Perfect for
 
 ## Connecting Slack
 
-1. Go to **Social Profiles** → **Add Profile**
-2. Select **Slack**
-3. Choose your Slack workspace
-4. Select the channels Ordinal can post to
-5. Your Slack workspace is now connected
+<Steps>
+  <Step title="Open Add Profile">
+    Go to **Social Profiles** → **Add Profile** in your dashboard.
+  </Step>
+  <Step title="Select Slack">
+    Choose **Slack** from the list of available platforms.
+  </Step>
+  <Step title="Choose Your Workspace">
+    Select the Slack workspace you want to connect.
+  </Step>
+  <Step title="Select Channels">
+    Choose which channels Ordinal can post to.
+    
+    <Tip>
+    Start with a dedicated announcements channel. You can add more channels later.
+    </Tip>
+    
+    <Check>
+    Your Slack workspace appears in the Social Profiles list with a green "Connected" status.
+    </Check>
+  </Step>
+</Steps>
 
 ## Use Cases
 
@@ -54,7 +71,33 @@ Use Slack's rich formatting:
 
 ## Best Practices
 
-<Accordion title="Timing considerations">
-Schedule messages during work hours when team members are active. Avoid early morning or late night messages.
-</Accordion>
+<AccordionGroup>
+  <Accordion title="Timing considerations">
+    Schedule messages during work hours when team members are active. Avoid early morning or late night messages.
+  </Accordion>
+  <Accordion title="Channel etiquette">
+    Use dedicated channels for automated messages to avoid cluttering active discussion channels.
+  </Accordion>
+</AccordionGroup>
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Channel not appearing">
+    Ensure the Ordinal bot has been invited to the channel. Type `/invite @Ordinal` in the channel.
+  </Accordion>
+  <Accordion title="Messages not posting">
+    Check that your Slack workspace admin hasn't restricted bot access. Contact your Slack admin if needed.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Set Up Boost Channels" icon="users-medical" href="/posts/marketing-boost-channels">
+    Coordinate team engagement.
+  </Card>
+  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
+    Set up Slack notifications.
+  </Card>
+</CardGroup>

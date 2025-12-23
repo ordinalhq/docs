@@ -12,18 +12,45 @@ Shortlinks make your URLs cleaner and trackable. Create branded short links for 
 
 ### Quick Create
 
-1. Click **New Shortlink** or paste a URL
-2. Enter the destination URL
-3. Customize the short code (optional)
-4. Add to a post or copy the link
+<Steps>
+  <Step title="Open Shortlinks">
+    Click **New Shortlink** in the Shortlinks section, or paste a URL anywhere in Ordinal.
+  </Step>
+  <Step title="Enter Destination URL">
+    Paste the full URL you want to shorten.
+  </Step>
+  <Step title="Customize the Short Code">
+    Optionally create a memorable custom slug (e.g., `/summer-sale`).
+    
+    <Tip>
+    Use descriptive slugs that hint at the content—they're more memorable and trustworthy.
+    </Tip>
+  </Step>
+  <Step title="Create Link">
+    Click **Create** to generate your shortlink.
+    
+    <Check>
+    Your shortlink is created and ready to use. Click to copy it to your clipboard.
+    </Check>
+  </Step>
+</Steps>
 
 ### In Post Composer
 
 Create shortlinks while drafting:
-1. Paste a URL in your post
-2. Click "Shorten" on the URL
-3. Link is automatically shortened
-4. Tracking is enabled
+
+<Steps>
+  <Step title="Paste a URL">
+    Paste any URL into your post content.
+  </Step>
+  <Step title="Click Shorten">
+    Click the **Shorten** button that appears on the URL.
+    
+    <Check>
+    The URL is replaced with a tracked shortlink automatically.
+    </Check>
+  </Step>
+</Steps>
 
 ## Shortlink Features
 
@@ -36,10 +63,23 @@ Create memorable short links:
 
 ### Custom Domains
 
-Use your own domain:
-- Set up a custom domain in settings
-- All links use your brand
-- Example: `links.yourbrand.com/offer`
+Use your own domain for complete brand control:
+
+<Steps>
+  <Step title="Add Custom Domain">
+    Go to **Settings** → **Shortlinks** → **Custom Domains**.
+  </Step>
+  <Step title="Enter Your Domain">
+    Enter the domain you want to use (e.g., `links.yourbrand.com`).
+  </Step>
+  <Step title="Configure DNS">
+    Add the required DNS records to your domain registrar.
+    
+    <Check>
+    Once verified, all new shortlinks use your custom domain.
+    </Check>
+  </Step>
+</Steps>
 
 ### UTM Parameters
 
@@ -48,6 +88,10 @@ Automatically add tracking parameters:
 - Medium
 - Campaign name
 - Custom parameters
+
+<Tip>
+Set up UTM templates for consistent tracking across all your links.
+</Tip>
 
 ## Analytics
 
@@ -77,7 +121,7 @@ See where clicks come from:
 ### Edit Links
 
 Update shortlink settings:
-- Change destination URL
+- Change destination URL (link stays the same)
 - Update UTM parameters
 - Modify expiration
 
@@ -88,3 +132,27 @@ Remove unused links from active view:
 - Hidden from main list
 - Accessible in archive
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Custom slug already taken">
+    Choose a different slug, or add a number or date to make it unique.
+  </Accordion>
+  <Accordion title="Click counts not updating">
+    Analytics may take a few minutes to update. If still not updating after an hour, check that the link is correctly configured.
+  </Accordion>
+  <Accordion title="Custom domain not verifying">
+    Double-check DNS records are correctly configured. DNS changes can take up to 48 hours to propagate.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="View Analytics" icon="chart-line" href="/analytics/overview">
+    Track overall performance.
+  </Card>
+  <Card title="Integrate Dub.co" icon="globe" href="/integrations/dub">
+    Advanced link management.
+  </Card>
+</CardGroup>

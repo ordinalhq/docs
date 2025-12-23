@@ -62,19 +62,53 @@ Push notifications on mobile:
 
 ## Configuring Notifications
 
-1. Go to **Settings** → **Notifications**
-2. Select notification type
-3. Choose channels and frequency
-4. Save preferences
+<Steps>
+  <Step title="Open Settings">
+    Go to **Settings** → **Notifications** in your dashboard.
+  </Step>
+  <Step title="Select Notification Type">
+    Choose which type of notification you want to configure (content, collaboration, or team).
+  </Step>
+  <Step title="Choose Channels">
+    Select which channels should receive this notification type (email, Slack, in-app, mobile).
+    
+    <Tip>
+    Use immediate notifications for urgent items like failed posts, and digests for routine updates.
+    </Tip>
+  </Step>
+  <Step title="Set Frequency">
+    Choose how often you receive notifications—immediate, daily digest, or weekly digest.
+  </Step>
+  <Step title="Save Preferences">
+    Click **Save** to apply your settings.
+    
+    <Check>
+    Your notification preferences are updated immediately.
+    </Check>
+  </Step>
+</Steps>
 
 ## Notification Settings
 
 ### Quiet Hours
 
 Set times when you won't receive notifications:
-- Define start and end times
-- Select days of week
-- Exception for urgent items
+
+<Steps>
+  <Step title="Enable Quiet Hours">
+    Toggle on Quiet Hours in notification settings.
+  </Step>
+  <Step title="Set Schedule">
+    Define start time, end time, and which days of the week.
+    
+    <Tip>
+    Set quiet hours for evenings and weekends to maintain work-life balance.
+    </Tip>
+  </Step>
+  <Step title="Configure Exceptions">
+    Optionally allow urgent notifications (like failed posts) to bypass quiet hours.
+  </Step>
+</Steps>
 
 ### Notification Grouping
 
@@ -98,3 +132,27 @@ View past notifications:
 - Searchable history
 - Click to navigate to source
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Not receiving email notifications">
+    Check your spam folder. Add Ordinal's email domain to your contacts to ensure delivery.
+  </Accordion>
+  <Accordion title="Slack notifications not working">
+    Verify the Slack integration is connected in Settings → Integrations. Re-authorize if needed.
+  </Accordion>
+  <Accordion title="Too many notifications">
+    Switch from immediate to digest notifications, or enable notification grouping to reduce volume.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Connect Slack" icon="slack" href="/integrations/slack">
+    Enable Slack notifications.
+  </Card>
+  <Card title="Manage Access" icon="lock" href="/collaboration/account-access">
+    Control team permissions.
+  </Card>
+</CardGroup>

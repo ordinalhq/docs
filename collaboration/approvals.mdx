@@ -10,29 +10,63 @@ Approval workflows ensure content is reviewed before publishing. Set up multi-le
 
 ## How Approvals Work
 
-1. **Author creates post** - Draft is submitted for review
-2. **Reviewer notified** - Approvers receive notification
-3. **Review and feedback** - Approve, reject, or request changes
-4. **Post approved** - Ready to schedule or publish
+<Steps>
+  <Step title="Author Creates Post">
+    A team member drafts content and submits it for review.
+  </Step>
+  <Step title="Reviewer Gets Notified">
+    Designated approvers receive a notification to review the post.
+  </Step>
+  <Step title="Review and Feedback">
+    Reviewers can approve, reject, or request changes with comments.
+  </Step>
+  <Step title="Post Approved">
+    Once approved, the post is ready to schedule or publish.
+    
+    <Check>
+    Approved posts show a green "Approved" badge and can be scheduled.
+    </Check>
+  </Step>
+</Steps>
 
 ## Setting Up Approval Workflows
 
 ### Basic Approval
 
-Simple one-level approval:
-
-1. Go to **Settings** → **Approvals**
-2. Enable approvals for your workspace
-3. Select default approvers
-4. Save settings
+<Steps>
+  <Step title="Open Settings">
+    Go to **Settings** → **Approvals** in your dashboard.
+  </Step>
+  <Step title="Enable Approvals">
+    Toggle on "Require approval before publishing."
+  </Step>
+  <Step title="Select Default Approvers">
+    Choose team members who can approve content.
+    
+    <Tip>
+    Select multiple approvers so reviews don't bottleneck on one person.
+    </Tip>
+  </Step>
+  <Step title="Save Settings">
+    Click **Save** to enable the approval workflow.
+    
+    <Check>
+    All new posts now require approval before they can be published.
+    </Check>
+  </Step>
+</Steps>
 
 ### Multi-Level Approval
 
-Create tiered approval processes:
+Create tiered approval processes for sensitive content:
 
 1. **Level 1** - Team lead review
 2. **Level 2** - Manager approval
 3. **Level 3** - Legal/compliance (if needed)
+
+<Tip>
+Multi-level approvals are ideal for executive accounts or regulated industries where content must pass multiple checkpoints.
+</Tip>
 
 ### Profile-Specific Approvals
 
@@ -55,7 +89,7 @@ Approve the post as-is:
 Ask for revisions:
 - Add comments explaining needed changes
 - Author is notified
-- Post returns to draft
+- Post returns to draft status
 
 ### Reject
 
@@ -63,6 +97,10 @@ Decline the post:
 - Add reason for rejection
 - Author is notified
 - Post is not published
+
+<Warning>
+Rejected posts remain accessible for reference but cannot be published without resubmission.
+</Warning>
 
 ## Notifications
 
@@ -72,3 +110,27 @@ Configure how approvers are notified:
 - **In-app** - Dashboard notifications
 - **Mobile** - Push notifications
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Approver not receiving notifications">
+    Check the approver's notification settings. Ensure they have the correct channels enabled in Settings → Notifications.
+  </Accordion>
+  <Accordion title="Post stuck in pending review">
+    Contact the designated approver directly. You can also reassign to a different approver from the post detail view.
+  </Accordion>
+  <Accordion title="Need to bypass approval">
+    Workspace admins can bypass approval requirements for urgent posts. Use sparingly to maintain workflow integrity.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Add Comments" icon="comment" href="/collaboration/commenting">
+    Leave feedback on posts.
+  </Card>
+  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
+    Set up approval alerts.
+  </Card>
+</CardGroup>

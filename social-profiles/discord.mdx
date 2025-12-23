@@ -10,11 +10,28 @@ Connect Discord to Ordinal to schedule messages to your community servers. Keep 
 
 ## Connecting Discord
 
-1. Go to **Social Profiles** → **Add Profile**
-2. Select **Discord**
-3. Authorize Ordinal to access your Discord
-4. Select the server and channels to connect
-5. Your Discord server is now connected
+<Steps>
+  <Step title="Open Add Profile">
+    Go to **Social Profiles** → **Add Profile** in your dashboard.
+  </Step>
+  <Step title="Select Discord">
+    Choose **Discord** from the list of available platforms.
+  </Step>
+  <Step title="Authorize Access">
+    Log in to Discord and authorize Ordinal to access your account.
+  </Step>
+  <Step title="Select Server and Channels">
+    Choose the server and specific channels where you want to schedule messages.
+    
+    <Tip>
+    Select your announcements or updates channel to keep scheduled content organized.
+    </Tip>
+    
+    <Check>
+    Your Discord server appears in the Social Profiles list with a green "Connected" status.
+    </Check>
+  </Step>
+</Steps>
 
 ## Use Cases
 
@@ -55,7 +72,36 @@ Create visually appealing messages with Discord embeds:
 
 ## Best Practices
 
-<Accordion title="Channel organization">
-Use dedicated channels for scheduled content (e.g., #announcements) to keep discussions separate from automated messages.
-</Accordion>
+<AccordionGroup>
+  <Accordion title="Channel organization">
+    Use dedicated channels for scheduled content (e.g., #announcements) to keep discussions separate from automated messages.
+  </Accordion>
+  <Accordion title="Embed formatting">
+    Use rich embeds for important announcements to make them stand out from regular messages.
+  </Accordion>
+</AccordionGroup>
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Bot not appearing in server">
+    Ensure you have "Manage Server" permissions to add the Ordinal bot. Ask a server admin if needed.
+  </Accordion>
+  <Accordion title="Can't post to channel">
+    Check channel permissions. The Ordinal bot needs "Send Messages" and "Embed Links" permissions.
+  </Accordion>
+  <Accordion title="Embeds not displaying">
+    Verify "Embed Links" permission is enabled for the Ordinal bot in channel settings.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Schedule Announcements" icon="clock" href="/posts/scheduling-posts">
+    Learn scheduling best practices.
+  </Card>
+  <Card title="Set Up Boost Channels" icon="users-medical" href="/posts/marketing-boost-channels">
+    Coordinate community engagement.
+  </Card>
+</CardGroup>

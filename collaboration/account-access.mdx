@@ -45,32 +45,78 @@ Read-only access:
 
 ### Invite Team Members
 
-1. Go to **Settings** → **Team**
-2. Click **Invite Member**
-3. Enter email address
-4. Select role
-5. Send invitation
+<Steps>
+  <Step title="Open Team Settings">
+    Go to **Settings** → **Team** in your dashboard.
+  </Step>
+  <Step title="Click Invite">
+    Click the **Invite Member** button.
+  </Step>
+  <Step title="Enter Email">
+    Enter the new team member's email address.
+  </Step>
+  <Step title="Select Role">
+    Choose the appropriate role for this team member.
+    
+    <Tip>
+    Start with the Member role and upgrade to Admin only if needed—follow the principle of least privilege.
+    </Tip>
+  </Step>
+  <Step title="Send Invitation">
+    Click **Send Invite** to email the invitation.
+    
+    <Check>
+    The invitation appears in the Pending Invitations list until accepted.
+    </Check>
+  </Step>
+</Steps>
 
 ### Change Roles
 
-Update a team member's role:
-1. Go to **Settings** → **Team**
-2. Find the team member
-3. Click their role
-4. Select new role
-5. Save changes
+<Steps>
+  <Step title="Find the Team Member">
+    Go to **Settings** → **Team** and locate the team member.
+  </Step>
+  <Step title="Click Their Role">
+    Click on their current role to open the role selector.
+  </Step>
+  <Step title="Select New Role">
+    Choose the new role from the dropdown.
+    
+    <Warning>
+    Downgrading a role may remove access to content or features immediately.
+    </Warning>
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply the change.
+    
+    <Check>
+    The team member's permissions update immediately.
+    </Check>
+  </Step>
+</Steps>
 
 ### Remove Team Members
 
-Remove access:
-1. Go to **Settings** → **Team**
-2. Find the team member
-3. Click **Remove**
-4. Confirm removal
+<Steps>
+  <Step title="Find the Team Member">
+    Go to **Settings** → **Team** and locate the team member.
+  </Step>
+  <Step title="Click Remove">
+    Click the **Remove** button next to their name.
+  </Step>
+  <Step title="Confirm Removal">
+    Confirm that you want to remove this team member.
+    
+    <Check>
+    The user loses access immediately and is removed from all shared content.
+    </Check>
+  </Step>
+</Steps>
 
 ## Profile-Level Permissions
 
-Control access to specific profiles:
+Control access to specific social profiles:
 
 | Permission | Description |
 |------------|-------------|
@@ -79,17 +125,45 @@ Control access to specific profiles:
 | **Can View** | View only, no editing |
 | **No Access** | Profile hidden from user |
 
+<Tip>
+Use profile-level permissions when team members should only manage specific clients or brands.
+</Tip>
+
 ## Security Best Practices
 
 <AccordionGroup>
   <Accordion title="Least privilege principle">
-    Give team members only the access they need for their role.
+    Give team members only the access they need for their role. Start with lower permissions and upgrade as needed.
   </Accordion>
   <Accordion title="Regular audits">
-    Review team access quarterly and remove unused accounts.
+    Review team access quarterly and remove unused accounts. Check for team members who no longer need access.
   </Accordion>
   <Accordion title="Offboarding">
-    Remove access immediately when team members leave.
+    Remove access immediately when team members leave the organization. Don't wait for "cleanup" later.
   </Accordion>
 </AccordionGroup>
 
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Team member can't access a profile">
+    Check profile-level permissions. The user may have workspace access but no access to that specific profile.
+  </Accordion>
+  <Accordion title="Invitation not received">
+    Check spam folders. You can resend the invitation from the Pending Invitations list.
+  </Accordion>
+  <Accordion title="Can't change Owner role">
+    Owner transfer requires the current owner to initiate. Contact the workspace owner to transfer ownership.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Set Up Approvals" icon="circle-check" href="/collaboration/approvals">
+    Add content review workflows.
+  </Card>
+  <Card title="Manage Your Profile" icon="user" href="/account/managing-your-profile">
+    Update your personal settings.
+  </Card>
+</CardGroup>

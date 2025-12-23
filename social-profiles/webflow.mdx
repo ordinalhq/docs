@@ -8,13 +8,41 @@ icon: "globe"
 
 Connect your Webflow site to Ordinal to publish blog posts and content directly to your website's CMS.
 
+## Prerequisites
+
+<Note>
+Webflow CMS is required. Sites on the free plan without CMS cannot be connected.
+</Note>
+
+Your Webflow site needs:
+- An active CMS plan
+- At least one collection for blog posts
+- API access enabled
+
 ## Connecting Webflow
 
-1. Go to **Social Profiles** → **Add Profile**
-2. Select **Webflow**
-3. Authorize Ordinal to access your Webflow account
-4. Select the site and collection to connect
-5. Your Webflow site is now connected
+<Steps>
+  <Step title="Open Add Profile">
+    Go to **Social Profiles** → **Add Profile** in your dashboard.
+  </Step>
+  <Step title="Select Webflow">
+    Choose **Webflow** from the list of available platforms.
+  </Step>
+  <Step title="Authorize Access">
+    Log in to your Webflow account and authorize Ordinal to access your sites.
+  </Step>
+  <Step title="Select Site and Collection">
+    Choose the Webflow site and CMS collection where you want to publish content.
+    
+    <Tip>
+    Select your blog posts collection if you're primarily using Ordinal for content marketing.
+    </Tip>
+    
+    <Check>
+    Your Webflow site appears in the Social Profiles list with a green "Connected" status.
+    </Check>
+  </Step>
+</Steps>
 
 ## Supported Features
 
@@ -37,14 +65,27 @@ Turn your social content into blog posts:
 - Expand tweet threads into articles
 - Convert LinkedIn posts to blog content
 
-## Setup Requirements
+## Troubleshooting
 
-<Note>
-Webflow CMS is required. Sites on the free plan without CMS cannot be connected.
-</Note>
+<AccordionGroup>
+  <Accordion title="Site not appearing">
+    Ensure your Webflow site has CMS enabled. Free sites without CMS cannot be connected.
+  </Accordion>
+  <Accordion title="Collection not syncing">
+    Check that your collection has the required fields (title, content, etc.) and that API access is enabled in Webflow site settings.
+  </Accordion>
+  <Accordion title="Publishing failed">
+    Verify your Webflow plan allows API publishing and that you haven't exceeded your CMS item limits.
+  </Accordion>
+</AccordionGroup>
 
-Your Webflow site needs:
-- An active CMS plan
-- At least one collection for blog posts
-- API access enabled
+## Next Steps
 
+<CardGroup cols={2}>
+  <Card title="Create Blog Content" icon="pen-to-square" href="/posts/drafting-posts">
+    Draft blog posts in Ordinal.
+  </Card>
+  <Card title="Cross-Post to Social" icon="share" href="/posts/cross-posting">
+    Promote blog posts on social media.
+  </Card>
+</CardGroup>
