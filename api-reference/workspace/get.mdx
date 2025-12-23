@@ -1,0 +1,80 @@
+---
+title: 'Get workspace'
+openapi: 'GET /workspace'
+---
+
+Retrieve information about the current workspace associated with your API key.
+
+## Response
+
+<ResponseField name="id" type="string">
+  UUID of the workspace
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Name of the workspace
+</ResponseField>
+
+<ResponseField name="slug" type="string">
+  URL-friendly slug for the workspace
+</ResponseField>
+
+<ResponseField name="timezone" type="string">
+  Workspace timezone (e.g., "America/New_York")
+</ResponseField>
+
+<ResponseField name="createdAt" type="datetime">
+  Timestamp when the workspace was created
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url https://app.tryordinal.com/api/v1/workspace \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://app.tryordinal.com/api/v1/workspace',
+  {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  }
+);
+
+const workspace = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://app.tryordinal.com/api/v1/workspace',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+
+workspace = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "id": "456e7890-e89b-12d3-a456-426614174003",
+  "name": "Acme Marketing",
+  "slug": "acme-marketing",
+  "timezone": "America/New_York",
+  "createdAt": "2024-01-01T00:00:00.000Z"
+}
+```
+
+</ResponseExample>
+
+<Info>
+  The workspace timezone is used for scheduling posts and displaying dates. All API timestamps are in UTC.
+</Info>
