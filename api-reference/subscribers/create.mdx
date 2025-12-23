@@ -1,0 +1,107 @@
+---
+title: 'Add subscribers to post'
+openapi: 'POST /subscribers'
+---
+
+Add one or more subscribers to a post. Subscribers will receive notifications when the post is updated.
+
+## Request body
+
+<ParamField body="postId" type="string" required>
+  UUID of the post
+</ParamField>
+
+<ParamField body="userIds" type="array" required>
+  Array of user UUIDs to subscribe to the post
+</ParamField>
+
+## Response
+
+<ResponseField name="createdSubscribers" type="array">
+  Array of newly created subscriber objects
+</ResponseField>
+
+<ResponseField name="existingSubscribers" type="array">
+  Array of subscribers that already existed
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --request POST \
+  --url https://app.tryordinal.com/api/v1/subscribers \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "postId": "550e8400-e29b-41d4-a716-446655440000",
+    "userIds": [
+      "890e1234-e89b-12d3-a456-426614174005"
+    ]
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch('https://app.tryordinal.com/api/v1/subscribers', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    postId: '550e8400-e29b-41d4-a716-446655440000',
+    userIds: ['890e1234-e89b-12d3-a456-426614174005']
+  })
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://app.tryordinal.com/api/v1/subscribers',
+    headers={
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+    },
+    json={
+        'postId': '550e8400-e29b-41d4-a716-446655440000',
+        'userIds': ['890e1234-e89b-12d3-a456-426614174005']
+    }
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "createdSubscribers": [
+    {
+      "id": "333e4444-e89b-12d3-a456-426614174008",
+      "user": {
+        "id": "890e1234-e89b-12d3-a456-426614174005",
+        "firstName": "Jane",
+        "lastName": "Smith"
+      },
+      "createdBy": {
+        "id": "987e6543-e21b-12d3-a456-426614174000",
+        "firstName": "John",
+        "lastName": "Doe"
+      },
+      "createdAt": "2024-01-15T10:30:00.000Z"
+    }
+  ],
+  "existingSubscribers": []
+}
+```
+
+</ResponseExample>
+
+<Info>
+  If a user is already subscribed to the post, they will be returned in `existingSubscribers` instead of creating a duplicate subscription.
+</Info>
