@@ -1,122 +1,139 @@
 ---
 title: "Slack"
-description: "Team messages and notifications"
+description: "Schedule messages to your team channels"
 icon: "slack"
 ---
 
-Slack integrates with Ordinal in two ways: schedule messages to channels, and receive notifications about your Ordinal activity. Most teams use both.
+Slack scheduling keeps your team in the loop without the manual work. Schedule announcements, content alerts, or recurring updates to any channel—written and timed alongside the rest of your content calendar.
+
+![Slack Post Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
-| Integration | What it does |
-|-------------|--------------|
-| **Scheduling** | Post messages to Slack channels on a schedule |
-| **Notifications** | Get alerts when posts publish, fail, or need approval |
-| **Slack Boost** | Automatically share published social posts with your team |
+This page covers **scheduling messages to Slack channels**. Ordinal also offers Slack notifications and Slack Boost for team amplification—see the callouts below.
 
-These are separate integrations—you can use one, two, or all three depending on your workflow.
+<CardGroup cols={2}>
+  <Card title="Connecting Slack" icon="plug" href="#connecting-slack">
+    Connect your workspace and channels
+  </Card>
+  <Card title="Drafting a Message" icon="pen-to-square" href="#drafting-a-slack-message">
+    Formatting, mentions, and attachments
+  </Card>
+  <Card title="Attachments" icon="image" href="#attachments">
+    Images and videos
+  </Card>
+  <Card title="Use Cases" icon="lightbulb" href="#use-cases">
+    When to use Slack scheduling
+  </Card>
+</CardGroup>
 
-## Scheduling messages
+## Connecting Slack
 
-Schedule messages to Slack channels for team announcements, content alerts, or recurring updates.
+Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/slack), select Slack, and sign in to your workspace. Choose which channels Ordinal can post to—each channel appears as a selectable profile when creating posts.
 
-### Connecting for scheduling
+| Requirement | Details |
+|-------------|---------|
+| Connection | OAuth via Slack |
+| Permissions | Post messages to selected channels |
+| Sender | Ordinal app (bot) |
 
-Go to **Settings → Profiles → Scheduling**, select Slack, sign in to your workspace, and choose which channels Ordinal can post to. Each channel appears as a selectable profile when creating posts.
+<Tip>
+  The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel first.
+</Tip>
+
+## Drafting a Slack Message
 
 ### What you can post
 
-| Content | Supported |
-|---------|-----------|
-| Text messages | ✅ |
-| Images | ✅ |
-| Files | ✅ |
-| Links with preview | ✅ |
-| Formatted text | ✅ |
+| Feature | Supported | Notes |
+|---------|-----------|-------|
+| Text messages | ✅ | Up to 40,000 characters |
+| [Attachments](#attachments) | ✅ | 1 image or video per message |
+| Formatted text | ✅ | Bold, italic, code, links, lists |
+| [Mentions](#mentions) | ✅ | @here, @channel, users, and channels |
+| Link previews | ✅ | Slack unfurls links automatically |
 
-Slack formatting works—bold, italic, code blocks, links, and emoji all publish as expected.
+### Formatting
 
-### Use cases
+The editor supports Slack's markdown-style formatting:
 
-- Scheduled team announcements
-- Alerting the team when social content goes live
-- Recurring messages (weekly updates, daily standups)
+- **Bold**: Use the toolbar or `Cmd/Ctrl + B`
+- **Italic**: Use the toolbar or `Cmd/Ctrl + I`
+- **Code**: Inline code formatting
+- **Links**: Paste URLs or use the link button
+- **Lists**: Bullet and numbered lists
+- **Emoji**: Type `:emoji_name:` or use the emoji picker
 
-## Notifications
+Formatting converts to Slack's native syntax when published, so your messages look native in the channel.
 
-Get notified in Slack when things happen in Ordinal—no need to constantly check the dashboard.
+### Mentions
 
-### Connecting for notifications
+Tag users, channels, and broadcast to everyone:
 
-Go to **Settings → Slack** and click **Connect Slack for Notifications**. Choose a channel and select which events to send.
+| Mention | What it does |
+|---------|--------------|
+| `@here` | Notifies active members in the channel |
+| `@channel` | Notifies all members in the channel |
+| `@everyone` | Notifies everyone in the workspace |
+| `<@USER_ID>` | Mentions a specific user |
+| `<#CHANNEL_ID>` | Links to another channel |
 
-### Notification types
+<Note>
+  User and channel mentions require Slack IDs (not display names). You can find these in Slack by right-clicking a user or channel and copying the link.
+</Note>
 
-| Event | What you're notified about |
-|-------|---------------------------|
-| Post published | Scheduled posts that went live successfully |
-| Post failed | Posts that failed to publish (important!) |
-| Approval requested | Content submitted for your review |
-| Comments | When you're tagged in a comment |
-
-<Tip>
-At minimum, enable "Post failed" notifications. Catching failures quickly lets you fix issues before your content calendar falls behind.
-</Tip>
-
-<Card title="Notifications" icon="bell" href="/collaboration/notifications">
-  Configure all your notification preferences.
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, slash commands, and keyboard shortcuts.
 </Card>
 
-## Slack Boost
+## Attachments
 
-Slack Boost automatically shares your published social posts to a Slack channel, making it easy for your team to engage.
+You can attach **one image or video** per Slack message.
 
-### How it works
+| Spec | Limit |
+|------|-------|
+| Files per post | 1 |
+| Formats | JPG, PNG, GIF, MP4, MOV |
 
-1. You publish a social post (LinkedIn, Twitter, etc.)
-2. Ordinal sends a message to your Slack Boost channel
-3. Your team sees it and can click through to engage
+Drag and drop files into the editor, paste from clipboard, or use the attachment button. If you need to share multiple files, consider posting them separately or linking to a shared folder.
 
-This coordinates team amplification without manual effort.
-
-### Setting up Boost
-
-Go to **Settings → Slack** and click **Add Slack Boost Channel**. Choose a channel and configure:
-
-- **Auto-post**: Boost all published posts automatically
-- **Manual**: Choose which posts to boost individually
-
-When enabled, you can also customize the boost message on a per-post basis.
-
-<Card title="Marketing boost channels" icon="users-medical" href="/posts/marketing-boost-channels">
-  Learn more about coordinating team engagement.
-</Card>
-
-## Permissions
-
-When you connect Slack, Ordinal requests permission to post messages, view channels, and post as a bot. The Ordinal app appears as the sender for scheduled messages and notifications.
-
-## Common issues
-
-**Can't connect**: You may need workspace admin permission to add apps. Check with your Slack admin.
+## Common Issues
 
 **Channel not appearing**: The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel.
 
-**Messages not posting**: Verify the channel exists and Ordinal hasn't been removed from your workspace.
+**Can't connect**: You may need workspace admin permission to add apps. Check with your Slack admin.
 
-## Tips
+**Messages not posting**: Verify the channel still exists and Ordinal hasn't been removed from your workspace.
 
-- **Separate channels for different purposes**—announcements vs. notifications vs. boost
-- **Time messages for when people are online**—scheduled messages at 3 AM don't help anyone
-- **Use Boost for high-priority content**—not every post needs team amplification
+**Formatting looks wrong**: Some advanced formatting may render differently depending on Slack client versions.
 
-## Learn more
+## Use Cases
+
+- **Scheduled team announcements**: Company updates, policy changes, weekly roundups
+- **Content alerts**: Notify when social posts go live
+- **Recurring messages**: Daily standups, weekly reminders, monthly reports
+- **Cross-timezone communication**: Schedule messages for when team members are online
+
+## Other Slack Features
+
+Ordinal offers additional Slack integrations beyond scheduling:
+
+<CardGroup cols={2}>
+  <Card title="Notifications" icon="bell" href="/collaboration/notifications">
+    Get Slack alerts when posts publish, fail, or need approval.
+  </Card>
+  <Card title="Marketing Boost Channels" icon="users-medical" href="/posts/marketing-boost-channels">
+    Automatically share published social posts with your team for engagement.
+  </Card>
+</CardGroup>
+
+## Learn More
 
 <CardGroup cols={2}>
   <Card title="Discord" icon="discord" href="/social-profiles/discord">
-    Webhooks for community announcements.
+    Similar use case with webhook-based connection.
   </Card>
-  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
-    Set up review workflows with Slack notifications.
+  <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
+    Set the perfect time for your content.
   </Card>
 </CardGroup>

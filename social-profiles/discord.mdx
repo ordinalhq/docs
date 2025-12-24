@@ -4,11 +4,28 @@ description: "Community announcements via webhooks"
 icon: "discord"
 ---
 
-Discord works differently from other platforms in Ordinal. Instead of connecting an account, you create **webhooks** in Discord and add them to Ordinal. Messages post to specific channels through those webhooks.
+Discord is where communities live—and scheduled announcements keep them engaged. Instead of connecting an account, you create **webhooks** in Discord and add them to Ordinal. Messages post to specific channels through those webhooks, perfect for product updates, event reminders, and recurring community content.
+
+![Discord Post Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
-Webhooks are channel-specific URLs that accept incoming messages. You create them in Discord, give them a name and avatar, and paste the URL into Ordinal. No Discord login required in Ordinal—you control exactly which channels can receive scheduled messages.
+Webhooks are channel-specific URLs that accept incoming messages. You create them in Discord, give them a name and avatar, and paste the URL into Ordinal. No Discord login required—you control exactly which channels can receive scheduled messages.
+
+<CardGroup cols={2}>
+  <Card title="Creating a Webhook" icon="plus" href="#creating-a-webhook-in-discord">
+    Set up webhooks in your Discord server
+  </Card>
+  <Card title="Adding to Ordinal" icon="plug" href="#adding-the-webhook-to-ordinal">
+    Connect your webhook to Ordinal
+  </Card>
+  <Card title="Drafting a Message" icon="pen-to-square" href="#drafting-a-discord-message">
+    Formatting, mentions, and attachments
+  </Card>
+  <Card title="Use Cases" icon="lightbulb" href="#use-cases">
+    When to use Discord scheduling
+  </Card>
+</CardGroup>
 
 | How it works | Details |
 |--------------|---------|
@@ -22,7 +39,7 @@ This means:
 - The webhook's name and avatar appear as the message sender
 - Anyone with the webhook URL can post to that channel (keep it private)
 
-## Creating a webhook in Discord
+## Creating a Webhook in Discord
 
 1. Open your Discord server
 2. Go to **Server Settings → Integrations → Webhooks**
@@ -34,60 +51,96 @@ This means:
 
 Keep this URL private—it's essentially a posting key for that channel.
 
-## Adding the webhook to Ordinal
+<Tip>
+  Name webhooks clearly (like "Product Updates" or "Social Alerts") so it's obvious what's posting. Use a custom avatar to help messages look intentional, not like spam.
+</Tip>
 
-Go to **Settings → Profiles → Scheduling**, select Discord, paste your webhook URL, and give it a name. The webhook appears as a profile you can select when creating posts.
+## Adding the Webhook to Ordinal
+
+Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/discord), select Discord, paste your webhook URL, and give it a name. The webhook appears as a profile you can select when creating posts.
 
 To post to multiple channels, create a separate webhook for each channel in Discord and add each to Ordinal.
 
-## What you can post
+## Drafting a Discord Message
 
-| Content | Supported |
-|---------|-----------|
-| Text messages | ✅ |
-| Images | ✅ |
-| Videos | ✅ |
-| Rich embeds | ✅ |
-| @mentions | Limited (requires user/role IDs) |
-| Reactions | ❌ |
+### What you can post
 
-### Rich embeds
+| Feature | Supported | Notes |
+|---------|-----------|-------|
+| Text messages | ✅ | Up to 2,000 characters |
+| [Attachments](#attachments) | ✅ | Up to 3 files, 10MB each |
+| Formatted text | ✅ | Headings, bold, italic, underline, code, links, lists |
+| [Mentions](#mentions) | ✅ | @here, @everyone, users, roles |
+| Link previews | ✅ | Discord unfurls links automatically |
 
-Embeds create visually distinct messages with custom titles, descriptions, colors, and thumbnails. Use them for announcements that should stand out from regular chat.
+### Formatting
 
-### Message limits
+The editor supports Discord's markdown formatting:
 
-- 2,000 characters per message
-- Up to 10 embeds per message
-- 8 MB maximum file size
+- **Headings**: H1 and H2 for structure
+- **Bold**: Use the toolbar or `Cmd/Ctrl + B`
+- **Italic**: Use the toolbar or `Cmd/Ctrl + I`
+- **Underline**: Use the toolbar or `Cmd/Ctrl + U`
+- **Code**: Inline code formatting
+- **Links**: Paste URLs or use the link button—Discord displays them as clickable or with `[text](url)` syntax
+- **Lists**: Bullet and numbered lists
+- **Emoji**: Type `:emoji_name:` or use the emoji picker
 
-## Common issues
+Formatting converts to Discord's native markdown when published.
+
+### Mentions
+
+Tag users, roles, and broadcast to everyone:
+
+| Mention | What it does |
+|---------|--------------|
+| `@here` | Notifies active members in the channel |
+| `@everyone` | Notifies all members in the server |
+| `<@USER_ID>` | Mentions a specific user |
+| `<@&ROLE_ID>` | Mentions a specific role |
+
+<Note>
+  User and role mentions require Discord IDs (not display names). You can find these by enabling Developer Mode in Discord settings, then right-clicking a user or role.
+</Note>
+
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, slash commands, and keyboard shortcuts.
+</Card>
+
+## Attachments
+
+You can attach **up to 3 files** per Discord message.
+
+| Spec | Limit |
+|------|-------|
+| Files per post | 3 maximum |
+| File size | 10MB per file |
+| Formats | JPG, PNG, GIF, MP4, MOV |
+
+Drag and drop files into the editor, paste from clipboard, or use the attachment button. Each attachment must have a unique filename.
+
+## Common Issues
 
 **Webhook not working**: The webhook may have been deleted in Discord. Create a new one and update it in Ordinal.
 
 **Messages not appearing**: Verify you're checking the correct channel—each webhook posts to exactly one channel.
 
-**Embeds not displaying**: The webhook needs "Embed Links" permission in the channel. Check channel settings in Discord.
+**Duplicate attachment error**: Each attachment in a post must have a unique filename. Rename files before uploading if needed.
 
-## Tips
+**File too large**: Discord webhooks have a 10MB file size limit. Compress your files or use a link instead.
 
-- **Name webhooks clearly**—"Product Updates" or "Social Alerts" makes it obvious what's posting
-- **Use custom avatars**—helps messages look intentional, not like spam
-- **Don't over-automate**—too many automated posts can feel impersonal to community members
-- **One purpose per webhook**—keeps things organized
+## Use Cases
 
-## Use cases
+- **Product announcements**: Release notes, feature launches, changelog updates
+- **Community updates**: Event reminders, weekly roundups, server news
+- **Content sharing**: Notify when new social posts, blog articles, or videos go live
+- **Automated alerts**: Scheduled reminders, countdowns, recurring messages
 
-- Product announcements and release notes
-- Sharing new social content with your community
-- Event reminders and countdowns
-- Weekly community updates
-
-## Learn more
+## Learn More
 
 <CardGroup cols={2}>
   <Card title="Slack" icon="slack" href="/social-profiles/slack">
-    Similar use cases, OAuth connection.
+    Similar use case with OAuth-based connection.
   </Card>
   <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
     Set the perfect time for your content.

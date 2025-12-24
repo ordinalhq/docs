@@ -1,95 +1,113 @@
 ---
 title: "TikTok"
-description: "Video content"
+description: "Video content and short-form storytelling"
 icon: "tiktok"
 ---
 
-TikTok is video-only. In Ordinal, you can schedule videos with captions and hashtags, choosing between direct publishing or sending to your TikTok inbox for final touches.
+TikTok offers some of the best organic reach of any platform—if you have the video content to match. In Ordinal, you can schedule videos with captions and hashtags, configure privacy and interaction settings, and publish directly to your account.
+
+![TikTok Post Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
-TikTok requires a **Business or Creator account**—personal accounts don't have API access. Your profile must also be public.
+TikTok requires a **Business or Creator account**—personal accounts don't have API access. Your profile must also be public. To switch account types: **TikTok Settings → Manage Account → Switch to Business Account**.
+
+<CardGroup cols={2}>
+  <Card title="Connecting TikTok" icon="plug" href="#connecting-tiktok">
+    Connect your Business or Creator account
+  </Card>
+  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-a-tiktok-post">
+    Captions, hashtags, and mentions
+  </Card>
+  <Card title="Post Settings" icon="sliders" href="#post-settings">
+    Privacy, comments, duets, and more
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="#analytics">
+    Track video performance
+  </Card>
+</CardGroup>
+
+## Connecting TikTok
+
+Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/tiktok), select TikTok, and sign in. Authorize Ordinal and your account will appear in your connected profiles.
 
 | Requirement | Details |
 |-------------|---------|
 | Account type | Business or Creator |
-| Profile visibility | Public |
-| Content | Video only (no images) |
+| Profile visibility | Public (private profiles can't connect) |
 
-To switch account types: **TikTok Settings → Manage Account → Switch to Business Account**.
 
-## Connecting TikTok
+## Drafting a TikTok Post
 
-Go to **Settings → Profiles → Scheduling**, select TikTok, sign in, and authorize Ordinal.
+### What you can post
 
-TikTok tokens can expire unpredictably. You'll see a warning when it's time to reconnect.
+| Content | Supported | Notes |
+|---------|-----------|-------|
+| [Videos](#video-requirements) | ✅ | Single video per post |
+| Images | ❌ | TikTok is video-only |
+| Trending sounds | ❌ | API limitation |
+| Filters/effects | ❌ | API limitation |
+| Duets/Stitches | ❌ | API limitation |
+| Text overlays | ❌ | API limitation |
 
-## Direct Post vs. Send to Inbox
+### Caption & Formatting
 
-TikTok offers two publishing methods:
+Write captions to accompany your video:
 
-| Method | How it works | When to use |
-|--------|--------------|-------------|
-| **Direct Post** | Video publishes directly at scheduled time | Most posts—no extra steps needed |
-| **Send to Inbox** | Video goes to your TikTok inbox; you finalize manually | When you want to add sounds, effects, or text overlays |
+- **Bold / Italic**: Use the toolbar buttons for Unicode formatting
+- **Hashtags**: Type `#` followed by your tag—they'll link to TikTok's tag page when published
+- **@Mentions**: Type `@` followed by a username to tag other creators
 
-Direct Post is the default when available. Use Send to Inbox if you need TikTok-native features that aren't available via API.
-
-## What you can post
-
-| Content | Supported |
-|---------|-----------|
-| Videos | ✅ |
-| Images | ❌ |
-| Trending sounds | ❌ (API limitation) |
-| Filters/effects | ❌ (API limitation) |
-| Duets/Stitches | ❌ (API limitation) |
-| Text overlays | ❌ (API limitation) |
-
-If you need sounds, effects, or interactive features, use Send to Inbox and add them in the TikTok app before publishing.
-
-## Video specifications
-
-| Requirement | Value |
-|-------------|-------|
-| Formats | MP4, WebM |
-| Aspect ratio | 9:16 (vertical) recommended |
-| Resolution | 720p minimum, 1080p recommended |
-| Length | 3 seconds to 10 minutes |
-| File size | 500 MB maximum |
-
-Vertical video (9:16) performs best. Horizontal or square videos work but won't fill the screen.
-
-## Captions
-
-Captions support up to 2,200 characters. Include hashtags for discoverability and @mention other users.
+Captions can be up to **2,200 characters**.
 
 <Tip>
-Mix trending hashtags with niche-specific ones. 3–5 per post is a good balance.
+  Mix trending hashtags with niche-specific ones. 3–5 per post is a good balance for discoverability without looking spammy.
+</Tip>
+
+### Post Preview
+
+As you draft your post, the editor shows a live preview that matches how your video will appear in the TikTok feed—complete with your profile picture, username, and caption overlay.
+
+### Video Requirements
+
+TikTok only accepts video—no images. Here are the specs:
+
+| Spec | Limit |
+|------|-------|
+| Formats | MP4, MOV |
+| Resolution | 360px to 4096px (width and height) |
+| Aspect ratio | 9:16 (vertical) recommended |
+| Duration | 3 seconds to 10 minutes |
+| File size | 500MB maximum |
+
+Vertical video (9:16) performs best and fills the entire screen. Horizontal or square videos work but won't have the same impact. Files over 125MB are automatically compressed before upload.
+
+## Post Settings
+
+Configure how viewers can interact with your video. You'll find these options below the caption editor:
+
+- **Privacy**: Choose who can see your video—Public, Followers, Friends, or just yourself
+- **Comments**: Enable or disable comments on your video
+- **Duets**: Allow others to create Duets with your video
+- **Stitch**: Allow others to Stitch your video into their content
+- **Sponsored**: Mark the video as promotional content
+- **Paid Partnership**: Disclose paid brand partnerships (only appears if Sponsored is enabled)
+
+<Tip>
+  Enabling Duets and Stitches can increase your reach—other creators using your content exposes you to their audience.
 </Tip>
 
 ## Analytics
 
-Basic analytics are available—video views and engagement. TikTok provides less API data than most platforms, so detailed analytics require checking TikTok directly.
+View video performance in [**Analytics → TikTok**](https://app.tryordinal.com/analytics/tiktok). You'll see views, likes, comments, and shares for each video.
+
+<Note>
+  TikTok provides less API data than most platforms. For detailed analytics like watch time and audience demographics, check TikTok directly.
+</Note>
 
 <Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
-  Track performance across all your connected profiles.
+  Learn more about tracking performance across all your connected profiles.
 </Card>
-
-## Common issues
-
-**Can't connect**: Verify your account is public and set to Business or Creator. Try an incognito browser window.
-
-**Video won't upload**: Check format (MP4/WebM), size (under 500 MB), length (under 10 min), and resolution (at least 720p).
-
-**Video in inbox but not posted**: Open TikTok, find the video in your inbox, and complete the post manually.
-
-## Tips
-
-- **Hook viewers in the first 3 seconds**—watch time is everything on TikTok
-- **Post consistently**—the algorithm rewards regular uploads
-- **Engage with comments**—it boosts visibility
-- **Vertical video only**—9:16 for full-screen experience
 
 ## Learn more
 

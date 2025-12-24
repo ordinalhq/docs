@@ -4,99 +4,115 @@ description: "Short-form vertical video"
 icon: "youtube"
 ---
 
-YouTube integration is for **Shorts only**—vertical videos under 60 seconds. Standard long-form YouTube videos aren't currently supported.
+YouTube Shorts tap into YouTube's massive audience with quick, vertical videos. In Ordinal, you can schedule Shorts with titles, descriptions, categories, and visibility settings—getting your content in front of billions of users.
+
+<Warning>
+  Ordinal only supports **YouTube Shorts**. Standard long-form YouTube videos (horizontal videos over 3 minutes) are not currently supported.
+</Warning>
+
+![YouTube Shorts Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
-Shorts are YouTube's answer to TikTok and Reels. They appear in a dedicated Shorts feed and can drive significant reach. In Ordinal, you can schedule Shorts with titles, descriptions, and visibility settings.
+YouTube classifies a video as a **Short** when it's vertical (9:16 aspect ratio) and under 3 minutes. Videos that don't meet these criteria are considered standard long-form videos and won't work in Ordinal.
 
-| Requirement | Value |
-|-------------|-------|
-| Format | Vertical (9:16) |
-| Length | 15–60 seconds |
-| Account | YouTube channel with Google account |
+Your channel must be **verified** (phone verification) with no active strikes. If you manage multiple channels, you can connect each as a separate profile.
 
-Your channel must be verified (phone verification) and in good standing—channels with active strikes may have limited API access.
+<CardGroup cols={2}>
+  <Card title="Connecting YouTube" icon="plug" href="#connecting-youtube">
+    Connect your YouTube channel
+  </Card>
+  <Card title="Drafting a Short" icon="pen-to-square" href="#drafting-a-youtube-short">
+    Title, description, and video
+  </Card>
+  <Card title="Video Settings" icon="sliders" href="#video-settings">
+    Visibility, category, and more
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="#analytics">
+    Track video performance
+  </Card>
+</CardGroup>
 
 ## Connecting YouTube
 
-Go to **Settings → Profiles → Scheduling**, select YouTube, sign in with Google, and choose your channel. If you manage multiple channels, you can connect each as a separate profile.
+Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/youtube), select YouTube, and sign in with Google. Choose your channel and authorize Ordinal.
 
-YouTube tokens can expire based on Google's policies. You'll see a warning when reconnection is needed.
+| Requirement | Details |
+|-------------|---------|
+| Account type | YouTube channel with Google account |
+| Channel status | Verified (phone verification) |
+| Standing | No active strikes or restrictions |
 
-## What makes a Short
 
-YouTube classifies a video as a Short when it's:
-- Vertical (9:16 aspect ratio)
-- 60 seconds or less
-- At least 15 seconds
+## Drafting a YouTube Short
 
-Videos that don't meet these criteria won't appear in the Shorts feed.
+### What you can post
 
-## Video specifications
+| Feature | Supported | Notes |
+|---------|-----------|-------|
+| [Shorts](#video-requirements) | ✅ | Up to 3 minutes, vertical |
+| Standard videos | ❌ | Not currently supported |
+| Community posts | ❌ | Not currently supported |
+| Playlists | ❌ | Not currently supported |
 
-| Requirement | Value |
-|-------------|-------|
-| Formats | MP4, WebM |
-| Aspect ratio | 9:16 (vertical) |
-| Resolution | 1080×1920 recommended |
-| Length | 15–60 seconds |
-| File size | 500 MB maximum |
+### Title & Description
 
-## Titles and descriptions
+Every Short needs a title and can include an optional description:
 
-**Titles**: Up to 100 characters. Include relevant keywords—Shorts are searchable on YouTube.
-
-**Descriptions**: Up to 5,000 characters. Add hashtags (including `#Shorts`), links, and calls to action.
+- **Title**: Up to 100 characters. Include relevant keywords—Shorts are searchable on YouTube.
+- **Description**: Up to 5,000 characters. Add hashtags (including `#Shorts`), links, and calls to action.
 
 <Tip>
-Including `#Shorts` in your title or description helps YouTube categorize your video correctly, though it's not strictly required for videos that meet the format specs.
+  Including `#Shorts` in your title or description helps YouTube categorize your video correctly, though it's not strictly required for videos that meet the format specs.
 </Tip>
 
-## Visibility options
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, mentions, slash commands, and keyboard shortcuts.
+</Card>
 
-| Setting | Who can see |
-|---------|-------------|
-| Public | Anyone on YouTube |
-| Unlisted | Only people with the direct link |
-| Private | Only you |
+### Video Requirements
 
-Set visibility when scheduling. You can change it later in YouTube Studio.
+| Spec | Limit |
+|------|-------|
+| Formats | MP4, MOV |
+| Duration | Up to 3 minutes |
+| Aspect ratio | 9:16 (vertical required) |
+| Resolution | 1080×1920 recommended |
+| File size | 500MB maximum |
 
-## API limitations
+Vertical video is required—videos must have a height greater than or equal to their width. Files over 125MB are automatically compressed before upload.
 
-These features require YouTube Studio and aren't available in Ordinal:
+<Tip>
+  While YouTube allows Shorts up to 3 minutes, shorter videos (under 60 seconds) often perform better in the Shorts feed.
+</Tip>
 
-| Feature | Available |
-|---------|-----------|
-| Shorts (under 60s) | ✅ |
-| Standard videos | ❌ |
-| Community posts | ❌ |
-| Playlists | ❌ |
-| End screens | ❌ |
-| Cards | ❌ |
-| Custom thumbnails | Limited |
+## Video Settings
 
-## Common issues
+Configure your Short's settings before scheduling. You'll find these options below the description editor:
 
-**Channel not appearing**: Make sure you're signed into the correct Google account and your channel is verified with no active strikes.
+- **Visibility**: Choose who can see your Short—Public (anyone on YouTube), Unlisted (only people with the link), or Private (only you)
+- **Notify Subscribers**: Choose whether to notify your subscribers when the Short publishes
+- **Category**: Select a category (Gaming, Music, Education, etc.) to help YouTube recommend your content
+- **Embedding**: Allow or prevent others from embedding your Short on external websites
+- **Made for Kids**: Mark if your content is made for children (required for COPPA compliance)
 
-**Video not classified as a Short**: Must be vertical (9:16), between 15–60 seconds, and meet resolution requirements.
+<Note>
+  The "Made for Kids" setting affects what features are available on your video. Videos marked as made for kids won't have comments, notifications, or personalized ads.
+</Note>
 
-**Upload failed**: Check file size, format, and length. Copyright issues with audio can also cause failures.
+## Analytics
 
-## Tips
+View Short performance in [**Analytics → YouTube**](https://app.tryordinal.com/analytics/youtube). YouTube provides limited API data compared to other platforms, so for detailed analytics like watch time and audience demographics, check YouTube Studio directly.
 
-- **Optimize for mobile**—Shorts are consumed on phones
-- **Hook viewers immediately**—first 3 seconds determine whether they keep watching
-- **Post daily**—consistency helps build momentum on the Shorts shelf
-- **Add a CTA**—encourage subscriptions or channel visits
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Learn more about tracking performance across all your connected profiles.
+</Card>
 
 ## Learn more
 
 <CardGroup cols={2}>
   <Card title="TikTok" icon="tiktok" href="/social-profiles/tiktok">
-    Similar format and strategy.
+    Similar short-form vertical format.
   </Card>
   <Card title="Instagram Reels" icon="instagram" href="/social-profiles/instagram">
     Another short-form video platform.

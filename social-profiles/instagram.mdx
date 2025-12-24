@@ -4,89 +4,193 @@ description: "Feed posts, Reels, Stories, and carousels"
 icon: "instagram"
 ---
 
-Instagram is a visual-first platform. In Ordinal, you can schedule feed posts, Reels, carousels, and Stories—plus use Instagram-specific features like first comments and cover photos.
+Instagram rewards polished, visual content—and consistency. In Ordinal, you can schedule feed posts, carousels, Reels, and Stories, plus use Instagram-specific features like photo tagging, collaborators, and first comments.
+
+![Instagram Post Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
 Instagram requires a **Business or Creator account** (not personal) and connects through Facebook. This is a Meta API requirement—your Instagram must be linked to a Facebook Page, and you need admin access to that page.
 
-If you have a personal account, convert it in Instagram: **Settings → Account → Switch to Professional Account**.
-
-<Note>
-The Facebook connection is just for authentication. You don't need to post to Facebook—it's how Instagram's API works.
-</Note>
+<CardGroup cols={2}>
+  <Card title="Connecting Instagram" icon="plug" href="#connecting-instagram">
+    Connect your Business or Creator account
+  </Card>
+  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-an-instagram-post">
+    Formatting, tagging, and media
+  </Card>
+  <Card title="Post Types" icon="grid-2" href="#post-types">
+    Feed, Reels, and Stories
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="#analytics">
+    Track post performance
+  </Card>
+</CardGroup>
 
 ## Connecting Instagram
 
-Go to **Settings → Profiles → Scheduling**, select Instagram, and sign in with Facebook. Choose the Facebook Page linked to your Instagram, authorize Ordinal, and your Instagram profile appears in your connected accounts.
+Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/instagram), select Instagram, and sign in with Facebook. Choose the Facebook Page linked to your Instagram, authorize Ordinal, and your Instagram profile appears in your connected accounts.
 
-Tokens expire roughly every 60 days. You'll see a warning when it's time to reconnect.
+<Note>
+  The Facebook connection is just for authentication. You don't need to post to Facebook—it's how Instagram's API works.
+</Note>
 
-## What you can post
-
-| Content | Supported | Notes |
-|---------|-----------|-------|
-| Feed posts | ✅ | Single image or video |
-| Carousels | ✅ | Up to 10 images/videos |
-| Reels | ✅ | 15–90 seconds, vertical |
-| Stories | ⚠️ | Single image only, no stickers or polls |
-
-### Story limitations
-
-Instagram's API restricts Stories to single images without interactive elements. For polls, questions, countdowns, or stickers, post Stories directly in the Instagram app.
-
-## Instagram-specific features
-
-**First Comment**: Schedule a comment to publish immediately after your post. Many creators use this for hashtags to keep captions cleaner.
-
-**Cover Photo**: Choose a custom cover frame for Reels—pick from the video or upload your own image.
-
-**Share to Feed**: Control whether Reels appear in both your profile grid and the Reels tab, or just Reels.
-
-**Location Tagging**: Add a location to increase discoverability. You can set a default location in your workspace settings if you frequently tag the same place.
-
-## Media specifications
-
-| Content | Formats | Dimensions | Limits |
-|---------|---------|------------|--------|
-| Images | JPG, PNG | 1080×1080 (square), 1080×1350 (portrait) | Min 320px wide |
-| Feed videos | MP4, MOV | Various | 60 seconds, 100 MB |
-| Reels | MP4 | 1080×1920 (9:16) | 15–90 seconds |
-| Carousels | Mixed | Consistent ratio recommended | Up to 10 items |
-
-## Caption limits
-
-| Limit | Value |
-|-------|-------|
-| Characters | 2,200 |
-| Hashtags | 30 maximum |
+If you have a personal account, convert it in Instagram: **Settings → Account → Switch to Professional Account**.
 
 <Tip>
-Put hashtags in your first comment instead of the caption. It keeps your post looking cleaner and doesn't affect discoverability.
+  Company pages require admin access to the linked Facebook Page.
 </Tip>
+
+## Drafting an Instagram Post
+
+### What you can post
+
+| Feature                     | Supported | Notes                                         |
+| --------------------------- | --------- | --------------------------------------------- |
+| [Feed posts](#feed-posts)   | ✅         | Single image/video or carousel               |
+| [Carousels](#feed-posts)    | ✅         | Up to 10 images/videos                       |
+| [Reels](#reels)             | ✅         | Single video, up to 15 minutes               |
+| [Stories](#stories)         | ⚠️         | Up to 10 images/videos, no interactive elements |
+
+### Drafting & Formatting
+
+The Instagram editor supports rich formatting through Unicode characters:
+
+- **Bold / Italic**: Use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
+- **Hashtags**: Type `#` followed by your tag—Instagram allows up to 30 per post (tracked in the editor)
+- **Mentions**: Type `@` followed by an Instagram handle to mention someone
+- **Links**: Instagram captions don't support clickable links, but you can include URLs as text
+
+Captions can be up to **2,200 characters**. The character counter updates in real-time as you type.
+
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, mentions, slash commands, and keyboard shortcuts.
+</Card>
+
+### Post Preview
+
+As you draft your post, the editor shows a live preview that matches how your content will appear on Instagram.
+
+For planning your profile aesthetic, switch to **Grid Preview** to see how your new post will fit into your existing Instagram grid. This helps you maintain a consistent visual style across your profile.
+
+### Photo Options
+
+**Photo tagging**: Tag users directly on your images to increase engagement and notify them:
+
+1. Add images to your post
+2. Open the **Tags** option
+3. Click anywhere on the image where you want the tag to appear
+4. Enter the Instagram handle
+
+<Note>
+  Photo tagging is only available for images in Feed posts. Videos in Feed posts and all Reels content use text-based tagging instead.
+</Note>
+
+### Instagram-Specific Features
+
+**Location**: Add a location to Feed posts to increase discoverability. Search for any place and it will appear on your published post.
+
+**Collaborators**: Invite up to **3 other Instagram accounts** to co-author your post. When published, collaborators receive a DM to accept the invitation, and the post appears on both profiles.
+
+**Cover Photo** (Reels only): Choose a custom thumbnail for your Reel—select a frame from the video or upload your own image.
+
+**Share to Feed** (Reels only): Control whether your Reel appears in both your profile grid and the Reels tab, or just in Reels.
+
+## Post Types
+
+<Tabs>
+  <Tab title="Feed Posts">
+    Feed posts appear in your profile grid and followers' feeds. They support single images, single videos, or carousels.
+
+    | Spec       | Limit                                          |
+    | ---------- | ---------------------------------------------- |
+    | Formats    | JPG only (PNG auto-converted)                  |
+    | Image size | 8MB max per image                              |
+    | Max pixels | 36 million per image                           |
+    | Per post   | Up to 10 images/videos (carousel)              |
+    | Aspect     | 4:5 (portrait) to 1.91:1 (landscape)           |
+
+    **Videos in Feed:**
+
+    | Spec     | Limit              |
+    | -------- | ------------------ |
+    | Formats  | MP4, MOV           |
+    | Duration | Up to 60 seconds   |
+    | Aspect   | 4:5 to 16:9        |
+
+    Ordinal automatically compresses videos larger than 125MB or wider than 1920px to meet Instagram's requirements.
+  </Tab>
+  <Tab title="Reels">
+    Reels are short-form vertical videos that appear in the Reels tab and can optionally show in your grid.
+
+    | Spec       | Limit                     |
+    | ---------- | ------------------------- |
+    | Formats    | MP4, MOV                  |
+    | Duration   | Up to 15 minutes          |
+    | Per post   | 1 video only              |
+    | Aspect     | 0.01:1 to 10:1 (flexible) |
+
+    **Reel-specific options:**
+    - **Cover Photo**: Upload a custom thumbnail or select a frame from the video
+    - **Share to Feed**: Toggle whether the Reel appears in your profile grid
+
+    <Tip>
+      Reels consistently get higher organic reach than static posts. If growing your audience is a priority, prioritize Reels.
+    </Tip>
+  </Tab>
+  <Tab title="Stories">
+    Stories are ephemeral content that disappears after 24 hours.
+
+    | Spec     | Limit                     |
+    | -------- | ------------------------- |
+    | Formats  | JPG, PNG, MP4, MOV        |
+    | Per post | Up to 10 images/videos    |
+    | Duration | 3–60 seconds (videos)     |
+    | Image    | 8MB max                   |
+
+    **Story limitations:**
+
+    Instagram's API restricts what can be scheduled for Stories:
+    - ❌ No stickers, polls, questions, or countdowns
+    - ❌ No link stickers
+    - ❌ No music
+    - ❌ No captions (the editor is hidden for Stories)
+
+    For interactive Stories, post directly in the Instagram app.
+  </Tab>
+</Tabs>
+
+<Card title="Media & Assets" icon="image" href="/posts/media">
+  Full specifications for all platforms including recommended dimensions.
+</Card>
+
+## Auto-Engagements
+
+Schedule a **first comment** to publish automatically after your post goes live. This is the only auto-engagement type available for Instagram due to API limitations.
+
+| Type              | What it does                                                              |
+| ----------------- | ------------------------------------------------------------------------- |
+| **First Comment** | Add a comment immediately after posting (great for hashtags or CTAs)      |
+
+<Tip>
+  Many creators put their hashtags in the first comment to keep captions cleaner. It doesn't affect discoverability.
+</Tip>
+
+<Card title="Auto-Engagements" icon="thumbs-up" href="/posts/auto-engagements">
+  Full guide to setting up timing, best practices, and troubleshooting.
+</Card>
+
+<Note>
+  Instagram's API doesn't support auto-likes or auto-reposts. Only first comments can be scheduled.
+</Note>
 
 ## Analytics
 
-View performance in **Analytics → Instagram**: reach, impressions, engagement (likes, comments, saves, shares), and follower growth.
+View post performance in [**Analytics → Instagram**](https://app.tryordinal.com/analytics/instagram). You'll see impressions, engagement breakdown (likes, comments, saves, shares), profile visits, and new followers gained from each post.
 
 <Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
-  Track performance across all your connected profiles.
+  Learn more about tracking performance across all your connected profiles.
 </Card>
-
-## Common issues
-
-**Business account required**: Personal accounts can't connect. Switch to Business or Creator in Instagram settings.
-
-**Page not linked**: Your Instagram must be linked to a Facebook Page. Check this in Instagram under **Settings → Account → Linked Accounts**.
-
-**Post failed**: Common causes are unsupported aspect ratios, videos over 60 seconds (for feed), captions over 2,200 characters, or 30+ hashtags.
-
-## Tips
-
-- **Reels get higher organic reach** than static posts—prioritize them if reach is your goal
-- **Carousels increase time on post**, which signals quality to the algorithm
-- **Consistent aesthetics matter**—plan your grid appearance
-- **Test posting times**—common peaks are 11 AM–1 PM and 7–9 PM, but your audience may differ
 
 ## Learn more
 
