@@ -1,106 +1,219 @@
 ---
 title: "Twitter / X"
-description: "Tweets, threads, and polls"
+description: "Tweets, threads, and real-time engagement"
 icon: "x-twitter"
 ---
 
-Twitter is built for real-time conversation. In Ordinal, you can schedule individual tweets, build multi-tweet threads, create polls, and coordinate engagement—all timed to publish when your audience is most active.
+Twitter is built for real-time conversation and quick, punchy content. In Ordinal, you can schedule individual tweets, build multi-tweet threads, and coordinate auto-engagements—all timed to publish when your audience is most active.
+
+![Twitter Post Editor](/images/ordinalLinkedIn.jpg)
 
 ## Overview
 
-Twitter supports both scheduling and engagement profiles. Most users connect for scheduling, but you can also connect an engagement profile to like, retweet, and reply directly from Ordinal.
+With Ordinal, you can connect Twitter accounts for both **scheduling** and **engagement**. Most users connect both to get the full experience.
 
-| Profile type | What you can do |
-|--------------|-----------------|
-| **Scheduling** | Post tweets, threads, polls, media |
-| **Engagement** | Like, retweet, reply, view timeline |
-
-<Tip>
-Connect the same account as both scheduling and engagement if you want full publishing and interaction capabilities.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Connecting Twitter" icon="plug" href="#connecting-twitter">
+    Connect for scheduling or engagement
+  </Card>
+  <Card title="Drafting a Tweet" icon="pen-to-square" href="#drafting-a-tweet">
+    Formatting, mentions, media, and threads
+  </Card>
+  <Card title="Auto-Engagements" icon="thumbs-up" href="#auto-engagements">
+    Automatically like, retweet, or reply
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="#analytics">
+    Track tweet performance
+  </Card>
+</CardGroup>
 
 ## Connecting Twitter
 
-**For scheduling**: **Settings → Profiles → Scheduling** → Twitter/X
+There are two types of connections supported for Twitter: **scheduling** and **engagement-only**. Scheduling profiles can post tweets, threads, and use auto-engagements. Engagement-only profiles are used purely for auto-engagements (liking, retweeting, replying to your own posts).
 
-**For engagement**: **Settings → Profiles → Engagement** → Twitter/X (doesn't count toward your plan limit)
+**For scheduling**: Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/twitter), select Twitter/X, and sign in.
 
-Twitter tokens rarely expire on their own, but will reset if you change your password or revoke app permissions.
+**For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/twitter) and connect separately.
 
-## What you can post
+<Tip>
+  Twitter tokens rarely expire on their own. You'll only need to reconnect if you change your password or revoke app permissions in Twitter's settings.
+</Tip>
 
-| Content | Supported | Notes |
-|---------|-----------|-------|
-| Text tweets | ✅ | 280 chars standard, 25,000 for Premium |
-| Images | ✅ | Up to 4 per tweet |
-| GIFs | ✅ | Animated |
-| Video | ✅ | Up to 2:20 |
-| Polls | ✅ | 2–4 options, 1 hour to 7 days |
-| Threads | ✅ | Multi-tweet sequences |
+## Drafting a Tweet
 
-### Threads
+### What you can post
 
-Threads let you tell longer stories across multiple connected tweets. Each tweet in the thread can have its own media.
+| Feature                              | Supported | Notes                                           |
+| ------------------------------------ | --------- | ----------------------------------------------- |
+| Text tweets                          | ✅         | 280 characters                                  |
+| [Long-form tweets](#long-form-tweets)| ✅         | Up to 4,000 characters (Premium)                |
+| [Images](#images)                    | ✅         | Up to 4 per tweet                               |
+| [GIFs](#gifs)                        | ✅         | Animated                                        |
+| [Videos](#videos)                    | ✅         | Up to 2:20 (10 min for verified)                |
+| [Threads](#threads)                  | ✅         | Multi-tweet sequences with individual media     |
+| Polls                                | ❌         | Not currently supported                         |
 
-To create a thread:
+### Drafting & Formatting
+
+The Twitter editor supports Unicode formatting for **bold** and *italic* text:
+
+- **Bold / Italic**: Use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
+- **Hashtags**: Type `#` followed by your tag—they'll automatically link when published
+- **Mentions**: Type `@` followed by a username to mention someone
+- **Links**: Paste URLs directly into your tweet (and use a [link shortener](/analytics/shortlinks) for detailed click analytics)
+
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, mentions, slash commands, and keyboard shortcuts.
+</Card>
+
+### Long-form Tweets
+
+Twitter Premium subscribers can post tweets up to **4,000 characters**—far beyond the standard 280 limit. Ordinal automatically detects your account type and adjusts the character counter accordingly.
+
+Long-form tweets display with a "Show more" link in the feed. Note that Twitter does not show link preview images on long-form tweets.
+
+### Post Preview
+
+As you draft your tweet, the editor shows a live preview that matches how your content will appear on Twitter—including proper text truncation with "See more" for longer posts.
+
+For a more realistic preview, click the **Feed Preview** button to see your tweet in a full Twitter feed context with:
+
+- Your profile picture and name as they'll appear
+- Desktop and mobile view options
+- Thread preview for multi-tweet posts
+
+### Photo Options
+
+**Alt text**: Add descriptions to your images for accessibility. Click the image options menu and enter alt text (up to 1,000 characters) that describes the visual content for screen readers.
+
+**Photo tagging**: Tag users in your images to notify them and increase visibility:
+
+1. Add images to your tweet
+2. Click the **Tag Users** button (user icon)
+3. Enter Twitter handles (without the @)
+4. Add up to 10 users per tweet
+
+<Note>
+  Photo tagging only works for public accounts. If a tagged user has disabled photo-tagging, the tweet will post without their tag.
+</Note>
+
+### Post Types
+
+<Tabs>
+  <Tab title="Images">
+    Upload images to create visual tweets:
+
+    | Spec       | Limit                     |
+    | ---------- | ------------------------- |
+    | Formats    | JPG, PNG, WEBP            |
+    | Size       | 5MB per image             |
+    | Per tweet  | Up to 4 images            |
+
+    Multiple images display in a grid layout. Add alt text for accessibility via the image options.
+  </Tab>
+  <Tab title="Videos">
+    Upload video content directly to Twitter:
+
+    | Spec     | Limit                                    |
+    | -------- | ---------------------------------------- |
+    | Formats  | MP4, MOV                                 |
+    | Size     | 512MB max                                |
+    | Duration | 2:20 (standard) / 10 min (verified)      |
+    | Ratio    | Between 1:3 and 3:1                      |
+
+    Videos must be at least 0.5 seconds long. Ordinal will alert you if your video exceeds your account's duration limit.
+  </Tab>
+  <Tab title="GIFs">
+    Add animated GIFs to your tweets:
+
+    | Spec       | Limit     |
+    | ---------- | --------- |
+    | Format     | GIF       |
+    | Size       | 15MB max  |
+    | Per tweet  | 1 GIF     |
+
+    GIFs count toward your 4-attachment limit but are treated as a single attachment.
+  </Tab>
+</Tabs>
+
+<Card title="Media & Assets" icon="image" href="/posts/media">
+  Full specifications for all platforms including recommended dimensions.
+</Card>
+
+## Threads
+
+Threads are Twitter's way of telling longer stories across multiple connected tweets. Each tweet in a thread can have its own media.
+
+**Creating a thread:**
+
 1. Write your first tweet
-2. Click **Add Tweet** to add the next
-3. Continue adding tweets
-4. Schedule—all tweets publish in sequence
+2. Click **Add Tweet** to add the next tweet
+3. Continue adding tweets to your thread
+4. Preview the entire thread before scheduling
+5. All tweets publish in sequence automatically
 
-Threads work well for tutorials, stories, and breaking down complex topics. Each tweet should stand alone while contributing to the whole.
+<Tip>
+  Each tweet in a thread should stand alone while contributing to the whole. The first tweet is especially important—it determines whether people read on.
+</Tip>
 
-### Polls
+### Splitting Tweets
 
-Polls are a quick way to engage your audience. Set your question, add 2–4 answer options, and choose how long the poll runs (1 hour to 7 days). Polls schedule like regular tweets.
+You can quickly split a tweet into two using your keyboard:
 
-## Character limits
+- **Press Enter 3 times** at the end of a tweet to add a new empty tweet after it
+- **Press Enter 5 times** in the middle of text to split the tweet at that point—content after the split moves to a new tweet
 
-| Account type | Limit |
-|--------------|-------|
-| Standard | 280 characters |
-| Twitter Premium | 25,000 characters |
+This makes it easy to break up long drafts into thread-sized chunks without copy-pasting.
 
-Ordinal shows a real-time counter that adjusts based on your account type.
+### Reordering Tweets
 
-## Media specifications
+Rearrange tweets in your thread using the arrow buttons:
 
-| Type | Formats | Size limit | Notes |
-|------|---------|------------|-------|
-| Images | JPG, PNG, GIF, WEBP | 5 MB | Up to 4 per tweet |
-| Videos | MP4, MOV | 512 MB | Up to 2:20 |
-| GIFs | GIF | 15 MB | Animated |
+- Click the **up arrow** to move a tweet earlier in the thread
+- Click the **down arrow** to move a tweet later in the thread
+
+The thread position updates instantly, and you can preview the final order before scheduling.
+
+## Auto-Engagements
+
+Automatically interact with your own tweets after they publish to boost initial visibility. Twitter supports these auto-engagement types:
+
+| Type             | What it does                                                                              |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| **Auto-Like**    | Connected profiles like your tweet                                                        |
+| **Auto-Retweet** | Retweet from another connected Twitter account                                            |
+| **Quote Tweet**  | Retweet with your own commentary from another account                                     |
+| **Auto-Reply**   | Add a first reply (great for additional context, links, or a call-to-action)              |
+
+Configure timing from **immediately** after posting up to **24 hours** later. Staggering engagements across different delays helps them appear more natural.
+
+<Card title="Auto-Engagements" icon="thumbs-up" href="/posts/auto-engagements">
+  Full guide to setting up timing, best practices, and troubleshooting.
+</Card>
+
+<Note>
+  Auto-engagements are available for **Pro** plan workspaces and above. Starter workspaces can only add auto-engagements from the same account as the tweet author.
+</Note>
 
 ## Analytics
 
-View tweet performance in **Analytics → Twitter**: impressions, engagements (likes, retweets, replies), click-through rate, and follower growth.
+View tweet performance in [**Analytics → Twitter**](https://app.tryordinal.com/analytics/twitter). You'll see impressions, engagement breakdown (likes, retweets, replies, quote tweets), click-through rate, and follower growth.
 
 <Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
-  Track performance across all your connected profiles.
+  Learn more about tracking performance across all your connected profiles.
 </Card>
 
-## Common issues
-
-**Rate limit exceeded**: Twitter limits API calls. Wait 15 minutes and avoid scheduling many posts at the exact same time.
-
-**Duplicate content blocked**: Twitter rejects identical tweets. Vary your content or wait before reposting.
-
-**Thread out of order**: Double-check your thread sequence before scheduling. Editing after scheduling can cause issues.
-
-## Tips
-
-- **Threads outperform single tweets** for in-depth content
-- **Tweets with images get more engagement** than text-only
-- **1–2 hashtags is optimal**—more can hurt reach
-- **Peak times vary**, but 8–10 AM and 6–9 PM are common starting points
+<Note>
+  Twitter analytics require a **Pro** plan or higher.
+</Note>
 
 ## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Threads" icon="threads" href="/social-profiles/threads">
-    Cross-post to Meta's Threads platform.
+  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Publish to multiple platforms at once.
   </Card>
-  <Card title="Drafting posts" icon="pen-to-square" href="/posts/drafting-posts">
-    Compose content for any platform.
+  <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
+    Set the perfect time for your content.
   </Card>
 </CardGroup>
