@@ -14,6 +14,21 @@ With Ordinal, you can connect and schedule to both LinkedIn **Personal Profiles*
 
 You can also connect LinkedIn for **engagement** (liking, commenting, and reposting) separately from scheduling. This is useful if you want to interact from Ordinal without publishing, or if you've hit your scheduling profile limit.
 
+<CardGroup cols={2}>
+  <Card title="Connecting LinkedIn" icon="plug" href="#connecting-linkedin">
+    Connect personal profiles and company pages
+  </Card>
+  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-a-linkedin-post">
+    Formatting, tagging, attachments, and more
+  </Card>
+  <Card title="Auto-Engagements" icon="thumbs-up" href="#auto-engagements">
+    Automatically like, comment, or repost
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="#analytics">
+    Track post performance
+  </Card>
+</CardGroup>
+
 ## Connecting LinkedIn
 
 **For scheduling**: Go to **Settings → Profiles → Scheduling**, select LinkedIn, and sign in. If you're a page admin, you'll see your company pages listed after authorization.
@@ -40,27 +55,141 @@ You can also connect LinkedIn for **engagement** (liking, commenting, and repost
 
 ### Drafting & Formatting
 
-{Overview on drafting a LinkedIn post - can touch on bold / italics, in-line comments, hashtags, etc. Can be a short sentence and link out to the relevant articles that go over more of the formatting.}
+The LinkedIn editor supports rich formatting through Unicode characters, which render as **bold** and *italic* on LinkedIn without being stripped:
+
+- **Bold / Italic**: Use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
+- **Hashtags**: Type `#` followed by your tag—they'll automatically link when published
+- **Links**: Paste URLs directly into your post—LinkedIn will automatically make them clickable
+
+LinkedIn posts can be up to **3,000 characters**. The character counter in the editor updates in real-time as you type.
+
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Full guide to formatting, mentions, slash commands, and keyboard shortcuts.
+</Card>
 
 ### Post Preview
 
-{Add in context about how the Feed Preview feature works and the realistic post preview - how everythign you draft will match LinkedIn exactly, including the "see more")}.
+As you draft your post, the editor shows a live preview that matches how your content will appear on LinkedIn—including proper text truncation with "see more" exactly where LinkedIn would cut off.
+
+For a more realistic preview, click the **Feed Preview** button to see your post in a full LinkedIn feed context with:
+
+- Your profile picture and name as they'll appear
+- Desktop and mobile view options
+- Real-time updates as you continue editing
+
+{/* TODO: Add screenshot of Feed Preview */}
 
 ### Tagging
 
-With Ordinal, you can tag both **Company** and **Personal** LinkedIn accounts. In order to tag an account, you can use the account's LinkedIn username. 
+Tag people and companies in your LinkedIn posts to increase engagement and notify them:
+
+1. Type `@` in your post
+2. Enter the LinkedIn username (the part after `linkedin.com/in/` or `linkedin.com/company/`)
+3. Select from the suggestions dropdown
+
+Ordinal searches LinkedIn by username and displays matching accounts, including accounts you've tagged before for quick access. For personal accounts, you can choose to display just the first name or the full name in the published post.
+
+<Tip>
+Mentions become clickable links when published and may notify the tagged account, encouraging them to engage with your post.
+</Tip>
 
 ### Links
 
-{capabilities for link previews, customizing link previews, etc}
+When you add a URL to your post, Ordinal automatically fetches the link preview—showing you the title, description, and thumbnail image before publishing.
+
+**Customizing link previews:**
+- Click the preview card to open the **Edit Link Preview** modal
+- Change the title text that appears in the preview
+- Upload a custom thumbnail image to replace the default
+- Delete the preview entirely if you prefer a text-only post
+
+Link previews help your content stand out in the feed and give readers context before they click.
 
 ### Attachment Types
 
-{Use the tabs to write a bit about each attachment an dlinkedin post type outlined in the table above}
+<Tabs>
+  <Tab title="Images & GIFs">
+    Upload images to create visual posts or carousels:
+    
+    | Spec | Limit |
+    |------|-------|
+    | Formats | JPG, PNG, GIF |
+    | Size | 5MB per image (GIFs up to 15MB) |
+    | Max pixels | 36 million per image |
+    | Per post | Up to 20 images and GIFs combined |
+    
+    Multiple images automatically create a swipeable carousel. Ordinal compresses oversized images automatically.
+  </Tab>
+  <Tab title="Videos">
+    Upload video content directly to LinkedIn:
+    
+    | Spec | Limit |
+    |------|-------|
+    | Formats | MP4, MOV |
+    | Size | 200MB max |
+    | Duration | Up to 10 minutes |
+    
+    You can select a cover photo frame and add captions for accessibility.
+  </Tab>
+  <Tab title="PDFs">
+    PDF documents create swipeable document carousels—one of LinkedIn's highest-performing content types:
+    
+    | Spec | Limit |
+    |------|-------|
+    | Size | 100MB max |
+    | Pages | Up to 300 |
+    
+    Great for frameworks, guides, tutorials, or repurposing slide decks. You can customize the document title that appears in the preview bar.
+  </Tab>
+  <Tab title="Polls">
+    Create polls to boost engagement and gather feedback:
+    
+    | Setting | Limit |
+    |---------|-------|
+    | Question | Up to 140 characters |
+    | Options | 2–4 choices, 30 characters each |
+    | Duration | 1 day, 3 days, 1 week, or 2 weeks |
+    
+    Polls cannot be combined with images, videos, PDFs, or reposts in the same post.
+  </Tab>
+  <Tab title="Reposts">
+    Reshare any LinkedIn post as a quote repost:
+    
+    1. Paste a LinkedIn post URL into your post
+    2. Ordinal detects the link and offers to convert it to a repost
+    3. Add your own commentary above the original post
+    
+    Quote reposts let you add context while sharing someone else's content.
+  </Tab>
+</Tabs>
+
+<Warning>
+You cannot mix videos or PDFs with images in the same post. Choose one media type per post.
+</Warning>
+
+<Card title="Media & Assets" icon="image" href="/posts/media">
+  Full specifications for all platforms including recommended dimensions.
+</Card>
 
 ## Auto-Engagements
 
-{fill in}
+Automatically interact with your own posts after they publish to boost initial visibility. LinkedIn supports three engagement types:
+
+| Type | What it does |
+|------|--------------|
+| **Auto-Like** | Connected engagement profiles like your post |
+| **Auto-Comment** | Add a first comment (great for CTAs, additional links, or hashtags) |
+| **Auto-Repost** | Reshare from another connected LinkedIn account |
+
+Configure timing from **immediately** after posting up to **24 hours** later. Staggering engagements across different delays helps them appear more natural.
+
+<Note>
+Auto-engagements require an engagement profile connected in **Settings → Profiles → Engagement**.
+</Note>
+
+<Card title="Auto-Engagements" icon="thumbs-up" href="/posts/auto-engagements">
+  Full guide to setting up timing, best practices, and troubleshooting.
+</Card>
 
 ## Permissions
 
