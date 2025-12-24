@@ -52,13 +52,17 @@
                 "icon": "file-lines",
                 "pages": [
                   "posts/drafting-posts",
+                  "posts/post-editor",
+                  "posts/media",
+                  "posts/ai-writing",
                   "posts/scheduling-posts",
-                  "posts/cross-posting"
+                  "posts/cross-posting",
+                  "posts/post-defaults"
                 ]
               },
               "campaigns/overview",
               "posts/auto-engagements",
-              "posts/marketing-boost-channels",
+              "posts/slack-boost",
               "posts/ideas",
               "posts/labels",
               "posts/statuses"
@@ -71,7 +75,7 @@
               "collaboration/approvals",
               "collaboration/commenting",
               "collaboration/notifications",
-              "collaboration/account-access"
+              "collaboration/team-permissions"
             ]
           },
           {

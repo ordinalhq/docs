@@ -1,86 +1,116 @@
 ---
-title: "Overview"
-description: "Connect and manage all your social media profiles in one place"
+title: "Social Profiles"
+description: "Connect and manage your social media accounts"
 icon: "circle-info"
 ---
 
-## Supported Platforms
+Social profiles are the accounts you connect to Ordinal—your LinkedIn, Twitter, Instagram, and other platforms. Once connected, you can schedule posts, track performance, and manage everything from one place.
 
-Ordinal supports a wide range of social media platforms. Connect your accounts to start managing your content from a single dashboard.
+## Overview
+
+You can connect as many accounts as your plan allows, including multiple accounts from the same platform. This is useful for managing different brands, clients, or separating personal and professional presence.
+
+Ordinal supports two types of connections:
+
+**Scheduling profiles** let you publish content. Schedule posts, upload media, and track analytics. These count toward your plan's profile limit.
+
+**Engagement profiles** let you interact without publishing—like posts, leave comments, reply to mentions. Available for LinkedIn and Twitter/X. These don't count toward your limit.
+
+<Tip>
+If you're unsure which profiles to connect first, start with the platforms where you post most frequently. You can always add more later.
+</Tip>
+
+## Supported platforms
 
 <CardGroup cols={3}>
   <Card title="LinkedIn" icon="linkedin" href="/social-profiles/linkedin">
-    Professional networking
+    Personal profiles and company pages
   </Card>
   <Card title="Twitter / X" icon="x-twitter" href="/social-profiles/twitter">
-    Real-time updates
+    Tweets, threads, and polls
   </Card>
   <Card title="Instagram" icon="instagram" href="/social-profiles/instagram">
-    Visual storytelling
+    Feed posts, Reels, Stories, carousels
   </Card>
   <Card title="Threads" icon="threads" href="/social-profiles/threads">
-    Text-based conversations
+    Text posts and conversations
   </Card>
   <Card title="Facebook" icon="facebook" href="/social-profiles/facebook">
-    Community engagement
+    Page posts and Reels
   </Card>
   <Card title="TikTok" icon="tiktok" href="/social-profiles/tiktok">
-    Short-form video
+    Video content
   </Card>
   <Card title="YouTube Shorts" icon="youtube" href="/social-profiles/youtube-shorts">
-    Short-form video
+    Short-form vertical video
   </Card>
   <Card title="Webflow" icon="globe" href="/social-profiles/webflow">
-    Website publishing
+    Blog posts to your CMS
   </Card>
   <Card title="Slack" icon="slack" href="/social-profiles/slack">
-    Team notifications
+    Team messages and notifications
   </Card>
   <Card title="Discord" icon="discord" href="/social-profiles/discord">
-    Community updates
+    Community announcements via webhooks
   </Card>
 </CardGroup>
 
-## Connecting a Profile
+## Connecting profiles
 
-<Steps>
-  <Step title="Navigate to Social Profiles">
-    Click **Social Profiles** in the left sidebar of your dashboard.
-  </Step>
-  <Step title="Add a New Profile">
-    Click the **Add Profile** button in the top right corner.
-  </Step>
-  <Step title="Select Your Platform">
-    Choose the platform you want to connect from the list of available options.
-  </Step>
-  <Step title="Authorize Access">
-    Follow the authorization prompts in the popup window. You may need to log in to your social account.
-    
-    <Check>
-    Your profile appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Connect accounts in **Settings → Profiles → Scheduling**. Most platforms use OAuth—you sign in once and Ordinal handles authentication from there.
 
-<Tip>
-You can connect multiple accounts from the same platform—useful for managing multiple brands, clients, or regional accounts.
-</Tip>
+Consider connecting profiles for:
+- Platforms where you post regularly
+- Accounts you want to cross-post to
+- Channels where you want unified analytics
 
-## Managing Multiple Profiles
+## Platform capabilities
 
-You can connect multiple accounts from the same platform. This is useful for managing:
+| Platform | Scheduling | Analytics | Engagement |
+|----------|------------|-----------|------------|
+| LinkedIn | ✅ | ✅ | ✅ |
+| Twitter/X | ✅ | ✅ | ✅ |
+| Instagram | ✅ | ✅ | — |
+| Facebook | ✅ | ✅ | — |
+| Threads | ✅ | ✅ | — |
+| TikTok | ✅ | Limited | — |
+| YouTube Shorts | ✅ | Limited | — |
+| Discord | ✅ | — | — |
+| Slack | ✅ | — | — |
+| Webflow | ✅ | — | — |
 
-- Multiple brands or clients
-- Personal and professional accounts
-- Regional or language-specific accounts
+## Expired connections
 
-## Next Steps
+Social platforms use OAuth tokens that expire periodically—typically every 60 days for LinkedIn, Facebook, Instagram, and Threads. Twitter rarely expires unless you change your password.
+
+When a connection expires:
+- You'll see a warning banner in Ordinal
+- Scheduled posts to that profile may fail
+- Click **Reconnect** to re-authorize
+
+Your scheduled content stays in place. Once reconnected, posts will publish as expected.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How many profiles can I connect?">
+    This depends on your plan. Scheduling profiles count toward your limit; engagement profiles don't. See [subscription plans](/account/subscription-plans) for details.
+  </Accordion>
+  <Accordion title="Can I connect personal and business accounts from the same platform?">
+    Yes. Each account appears as a separate profile. You can connect multiple LinkedIn profiles, multiple Twitter accounts, etc.
+  </Accordion>
+  <Accordion title="What happens if I disconnect a profile?">
+    Scheduled posts to that profile won't publish. The posts remain in Ordinal—you can reconnect and they'll be ready to go.
+  </Accordion>
+</AccordionGroup>
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Create Your First Post" icon="pen-to-square" href="/posts/drafting-posts">
-    Learn how to create and schedule content.
+  <Card title="Create your first post" icon="pen-to-square" href="/posts/drafting-posts">
+    Learn how to compose and schedule content.
   </Card>
-  <Card title="Set Up Approvals" icon="circle-check" href="/collaboration/approvals">
-    Configure team review workflows.
+  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Publish to multiple platforms at once.
   </Card>
 </CardGroup>

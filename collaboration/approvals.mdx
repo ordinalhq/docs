@@ -1,136 +1,221 @@
 ---
 title: "Approvals"
-description: "Set up approval workflows for your content"
+description: "Review and approve content before publishing"
 icon: "circle-check"
 ---
 
-## Overview
+Approvals add a review gate before content can be published. Require sign-off from managers, clients, or stakeholders to maintain quality and brand consistency across your social presence.
 
-Approval workflows ensure content is reviewed before publishing. Set up multi-level approvals to maintain quality and brand consistency.
+## Why use approvals
 
-## How Approvals Work
+| Use case | Benefit |
+|----------|---------|
+| **Quality control** | Catch errors before they go live |
+| **Brand consistency** | Maintain voice and messaging standards |
+| **Stakeholder alignment** | Get sign-off from decision makers |
+| **Compliance** | Meet regulatory requirements |
+
+Approvals are optional—enable them when you need review gates.
+
+## How approvals work
 
 <Steps>
-  <Step title="Author Creates Post">
-    A team member drafts content and submits it for review.
+  <Step title="Author creates post">
+    A team member drafts content and submits for review.
   </Step>
-  <Step title="Reviewer Gets Notified">
-    Designated approvers receive a notification to review the post.
+  <Step title="Request approval">
+    Author selects reviewers and sends the approval request.
   </Step>
-  <Step title="Review and Feedback">
-    Reviewers can approve, reject, or request changes with comments.
+  <Step title="Reviewer is notified">
+    Approvers receive notifications via their preferred channels.
   </Step>
-  <Step title="Post Approved">
-    Once approved, the post is ready to schedule or publish.
+  <Step title="Review and respond">
+    Reviewer examines content and chooses:
+    - **Approve** — Post is cleared for scheduling
+    - **Reject** — Post needs changes
+    - **Request changes** — Specific edits needed
+  </Step>
+  <Step title="Post proceeds">
+    Approved posts can be scheduled. Rejected posts return to draft.
     
     <Check>
-    Approved posts show a green "Approved" badge and can be scheduled.
+    Approved posts show a green badge and the Schedule button becomes active.
     </Check>
   </Step>
 </Steps>
 
-## Setting Up Approval Workflows
-
-### Basic Approval
+## Requesting approval
 
 <Steps>
-  <Step title="Open Settings">
-    Go to **Settings** → **Approvals** in your dashboard.
+  <Step title="Open the post">
+    Navigate to the post you want approved.
   </Step>
-  <Step title="Enable Approvals">
-    Toggle on "Require approval before publishing."
+  <Step title="Find Approvals">
+    Locate the **Approvals** section in the sidebar.
   </Step>
-  <Step title="Select Default Approvers">
-    Choose team members who can approve content.
+  <Step title="Click Request Approval">
+    Click **Request Approval** to open the dialog.
+  </Step>
+  <Step title="Select reviewers">
+    Search and select one or more approvers.
+  </Step>
+  <Step title="Add notes (optional)">
+    Include context for the reviewer:
+    - "Please check hashtags and CTA"
+    - "Client needs to approve messaging"
+    - "Legal review required"
+  </Step>
+  <Step title="Send">
+    Click to send the request. The post shows "Pending Approval" status.
+  </Step>
+</Steps>
+
+<Tip>
+Add context in your approval request. Reviewers can respond faster when they know what to focus on.
+</Tip>
+
+## Reviewing and responding
+
+When you receive an approval request:
+
+<Steps>
+  <Step title="Open the post">
+    Click the notification or find the post in your approval queue.
+  </Step>
+  <Step title="Review content">
+    Examine text, media, settings, and scheduled accounts.
+  </Step>
+  <Step title="Respond">
+    Choose your response:
+    
+    | Action | Result |
+    |--------|--------|
+    | **Approve** | Post cleared for scheduling |
+    | **Reject** | Post needs changes, cannot schedule |
+    | **Request changes** | Specific edits needed |
+    
+    Add feedback explaining your decision.
+  </Step>
+</Steps>
+
+## Approval types
+
+<Tabs>
+  <Tab title="Blocking">
+    Posts **cannot** be scheduled until approved.
+    
+    - Schedule button is disabled
+    - Must get approval first
+    - Default for required approvals
+    
+    **Use when:**
+    - Client content that must be approved
+    - Regulated industries requiring sign-off
+    - High-stakes accounts where errors are costly
+  </Tab>
+  <Tab title="Non-blocking">
+    Posts **can** be scheduled while approval is pending.
+    
+    - Approval is for visibility
+    - Creates an audit trail
+    - Post publishes regardless
+    
+    **Use when:**
+    - Informing stakeholders of content
+    - Creating records without slowing publishing
+    - Low-risk content needing awareness
+  </Tab>
+</Tabs>
+
+## Configuring approval workflows
+
+<Steps>
+  <Step title="Enable approvals">
+    Go to **Settings → Approvals** and toggle **Require approval before publishing**.
+  </Step>
+  <Step title="Select default approvers">
+    Choose team members who can approve content by default.
     
     <Tip>
     Select multiple approvers so reviews don't bottleneck on one person.
     </Tip>
   </Step>
-  <Step title="Save Settings">
-    Click **Save** to enable the approval workflow.
-    
-    <Check>
-    All new posts now require approval before they can be published.
-    </Check>
+  <Step title="Configure per-profile (optional)">
+    Set different approval requirements for different profiles:
+    - Executive accounts may need additional review
+    - Client accounts may need client sign-off
+  </Step>
+  <Step title="Save">
+    All new posts now require approval before scheduling.
   </Step>
 </Steps>
 
-### Multi-Level Approval
+## Multiple approvers
 
-Create tiered approval processes for sensitive content:
+Request approval from multiple people when you need sign-off from different stakeholders:
 
-1. **Level 1** - Team lead review
-2. **Level 2** - Manager approval
-3. **Level 3** - Legal/compliance (if needed)
+- Marketing manager for messaging
+- Legal for compliance
+- Client for final approval
 
-<Tip>
-Multi-level approvals are ideal for executive accounts or regulated industries where content must pass multiple checkpoints.
-</Tip>
+Configure whether you need approval from **one person** or **all people** before the post is cleared.
 
-### Profile-Specific Approvals
+## Approval statuses
 
-Set different approvers for different profiles:
-- Executive accounts may need additional review
-- Regional accounts may have local approvers
-- Client accounts may require client approval
+| Status | Meaning |
+|--------|---------|
+| **Not requested** | No approval needed or requested |
+| **Pending** | Awaiting reviewer response |
+| **Approved** | Reviewer granted approval |
+| **Rejected** | Reviewer declined |
+| **Changes requested** | Specific edits needed |
 
-## Approval Actions
-
-### Approve
-
-Approve the post as-is:
-- Post moves to "Approved" status
-- Author is notified
-- Post can be scheduled
-
-### Request Changes
-
-Ask for revisions:
-- Add comments explaining needed changes
-- Author is notified
-- Post returns to draft status
-
-### Reject
-
-Decline the post:
-- Add reason for rejection
-- Author is notified
-- Post is not published
+## Bypassing approval
 
 <Warning>
-Rejected posts remain accessible for reference but cannot be published without resubmission.
+Admins can bypass approval requirements for urgent situations. Use sparingly—too many bypasses undermine the workflow.
 </Warning>
 
-## Notifications
+To bypass:
+1. Open the post
+2. Click **Bypass Approval** (Admin only)
+3. Confirm and add a reason
 
-Configure how approvers are notified:
-- **Email** - Immediate or digest
-- **Slack** - Direct message or channel
-- **In-app** - Dashboard notifications
-- **Mobile** - Push notifications
+Bypasses are logged for audit purposes.
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Approver not receiving notifications">
-    Check the approver's notification settings. Ensure they have the correct channels enabled in Settings → Notifications.
+    - Check their notification settings in **Settings → Notifications**
+    - Verify they have the correct channels enabled (email, Slack, in-app)
+    - Ensure they haven't muted the workspace
   </Accordion>
-  <Accordion title="Post stuck in pending review">
-    Contact the designated approver directly. You can also reassign to a different approver from the post detail view.
+  <Accordion title="Post stuck in pending">
+    - Contact the designated approver directly
+    - Reassign to a different approver from the post detail view
+    - Admin can bypass if urgent
   </Accordion>
-  <Accordion title="Need to bypass approval">
-    Workspace admins can bypass approval requirements for urgent posts. Use sparingly to maintain workflow integrity.
+  <Accordion title="Can't schedule despite approval">
+    - Verify the approval is for the correct version
+    - Check if content changed after approval (may need re-approval)
+    - Ensure blocking approval was actually granted
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="Add Comments" icon="comment" href="/collaboration/commenting">
+  <Card title="Comments" icon="comment" href="/collaboration/commenting">
     Leave feedback on posts.
   </Card>
-  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
-    Set up approval alerts.
+  <Card title="Notifications" icon="bell" href="/collaboration/notifications">
+    Configure approval alerts.
+  </Card>
+  <Card title="Team & Permissions" icon="lock" href="/collaboration/team-permissions">
+    Manage team roles.
+  </Card>
+  <Card title="Post Statuses" icon="circle" href="/posts/statuses">
+    Track content workflow.
   </Card>
 </CardGroup>

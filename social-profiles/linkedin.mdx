@@ -1,91 +1,96 @@
 ---
 title: "LinkedIn"
-description: "Connect and manage your LinkedIn profiles and company pages"
+description: "Personal profiles and company pages"
 icon: "linkedin"
 ---
 
+LinkedIn is one of the most-used platforms in Ordinal. You can connect personal profiles to build your individual brand, or company pages to publish as your organization. Most users connect both.
+
 ## Overview
 
-Connect your LinkedIn personal profiles and company pages to Ordinal to schedule posts, track engagement, and grow your professional presence.
+LinkedIn supports two account types with different capabilities:
+
+| Type | Best for | Notes |
+|------|----------|-------|
+| **Personal profile** | Thought leadership, personal brand, networking | Posts appear from you |
+| **Company page** | Brand content, company updates, job posts | Posts appear from the organization |
+
+You can also connect LinkedIn for **engagement** (liking and commenting) separately from scheduling. This is useful if you want to interact from Ordinal without publishing, or if you've hit your scheduling profile limit.
+
+<Tip>
+Company pages require Admin access to connect. Your personal account authenticates the connection, but posts appear as the company.
+</Tip>
 
 ## Connecting LinkedIn
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select LinkedIn">
-    Choose **LinkedIn** from the list of available platforms.
-  </Step>
-  <Step title="Choose Account Type">
-    Select whether you want to connect a personal profile or a company page.
-    
-    <Tip>
-    Company pages offer additional features like article publishing and follower analytics.
-    </Tip>
-  </Step>
-  <Step title="Authorize Access">
-    Log in to LinkedIn and authorize Ordinal in the popup window.
-    
-    <Check>
-    Your LinkedIn profile appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+**For scheduling**: Go to **Settings → Profiles → Scheduling**, select LinkedIn, and sign in. If you're a page admin, you'll see your company pages listed after authorization.
 
-## Supported Content Types
+**For engagement**: Go to **Settings → Profiles → Engagement** and connect separately. Engagement profiles don't count toward your plan limit.
 
-- **Text posts** - Share updates and insights
-- **Images** - Single or multiple images
-- **Documents** - PDF carousels and presentations
-- **Articles** - Long-form content (company pages)
-- **Polls** - Engage your audience with questions
+## What you can post
 
-## Best Practices
+| Content | Supported | Notes |
+|---------|-----------|-------|
+| Text posts | ✅ | |
+| Images | ✅ | Single or carousel (up to 9) |
+| Video | ✅ | Up to 10 minutes |
+| PDF documents | ✅ | Creates swipeable carousel, great for decks |
+| External links | ✅ | With preview |
+| Polls | ❌ | LinkedIn API doesn't support polls |
 
-<AccordionGroup>
-  <Accordion title="Optimal posting times">
-    LinkedIn engagement peaks during business hours, particularly Tuesday through Thursday, 8-10 AM and 12 PM in your audience's timezone.
-  </Accordion>
-  <Accordion title="Content recommendations">
-    Mix professional insights, industry news, and personal stories for better engagement.
-  </Accordion>
-  <Accordion title="Hashtag usage">
-    Use 3-5 relevant hashtags to increase discoverability without appearing spammy.
-  </Accordion>
-</AccordionGroup>
+### Document posts
 
-## Limitations
+PDF uploads create document carousels—swipeable slides that consistently perform well on LinkedIn. Use them for frameworks, guides, tutorials, or repurposing slide decks. Limit: 300 pages, 100 MB.
 
-<Warning>
-Be aware of these LinkedIn-specific limitations when scheduling content.
-</Warning>
+## Features
 
-- LinkedIn API limits the number of posts per day
-- Some features may only be available for company pages
-- Video scheduling requires LinkedIn's native scheduling
+**@Mentions**: Tag people and companies by typing `@` and selecting from suggestions. Works in both personal and company posts.
 
-## Troubleshooting
+**Hashtags**: LinkedIn uses hashtags for distribution. 3–5 relevant hashtags is the sweet spot—more can look spammy.
 
-<AccordionGroup>
-  <Accordion title="Can't connect my company page">
-    You must be an admin of the LinkedIn company page to connect it. Check your page admin settings in LinkedIn.
-  </Accordion>
-  <Accordion title="Authorization expired">
-    LinkedIn tokens expire periodically. Disconnect and reconnect your profile in Social Profiles settings.
-  </Accordion>
-  <Accordion title="Document posts not working">
-    Ensure your PDF is under 100MB and has fewer than 300 pages. LinkedIn may reject larger files.
-  </Accordion>
-</AccordionGroup>
+**Link previews**: When you include a URL, you'll see the preview before posting. You can choose to show or hide the preview image.
 
-## Next Steps
+## Media specifications
+
+| Type | Formats | Size limit |
+|------|---------|------------|
+| Images | JPG, PNG, GIF | 8 MB each, up to 9 |
+| Videos | MP4, MOV | 200 MB, up to 10 min |
+| PDFs | PDF | 100 MB, up to 300 pages |
+
+## Permissions
+
+When you connect, Ordinal requests permission to share posts, view your profile, access company pages you admin, and read analytics. We never access your messages, connect with people, or modify your profile settings.
+
+## Analytics
+
+View post performance in **Analytics → LinkedIn**. You'll see impressions, engagement breakdown (likes, comments, shares), click-through rate, and follower growth for company pages.
+
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Learn more about tracking performance across all your connected profiles.
+</Card>
+
+## Common issues
+
+**Company page not appearing**: You need Admin access, not just employee access. Check your page roles in LinkedIn.
+
+**Connection expired**: LinkedIn tokens expire roughly every 60 days. You'll see a warning—click Reconnect to re-authorize.
+
+**Post failed**: Usually caused by an expired token, content that's too long, or media that doesn't meet specs. Check the error message for specifics.
+
+## Tips
+
+- **Post during business hours**—engagement peaks Tuesday–Thursday, 8–10 AM and around noon
+- **Document posts outperform most other formats**—consider converting your best content into PDFs
+- **Personal profiles often get more reach than company pages**—use both strategically
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Create Your First Post" icon="pen-to-square" href="/posts/drafting-posts">
-    Learn how to compose LinkedIn content.
+  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Publish to multiple platforms at once.
   </Card>
-  <Card title="Schedule Posts" icon="clock" href="/posts/scheduling-posts">
-    Schedule content for optimal times.
+  <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
+    Set the perfect time for your content.
   </Card>
 </CardGroup>

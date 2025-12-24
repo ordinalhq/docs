@@ -1,154 +1,165 @@
 ---
 title: "Scheduling Posts"
-description: "Schedule your content to publish at the perfect time"
+description: "Set publish times and manage your content schedule"
 icon: "clock"
 ---
 
-## Overview
+Scheduling determines when your content goes live. Set a specific date and time, and Ordinal handles publishing automatically—posts go out within seconds of their scheduled time.
 
-Schedule your posts to publish at optimal times for maximum engagement. Set it and forget it—Ordinal handles the rest.
-
-## Scheduling a Post
+## Scheduling a post
 
 <Steps>
-  <Step title="Open Your Post">
+  <Step title="Open or create a post">
     Create a new post or open an existing draft from your Posts list.
   </Step>
   <Step title="Click Schedule">
     Click the **Schedule** button in the composer toolbar.
   </Step>
-  <Step title="Select Date and Time">
-    Choose your preferred date and time from the calendar picker.
-    
-    <Tip>
-    Click "Best Time" to let Ordinal suggest optimal posting times based on your audience's activity.
-    </Tip>
+  <Step title="Select date and time">
+    Choose your preferred date and time from the picker.
   </Step>
-  <Step title="Confirm Timezone">
-    Verify the timezone is correct. Ordinal uses your account timezone by default.
-  </Step>
-  <Step title="Confirm Scheduling">
-    Click **Schedule Post** to confirm.
+  <Step title="Confirm timezone">
+    Verify the timezone is correct. Ordinal uses your workspace timezone.
     
     <Check>
-    Your post appears in the Calendar with a "Scheduled" status and countdown timer.
+    Your post moves to "Scheduled" status and appears on the calendar.
     </Check>
   </Step>
 </Steps>
-
-## Scheduling Options
-
-### Specific Date & Time
-
-Choose exactly when your post goes live:
-- Select date from calendar
-- Set precise time
-- Posts publish within seconds of scheduled time
-
-### Best Time to Post
-
-Let Ordinal suggest optimal times:
-- Based on your audience's activity
-- Platform-specific recommendations
-- Historical engagement data
 
 <Tip>
-Best Time recommendations improve over time as Ordinal learns from your posting history and engagement patterns.
+The calendar provides visual scheduling—click or drag on any time slot to create a post with that time pre-filled.
 </Tip>
 
-### Queue
+## Publishing options
 
-Add posts to your queue:
-- Set recurring time slots
-- Posts publish in order
-- Automatic spacing between posts
+<Tabs>
+  <Tab title="Schedule for later">
+    Choose a specific future date and time. The post:
+    - Moves to "Scheduled" status
+    - Appears on the calendar
+    - Publishes automatically when the time arrives
+    - Can still be edited until publishing begins
+  </Tab>
+  <Tab title="Post now">
+    Publish immediately without scheduling. The post bypasses the calendar and goes live within seconds. Useful for timely content or when you've finished drafting and want it out right away.
+  </Tab>
+  <Tab title="Queue">
+    If your workspace has queue slots configured, add posts to the queue instead of picking specific times. Posts publish in order using your preset time slots.
+  </Tab>
+</Tabs>
 
-## Managing Scheduled Posts
+## Timezone handling
 
-### View Scheduled Posts
+<Warning>
+All times display in your workspace timezone, configured in **Settings → General**. Verify this is set correctly to avoid scheduling mishaps.
+</Warning>
 
-Find all scheduled posts in:
-- **Calendar** - Visual timeline
-- **Posts** → **Scheduled** - List view
-- **Profile view** - Per-profile schedule
+All team members see the same times regardless of their local timezone. When scheduling, the picker shows times in your workspace timezone with a clear indicator.
 
-### Edit Scheduled Posts
+## Managing scheduled posts
+
+### Viewing your schedule
+
+Find scheduled posts in multiple places:
+- **Calendar** — Visual timeline showing all scheduled content
+- **Posts list** — Filter by "Scheduled" status
+- **Profile view** — See the schedule for a specific social profile
+
+### Rescheduling
 
 <Steps>
-  <Step title="Find the Post">
-    Locate the scheduled post in Calendar or Posts list.
+  <Step title="Open the post">
+    Find the post on your calendar or in the Posts list.
   </Step>
-  <Step title="Open and Edit">
-    Click to open, make your changes to content or media.
+  <Step title="Change the time">
+    Click the current scheduled time and select a new date/time.
   </Step>
-  <Step title="Save Changes">
-    Click **Save** to keep the same schedule, or **Reschedule** to change the time.
+  <Step title="Save">
+    Confirm your changes.
     
     <Check>
-    The post updates with your changes while maintaining its scheduled time.
+    The calendar updates immediately with the new schedule.
     </Check>
   </Step>
 </Steps>
 
-### Cancel Scheduled Posts
+Alternatively, drag posts directly on the calendar to reschedule them visually.
 
-<Steps>
-  <Step title="Open the Post">
-    Find and open the scheduled post.
-  </Step>
-  <Step title="Unschedule or Delete">
-    Click **Unschedule** to return it to drafts, or **Delete** to remove it entirely.
-    
-    <Warning>
-    Deleting is permanent. Use Unschedule if you might want to use the content later.
-    </Warning>
-  </Step>
-</Steps>
+### Unscheduling
 
-## Bulk Scheduling
+To return a scheduled post to draft:
+
+1. Open the post
+2. Click **Unschedule** or remove the scheduled time
+3. The post returns to "Draft" status
+
+<Note>
+You cannot unschedule a post that's currently publishing or already published.
+</Note>
+
+## Bulk scheduling
 
 Schedule multiple posts at once:
 
 <Steps>
-  <Step title="Select Posts">
-    In the Posts list, check the boxes next to multiple drafts.
+  <Step title="Select posts">
+    In the Posts list, check multiple drafts using the checkboxes.
   </Step>
   <Step title="Click Schedule Selected">
     The bulk scheduling dialog opens.
   </Step>
-  <Step title="Choose Method">
-    Select your scheduling approach:
-    - **Stagger** - Automatic spacing (e.g., 2 hours apart)
-    - **Specific times** - Set each post's time manually
-    - **Add to queue** - Use your preset time slots
+  <Step title="Choose your method">
+    - **Stagger** — Automatic spacing (e.g., 2 hours apart)
+    - **Specific times** — Set each post's time individually
+    - **Add to queue** — Use your preset time slots
     
     <Check>
-    All selected posts appear in your Calendar with their scheduled times.
+    All selected posts appear on your calendar with their scheduled times.
     </Check>
   </Step>
 </Steps>
+
+## Cross-post scheduling
+
+When a post targets multiple platforms, all channels share the same scheduled time but publish independently:
+
+- One channel can succeed while another fails
+- Each channel has its own status tracking
+- Retry failed channels without affecting successful ones
+
+View per-channel status in the post detail view.
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Post published at wrong time">
-    Check your account timezone in Settings → Profile. Ensure it matches your intended timezone.
+    Check your workspace timezone in **Settings → General**. All scheduling uses this timezone, not your local browser time.
   </Accordion>
   <Accordion title="Post failed to publish">
-    Check the Posts list for error details. Common causes: expired authorization, platform outage, or content policy violation.
+    Check the Posts list for error details. Common causes:
+    - Expired account authorization (reconnect in Settings)
+    - Platform outage (retry later)
+    - Content policy violation (review and edit)
   </Accordion>
   <Accordion title="Can't find my scheduled post">
-    Use Calendar filters to show all profiles. The post may be scheduled for a different profile than expected.
+    Check calendar filters. The post may be filtered out by platform, status, or label filters.
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="View Your Calendar" icon="calendar" href="/calendar/overview">
-    Visualize your content schedule.
+  <Card title="Calendar" icon="calendar" href="/calendar/overview">
+    Visualize and manage your schedule.
   </Card>
-  <Card title="Set Up Approvals" icon="circle-check" href="/collaboration/approvals">
+  <Card title="Post Statuses" icon="circle" href="/posts/statuses">
+    Understand the post lifecycle.
+  </Card>
+  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
     Add review before publishing.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/collaboration/notifications">
+    Get alerts when posts publish or fail.
   </Card>
 </CardGroup>

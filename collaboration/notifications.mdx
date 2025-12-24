@@ -1,158 +1,224 @@
 ---
 title: "Notifications"
-description: "Configure how and when you receive notifications"
+description: "Configure how and when you receive alerts"
 icon: "bell"
 ---
 
-## Overview
+Notifications keep you informed about activity that matters—posts publishing, approvals pending, comments on your content, and more. Configure delivery channels and frequency to stay updated without being overwhelmed.
 
-Stay informed about important activity without being overwhelmed. Configure notifications to match your workflow and preferences.
+## Notification types
 
-## Notification Types
+<Tabs>
+  <Tab title="Content">
+    | Event | Description |
+    |-------|-------------|
+    | Post published | When scheduled posts go live |
+    | Post failed | When publishing fails (action needed) |
+    | Scheduled reminder | Heads-up before posts publish |
+    
+    <Warning>
+    Always enable failure notifications. Failed posts need immediate attention and shouldn't sit unnoticed.
+    </Warning>
+  </Tab>
+  <Tab title="Collaboration">
+    | Event | Description |
+    |-------|-------------|
+    | Comment added | New comments on posts you're subscribed to |
+    | Reply to comment | Someone responded to your comment |
+    | @Mentioned | Someone tagged you |
+    | Approval requested | Someone wants your review |
+    | Approval response | Your post was approved or rejected |
+  </Tab>
+  <Tab title="Team">
+    | Event | Description |
+    |-------|-------------|
+    | New team member | Someone joined your workspace |
+    | Permissions changed | Your access was modified |
+    | Profile connected | Social profile status changed |
+  </Tab>
+</Tabs>
 
-### Content Notifications
+## Delivery channels
 
-- Post approved or rejected
-- Post published successfully
-- Post failed to publish
-- Scheduled post reminder
+<Tabs>
+  <Tab title="Email">
+    Receive notifications via email:
+    
+    | Frequency | When to use |
+    |-----------|-------------|
+    | **Immediate** | Urgent items like failures |
+    | **Daily digest** | Regular updates without constant emails |
+    | **Weekly digest** | Low-priority summaries |
+    
+    <Tip>
+    Use immediate for failures and approvals, digests for comments and general activity.
+    </Tip>
+  </Tab>
+  <Tab title="Slack">
+    If your workspace has Slack connected:
+    
+    - **Direct messages** — Personal notifications
+    - **Channel messages** — Team notifications
+    - **Thread replies** — Keep conversations together
+    
+    Great for fast response on approvals and mentions.
+  </Tab>
+  <Tab title="In-app">
+    Notifications appear in Ordinal's notification panel:
+    
+    - Bell icon shows unread count
+    - Click to see recent notifications
+    - Click any notification to navigate to source
+  </Tab>
+  <Tab title="Mobile push">
+    If using the mobile app:
+    
+    - Push notifications for urgent items
+    - Configurable quiet hours
+    - Critical alerts can bypass quiet hours
+  </Tab>
+</Tabs>
 
-### Collaboration Notifications
-
-- New comment on your post
-- Reply to your comment
-- Mentioned in a comment
-- Approval request
-
-### Team Notifications
-
-- New team member joined
-- Permissions changed
-- Profile connected/disconnected
-
-## Notification Channels
-
-### Email
-
-Receive notifications via email:
-- **Immediate** - As events happen
-- **Daily digest** - Summary once per day
-- **Weekly digest** - Weekly summary
-
-### Slack
-
-Get notified in Slack:
-- Personal DMs
-- Team channels
-- Thread replies
-
-### In-App
-
-Dashboard notifications:
-- Notification bell icon
-- Real-time updates
-- Click to navigate
-
-### Mobile Push
-
-Push notifications on mobile:
-- Urgent notifications only
-- All notifications
-- Scheduled quiet hours
-
-## Configuring Notifications
+## Configuring notifications
 
 <Steps>
   <Step title="Open Settings">
-    Go to **Settings** → **Notifications** in your dashboard.
+    Go to **Settings → Notifications**.
   </Step>
-  <Step title="Select Notification Type">
-    Choose which type of notification you want to configure (content, collaboration, or team).
+  <Step title="Find the notification type">
+    Locate the event you want to configure (content, collaboration, or team).
   </Step>
-  <Step title="Choose Channels">
-    Select which channels should receive this notification type (email, Slack, in-app, mobile).
-    
-    <Tip>
-    Use immediate notifications for urgent items like failed posts, and digests for routine updates.
-    </Tip>
+  <Step title="Select channels">
+    Choose which channels should receive this notification (email, Slack, in-app, mobile).
   </Step>
-  <Step title="Set Frequency">
-    Choose how often you receive notifications—immediate, daily digest, or weekly digest.
+  <Step title="Set frequency">
+    Choose delivery timing—immediate, daily digest, or weekly digest.
   </Step>
-  <Step title="Save Preferences">
-    Click **Save** to apply your settings.
+  <Step title="Save">
+    Your preferences are updated immediately.
     
     <Check>
-    Your notification preferences are updated immediately.
+    New notifications will follow your configured preferences.
     </Check>
   </Step>
 </Steps>
 
-## Notification Settings
-
-### Quiet Hours
+## Quiet hours
 
 Set times when you won't receive notifications:
 
 <Steps>
-  <Step title="Enable Quiet Hours">
+  <Step title="Enable quiet hours">
     Toggle on Quiet Hours in notification settings.
   </Step>
-  <Step title="Set Schedule">
-    Define start time, end time, and which days of the week.
+  <Step title="Set schedule">
+    Define start time, end time, and which days.
     
     <Tip>
     Set quiet hours for evenings and weekends to maintain work-life balance.
     </Tip>
   </Step>
-  <Step title="Configure Exceptions">
-    Optionally allow urgent notifications (like failed posts) to bypass quiet hours.
+  <Step title="Configure exceptions">
+    Optionally allow critical alerts (like failed posts) to bypass quiet hours.
   </Step>
 </Steps>
 
-### Notification Grouping
+## Post subscriptions
 
-Reduce notification volume:
-- Group similar notifications
-- Batch by time period
-- Summary instead of individual
+You're automatically subscribed to posts you:
+- Create
+- Comment on
+- Are @mentioned in
+- Are assigned as approver for
 
-## Managing Notifications
+Subscribed posts notify you of comments and status changes.
 
-### Mark as Read
+**To unsubscribe:**
+1. Open the post
+2. Find the subscription toggle
+3. Turn off notifications for this post
 
-Clear notification badges:
-- Click individual notifications
-- "Mark all as read" option
+## Notification grouping
 
-### Notification History
+Reduce volume by grouping similar notifications:
 
-View past notifications:
-- Access from notification panel
-- Searchable history
-- Click to navigate to source
+| Grouping | Effect |
+|----------|--------|
+| Multiple comments on one post | Single notification |
+| Several pending approvals | One summary |
+| Activity from same person | Batched together |
+
+Enable grouping in Settings to reduce noise while staying informed.
+
+## Managing notifications
+
+### Mark as read
+
+- Click individual notifications to mark read
+- Use "Mark all as read" to clear your inbox
+
+### Notification history
+
+Access past notifications from the panel. Click any notification to navigate to its source.
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Prioritize failures">
+    Always enable immediate alerts for failed posts. These need action and shouldn't wait for a digest.
+  </Accordion>
+  <Accordion title="Use digests for volume">
+    If you're getting too many emails, switch high-volume types (comments, activity) to daily digest.
+  </Accordion>
+  <Accordion title="Enable Slack for collaboration">
+    Approval requests and mentions work well as Slack messages for fast response.
+  </Accordion>
+  <Accordion title="Set quiet hours">
+    Protect focus time and personal hours. You can always check manually when needed.
+  </Accordion>
+  <Accordion title="Review periodically">
+    As your role changes, revisit notification settings. What mattered before may not matter now.
+  </Accordion>
+</AccordionGroup>
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Not receiving email notifications">
-    Check your spam folder. Add Ordinal's email domain to your contacts to ensure delivery.
+    - Check spam/junk folders
+    - Add Ordinal's email domain to contacts
+    - Verify email is correct in **Settings → Profile**
   </Accordion>
   <Accordion title="Slack notifications not working">
-    Verify the Slack integration is connected in Settings → Integrations. Re-authorize if needed.
+    - Ensure Slack is connected in **Settings → Integrations**
+    - Re-authorize if the connection expired
+    - Check Slack channel permissions
   </Accordion>
   <Accordion title="Too many notifications">
-    Switch from immediate to digest notifications, or enable notification grouping to reduce volume.
+    - Switch from immediate to digest delivery
+    - Enable notification grouping
+    - Unsubscribe from posts you no longer need to follow
+  </Accordion>
+  <Accordion title="Missing specific notifications">
+    - Check if that notification type is enabled
+    - Verify the correct channel is selected
+    - Ensure you're subscribed to the relevant post
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="Connect Slack" icon="slack" href="/integrations/slack">
-    Enable Slack notifications.
+  <Card title="Slack Integration" icon="slack" href="/integrations/slack">
+    Connect Slack for notifications.
   </Card>
-  <Card title="Manage Access" icon="lock" href="/collaboration/account-access">
-    Control team permissions.
+  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
+    Review and approve content.
+  </Card>
+  <Card title="Comments" icon="comment" href="/collaboration/commenting">
+    Collaborate on posts.
+  </Card>
+  <Card title="Team & Permissions" icon="lock" href="/collaboration/team-permissions">
+    Manage team access.
   </Card>
 </CardGroup>

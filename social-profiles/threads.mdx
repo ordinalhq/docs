@@ -1,88 +1,96 @@
 ---
 title: "Threads"
-description: "Connect and manage your Threads account"
+description: "Text posts and conversations"
 icon: "threads"
 ---
 
+Threads is Meta's text-based platform, designed for public conversations. It connects through your Instagram account and works well for cross-posting alongside Twitter.
+
 ## Overview
 
-Connect your Threads account to Ordinal to schedule text-based posts and engage in conversations.
+Threads is tied to Instagram—you need an Instagram Business or Creator account to connect, and your Threads profile must be public. The authentication flows through Meta, so if you've already connected Instagram, Threads setup is faster.
+
+| Requirement | Details |
+|-------------|---------|
+| Account type | Instagram Business or Creator |
+| Profile visibility | Public (private profiles can't connect) |
+| Authentication | Via Instagram/Meta |
 
 ## Connecting Threads
 
-<Note>
-Threads is connected through your Instagram account. Make sure your Instagram is already connected to Ordinal.
-</Note>
+Go to **Settings → Profiles → Scheduling**, select Threads, and sign in with your Instagram credentials. If your Instagram is already connected, you may only need to authorize the additional Threads permissions.
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Threads">
-    Choose **Threads** from the list of available platforms.
-  </Step>
-  <Step title="Authorize via Instagram">
-    Select your connected Instagram account to authorize Threads access.
-    
-    <Check>
-    Your Threads profile appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Tokens expire roughly every 60 days (same as Instagram).
 
-## Supported Content Types
+## What you can post
 
-- **Text posts** - Up to 500 characters
-- **Images** - Single or multiple images
-- **Videos** - Short-form video content
-- **Links** - Share URLs with previews
+| Content | Supported |
+|---------|-----------|
+| Text posts | ✅ |
+| Images | ✅ |
+| Carousels | ✅ |
+| Video | ✅ |
+| Audio | ✅ |
+| Multi-part threads | ✅ |
+| Polls | ❌ |
 
-## Features
+### Multi-part threads
 
-### Cross-Posting
+For longer content, create multi-part posts where each segment connects to the previous one. Each segment has its own 500-character limit and can include its own media.
 
-Easily cross-post between Threads and other text-based platforms like Twitter/X.
+To create a thread: write your first segment, click **Add Thread**, and continue adding. All segments publish together as a connected conversation.
+
+## Character limits
+
+| Element | Limit |
+|---------|-------|
+| Per post/segment | 500 characters |
+| Links | Count toward the 500 limit |
+
+## Media specifications
+
+| Type | Formats | Notes |
+|------|---------|-------|
+| Images | JPG, PNG | Up to 10 per carousel, 1080×1080 or 1080×1350 recommended |
+| Videos | MP4 | Up to 5 minutes, vertical (9:16) recommended |
+
+## Cross-posting with Twitter
+
+Threads and Twitter are both text-focused, so they're natural cross-post candidates. When creating a post, select both platforms and customize for each if needed.
 
 <Tip>
-While you can cross-post, consider tailoring your content slightly for each platform's audience and norms.
+Even when cross-posting, consider tailoring slightly for each audience. What works on Twitter doesn't always land the same way on Threads.
 </Tip>
 
-### Thread Creation
+## Analytics
 
-Create multi-post threads to share longer stories or insights.
+View performance in **Analytics → Threads**: reach, engagement (likes, replies, reposts), and follower growth.
 
-## Best Practices
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Track performance across all your connected profiles.
+</Card>
 
-<AccordionGroup>
-  <Accordion title="Content style">
-    Threads favors conversational, authentic content. Be genuine and engage in discussions.
-  </Accordion>
-  <Accordion title="Engagement">
-    Reply to comments and engage with other users to build your presence.
-  </Accordion>
-  <Accordion title="Cross-posting">
-    Consider tailoring content for Threads rather than copying exactly from Twitter.
-  </Accordion>
-</AccordionGroup>
+## Common issues
 
-## Troubleshooting
+**Can't find Threads option**: Connect Instagram first. Threads requires an active Instagram connection.
 
-<AccordionGroup>
-  <Accordion title="Can't find Threads option">
-    Ensure your Instagram account is connected first. Threads requires an active Instagram connection.
-  </Accordion>
-  <Accordion title="Posts not appearing">
-    Check that your Threads account is active and not restricted. Try posting directly in the Threads app to verify.
-  </Accordion>
-</AccordionGroup>
+**Can't connect**: Verify your Threads profile is public and your Instagram is a Business or Creator account.
 
-## Next Steps
+**Content too long**: Each segment is limited to 500 characters. Split longer content into multiple segments.
+
+## Tips
+
+- **Be conversational**—Threads rewards authenticity over polish
+- **Engage with replies**—the platform is built around conversation
+- **Use multi-part threads** for anything that doesn't fit in 500 characters
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Cross-Post Content" icon="arrows-repeat" href="/posts/cross-posting">
-    Share content across Threads and Twitter.
+  <Card title="Instagram" icon="instagram" href="/social-profiles/instagram">
+    Required for Threads connection.
   </Card>
-  <Card title="Schedule Posts" icon="clock" href="/posts/scheduling-posts">
-    Plan your Threads content calendar.
+  <Card title="Twitter / X" icon="x-twitter" href="/social-profiles/twitter">
+    Great for cross-posting.
   </Card>
 </CardGroup>

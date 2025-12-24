@@ -1,101 +1,103 @@
 ---
 title: "TikTok"
-description: "Connect and manage your TikTok business account"
+description: "Video content"
 icon: "tiktok"
 ---
 
+TikTok is video-only. In Ordinal, you can schedule videos with captions and hashtags, choosing between direct publishing or sending to your TikTok inbox for final touches.
+
 ## Overview
 
-Connect your TikTok business account to Ordinal to schedule videos and track your content performance.
+TikTok requires a **Business or Creator account**—personal accounts don't have API access. Your profile must also be public.
+
+| Requirement | Details |
+|-------------|---------|
+| Account type | Business or Creator |
+| Profile visibility | Public |
+| Content | Video only (no images) |
+
+To switch account types: **TikTok Settings → Manage Account → Switch to Business Account**.
 
 ## Connecting TikTok
 
-<Note>
-TikTok requires a Business account for API access. Personal accounts cannot be connected.
-</Note>
+Go to **Settings → Profiles → Scheduling**, select TikTok, sign in, and authorize Ordinal.
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select TikTok">
-    Choose **TikTok** from the list of available platforms.
-  </Step>
-  <Step title="Log In to TikTok">
-    Enter your TikTok business account credentials in the popup window.
-  </Step>
-  <Step title="Authorize Access">
-    Review and accept the permissions Ordinal needs to post on your behalf.
-    
-    <Check>
-    Your TikTok account appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+TikTok tokens can expire unpredictably. You'll see a warning when it's time to reconnect.
 
-## Supported Content Types
+## Direct Post vs. Send to Inbox
 
-- **Videos** - Standard TikTok videos
-- **Photo slideshows** - Multiple images as a video
+TikTok offers two publishing methods:
 
-## Features
+| Method | How it works | When to use |
+|--------|--------------|-------------|
+| **Direct Post** | Video publishes directly at scheduled time | Most posts—no extra steps needed |
+| **Send to Inbox** | Video goes to your TikTok inbox; you finalize manually | When you want to add sounds, effects, or text overlays |
 
-### Video Scheduling
+Direct Post is the default when available. Use Send to Inbox if you need TikTok-native features that aren't available via API.
 
-Upload and schedule your TikTok videos in advance. Set your preferred posting times and let Ordinal handle the rest.
+## What you can post
+
+| Content | Supported |
+|---------|-----------|
+| Videos | ✅ |
+| Images | ❌ |
+| Trending sounds | ❌ (API limitation) |
+| Filters/effects | ❌ (API limitation) |
+| Duets/Stitches | ❌ (API limitation) |
+| Text overlays | ❌ (API limitation) |
+
+If you need sounds, effects, or interactive features, use Send to Inbox and add them in the TikTok app before publishing.
+
+## Video specifications
+
+| Requirement | Value |
+|-------------|-------|
+| Formats | MP4, WebM |
+| Aspect ratio | 9:16 (vertical) recommended |
+| Resolution | 720p minimum, 1080p recommended |
+| Length | 3 seconds to 10 minutes |
+| File size | 500 MB maximum |
+
+Vertical video (9:16) performs best. Horizontal or square videos work but won't fill the screen.
+
+## Captions
+
+Captions support up to 2,200 characters. Include hashtags for discoverability and @mention other users.
 
 <Tip>
-Prepare your videos in 9:16 vertical format for best results. TikTok favors native vertical content.
+Mix trending hashtags with niche-specific ones. 3–5 per post is a good balance.
 </Tip>
 
-### Caption & Hashtags
+## Analytics
 
-Craft your captions and add hashtags within Ordinal before scheduling.
+Basic analytics are available—video views and engagement. TikTok provides less API data than most platforms, so detailed analytics require checking TikTok directly.
 
-## Best Practices
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Track performance across all your connected profiles.
+</Card>
 
-<AccordionGroup>
-  <Accordion title="Optimal posting times">
-    TikTok engagement peaks during evening hours (7 PM - 11 PM) and weekends.
-  </Accordion>
-  <Accordion title="Hashtag strategy">
-    Mix trending hashtags with niche-specific ones. Use 3-5 hashtags per post.
-  </Accordion>
-  <Accordion title="Content consistency">
-    Post regularly (1-3 times daily) to build momentum with the algorithm.
-  </Accordion>
-</AccordionGroup>
+## Common issues
 
-## Limitations
+**Can't connect**: Verify your account is public and set to Business or Creator. Try an incognito browser window.
 
-<Warning>
-Be aware of these TikTok-specific limitations when scheduling content.
-</Warning>
+**Video won't upload**: Check format (MP4/WebM), size (under 500 MB), length (under 10 min), and resolution (at least 720p).
 
-- Videos must be prepared before uploading (no in-app editing)
-- Some features like duets and stitches are only available in the native app
+**Video in inbox but not posted**: Open TikTok, find the video in your inbox, and complete the post manually.
 
-## Troubleshooting
+## Tips
 
-<AccordionGroup>
-  <Accordion title="Can't connect my account">
-    Ensure your TikTok account is a Business account. You can switch to a Business account in TikTok Settings → Manage Account → Switch to Business Account.
-  </Accordion>
-  <Accordion title="Video upload failed">
-    Check that your video meets TikTok's requirements: 9:16 aspect ratio, under 10 minutes, and under 287.6 MB.
-  </Accordion>
-  <Accordion title="Post not appearing">
-    TikTok may take a few minutes to process and publish videos. If the post still doesn't appear after 30 minutes, try re-uploading.
-  </Accordion>
-</AccordionGroup>
+- **Hook viewers in the first 3 seconds**—watch time is everything on TikTok
+- **Post consistently**—the algorithm rewards regular uploads
+- **Engage with comments**—it boosts visibility
+- **Vertical video only**—9:16 for full-screen experience
 
-## Next Steps
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Schedule Videos" icon="clock" href="/posts/scheduling-posts">
-    Learn optimal scheduling strategies.
+  <Card title="YouTube Shorts" icon="youtube" href="/social-profiles/youtube-shorts">
+    Similar short-form vertical format.
   </Card>
-  <Card title="Repurpose to YouTube" icon="youtube" href="/social-profiles/youtube-shorts">
-    Cross-post to YouTube Shorts.
+  <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
+    Set the perfect time for your content.
   </Card>
 </CardGroup>

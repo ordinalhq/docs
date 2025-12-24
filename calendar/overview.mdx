@@ -4,112 +4,212 @@ description: "Visualize and manage your content schedule"
 icon: "calendar"
 ---
 
-## Overview
+The calendar is your command center for scheduled content. See everything at a glance, drag to reschedule, and spot gaps in your publishing cadence. Whether you're planning weeks ahead or checking today's queue, the calendar keeps you oriented.
 
-The Calendar gives you a visual overview of all your scheduled content across all connected profiles. Plan your content strategy and ensure consistent posting.
+## Calendar views
 
-## Calendar Views
+<Tabs>
+  <Tab title="Month">
+    See the full month at a glance:
+    - Best for high-level planning and spotting gaps
+    - Each day shows a count of scheduled posts
+    - Click any day to see its posts or create new ones
+    - Great for reviewing publishing consistency
+    
+    Use Month view to answer: "Am I posting consistently throughout the month?"
+  </Tab>
+  <Tab title="Week">
+    Detailed weekly perspective:
+    - See post titles and platform icons
+    - Hour-by-hour time slots
+    - Ideal balance of overview and detail
+    - Good for scheduling around specific times
+    
+    Use Week view for day-to-day scheduling decisions.
+  </Tab>
+  <Tab title="Day">
+    Focus on a single day:
+    - Full detail on every scheduled post
+    - Time-slot precision
+    - Best for day-of management
+    - Quickly verify nothing was missed
+    
+    Use Day view when managing same-day content.
+  </Tab>
+</Tabs>
 
-### Month View
+Switch views using the **D / W / M** buttons or keyboard shortcuts.
 
-See your entire month at a glance:
-- View all scheduled posts
-- Identify gaps in your content schedule
-- Plan around holidays and events
-
-<Tip>
-Use Month view to spot scheduling gaps. Aim for consistent posting frequency across the month.
-</Tip>
-
-### Week View
-
-Get a detailed look at your weekly schedule:
-- Hour-by-hour breakdown
-- Easy drag-and-drop rescheduling
-- Quick access to post details
-
-### Day View
-
-Focus on a single day:
-- Detailed view of all scheduled content
-- Fine-tune posting times
-- Last-minute adjustments
-
-## Features
-
-### Drag and Drop
-
-Easily reschedule posts by dragging them to a new date or time. The calendar updates in real-time.
-
-<Check>
-A confirmation toast appears when you successfully reschedule a post.
-</Check>
-
-### Color Coding
-
-Posts are color-coded by:
-- Platform (LinkedIn, Twitter, etc.)
-- Status (Draft, Scheduled, Published)
-- Campaign or Label
-
-### Filters
-
-Filter your calendar view by:
-- Social profile
-- Content type
-- Campaign
-- Team member
-
-## Quick Actions
-
-From the calendar, you can:
-- **Click** a post to view details
-- **Drag** to reschedule
-- **Right-click** for quick actions (edit, duplicate, delete)
-- **Double-click** an empty slot to create a new post
-
-## Creating Posts from Calendar
+## Creating from the calendar
 
 <Steps>
-  <Step title="Find an Empty Slot">
+  <Step title="Find your time slot">
     Navigate to the date and time when you want to post.
   </Step>
-  <Step title="Double-Click">
-    Double-click the empty slot to open the post composer.
+  <Step title="Click or double-click">
+    - **Click a date** — Opens new post with that date
+    - **Click a time slot** — Opens with date and time pre-filled
+    - **Drag across slots** — Select a specific time window
+  </Step>
+  <Step title="Create your post">
+    The composer opens with your selected time already filled in. Add content, choose platforms, and save.
     
     <Check>
-    The composer opens with the date and time pre-filled.
+    Your post appears on the calendar at the scheduled time.
     </Check>
   </Step>
-  <Step title="Create Your Post">
-    Write your content, add media, and select profiles.
-  </Step>
-  <Step title="Save">
-    Click **Schedule** to confirm the pre-filled time, or adjust as needed.
-  </Step>
 </Steps>
+
+<Tip>
+Clicking on the calendar is often faster than creating a post and then scheduling it—you go straight to the time you want.
+</Tip>
+
+## Viewing posts
+
+### Post cards
+
+Posts appear as cards showing:
+
+| Element | What it shows |
+|---------|---------------|
+| Title | Post title or content preview |
+| Icons | Platform badges for each channel |
+| Color | Status indicator |
+| Time | Scheduled time (in week/day views) |
+
+### Color coding
+
+Colors indicate status at a glance:
+
+| Color | Status | Action needed |
+|-------|--------|---------------|
+| Gray | Draft | Not scheduled |
+| Yellow | Scheduled | Will publish at set time |
+| Blue | In Progress | Currently publishing |
+| Green | Posted | Successfully live |
+| Red | Failed | Needs attention |
+
+<Warning>
+Red (Failed) posts need immediate attention. Check the error and retry or reschedule.
+</Warning>
+
+## Rescheduling
+
+<Tabs>
+  <Tab title="Drag and drop">
+    Drag posts directly to new dates or time slots:
+    - In Month view, drag between days
+    - In Week/Day view, drag to specific times
+    - Cross-platform posts move together
+    
+    <Check>
+    A confirmation appears when you successfully reschedule.
+    </Check>
+  </Tab>
+  <Tab title="From post detail">
+    1. Click the post to open it
+    2. Click the scheduled time
+    3. Select a new date and time
+    4. Save your changes
+  </Tab>
+</Tabs>
+
+## Filtering
+
+Focus on specific content using filters:
+
+| Filter | Use case |
+|--------|----------|
+| **By account** | Show only posts for specific profiles |
+| **By platform** | Focus on LinkedIn, Twitter, etc. |
+| **By status** | Show only scheduled, posted, or failed |
+| **By label** | Focus on specific content categories |
+| **By campaign** | See only posts in a campaign |
+
+Filters combine to narrow your view. Clear filters to see everything.
+
+<Tip>
+Check each platform's schedule independently to ensure balanced presence across all channels.
+</Tip>
+
+## Navigation
+
+| Action | Method |
+|--------|--------|
+| Previous period | ← arrow or `←` key |
+| Next period | → arrow or `→` key |
+| Jump to today | "Today" button or `T` key |
+| Go to specific date | Click the date header |
+
+## Keyboard shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `C` | Go to calendar |
+| `P` | Create new post |
+| `T` | Jump to today |
+| `←` / `→` | Previous / next period |
+| `D` | Day view |
+| `W` | Week view |
+| `M` | Month view |
+
+## Calendar settings
+
+### Timezone
+
+The calendar displays in your workspace timezone, set in **Settings → General**. All team members see the same times regardless of their local timezone.
+
+<Note>
+This prevents scheduling confusion across distributed teams—everyone sees the same schedule.
+</Note>
+
+## Tips for effective scheduling
+
+<AccordionGroup>
+  <Accordion title="Review month view regularly">
+    Spot gaps in your publishing cadence before they become problems. Aim for consistent presence throughout the month.
+  </Accordion>
+  <Accordion title="Use filters purposefully">
+    Check each platform's schedule independently. You might be over-posting on LinkedIn while neglecting Twitter.
+  </Accordion>
+  <Accordion title="Monitor failed posts">
+    Red indicators need immediate attention. Don't let failed posts sit—they may be time-sensitive.
+  </Accordion>
+  <Accordion title="Plan ahead">
+    Schedule content 1-2 weeks out minimum. This gives you buffer for review, approval, and unexpected changes.
+  </Accordion>
+  <Accordion title="Check before weekends">
+    Verify nothing important is scheduled when team coverage is light. Consider approval and response readiness.
+  </Accordion>
+</AccordionGroup>
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Posts not appearing on calendar">
-    Check your filters. You may have filtered to a specific profile or status that excludes some posts.
+  <Accordion title="Posts not appearing">
+    Check your current filters. Posts may be filtered out by platform, status, or label. Clear all filters to see everything.
   </Accordion>
   <Accordion title="Can't drag posts">
     Ensure you're clicking directly on the post card. Published posts cannot be rescheduled.
   </Accordion>
   <Accordion title="Wrong timezone showing">
-    Check your account timezone in Settings → Profile. The calendar displays in your account timezone.
+    Verify workspace timezone in **Settings → General**. The calendar always uses workspace timezone, not your browser's local time.
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="Create Posts" icon="pen-to-square" href="/posts/drafting-posts">
-    Learn to draft engaging content.
+  <Card title="Scheduling Posts" icon="clock" href="/posts/scheduling-posts">
+    Set publish times.
   </Card>
-  <Card title="Organize with Labels" icon="tags" href="/posts/labels">
-    Color-code your calendar.
+  <Card title="Post Statuses" icon="circle" href="/posts/statuses">
+    Understand status indicators.
+  </Card>
+  <Card title="Labels" icon="tags" href="/posts/labels">
+    Organize and filter content.
+  </Card>
+  <Card title="Campaigns" icon="bullhorn" href="/campaigns/overview">
+    Group related content.
   </Card>
 </CardGroup>

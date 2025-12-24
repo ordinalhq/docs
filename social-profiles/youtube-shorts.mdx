@@ -1,103 +1,104 @@
 ---
 title: "YouTube Shorts"
-description: "Connect and manage your YouTube channel for Shorts"
+description: "Short-form vertical video"
 icon: "youtube"
 ---
 
+YouTube integration is for **Shorts only**—vertical videos under 60 seconds. Standard long-form YouTube videos aren't currently supported.
+
 ## Overview
 
-Connect your YouTube channel to Ordinal to schedule YouTube Shorts and manage your short-form video content.
+Shorts are YouTube's answer to TikTok and Reels. They appear in a dedicated Shorts feed and can drive significant reach. In Ordinal, you can schedule Shorts with titles, descriptions, and visibility settings.
+
+| Requirement | Value |
+|-------------|-------|
+| Format | Vertical (9:16) |
+| Length | 15–60 seconds |
+| Account | YouTube channel with Google account |
+
+Your channel must be verified (phone verification) and in good standing—channels with active strikes may have limited API access.
 
 ## Connecting YouTube
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select YouTube">
-    Choose **YouTube** from the list of available platforms.
-  </Step>
-  <Step title="Sign In with Google">
-    Log in to the Google account associated with your YouTube channel.
-  </Step>
-  <Step title="Select Your Channel">
-    If you manage multiple channels, select the one you want to connect.
-  </Step>
-  <Step title="Grant Permissions">
-    Accept the permissions Ordinal needs to upload and manage videos.
-    
-    <Check>
-    Your YouTube channel appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Go to **Settings → Profiles → Scheduling**, select YouTube, sign in with Google, and choose your channel. If you manage multiple channels, you can connect each as a separate profile.
 
-## Supported Content Types
+YouTube tokens can expire based on Google's policies. You'll see a warning when reconnection is needed.
 
-- **YouTube Shorts** - Vertical videos up to 60 seconds
-- **Standard videos** - Regular YouTube uploads
+## What makes a Short
 
-## Features
+YouTube classifies a video as a Short when it's:
+- Vertical (9:16 aspect ratio)
+- 60 seconds or less
+- At least 15 seconds
 
-### Shorts Scheduling
+Videos that don't meet these criteria won't appear in the Shorts feed.
 
-Schedule your YouTube Shorts in advance:
-- Upload vertical videos (9:16 aspect ratio)
-- Add titles and descriptions
-- Set visibility and scheduling time
+## Video specifications
+
+| Requirement | Value |
+|-------------|-------|
+| Formats | MP4, WebM |
+| Aspect ratio | 9:16 (vertical) |
+| Resolution | 1080×1920 recommended |
+| Length | 15–60 seconds |
+| File size | 500 MB maximum |
+
+## Titles and descriptions
+
+**Titles**: Up to 100 characters. Include relevant keywords—Shorts are searchable on YouTube.
+
+**Descriptions**: Up to 5,000 characters. Add hashtags (including `#Shorts`), links, and calls to action.
 
 <Tip>
-Include "#Shorts" in your title or description to ensure YouTube categorizes your video correctly.
+Including `#Shorts` in your title or description helps YouTube categorize your video correctly, though it's not strictly required for videos that meet the format specs.
 </Tip>
 
-### Cross-Platform Repurposing
+## Visibility options
 
-Easily repurpose content from TikTok and Instagram Reels to YouTube Shorts.
+| Setting | Who can see |
+|---------|-------------|
+| Public | Anyone on YouTube |
+| Unlisted | Only people with the direct link |
+| Private | Only you |
 
-## Best Practices
+Set visibility when scheduling. You can change it later in YouTube Studio.
 
-<AccordionGroup>
-  <Accordion title="Video format">
-    Shorts should be vertical (9:16), under 60 seconds, and have engaging first 3 seconds.
-  </Accordion>
-  <Accordion title="Titles and descriptions">
-    Use searchable titles with relevant keywords. Shorts are discoverable through search.
-  </Accordion>
-  <Accordion title="Posting frequency">
-    Consistent daily posting helps build momentum on the Shorts shelf.
-  </Accordion>
-</AccordionGroup>
+## API limitations
 
-## Limitations
+These features require YouTube Studio and aren't available in Ordinal:
 
-<Warning>
-Be aware of these YouTube-specific limitations when scheduling content.
-</Warning>
+| Feature | Available |
+|---------|-----------|
+| Shorts (under 60s) | ✅ |
+| Standard videos | ❌ |
+| Community posts | ❌ |
+| Playlists | ❌ |
+| End screens | ❌ |
+| Cards | ❌ |
+| Custom thumbnails | Limited |
 
-- Shorts must be under 60 seconds
-- Some YouTube features require the native YouTube Studio
+## Common issues
 
-## Troubleshooting
+**Channel not appearing**: Make sure you're signed into the correct Google account and your channel is verified with no active strikes.
 
-<AccordionGroup>
-  <Accordion title="Channel not appearing">
-    Ensure you're logged into the correct Google account. If you manage multiple accounts, try signing out and back in.
-  </Accordion>
-  <Accordion title="Video not showing as Short">
-    Make sure your video is vertical (9:16), under 60 seconds, and includes "#Shorts" in the title or description.
-  </Accordion>
-  <Accordion title="Upload processing slowly">
-    YouTube can take time to process videos. Higher resolution videos take longer. Check YouTube Studio for processing status.
-  </Accordion>
-</AccordionGroup>
+**Video not classified as a Short**: Must be vertical (9:16), between 15–60 seconds, and meet resolution requirements.
 
-## Next Steps
+**Upload failed**: Check file size, format, and length. Copyright issues with audio can also cause failures.
+
+## Tips
+
+- **Optimize for mobile**—Shorts are consumed on phones
+- **Hook viewers immediately**—first 3 seconds determine whether they keep watching
+- **Post daily**—consistency helps build momentum on the Shorts shelf
+- **Add a CTA**—encourage subscriptions or channel visits
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Schedule Content" icon="clock" href="/posts/scheduling-posts">
-    Master your posting schedule.
+  <Card title="TikTok" icon="tiktok" href="/social-profiles/tiktok">
+    Similar format and strategy.
   </Card>
-  <Card title="Cross-Post from TikTok" icon="tiktok" href="/posts/cross-posting">
-    Repurpose TikTok content.
+  <Card title="Instagram Reels" icon="instagram" href="/social-profiles/instagram">
+    Another short-form video platform.
   </Card>
 </CardGroup>

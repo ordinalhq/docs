@@ -1,112 +1,160 @@
 ---
 title: "Drafting Posts"
-description: "Create and refine your social media content"
+description: "Create and compose content for your social profiles"
 icon: "pen-to-square"
 ---
 
-## Overview
+Posts are the core content unit in Ordinal. A post contains your content, media, and settings for publishing to one or more social profiles. Posts progress through a workflow from draft to published, with optional approval gates along the way.
 
-The post composer is where you create content for your social profiles. Draft, preview, and perfect your posts before scheduling or publishing.
+## Creating a post
 
-## Creating a New Post
+<Tabs>
+  <Tab title="Keyboard">
+    Press `P` anywhere in Ordinal to instantly open a new post. This is the fastest method.
+  </Tab>
+  <Tab title="Calendar">
+    Click any date on the calendar to create a post scheduled for that day. Click and drag to select a specific time slot.
+  </Tab>
+  <Tab title="Command palette">
+    Press `Cmd/Ctrl + K`, type "new post", and press Enter.
+  </Tab>
+  <Tab title="From an idea">
+    Open an idea from your backlog and click **Add to Calendar** to convert it to a schedulable post.
+  </Tab>
+</Tabs>
+
+<Tip>
+The calendar method is particularly useful for visual planning—your post opens with the selected date and time pre-filled.
+</Tip>
+
+## The post composer
+
+When you create a post, the composer opens with key areas:
+
+| Area | Purpose |
+|------|---------|
+| **Channel selector** | Choose platforms to publish to |
+| **Content editor** | Write with formatting, mentions, and media |
+| **Sidebar** | Configure title, campaign, labels, schedule, accounts |
+| **Preview** | See how your post will appear on each platform |
+
+For cross-posts, each platform gets its own tab with platform-specific character limits and media requirements.
+
+## Writing content
+
+The editor supports rich content creation:
+
+- **Text formatting** — Bold, italic, and links via toolbar or keyboard shortcuts
+- **@mentions** — Tag people, companies, or accounts
+- **Hashtags** — Add discoverability with `#` tags
+- **Slash commands** — Type `/` for quick access to media, AI, and more
+
+<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+  Deep dive into editor capabilities, mentions, formatting, and keyboard shortcuts.
+</Card>
+
+## Adding media
+
+Attach images, videos, and documents to your posts:
 
 <Steps>
-  <Step title="Open the Composer">
-    Click **New Post** in the top navigation or press `Cmd/Ctrl + N`.
+  <Step title="Add files">
+    Drag and drop, click the media button, or paste from clipboard (`Cmd/Ctrl + V`).
   </Step>
-  <Step title="Select Profiles">
-    Choose which social profiles you want to post to by clicking on them in the profile selector.
-    
-    <Tip>
-    Select multiple profiles to create a cross-post. Each platform will show character limits and media requirements.
-    </Tip>
+  <Step title="Arrange">
+    Drag to reorder multiple images. Click to crop or edit.
   </Step>
-  <Step title="Write Your Content">
-    Compose your post in the text editor. You'll see real-time character counts for each selected platform.
-  </Step>
-  <Step title="Add Media">
-    Drag and drop images or videos, or click the media button to upload files.
-    
-    <Check>
-    A preview appears showing how your post will look on each platform.
-    </Check>
-  </Step>
-  <Step title="Save or Schedule">
-    Click **Save Draft** to continue later, or proceed to **Schedule** to set a publishing time.
+  <Step title="Preview">
+    See how media will appear on each platform before publishing.
   </Step>
 </Steps>
 
-## Composer Features
+<Card title="Media & Assets" icon="image" href="/posts/media">
+  Platform specifications, supported formats, and media best practices.
+</Card>
 
-### Multi-Profile Support
+## AI assistance
 
-Write once, post to multiple profiles:
-- Select multiple profiles from different platforms
-- Content adapts to each platform's requirements
-- Preview how your post will appear on each platform
+Generate and refine content with AI:
 
-### Rich Media
+1. Type `/ai` or click the AI button (✨)
+2. Describe what you want to create
+3. AI generates content you can edit and refine
 
-Add various media types to your posts:
-- **Images** - Upload or drag and drop (JPG, PNG, GIF, WEBP)
-- **Videos** - Supported formats vary by platform
-- **GIFs** - Add animated content
-- **Links** - Auto-preview enabled
+AI can also improve existing text—select content and choose to make it shorter, longer, change tone, or fix grammar.
 
-<Tip>
-Use the highest resolution images you have. Ordinal will automatically optimize them for each platform.
-</Tip>
+<Card title="AI Writing" icon="wand-magic-sparkles" href="/posts/ai-writing">
+  Prompt strategies, templates, and best practices for AI-assisted content.
+</Card>
 
-### Platform-Specific Variations
+## Post settings
 
-Customize content for each platform:
-- Different text for different audiences
-- Platform-specific hashtags
-- Tailored media sizes
+### Title
 
-## AI Assistance
+The internal title helps you organize and search posts. It's never published—only visible to your team. If left blank, Ordinal auto-generates from your content.
 
-<Note>
-AI features help you create better content faster.
-</Note>
+### Account selection
 
-- **Generate ideas** - Get content suggestions based on your industry and past performance
-- **Improve writing** - Enhance your copy for clarity and engagement
-- **Hashtag suggestions** - Find relevant hashtags based on your content
-- **Optimal length** - Adjust for each platform's best practices
+Choose which connected account to post from for each platform. Set default accounts in [Post Defaults](/posts/post-defaults) to save time.
 
-## Saving Drafts
+### Labels
 
-Your work is automatically saved as you type. You can also:
-- **Save as Draft** - Continue editing later
-- **Add to Campaign** - Associate with a campaign
-- **Apply Labels** - Organize your content
+Apply labels to categorize posts by campaign, content type, topic, or any taxonomy your team uses. Labels enable filtering across the calendar and post lists.
+
+### Campaign
+
+Associate posts with a campaign to group related content together. Campaign posts share a timeline and aggregate analytics.
+
+## Saving and drafts
 
 <Check>
-Look for the "Saved" indicator in the bottom left to confirm your draft is saved.
+Your work saves automatically as you type. Look for the "Saved" indicator to confirm.
 </Check>
+
+Posts remain as drafts until you schedule them. Drafts:
+- Won't publish automatically
+- Can be edited without time pressure
+- Appear in Posts filtered by "Draft" status
+
+To schedule a draft, set a publish date and time or click **Post Now** for immediate publishing.
+
+## Real-time collaboration
+
+Multiple team members can work on the same post simultaneously:
+
+- Presence indicators show who's viewing
+- Live cursors show where others are editing
+- Changes sync instantly—no version conflicts
+
+For detailed feedback, use comments instead of editing directly.
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Media not uploading">
-    Check file size limits: images under 20MB, videos under 512MB. Ensure you're using supported formats (JPG, PNG, GIF, MP4, MOV).
+  <Accordion title="Can't see channel options">
+    Verify you have connected accounts in **Settings → Profiles → Scheduling**. Only connected profiles appear as channel options.
   </Accordion>
-  <Accordion title="Character count incorrect">
-    URLs are counted differently per platform. Twitter/X counts all URLs as 23 characters regardless of length.
+  <Accordion title="Post not saving">
+    Check your internet connection. Ensure all required fields are filled. Try refreshing if issues persist.
   </Accordion>
-  <Accordion title="Preview not matching platform">
-    Previews are approximations. Minor differences may appear on the actual platform due to device variations.
+  <Accordion title="Wrong account selected">
+    Change the account in the post sidebar. Update [Post Defaults](/posts/post-defaults) to change future defaults.
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="Schedule Your Post" icon="clock" href="/posts/scheduling-posts">
-    Set the perfect publishing time.
+  <Card title="Scheduling Posts" icon="clock" href="/posts/scheduling-posts">
+    Set publish times and manage your schedule.
   </Card>
-  <Card title="Cross-Post Content" icon="arrows-repeat" href="/posts/cross-posting">
-    Share across multiple platforms.
+  <Card title="Cross-Posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Customize content for multiple platforms.
+  </Card>
+  <Card title="Ideas" icon="lightbulb" href="/posts/ideas">
+    Capture ideas before scheduling.
+  </Card>
+  <Card title="Labels" icon="tags" href="/posts/labels">
+    Organize content with custom labels.
   </Card>
 </CardGroup>

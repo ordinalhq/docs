@@ -1,97 +1,100 @@
 ---
 title: "Instagram"
-description: "Connect and manage your Instagram business accounts"
+description: "Feed posts, Reels, Stories, and carousels"
 icon: "instagram"
 ---
 
+Instagram is a visual-first platform. In Ordinal, you can schedule feed posts, Reels, carousels, and Stories—plus use Instagram-specific features like first comments and cover photos.
+
 ## Overview
 
-Connect your Instagram business or creator accounts to Ordinal to schedule posts, stories, and reels.
+Instagram requires a **Business or Creator account** (not personal) and connects through Facebook. This is a Meta API requirement—your Instagram must be linked to a Facebook Page, and you need admin access to that page.
+
+If you have a personal account, convert it in Instagram: **Settings → Account → Switch to Professional Account**.
+
+<Note>
+The Facebook connection is just for authentication. You don't need to post to Facebook—it's how Instagram's API works.
+</Note>
 
 ## Connecting Instagram
 
-<Note>
-Instagram requires a Facebook Business Page connection. Make sure your Instagram account is converted to a Business or Creator account before proceeding.
-</Note>
+Go to **Settings → Profiles → Scheduling**, select Instagram, and sign in with Facebook. Choose the Facebook Page linked to your Instagram, authorize Ordinal, and your Instagram profile appears in your connected accounts.
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Instagram">
-    Choose **Instagram** from the list of available platforms.
-  </Step>
-  <Step title="Connect via Facebook">
-    Log in to your Facebook account that's linked to your Instagram Business profile.
-    
-    <Tip>
-    If you manage multiple Instagram accounts, make sure you're logged into the correct Facebook account.
-    </Tip>
-  </Step>
-  <Step title="Select Your Instagram Account">
-    Choose the Instagram account you want to connect from the list of available accounts.
-    
-    <Check>
-    Your Instagram profile appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Tokens expire roughly every 60 days. You'll see a warning when it's time to reconnect.
 
-## Supported Content Types
+## What you can post
 
-- **Feed posts** - Single images or carousels
-- **Reels** - Short-form video content
-- **Stories** - Ephemeral 24-hour content
-- **Carousels** - Up to 10 images/videos
+| Content | Supported | Notes |
+|---------|-----------|-------|
+| Feed posts | ✅ | Single image or video |
+| Carousels | ✅ | Up to 10 images/videos |
+| Reels | ✅ | 15–90 seconds, vertical |
+| Stories | ⚠️ | Single image only, no stickers or polls |
 
-## Features
+### Story limitations
 
-### Visual Preview
+Instagram's API restricts Stories to single images without interactive elements. For polls, questions, countdowns, or stickers, post Stories directly in the Instagram app.
 
-See exactly how your post will appear on Instagram before publishing.
+## Instagram-specific features
 
-### Carousel Builder
+**First Comment**: Schedule a comment to publish immediately after your post. Many creators use this for hashtags to keep captions cleaner.
 
-Create engaging carousels with our drag-and-drop builder:
-- Reorder slides easily
-- Preview swipe experience
-- Add individual captions per slide
+**Cover Photo**: Choose a custom cover frame for Reels—pick from the video or upload your own image.
 
-## Best Practices
+**Share to Feed**: Control whether Reels appear in both your profile grid and the Reels tab, or just Reels.
 
-<AccordionGroup>
-  <Accordion title="Optimal posting times">
-    Best engagement typically occurs 11 AM - 1 PM and 7 PM - 9 PM in your audience's timezone.
-  </Accordion>
-  <Accordion title="Hashtag strategy">
-    Use 5-10 relevant hashtags. Mix popular and niche tags for best reach.
-  </Accordion>
-  <Accordion title="Content mix">
-    Balance feed posts, reels, and stories for maximum engagement.
-  </Accordion>
-</AccordionGroup>
+**Location Tagging**: Add a location to increase discoverability. You can set a default location in your workspace settings if you frequently tag the same place.
 
-## Troubleshooting
+## Media specifications
 
-<AccordionGroup>
-  <Accordion title="Can't find my Instagram account">
-    Ensure your Instagram is converted to a Business or Creator account and is linked to a Facebook Page. You can check this in Instagram Settings → Account → Switch to Professional Account.
-  </Accordion>
-  <Accordion title="Connection failed or expired">
-    Try disconnecting and reconnecting your Facebook account. Make sure you grant all requested permissions during authorization.
-  </Accordion>
-  <Accordion title="Posts failing to publish">
-    Check that your content meets Instagram's requirements: images should be between 320x320 and 1080x1350 pixels, and videos should be under 60 seconds for feed posts.
-  </Accordion>
-</AccordionGroup>
+| Content | Formats | Dimensions | Limits |
+|---------|---------|------------|--------|
+| Images | JPG, PNG | 1080×1080 (square), 1080×1350 (portrait) | Min 320px wide |
+| Feed videos | MP4, MOV | Various | 60 seconds, 100 MB |
+| Reels | MP4 | 1080×1920 (9:16) | 15–90 seconds |
+| Carousels | Mixed | Consistent ratio recommended | Up to 10 items |
 
-## Next Steps
+## Caption limits
+
+| Limit | Value |
+|-------|-------|
+| Characters | 2,200 |
+| Hashtags | 30 maximum |
+
+<Tip>
+Put hashtags in your first comment instead of the caption. It keeps your post looking cleaner and doesn't affect discoverability.
+</Tip>
+
+## Analytics
+
+View performance in **Analytics → Instagram**: reach, impressions, engagement (likes, comments, saves, shares), and follower growth.
+
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Track performance across all your connected profiles.
+</Card>
+
+## Common issues
+
+**Business account required**: Personal accounts can't connect. Switch to Business or Creator in Instagram settings.
+
+**Page not linked**: Your Instagram must be linked to a Facebook Page. Check this in Instagram under **Settings → Account → Linked Accounts**.
+
+**Post failed**: Common causes are unsupported aspect ratios, videos over 60 seconds (for feed), captions over 2,200 characters, or 30+ hashtags.
+
+## Tips
+
+- **Reels get higher organic reach** than static posts—prioritize them if reach is your goal
+- **Carousels increase time on post**, which signals quality to the algorithm
+- **Consistent aesthetics matter**—plan your grid appearance
+- **Test posting times**—common peaks are 11 AM–1 PM and 7–9 PM, but your audience may differ
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Schedule Your First Post" icon="clock" href="/posts/scheduling-posts">
-    Learn how to schedule Instagram content.
+  <Card title="Facebook" icon="facebook" href="/social-profiles/facebook">
+    Shares authentication with Instagram.
   </Card>
-  <Card title="Create Carousels" icon="images" href="/posts/drafting-posts">
-    Master the carousel builder.
+  <Card title="Threads" icon="threads" href="/social-profiles/threads">
+    Also uses Meta authentication.
   </Card>
 </CardGroup>

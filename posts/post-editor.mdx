@@ -1,0 +1,241 @@
+---
+title: "Post Editor"
+description: "Master the content editor with formatting, mentions, and shortcuts"
+icon: "keyboard"
+---
+
+The post editor is where your content comes to life. A rich text editor with platform-aware formatting, @mentions, slash commands, and real-time collaboration—everything you need to create engaging social content.
+
+## Editor overview
+
+The editor interface includes:
+
+| Area | Purpose |
+|------|---------|
+| **Toolbar** | Formatting options, media, AI access |
+| **Content area** | Where you write and see formatting |
+| **Character counter** | Real-time count per platform |
+| **Channel tabs** | Switch between platforms in cross-posts |
+| **Media section** | Attached images and videos |
+
+## Text formatting
+
+Format your content using the toolbar or keyboard shortcuts:
+
+| Format | Shortcut | Notes |
+|--------|----------|-------|
+| **Bold** | `Cmd/Ctrl + B` | Unicode bold on LinkedIn/Twitter |
+| *Italic* | `Cmd/Ctrl + I` | Unicode italic on LinkedIn/Twitter |
+| Link | `Cmd/Ctrl + K` | Opens link dialog |
+
+<Note>
+LinkedIn and Twitter don't support native rich text, so Ordinal uses Unicode characters that render as bold or italic. The result looks right on the platform even though it's technically plain text with special characters.
+</Note>
+
+### Platform formatting support
+
+| Platform | Bold/Italic | Clickable Links |
+|----------|-------------|-----------------|
+| LinkedIn | ✅ Unicode | ✅ |
+| Twitter/X | ✅ Unicode | ✅ |
+| Instagram | ❌ | ❌ Caption only |
+| Facebook | ❌ | ✅ |
+| Threads | ✅ | ✅ |
+
+## Mentions
+
+Mentions let you tag people, companies, and accounts in your posts. When someone is mentioned, their name becomes a clickable link on the published post.
+
+<Tabs>
+  <Tab title="How to mention">
+    <Steps>
+      <Step title="Type the @ symbol">
+        In the editor, type `@` to trigger the mention picker.
+      </Step>
+      <Step title="Search for the account">
+        Start typing the name. Ordinal searches the platform for matching accounts.
+      </Step>
+      <Step title="Select from results">
+        Use arrow keys or click to select. The mention appears highlighted in the editor.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Platform differences">
+    | Platform | What you can mention |
+    |----------|---------------------|
+    | LinkedIn | People and Company pages |
+    | Twitter/X | User accounts |
+    | Instagram | User accounts |
+    | Facebook | Pages (not personal profiles) |
+    | Threads | User accounts |
+
+    <Warning>
+    Instagram mentions require a Business or Creator account. Personal accounts cannot use the mention API.
+    </Warning>
+  </Tab>
+  <Tab title="How mentions work">
+    When you mention someone:
+    - Their profile becomes a clickable link in the published post
+    - They may receive a notification (depends on platform and their settings)
+    - The mention is stored with your post for analytics
+
+    <Tip>
+    Mentions can increase engagement by notifying the mentioned account and encouraging them to interact with your post.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Slash commands
+
+Type `/` anywhere in the editor to access quick commands:
+
+| Command | Action |
+|---------|--------|
+| `/ai` | Open AI writing assistant |
+| `/image` | Insert an image |
+| `/video` | Insert a video |
+| `/link` | Insert a link |
+| `/emoji` | Open emoji picker |
+
+Slash commands speed up content creation by keeping your hands on the keyboard.
+
+## Hashtags
+
+Add hashtags by typing `#` followed by your tag:
+
+```
+#SocialMedia #Marketing #ContentStrategy
+```
+
+### Platform recommendations
+
+| Platform | Recommended Count | Notes |
+|----------|-------------------|-------|
+| LinkedIn | 3-5 | Professional, targeted |
+| Instagram | 5-10 | Can use up to 30 |
+| Twitter/X | 1-3 | Minimal, focused |
+| TikTok | 3-5 | Trend-focused |
+| Threads | 3-5 | Similar to Twitter |
+
+<Tip>
+On Instagram, consider putting hashtags in a first comment (via auto-engagement) rather than the caption to keep your post clean.
+</Tip>
+
+## Links
+
+<Steps>
+  <Step title="Insert a link">
+    Select text and press `Cmd/Ctrl + K`, or use the link button in the toolbar.
+  </Step>
+  <Step title="Enter the URL">
+    Paste or type the destination URL.
+  </Step>
+  <Step title="Preview link cards">
+    LinkedIn, Twitter, and Facebook generate preview cards for links. See how your link will appear before publishing.
+  </Step>
+</Steps>
+
+### Link preview behavior
+
+| Platform | Link Preview |
+|----------|--------------|
+| LinkedIn | ✅ Rich cards with image, title, description |
+| Twitter/X | ✅ Cards (may require whitelisting) |
+| Facebook | ✅ Rich previews |
+| Instagram | ❌ Links not clickable in captions |
+| Threads | ✅ Basic previews |
+
+<Note>
+Instagram doesn't support clickable links in post captions. Links only work in bio, Stories (with sufficient followers), and paid promotions.
+</Note>
+
+## Character limits
+
+The editor shows real-time character counts for each platform:
+
+| Platform | Limit | Notes |
+|----------|-------|-------|
+| Twitter/X | 280 | 25,000 with Premium |
+| LinkedIn | 3,000 | First 140 chars most visible |
+| Instagram | 2,200 | First 125 chars before "more" |
+| Facebook | 63,206 | Practical limit much lower |
+| Threads | 500 | |
+| TikTok | 2,200 | |
+
+The counter turns red as you approach the limit. For cross-posts, each platform tab shows its own count.
+
+## Keyboard shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Cmd/Ctrl + B` | Bold |
+| `Cmd/Ctrl + I` | Italic |
+| `Cmd/Ctrl + K` | Insert link |
+| `Cmd/Ctrl + Enter` | Save post |
+| `Escape` | Close editor |
+| `/` | Slash commands |
+| `@` | Mention |
+| `#` | Hashtag |
+
+## AI assistance
+
+Access AI writing help directly in the editor:
+
+1. Type `/ai` or click the AI button (✨)
+2. Describe what you want to create
+3. AI generates content
+4. Edit and refine the output
+
+AI can also improve existing text:
+- Select text in the editor
+- Click the AI button
+- Choose: Make shorter, Make longer, Change tone, Fix grammar
+
+See [AI Writing](/posts/ai-writing) for detailed guidance.
+
+## Real-time collaboration
+
+Multiple team members can edit the same post simultaneously:
+
+- **Presence indicators** — See who else is viewing the post
+- **Live cursors** — Watch where others are typing
+- **Instant sync** — Changes appear immediately for everyone
+
+No version conflicts—edits merge automatically. For detailed feedback, use comments instead of editing directly.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Formatting not appearing">
+    Check if the platform supports that formatting. LinkedIn and Twitter use Unicode which works everywhere, but Instagram and Facebook don't support bold/italic at all.
+  </Accordion>
+  <Accordion title="Mentions not finding results">
+    - Ensure the account is connected
+    - Type more characters to narrow results
+    - Check your internet connection
+    - Some platforms require exact matches
+  </Accordion>
+  <Accordion title="Character count seems wrong">
+    - URLs count differently per platform (Twitter counts all URLs as 23 characters)
+    - Some emojis count as 2+ characters
+    - Mentions may count differently than displayed text
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="AI Writing" icon="wand-magic-sparkles" href="/posts/ai-writing">
+    Generate and refine content with AI.
+  </Card>
+  <Card title="Media & Assets" icon="image" href="/posts/media">
+    Add images and videos.
+  </Card>
+  <Card title="Cross-Posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Customize for each platform.
+  </Card>
+  <Card title="Drafting Posts" icon="pen-to-square" href="/posts/drafting-posts">
+    Create and save posts.
+  </Card>
+</CardGroup>
+

@@ -1,91 +1,112 @@
 ---
 title: "Webflow"
-description: "Connect Webflow to publish content directly to your website"
+description: "Blog posts to your CMS"
 icon: "globe"
 ---
 
+Webflow integration lets you publish blog posts directly to your website's CMS. Write content in Ordinal, schedule it alongside your social posts, and push to your blog without logging into Webflow.
+
 ## Overview
 
-Connect your Webflow site to Ordinal to publish blog posts and content directly to your website's CMS.
+This integration works with **Webflow CMS collections**—typically your blog or resources section. It doesn't modify static pages, site design, or ecommerce products.
 
-## Prerequisites
+| Requirement | Details |
+|-------------|---------|
+| Webflow plan | CMS access required (not available on free plans) |
+| Permissions | Editor or higher on the site |
+| What it publishes | CMS collection items (blog posts, articles) |
 
-<Note>
-Webflow CMS is required. Sites on the free plan without CMS cannot be connected.
-</Note>
-
-Your Webflow site needs:
-- An active CMS plan
-- At least one collection for blog posts
-- API access enabled
+If you're not sure whether your site has CMS access, check if you have a "CMS Collections" section in Webflow's designer.
 
 ## Connecting Webflow
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Webflow">
-    Choose **Webflow** from the list of available platforms.
-  </Step>
-  <Step title="Authorize Access">
-    Log in to your Webflow account and authorize Ordinal to access your sites.
-  </Step>
-  <Step title="Select Site and Collection">
-    Choose the Webflow site and CMS collection where you want to publish content.
-    
-    <Tip>
-    Select your blog posts collection if you're primarily using Ordinal for content marketing.
-    </Tip>
-    
-    <Check>
-    Your Webflow site appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Go to **Settings → Profiles → Scheduling**, select Webflow, sign in, and choose your site and collection. During setup, you'll map fields between Ordinal and your Webflow collection.
 
-## Supported Features
+## Field mapping
 
-- **Blog posts** - Publish to your CMS collections
-- **Content updates** - Update existing items
-- **Draft management** - Save as draft before publishing
+Ordinal maps its content to your Webflow collection fields:
 
-## Use Cases
+| Ordinal | Webflow (typical) |
+|---------|-------------------|
+| Title | Name / Title |
+| Body | Post Body / Rich Text |
+| Slug | Slug |
+| Publish date | Published On |
 
-### Synchronized Content
+### Custom fields
 
-Keep your social media and blog content synchronized:
-- Draft a blog post in Ordinal
-- Schedule social posts to promote it
-- Publish everything at once
+If your collection has additional fields—author, category, featured image, tags—you can configure mapping during setup or later in Settings. Ordinal can populate any text, reference, or image field in your collection.
 
-### Content Repurposing
+<Tip>
+Review your Webflow collection structure before connecting. Knowing which fields are required helps avoid publishing errors.
+</Tip>
 
-Turn your social content into blog posts:
-- Expand tweet threads into articles
-- Convert LinkedIn posts to blog content
+## Writing content
 
-## Troubleshooting
+The Ordinal editor supports rich text formatting that translates to Webflow:
 
-<AccordionGroup>
-  <Accordion title="Site not appearing">
-    Ensure your Webflow site has CMS enabled. Free sites without CMS cannot be connected.
-  </Accordion>
-  <Accordion title="Collection not syncing">
-    Check that your collection has the required fields (title, content, etc.) and that API access is enabled in Webflow site settings.
-  </Accordion>
-  <Accordion title="Publishing failed">
-    Verify your Webflow plan allows API publishing and that you haven't exceeded your CMS item limits.
-  </Accordion>
-</AccordionGroup>
+- Headings (H1–H6)
+- Bold, italic, underline
+- Links
+- Ordered and unordered lists
+- Block quotes
+- Images
+- Embedded content
 
-## Next Steps
+Content formats correctly when published to Webflow's rich text fields.
+
+## Draft vs. Published
+
+When scheduling, choose how the item appears:
+
+| Option | Behavior |
+|--------|----------|
+| **Draft** | Creates the CMS item as a draft. Review in Webflow before going live. |
+| **Published** | Creates and publishes immediately. It's live on your site. |
+
+Use Draft mode if you want to review formatting in Webflow, add elements Ordinal doesn't support, or get final approval before publishing.
+
+## Slugs
+
+Slugs are auto-generated from your title but can be customized. Each slug must be unique within your collection—duplicates cause publish failures.
+
+<Note>
+Changing a slug after publishing creates a new URL. If you have existing links to the post, they'll break unless you set up redirects in Webflow.
+</Note>
+
+## API limitations
+
+| Feature | Supported |
+|---------|-----------|
+| Blog posts (CMS items) | ✅ |
+| Static page content | ❌ |
+| Ecommerce products | ❌ |
+| Site settings | ❌ |
+| Design changes | ❌ |
+
+## Common issues
+
+**Site not appearing**: Your Webflow site needs CMS access. Free sites without CMS aren't connectable.
+
+**Collection not syncing**: Verify your collection has the required fields and API access is enabled in Webflow site settings.
+
+**Field mapping errors**: Ensure field types match—text to text, rich text to rich text. Mismatched types can cause silent failures.
+
+**Publishing failed**: Check that required Webflow fields are populated, the slug is unique, and you haven't hit CMS item limits.
+
+## Use cases
+
+- **Synchronized launches**: Draft a blog post, schedule social promotion, publish everything together
+- **Content repurposing**: Expand Twitter threads or LinkedIn posts into full articles
+- **Team workflow**: Use Ordinal's approval flow for blog content before it goes live
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Create Blog Content" icon="pen-to-square" href="/posts/drafting-posts">
-    Draft blog posts in Ordinal.
+  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Publish to multiple platforms at once.
   </Card>
-  <Card title="Cross-Post to Social" icon="share" href="/posts/cross-posting">
-    Promote blog posts on social media.
+  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
+    Set up review workflows for blog content.
   </Card>
 </CardGroup>

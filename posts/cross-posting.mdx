@@ -1,112 +1,167 @@
 ---
 title: "Cross-Posting"
-description: "Share content across multiple platforms efficiently"
+description: "Publish to multiple platforms from a single post"
 icon: "arrows-repeat"
 ---
 
-## Overview
+Cross-posting lets you create content once and distribute it across multiple social platforms. Each platform version can be customized while sharing a unified schedule and campaign association.
 
-Cross-posting lets you share the same content across multiple social platforms simultaneously while tailoring it for each audience.
+## How cross-posting works
 
-## How Cross-Posting Works
+When you select multiple platforms in the channel selector, Ordinal creates linked versions of your post for each platform. By default, content syncs across all versions—edit one and the others update automatically.
 
-<Steps>
-  <Step title="Write Once">
-    Create your core content in the post composer.
-  </Step>
-  <Step title="Select Multiple Profiles">
-    Click on multiple social profiles to post to all of them.
-    
-    <Check>
-    Each selected profile shows its character limit and media requirements.
-    </Check>
-  </Step>
-  <Step title="Review Adaptations">
-    Ordinal automatically adjusts your content to fit each platform's limits.
-    
-    <Tip>
-    Click on each platform tab to see the preview and make platform-specific edits.
-    </Tip>
-  </Step>
-  <Step title="Customize Per Platform">
-    Fine-tune text, hashtags, and media for each platform's audience.
-  </Step>
-  <Step title="Publish Together">
-    Schedule all versions at once, or stagger posting times.
-    
-    <Check>
-    Each platform version appears in your Calendar with its scheduled time.
-    </Check>
-  </Step>
-</Steps>
-
-## Platform Adaptations
-
-Ordinal automatically handles platform differences:
+<Note>
+Content adapts automatically to each platform's character limits and formatting capabilities. The editor shows real-time counts for each platform.
+</Note>
 
 | Platform | Character Limit | Media Support |
-|----------|----------------|---------------|
-| Twitter/X | 280 (25K Premium) | 4 images, video, GIF |
+|----------|-----------------|---------------|
+| Twitter/X | 280 (25K with Premium) | 4 images, video, GIF |
 | LinkedIn | 3,000 | Images, video, documents |
 | Facebook | 63,206 | Images, video, links |
 | Instagram | 2,200 | Images, video, carousels |
 | Threads | 500 | Images, video |
+| TikTok | 2,200 | Video only |
 
-## Customization Options
+## Creating a cross-post
 
-### Per-Platform Text
-
-Customize your message for each platform:
-- Adjust length and tone
-- Use platform-specific hashtags
-- Include or exclude mentions
-
-### Per-Platform Media
-
-Use different media for different platforms:
-- Optimal image sizes
-- Platform-specific video formats
-- Alternative media options
+<Steps>
+  <Step title="Select platforms">
+    Create a new post and click multiple platforms in the channel selector. Each shows its requirements.
+  </Step>
+  <Step title="Write content">
+    Content syncs to all platforms by default. The editor shows character counts for each.
+  </Step>
+  <Step title="Customize per platform">
+    Click each platform tab to preview and optionally customize that version.
+  </Step>
+  <Step title="Select accounts">
+    Choose which connected account to use for each platform.
+  </Step>
+  <Step title="Schedule">
+    Set one time—all versions publish together.
+    
+    <Check>
+    Your cross-post appears as a single item on the calendar with multiple platform icons.
+    </Check>
+  </Step>
+</Steps>
 
 <Tip>
-Instagram performs best with square (1:1) or portrait (4:5) images, while Twitter favors landscape (16:9) images.
+Start with your longest-form platform (usually LinkedIn), then customize shorter versions. Writing long and trimming is easier than writing short and expanding.
 </Tip>
 
-## Best Practices
+## Content synchronization
+
+<Tabs>
+  <Tab title="Synced mode">
+    When content is synced (the default):
+    - Edit text and it updates everywhere
+    - Add media and it appears on all platforms
+    - Formatting adjusts automatically per platform
+    
+    A "Synced" indicator shows when content is linked across platforms.
+  </Tab>
+  <Tab title="Custom content">
+    To tailor content for a specific platform:
+    
+    1. Click the platform tab in the composer
+    2. Make your changes—text, hashtags, media
+    3. The content diverges from other platforms
+    4. The sync indicator updates to show "Custom"
+    
+    Customizations are platform-specific and don't affect other versions.
+  </Tab>
+  <Tab title="Re-syncing">
+    To copy content from one platform to others:
+    
+    1. Click the **Sync** button
+    2. Choose the source platform
+    3. Select which platforms to update
+    4. Content copies over, replacing any customizations
+  </Tab>
+</Tabs>
+
+## Media across platforms
+
+Media syncs by default but can be customized per platform. Key considerations:
+
+| Consideration | Details |
+|---------------|---------|
+| **Aspect ratios** | Instagram favors 1:1 or 4:5; Twitter favors 16:9 |
+| **Carousels** | Different max images per platform |
+| **PDFs** | LinkedIn only |
+| **Video length** | Varies significantly by platform |
+
+Ordinal warns you when media won't work on a particular platform. Customize or remove media for that version as needed.
+
+<Card title="Media & Assets" icon="image" href="/posts/media">
+  Complete media specifications and platform requirements.
+</Card>
+
+## Scheduling and publishing
+
+Cross-posts share scheduling:
+- Single scheduled time for all platforms
+- Same campaign and labels
+- Unified view on the calendar
+
+Publishing happens independently:
+- Each platform publishes separately
+- Success or failure tracked per-channel
+- One failure doesn't affect other platforms
+
+<Check>
+If one platform fails, the others still publish. Retry the failed platform individually from the post detail view.
+</Check>
+
+## Best practices
 
 <AccordionGroup>
-  <Accordion title="Customize, don't duplicate">
-    Take time to tailor content for each platform's audience and norms. LinkedIn audiences expect professional tone; Twitter favors concise, punchy content.
+  <Accordion title="Match platform culture">
+    LinkedIn audiences expect professional depth; Twitter rewards brevity and punch; Instagram focuses on visual impact. Customize accordingly rather than posting identical content everywhere.
   </Accordion>
-  <Accordion title="Stagger posting times">
-    Avoid posting to all platforms at exactly the same time. Stagger by 15-30 minutes to catch different audience segments.
+  <Accordion title="Use native features">
+    Hashtag strategies differ by platform:
+    - **LinkedIn:** 3-5 targeted professional hashtags
+    - **Instagram:** 5-10 discoverable hashtags (or in first comment)
+    - **Twitter:** 1-3 minimal, focused hashtags
   </Accordion>
-  <Accordion title="Platform-native content">
-    Some content works better as platform-native rather than cross-posted. Video formats especially may need platform-specific versions.
+  <Accordion title="Stagger when appropriate">
+    You can publish all platforms simultaneously, but staggering by 15-30 minutes can catch different audience segments and appear more organic.
+  </Accordion>
+  <Accordion title="Preview each version">
+    Always check the preview for each platform before scheduling. Rendering differences, link previews, and cropping can surprise you.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Content truncated on platform">
-    Your text exceeded that platform's character limit. Edit the platform-specific version to fit within limits.
+  <Accordion title="Content not syncing between platforms">
+    Check if sync was manually broken by customizing. Click the Sync button to re-sync from your preferred source platform.
   </Accordion>
-  <Accordion title="Image appears cropped differently">
-    Each platform crops images differently. Use the preview to adjust cropping, or upload platform-specific image versions.
+  <Accordion title="One platform failed while others succeeded">
+    Open the post detail view to see per-platform status. Check the error message for the failed platform and retry after fixing the issue.
   </Accordion>
-  <Accordion title="Some platforms failed while others succeeded">
-    Check individual platform status in the Posts list. Re-try failed posts after fixing any authorization or content issues.
+  <Accordion title="Media appearing differently across platforms">
+    Each platform crops and displays media differently. Use platform-recommended dimensions or customize media per platform for best results.
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="View Your Calendar" icon="calendar" href="/calendar/overview">
-    See all scheduled cross-posts.
+  <Card title="Drafting Posts" icon="pen-to-square" href="/posts/drafting-posts">
+    Create and compose content.
   </Card>
-  <Card title="Organize with Campaigns" icon="bullhorn" href="/campaigns/overview">
+  <Card title="Calendar" icon="calendar" href="/calendar/overview">
+    View your cross-post schedule.
+  </Card>
+  <Card title="Campaigns" icon="bullhorn" href="/campaigns/overview">
     Group cross-posts into campaigns.
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="/analytics/overview">
+    Track performance across platforms.
   </Card>
 </CardGroup>

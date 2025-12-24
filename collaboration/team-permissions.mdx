@@ -1,0 +1,206 @@
+---
+title: "Team & Permissions"
+description: "Manage team members and control access to your workspace"
+icon: "lock"
+---
+
+Ordinal workspaces support teams with role-based permissions. Control who can access what—from full administrative control to view-only access—ensuring the right people manage the right content.
+
+## Roles
+
+<Tabs>
+  <Tab title="Owner">
+    **Full control over the workspace**
+    
+    - Manage billing and subscription
+    - Add/remove all team members
+    - Delete the workspace
+    - Transfer ownership
+    - All other permissions
+    
+    Every workspace has exactly one Owner.
+  </Tab>
+  <Tab title="Admin">
+    **Administrative access**
+    
+    - Manage team members
+    - Configure workspace settings
+    - Connect/disconnect social profiles
+    - Manage all content
+    - Cannot access billing or delete workspace
+  </Tab>
+  <Tab title="Member">
+    **Standard team member**
+    
+    - Create and edit posts
+    - Schedule content
+    - View analytics
+    - Comment and collaborate
+    - Cannot change settings or manage team
+  </Tab>
+  <Tab title="Viewer">
+    **Read-only access**
+    
+    - View posts and calendar
+    - View analytics
+    - Cannot create, edit, or schedule
+    - Cannot comment
+  </Tab>
+</Tabs>
+
+## Inviting team members
+
+<Steps>
+  <Step title="Open Team Settings">
+    Go to **Settings → Team**.
+  </Step>
+  <Step title="Click Invite">
+    Click the **Invite Member** button.
+  </Step>
+  <Step title="Enter email and role">
+    Enter their email address and select an appropriate role.
+    
+    <Tip>
+    Start with the Member role. Upgrade to Admin only when someone needs administrative access.
+    </Tip>
+  </Step>
+  <Step title="Send">
+    Click **Send Invite**. They'll receive an email to join.
+    
+    <Check>
+    The invitation appears in Pending Invitations until accepted.
+    </Check>
+  </Step>
+</Steps>
+
+## Changing roles
+
+<Steps>
+  <Step title="Find the team member">
+    Go to **Settings → Team** and locate them.
+  </Step>
+  <Step title="Click their role">
+    Click on their current role to open the selector.
+  </Step>
+  <Step title="Select new role">
+    Choose the new role from the dropdown.
+    
+    <Warning>
+    Downgrading removes access immediately. Confirm with the person before making changes.
+    </Warning>
+  </Step>
+  <Step title="Save">
+    Changes take effect immediately.
+  </Step>
+</Steps>
+
+## Removing team members
+
+<Steps>
+  <Step title="Find the team member">
+    Go to **Settings → Team**.
+  </Step>
+  <Step title="Click Remove">
+    Click **Remove** next to their name.
+  </Step>
+  <Step title="Confirm">
+    Confirm the removal.
+    
+    <Check>
+    They lose access immediately. Past activity remains in the audit trail.
+    </Check>
+  </Step>
+</Steps>
+
+## Profile-level permissions
+
+Beyond workspace roles, control access to specific social profiles:
+
+| Permission | Capabilities |
+|------------|--------------|
+| **Full Access** | Create, edit, publish, delete |
+| **Can Edit** | Create and edit, cannot publish |
+| **Can View** | View only, no modifications |
+| **No Access** | Profile hidden from this user |
+
+<Note>
+Profile permissions are useful when different team members manage different clients, or when certain profiles (executive accounts) need tighter control.
+</Note>
+
+Set profile permissions in **Settings → Profiles** by clicking on a profile and managing access.
+
+## Owner and ownership transfer
+
+The Owner:
+- Cannot be removed without transferring ownership
+- Has access to billing and subscription
+- Can delete the entire workspace
+
+<Steps>
+  <Step title="Initiate transfer">
+    The current Owner goes to **Settings → General**.
+  </Step>
+  <Step title="Find Ownership section">
+    Locate the ownership transfer option.
+  </Step>
+  <Step title="Select new Owner">
+    Choose from existing Admins.
+  </Step>
+  <Step title="Confirm">
+    After transfer, the previous Owner becomes an Admin.
+  </Step>
+</Steps>
+
+## Security best practices
+
+<AccordionGroup>
+  <Accordion title="Principle of least privilege">
+    Give team members only the access they need. Most people should be Members, not Admins. Upgrade when genuinely needed.
+  </Accordion>
+  <Accordion title="Regular audits">
+    Review team access quarterly:
+    - Remove people who no longer need access
+    - Verify roles are still appropriate
+    - Check for unused accounts
+  </Accordion>
+  <Accordion title="Prompt offboarding">
+    Remove access immediately when someone leaves the organization. Don't wait for "cleanup" later—this is a security risk.
+  </Accordion>
+  <Accordion title="Profile restrictions">
+    For sensitive accounts (executives, high-profile brands), use profile-level permissions to limit who can publish.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Team member can't access a profile">
+    Check profile-level permissions. They may have workspace access but no access to that specific profile. Update in **Settings → Profiles**.
+  </Accordion>
+  <Accordion title="Invitation not received">
+    - Check spam/junk folders
+    - Verify the email address is correct
+    - Resend from the Pending Invitations list
+  </Accordion>
+  <Accordion title="Can't change Owner role">
+    Owner transfer requires the current Owner to initiate. Contact them to transfer ownership.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
+    Add review before publishing.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/collaboration/notifications">
+    Configure team alerts.
+  </Card>
+  <Card title="Social Profiles" icon="share-nodes" href="/social-profiles/overview">
+    Connect and manage profiles.
+  </Card>
+  <Card title="Managing Your Profile" icon="user" href="/account/managing-your-profile">
+    Update personal settings.
+  </Card>
+</CardGroup>
+

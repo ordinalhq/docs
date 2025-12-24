@@ -1,107 +1,95 @@
 ---
-title: "Discord (Scheduling)"
-description: "Schedule messages to Discord servers"
+title: "Discord"
+description: "Community announcements via webhooks"
 icon: "discord"
 ---
 
+Discord works differently from other platforms in Ordinal. Instead of connecting an account, you create **webhooks** in Discord and add them to Ordinal. Messages post to specific channels through those webhooks.
+
 ## Overview
 
-Connect Discord to Ordinal to schedule messages to your community servers. Keep your community engaged with timely announcements and updates.
+Webhooks are channel-specific URLs that accept incoming messages. You create them in Discord, give them a name and avatar, and paste the URL into Ordinal. No Discord login required in Ordinal—you control exactly which channels can receive scheduled messages.
 
-## Connecting Discord
+| How it works | Details |
+|--------------|---------|
+| Connection method | Webhook URL (not OAuth) |
+| Sender appearance | Webhook name and avatar |
+| Scope | One webhook per channel |
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Discord">
-    Choose **Discord** from the list of available platforms.
-  </Step>
-  <Step title="Authorize Access">
-    Log in to Discord and authorize Ordinal to access your account.
-  </Step>
-  <Step title="Select Server and Channels">
-    Choose the server and specific channels where you want to schedule messages.
-    
-    <Tip>
-    Select your announcements or updates channel to keep scheduled content organized.
-    </Tip>
-    
-    <Check>
-    Your Discord server appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+This means:
+- You decide which channels get a webhook
+- Each webhook posts to exactly one channel
+- The webhook's name and avatar appear as the message sender
+- Anyone with the webhook URL can post to that channel (keep it private)
 
-## Use Cases
+## Creating a webhook in Discord
 
-### Community Announcements
+1. Open your Discord server
+2. Go to **Server Settings → Integrations → Webhooks**
+3. Click **New Webhook**
+4. Set the name (this appears as the sender, e.g., "Ordinal Updates")
+5. Upload an avatar image
+6. Select which channel this webhook posts to
+7. Click **Copy Webhook URL**
 
-Schedule announcements for your community:
-- Event notifications
-- Product updates
-- Community highlights
+Keep this URL private—it's essentially a posting key for that channel.
 
-### Content Sharing
+## Adding the webhook to Ordinal
 
-Share your social content with your Discord community:
-- New blog posts
-- Social media highlights
-- Behind-the-scenes content
+Go to **Settings → Profiles → Scheduling**, select Discord, paste your webhook URL, and give it a name. The webhook appears as a profile you can select when creating posts.
 
-### Engagement Campaigns
+To post to multiple channels, create a separate webhook for each channel in Discord and add each to Ordinal.
 
-Coordinate community activities:
-- AMA announcements
-- Giveaway launches
-- Feedback requests
+## What you can post
 
-## Features
+| Content | Supported |
+|---------|-----------|
+| Text messages | ✅ |
+| Images | ✅ |
+| Videos | ✅ |
+| Rich embeds | ✅ |
+| @mentions | Limited (requires user/role IDs) |
+| Reactions | ❌ |
 
-### Server & Channel Selection
+### Rich embeds
 
-Connect multiple servers and select specific channels for different content types.
+Embeds create visually distinct messages with custom titles, descriptions, colors, and thumbnails. Use them for announcements that should stand out from regular chat.
 
-### Rich Embeds
+### Message limits
 
-Create visually appealing messages with Discord embeds:
-- Custom titles and descriptions
-- Images and thumbnails
-- Colored sidebars
-- Footer information
+- 2,000 characters per message
+- Up to 10 embeds per message
+- 8 MB maximum file size
 
-## Best Practices
+## Common issues
 
-<AccordionGroup>
-  <Accordion title="Channel organization">
-    Use dedicated channels for scheduled content (e.g., #announcements) to keep discussions separate from automated messages.
-  </Accordion>
-  <Accordion title="Embed formatting">
-    Use rich embeds for important announcements to make them stand out from regular messages.
-  </Accordion>
-</AccordionGroup>
+**Webhook not working**: The webhook may have been deleted in Discord. Create a new one and update it in Ordinal.
 
-## Troubleshooting
+**Messages not appearing**: Verify you're checking the correct channel—each webhook posts to exactly one channel.
 
-<AccordionGroup>
-  <Accordion title="Bot not appearing in server">
-    Ensure you have "Manage Server" permissions to add the Ordinal bot. Ask a server admin if needed.
-  </Accordion>
-  <Accordion title="Can't post to channel">
-    Check channel permissions. The Ordinal bot needs "Send Messages" and "Embed Links" permissions.
-  </Accordion>
-  <Accordion title="Embeds not displaying">
-    Verify "Embed Links" permission is enabled for the Ordinal bot in channel settings.
-  </Accordion>
-</AccordionGroup>
+**Embeds not displaying**: The webhook needs "Embed Links" permission in the channel. Check channel settings in Discord.
 
-## Next Steps
+## Tips
+
+- **Name webhooks clearly**—"Product Updates" or "Social Alerts" makes it obvious what's posting
+- **Use custom avatars**—helps messages look intentional, not like spam
+- **Don't over-automate**—too many automated posts can feel impersonal to community members
+- **One purpose per webhook**—keeps things organized
+
+## Use cases
+
+- Product announcements and release notes
+- Sharing new social content with your community
+- Event reminders and countdowns
+- Weekly community updates
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Schedule Announcements" icon="clock" href="/posts/scheduling-posts">
-    Learn scheduling best practices.
+  <Card title="Slack" icon="slack" href="/social-profiles/slack">
+    Similar use cases, OAuth connection.
   </Card>
-  <Card title="Set Up Boost Channels" icon="users-medical" href="/posts/marketing-boost-channels">
-    Coordinate community engagement.
+  <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">
+    Set the perfect time for your content.
   </Card>
 </CardGroup>

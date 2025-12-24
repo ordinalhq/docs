@@ -1,0 +1,231 @@
+---
+title: "Media & Assets"
+description: "Images, videos, and documents for your social posts"
+icon: "image"
+---
+
+Media drives engagement on social platforms. Ordinal supports images, videos, GIFs, and documents across all your connected profiles, with automatic optimization for each platform's requirements.
+
+## Supported formats
+
+<Tabs>
+  <Tab title="Images">
+    | Format | Support |
+    |--------|---------|
+    | JPG/JPEG | ✅ All platforms |
+    | PNG | ✅ All platforms |
+    | GIF | ✅ Static and animated |
+    | WEBP | ✅ Most platforms |
+
+    **General limits:**
+    - Maximum file size: 10MB per image
+    - Ordinal auto-compresses files exceeding platform limits
+  </Tab>
+  <Tab title="Videos">
+    | Format | Support |
+    |--------|---------|
+    | MP4 | ✅ All platforms |
+    | MOV | ✅ All platforms |
+
+    **General limits:**
+    - Maximum file size: 500MB
+    - H.264 codec recommended for best compatibility
+  </Tab>
+  <Tab title="Documents">
+    | Format | Support |
+    |--------|---------|
+    | PDF | LinkedIn only |
+
+    **PDF limits:**
+    - Maximum file size: 100MB
+    - Maximum pages: 300
+    - Creates carousel-style document posts
+  </Tab>
+</Tabs>
+
+## Platform specifications
+
+Each platform has specific requirements. Ordinal handles most optimization automatically, but knowing the specs helps you create content that looks its best.
+
+### Image limits per post
+
+| Platform | Max Images | Notes |
+|----------|------------|-------|
+| LinkedIn | 9 | Up to 20 in document carousels |
+| Twitter/X | 4 | Or 1 GIF |
+| Instagram | 10 | Carousel posts |
+| Facebook | 10 | |
+| Threads | 10 | |
+| TikTok | N/A | Video only |
+| YouTube Shorts | N/A | Video only |
+
+### Video duration limits
+
+| Platform | Max Duration | Notes |
+|----------|--------------|-------|
+| LinkedIn | 10 minutes | Recommended under 3 min |
+| Twitter/X | 2:20 (140 sec) | Longer with Premium |
+| Instagram Feed | 60 seconds | |
+| Instagram Reels | 90 seconds | 15-90 seconds |
+| Facebook | 240 minutes | |
+| TikTok | 10 minutes | Via API; 3 min recommended |
+| YouTube Shorts | 3 minutes | 15-60 seconds optimal |
+| Threads | 5 minutes | |
+
+### Recommended dimensions
+
+<AccordionGroup>
+  <Accordion title="Instagram">
+    | Type | Aspect Ratio | Dimensions |
+    |------|--------------|------------|
+    | Square | 1:1 | 1080 × 1080 px |
+    | Portrait | 4:5 | 1080 × 1350 px |
+    | Landscape | 1.91:1 | 1080 × 566 px |
+    | Reels/Stories | 9:16 | 1080 × 1920 px |
+  </Accordion>
+  <Accordion title="LinkedIn">
+    | Type | Aspect Ratio | Dimensions |
+    |------|--------------|------------|
+    | Landscape | 1.91:1 | 1200 × 627 px |
+    | Square | 1:1 | 1200 × 1200 px |
+    | Portrait | 4:5 | 1080 × 1350 px |
+  </Accordion>
+  <Accordion title="Twitter/X">
+    | Type | Aspect Ratio | Dimensions |
+    |------|--------------|------------|
+    | Landscape | 16:9 | 1200 × 675 px |
+    | Square | 1:1 | 1200 × 1200 px |
+  </Accordion>
+  <Accordion title="Facebook">
+    | Type | Aspect Ratio | Dimensions |
+    |------|--------------|------------|
+    | Landscape | 1.91:1 | 1200 × 630 px |
+    | Square | 1:1 | 1200 × 1200 px |
+    | Portrait | 4:5 | 1080 × 1350 px |
+  </Accordion>
+  <Accordion title="TikTok & YouTube Shorts">
+    | Type | Aspect Ratio | Dimensions |
+    |------|--------------|------------|
+    | Vertical | 9:16 | 1080 × 1920 px |
+    
+    <Warning>
+    YouTube Shorts requires exactly 9:16 aspect ratio. Other ratios will be rejected.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## Uploading media
+
+<Steps>
+  <Step title="Open your post">
+    Create a new post or open an existing draft.
+  </Step>
+  <Step title="Add media">
+    Choose your upload method:
+    - **Drag and drop** files directly into the editor
+    - **Click the media button** (+) to browse your computer
+    - **Paste from clipboard** — `Cmd/Ctrl + V` for screenshots or copied images
+  </Step>
+  <Step title="Arrange and edit">
+    - Reorder multiple images by dragging
+    - Click an image to crop, rotate, or adjust
+    - Remove items by clicking the X
+  </Step>
+</Steps>
+
+<Tip>
+Upload your highest quality files. Ordinal automatically compresses and optimizes for each platform, so starting with the best source produces the best results.
+</Tip>
+
+## Carousels
+
+Multi-image posts (carousels) let you tell richer stories:
+
+| Platform | Carousel Support |
+|----------|------------------|
+| LinkedIn | ✅ Images and PDF documents |
+| Instagram | ✅ Images and videos mixed |
+| Twitter/X | ✅ Up to 4 images |
+| Facebook | ✅ Multiple images |
+| Threads | ✅ Multiple images |
+
+To create a carousel:
+1. Upload multiple images to a single post
+2. Drag to reorder
+3. Preview the carousel before scheduling
+
+<Note>
+Instagram carousels can mix images and videos. Other platforms typically require all images or a single video.
+</Note>
+
+## Platform-specific features
+
+### Instagram
+- **Location tagging** — Tag a location that appears on your post
+- **First comment** — Add hashtags via auto-comment to keep captions clean
+- **Cover photo** — Select which frame displays as the Reel thumbnail
+- **Share to Feed** — Toggle whether Reels appear in your main feed
+
+### LinkedIn
+- **PDF carousels** — Upload multi-page documents for swipeable content
+- **Thumbnail selection** — Choose video thumbnail frame
+- **Alt text** — Add accessibility descriptions
+
+### YouTube Shorts
+- **Cover image** — Upload a custom thumbnail
+- **Notify subscribers** — Toggle subscriber notifications
+
+## Alt text
+
+Add descriptions for accessibility:
+
+1. Click on an uploaded image
+2. Select **Add Alt Text**
+3. Describe the image content for screen readers
+
+<Check>
+Alt text is important for accessibility and may improve discoverability on some platforms.
+</Check>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Upload failing">
+    **Check file size** — Ensure images are under 10MB and videos under 500MB
+    
+    **Check format** — Use JPG, PNG, GIF for images; MP4, MOV for video
+    
+    **Connection issues** — Try refreshing and re-uploading
+  </Accordion>
+  <Accordion title="Video not playing in preview">
+    - Ensure video uses H.264 codec
+    - Try re-encoding with a tool like HandBrake
+    - Verify the file isn't corrupted
+  </Accordion>
+  <Accordion title="Image cropped unexpectedly">
+    Each platform crops to its preferred aspect ratio. Use the platform-specific dimensions above to avoid unwanted cropping. Preview before scheduling to see exactly how it will appear.
+  </Accordion>
+  <Accordion title="GIF not animating">
+    - Animated GIFs over 15MB may not work
+    - Some platforms convert large GIFs to video
+    - Try optimizing with a GIF compression tool
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Drafting Posts" icon="pen-to-square" href="/posts/drafting-posts">
+    Create posts with media.
+  </Card>
+  <Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
+    Learn editor capabilities.
+  </Card>
+  <Card title="Cross-Posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Handle media across platforms.
+  </Card>
+  <Card title="Instagram" icon="instagram" href="/social-profiles/instagram">
+    Instagram-specific features.
+  </Card>
+</CardGroup>
+

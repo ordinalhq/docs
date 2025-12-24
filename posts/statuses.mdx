@@ -1,127 +1,164 @@
 ---
-title: "Statuses"
-description: "Track posts through your content workflow"
+title: "Post Statuses"
+description: "Track posts through the content workflow"
 icon: "circle"
 ---
 
-## Overview
+Every post has a status that indicates where it is in the publishing lifecycle. Statuses help you and your team understand what's scheduled, what's live, and what needs attention.
 
-Statuses track where each post is in your content workflow. From initial draft to published content, statuses keep everyone aligned.
+## Status lifecycle
 
-## Default Statuses
+Posts flow through statuses as they progress toward publication:
 
-Ordinal includes built-in statuses:
+```
+Draft → Scheduled → In Progress → Posted
+                              ↘ Failed
+```
 
-| Status | Description |
-|--------|-------------|
-| **Draft** | Work in progress, not ready for review |
-| **Pending Review** | Submitted for approval |
-| **Approved** | Ready to be scheduled |
-| **Scheduled** | Queued for publishing |
-| **Published** | Live on social platforms |
-| **Failed** | Publishing failed (requires attention) |
+| Status | Color | Description |
+|--------|-------|-------------|
+| **Draft** | Gray | Work in progress, not scheduled |
+| **Scheduled** | Yellow | Set to publish at a future time |
+| **In Progress** | Blue | Currently being sent to the platform |
+| **Posted** | Green | Successfully published and live |
+| **Failed** | Red | Publishing failed, requires attention |
 
-## Custom Statuses
+## Status details
 
-Create custom statuses to match your workflow:
-
-<Steps>
-  <Step title="Navigate to Statuses">
-    Go to **Statuses** → **New Status** in your dashboard.
-  </Step>
-  <Step title="Enter Status Name">
-    Choose a clear, descriptive name.
-  </Step>
-  <Step title="Choose a Color">
-    Select a color for visual identification.
-  </Step>
-  <Step title="Set Workflow Position">
-    Place the status in your workflow sequence (e.g., after Draft, before Approved).
+<Tabs>
+  <Tab title="Draft">
+    A post starts as a draft and remains there until scheduled.
     
-    <Tip>
-    Keep workflow order logical—status should flow naturally from creation to publication.
-    </Tip>
-  </Step>
-  <Step title="Save">
-    Click **Save** to create your custom status.
+    **Characteristics:**
+    - Won't publish automatically
+    - Can be edited without time pressure
+    - Doesn't appear on the calendar's scheduled view
+    - May be incomplete or awaiting approval
+    
+    **To exit:** Schedule the post for a specific time or click Post Now.
+  </Tab>
+  <Tab title="Scheduled">
+    Scheduled posts have a set publish time and will go live automatically.
+    
+    **Characteristics:**
+    - Appears on the calendar
+    - Can still be edited until publishing begins
+    - Can be rescheduled or unscheduled
+    - Shows countdown to publish time
+    
+    **Next:** Automatically moves to In Progress when publishing starts.
+  </Tab>
+  <Tab title="In Progress">
+    The scheduled time has arrived and Ordinal is sending content to the platform.
+    
+    **Characteristics:**
+    - Usually takes seconds
+    - Video uploads may take longer
+    - Cannot be edited during this phase
+    
+    **Next:** Posted on success, Failed on error.
+  </Tab>
+  <Tab title="Posted">
+    Successfully published and live on the platform.
+    
+    **Characteristics:**
+    - Click to view the live post
+    - Analytics begin collecting
+    - Can be duplicated for reuse
+    - Cannot be edited in Ordinal (edit on platform directly)
     
     <Check>
-    Your new status appears in the workflow and is available for posts.
+    Posted content is live! You can view it on the platform or track engagement in Analytics.
     </Check>
-  </Step>
-</Steps>
+  </Tab>
+  <Tab title="Failed">
+    Publishing did not succeed.
+    
+    **Characteristics:**
+    - Error message explains the cause
+    - Content is not live
+    - Requires action to resolve
+    - Can be retried after fixing the issue
+    
+    <Warning>
+    Failed posts need attention. Check the error message and either fix the issue and retry, or reschedule for later.
+    </Warning>
+  </Tab>
+</Tabs>
 
-### Custom Status Examples
+## Handling failed posts
 
-- **In Progress** - Currently being worked on
-- **Needs Assets** - Waiting for images/video
-- **Legal Review** - Requires compliance check
-- **Client Approval** - Awaiting client sign-off
-- **On Hold** - Paused for now
+When a post fails, you'll see an error message. Common causes and solutions:
 
-## Status Workflows
+<AccordionGroup>
+  <Accordion title="Account disconnected">
+    The social profile's authorization expired. Go to **Settings → Profiles**, find the account, and click **Reconnect** to re-authorize.
+  </Accordion>
+  <Accordion title="Content too long">
+    Your text exceeds the platform's character limit. Edit the post to shorten it, then retry.
+  </Accordion>
+  <Accordion title="Media too large">
+    File size exceeds platform limits. Compress the image/video or use a smaller file.
+  </Accordion>
+  <Accordion title="Content rejected">
+    The platform flagged the content. Review platform guidelines and adjust accordingly.
+  </Accordion>
+  <Accordion title="Platform error">
+    Temporary platform outage. Wait a few minutes and retry.
+  </Accordion>
+</AccordionGroup>
 
-### Moving Posts Through Statuses
+After fixing the issue, click **Retry** to attempt publishing again.
 
-Posts move through statuses as they progress:
-- Manually update status from the post detail view
-- Automatic progression (e.g., approved → scheduled when scheduled)
-- Status changes trigger notifications to relevant team members
+## Multi-platform status
 
-<Check>
-Status changes are logged in the post's activity history for audit purposes.
-</Check>
+When a post targets multiple platforms, each channel has its own status:
 
-### Status-Based Views
+| Platform | Status |
+|----------|--------|
+| LinkedIn | ✅ Posted |
+| Twitter/X | ✅ Posted |
+| Instagram | ❌ Failed (media format unsupported) |
 
-Filter your content by status:
-- See all drafts that need work
-- View posts pending approval
-- Track what's scheduled
+View per-channel status in the post detail view. Retry failed channels individually without affecting successful ones.
 
-## Notifications
+## Statuses and approvals
 
-Get notified on status changes:
-- When your post is approved
-- When a post fails to publish
-- When posts need your review
+If your workspace uses approvals, posts may require approval before scheduling:
+
+| Approval State | Effect |
+|----------------|--------|
+| Pending | Cannot schedule until approved |
+| Approved | Can be scheduled normally |
+| Rejected | Returns to draft for revision |
+
+With blocking approvals enabled, the Schedule button is disabled until approval is granted.
+
+## Filtering by status
+
+View posts by status throughout Ordinal:
+
+- **Calendar** — Use status filters to show only scheduled, posted, or failed
+- **Posts list** — Filter by any status
+- **Dashboard** — Quick counts of posts in each status
 
 <Tip>
-Configure status notifications in Settings → Notifications to stay informed without being overwhelmed.
+Enable failure notifications in **Settings → Notifications** to catch failed posts immediately.
 </Tip>
 
-## Best Practices
-
-<AccordionGroup>
-  <Accordion title="Keep it simple">
-    Don't create too many statuses. 5-7 is usually sufficient for most workflows.
-  </Accordion>
-  <Accordion title="Clear naming">
-    Use status names that clearly indicate what action is needed or what state the post is in.
-  </Accordion>
-  <Accordion title="Logical flow">
-    Arrange statuses in the order posts typically progress through your workflow.
-  </Accordion>
-</AccordionGroup>
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Status not changing automatically">
-    Automatic status changes only occur for specific actions (scheduling, publishing). Manual status updates require user action.
-  </Accordion>
-  <Accordion title="Can't delete custom status">
-    Move all posts off the status before deleting. Posts must be reassigned to another status first.
-  </Accordion>
-</AccordionGroup>
-
-## Next Steps
+## Related
 
 <CardGroup cols={2}>
-  <Card title="Set Up Approvals" icon="circle-check" href="/collaboration/approvals">
-    Add review gates to your workflow.
+  <Card title="Scheduling Posts" icon="clock" href="/posts/scheduling-posts">
+    Set publish times for your content.
   </Card>
-  <Card title="Configure Notifications" icon="bell" href="/collaboration/notifications">
-    Get alerted on status changes.
+  <Card title="Calendar" icon="calendar" href="/calendar/overview">
+    Visualize posts by status.
+  </Card>
+  <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
+    Add review before scheduling.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/collaboration/notifications">
+    Configure status alerts.
   </Card>
 </CardGroup>

@@ -1,92 +1,106 @@
 ---
 title: "Twitter / X"
-description: "Connect and manage your Twitter/X accounts"
+description: "Tweets, threads, and polls"
 icon: "x-twitter"
 ---
 
+Twitter is built for real-time conversation. In Ordinal, you can schedule individual tweets, build multi-tweet threads, create polls, and coordinate engagement—all timed to publish when your audience is most active.
+
 ## Overview
 
-Connect your Twitter/X accounts to Ordinal to schedule tweets, threads, and engage with your audience effectively.
+Twitter supports both scheduling and engagement profiles. Most users connect for scheduling, but you can also connect an engagement profile to like, retweet, and reply directly from Ordinal.
 
-## Connecting Twitter / X
-
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Twitter / X">
-    Choose **Twitter / X** from the list of available platforms.
-  </Step>
-  <Step title="Authorize Access">
-    Log in to Twitter and authorize Ordinal in the popup window.
-    
-    <Check>
-    Your Twitter account appears in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
-
-## Supported Content Types
-
-- **Tweets** - Standard text posts (up to 280 characters, or 25,000 for Premium)
-- **Threads** - Multi-tweet stories
-- **Images** - Up to 4 images per tweet
-- **GIFs** - Animated content
-- **Videos** - Up to 2:20 in length
-- **Polls** - Engage your audience
-
-## Features
-
-### Thread Composer
-
-Create engaging Twitter threads with our thread composer:
-- Write multiple tweets in sequence
-- Preview how your thread will appear
-- Schedule the entire thread at once
+| Profile type | What you can do |
+|--------------|-----------------|
+| **Scheduling** | Post tweets, threads, polls, media |
+| **Engagement** | Like, retweet, reply, view timeline |
 
 <Tip>
-Use threads to break down complex topics. Each tweet in a thread should be able to stand alone while contributing to the overall narrative.
+Connect the same account as both scheduling and engagement if you want full publishing and interaction capabilities.
 </Tip>
 
-### Character Counter
+## Connecting Twitter
 
-Real-time character counting helps you stay within limits while maximizing your message.
+**For scheduling**: **Settings → Profiles → Scheduling** → Twitter/X
 
-## Best Practices
+**For engagement**: **Settings → Profiles → Engagement** → Twitter/X (doesn't count toward your plan limit)
 
-<AccordionGroup>
-  <Accordion title="Optimal posting frequency">
-    3-5 tweets per day is ideal for maintaining visibility without overwhelming followers.
-  </Accordion>
-  <Accordion title="Engagement timing">
-    Peak engagement times are typically 8-10 AM and 6-9 PM in your audience's timezone.
-  </Accordion>
-  <Accordion title="Hashtag strategy">
-    Use 1-2 relevant hashtags per tweet for optimal reach.
-  </Accordion>
-</AccordionGroup>
+Twitter tokens rarely expire on their own, but will reset if you change your password or revoke app permissions.
 
-## Troubleshooting
+## What you can post
 
-<AccordionGroup>
-  <Accordion title="Tweet failed to post">
-    Check if your tweet exceeds character limits or contains content that violates Twitter's policies. Also verify your account isn't rate-limited.
-  </Accordion>
-  <Accordion title="Images not uploading">
-    Ensure images are under 5MB and in JPG, PNG, GIF, or WEBP format.
-  </Accordion>
-  <Accordion title="Thread posts out of order">
-    If threads post incorrectly, try reducing the number of tweets or increasing the delay between posts in settings.
-  </Accordion>
-</AccordionGroup>
+| Content | Supported | Notes |
+|---------|-----------|-------|
+| Text tweets | ✅ | 280 chars standard, 25,000 for Premium |
+| Images | ✅ | Up to 4 per tweet |
+| GIFs | ✅ | Animated |
+| Video | ✅ | Up to 2:20 |
+| Polls | ✅ | 2–4 options, 1 hour to 7 days |
+| Threads | ✅ | Multi-tweet sequences |
 
-## Next Steps
+### Threads
+
+Threads let you tell longer stories across multiple connected tweets. Each tweet in the thread can have its own media.
+
+To create a thread:
+1. Write your first tweet
+2. Click **Add Tweet** to add the next
+3. Continue adding tweets
+4. Schedule—all tweets publish in sequence
+
+Threads work well for tutorials, stories, and breaking down complex topics. Each tweet should stand alone while contributing to the whole.
+
+### Polls
+
+Polls are a quick way to engage your audience. Set your question, add 2–4 answer options, and choose how long the poll runs (1 hour to 7 days). Polls schedule like regular tweets.
+
+## Character limits
+
+| Account type | Limit |
+|--------------|-------|
+| Standard | 280 characters |
+| Twitter Premium | 25,000 characters |
+
+Ordinal shows a real-time counter that adjusts based on your account type.
+
+## Media specifications
+
+| Type | Formats | Size limit | Notes |
+|------|---------|------------|-------|
+| Images | JPG, PNG, GIF, WEBP | 5 MB | Up to 4 per tweet |
+| Videos | MP4, MOV | 512 MB | Up to 2:20 |
+| GIFs | GIF | 15 MB | Animated |
+
+## Analytics
+
+View tweet performance in **Analytics → Twitter**: impressions, engagements (likes, retweets, replies), click-through rate, and follower growth.
+
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Track performance across all your connected profiles.
+</Card>
+
+## Common issues
+
+**Rate limit exceeded**: Twitter limits API calls. Wait 15 minutes and avoid scheduling many posts at the exact same time.
+
+**Duplicate content blocked**: Twitter rejects identical tweets. Vary your content or wait before reposting.
+
+**Thread out of order**: Double-check your thread sequence before scheduling. Editing after scheduling can cause issues.
+
+## Tips
+
+- **Threads outperform single tweets** for in-depth content
+- **Tweets with images get more engagement** than text-only
+- **1–2 hashtags is optimal**—more can hurt reach
+- **Peak times vary**, but 8–10 AM and 6–9 PM are common starting points
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Create Threads" icon="layer-group" href="/posts/drafting-posts">
-    Learn to compose engaging Twitter threads.
+  <Card title="Threads" icon="threads" href="/social-profiles/threads">
+    Cross-post to Meta's Threads platform.
   </Card>
-  <Card title="Cross-Post Content" icon="arrows-repeat" href="/posts/cross-posting">
-    Share content across platforms.
+  <Card title="Drafting posts" icon="pen-to-square" href="/posts/drafting-posts">
+    Compose content for any platform.
   </Card>
 </CardGroup>

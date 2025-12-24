@@ -1,95 +1,95 @@
 ---
 title: "Facebook"
-description: "Connect and manage your Facebook pages"
+description: "Page posts and Reels"
 icon: "facebook"
 ---
 
+Facebook in Ordinal is for **Pages only**—the API doesn't support personal profiles. You can schedule posts, publish Reels, and manage multiple pages from one place.
+
 ## Overview
 
-Connect your Facebook pages to Ordinal to schedule posts, manage engagement, and track performance.
+Facebook Pages represent businesses, brands, organizations, or public figures. When you connect a page, posts appear from the page (not your personal account), and you get access to page-level analytics.
+
+<Warning>
+Personal profiles can't be connected due to Facebook API restrictions. This applies to all third-party scheduling tools, not just Ordinal.
+</Warning>
+
+If you manage multiple pages, you can connect them all. Each page appears as a separate profile in Ordinal.
 
 ## Connecting Facebook
 
-<Steps>
-  <Step title="Open Add Profile">
-    Go to **Social Profiles** → **Add Profile** in your dashboard.
-  </Step>
-  <Step title="Select Facebook">
-    Choose **Facebook** from the list of available platforms.
-  </Step>
-  <Step title="Log In to Facebook">
-    Enter your Facebook credentials in the popup window.
-  </Step>
-  <Step title="Select Pages">
-    Choose which Facebook pages you want to connect from the list of pages you manage.
-    
-    <Tip>
-    You can connect multiple pages at once. Select all the pages you want to manage through Ordinal.
-    </Tip>
-  </Step>
-  <Step title="Grant Permissions">
-    Review and accept the requested permissions. Ordinal needs these to publish and manage content on your behalf.
-    
-    <Check>
-    Your Facebook pages appear in the Social Profiles list with a green "Connected" status.
-    </Check>
-  </Step>
-</Steps>
+Go to **Settings → Profiles → Scheduling**, select Facebook, sign in, and choose which pages to connect. You need Admin or Editor access to a page to connect it.
 
-## Supported Content Types
+Tokens expire roughly every 60 days. You'll see a warning when it's time to reconnect.
 
-- **Text posts** - Status updates
-- **Images** - Single or multiple photos
-- **Videos** - Native video uploads
-- **Links** - URL shares with previews
-- **Events** - Event announcements
-- **Albums** - Photo collections
+### Business Suite users
 
-## Features
+If you manage pages through Meta Business Suite, you may need to authorize Ordinal in **Business Settings → Connected Apps**. Some Business Suite configurations require explicit app permissions.
 
-### Page Management
+## What you can post
 
-Manage multiple Facebook pages from a single dashboard. Switch between pages easily and maintain consistent posting schedules.
+| Content | Supported | Notes |
+|---------|-----------|-------|
+| Text posts | ✅ | |
+| Images | ✅ | Single or multiple |
+| Video | ✅ | Up to 240 minutes |
+| Reels | ✅ | 3–90 seconds, vertical |
+| Links | ✅ | With auto-generated preview |
+| Events | ❌ | |
+| Live video | ❌ | |
 
-### Engagement Tracking
+### Link previews
 
-Monitor comments, reactions, and shares directly within Ordinal.
+When you include a URL, Facebook auto-generates a preview with image, title, and description. You can customize the title and description in some cases, or choose to hide the preview entirely.
 
-## Best Practices
+### Cross-posting to Instagram
 
-<AccordionGroup>
-  <Accordion title="Optimal posting frequency">
-    1-2 posts per day is optimal for most pages to maintain engagement without overwhelming followers.
-  </Accordion>
-  <Accordion title="Video content">
-    Native video uploads perform better than YouTube links. Upload videos directly for better reach.
-  </Accordion>
-  <Accordion title="Engagement">
-    Respond to comments promptly to boost your post's visibility in the algorithm.
-  </Accordion>
-</AccordionGroup>
+If your Facebook Page is linked to an Instagram Business account, you can post to both simultaneously. Select both platforms when creating a post and customize content for each.
 
-## Troubleshooting
+## Media specifications
 
-<AccordionGroup>
-  <Accordion title="Page not appearing in list">
-    You must have admin or editor access to a Facebook page to connect it. Check your page roles in Facebook settings.
-  </Accordion>
-  <Accordion title="Permissions error">
-    If you see permission errors, try disconnecting and reconnecting your Facebook account, ensuring you accept all requested permissions.
-  </Accordion>
-  <Accordion title="Posts not publishing">
-    Verify your page isn't restricted by Facebook. Check your Page Quality tab in Facebook for any issues.
-  </Accordion>
-</AccordionGroup>
+| Type | Formats | Size limit | Notes |
+|------|---------|------------|-------|
+| Images | JPG, PNG | 4 MB | 1200×630 recommended |
+| Videos | MP4, MOV | 4 GB | Up to 240 minutes |
+| Reels | MP4 | 1 GB | 3–90 seconds, 9:16 vertical |
 
-## Next Steps
+<Tip>
+Native video uploads perform significantly better than sharing YouTube links. Upload directly for maximum reach.
+</Tip>
+
+## Analytics
+
+View page performance in **Analytics → Facebook**: reach, impressions, engagement, video views, and follower growth.
+
+<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+  Track performance across all your connected profiles.
+</Card>
+
+## Common issues
+
+**Page not appearing**: You need Admin or Editor access to connect a page. Regular followers or employees without page roles won't see it.
+
+**Page in draft mode**: The page must be published, not in draft. Publish it in Facebook settings first.
+
+**Permission errors**: Try disconnecting and reconnecting. Make sure you accept all requested permissions during authorization.
+
+**Page restricted**: Check the Page Quality tab in Facebook for any policy violations affecting your page.
+
+## Tips
+
+- **Post 1–2 times daily**—more frequent posting can decrease per-post reach
+- **Native video outperforms external links** significantly
+- **Reels get higher organic reach** than static posts
+- **Respond to comments**—engagement signals help visibility
+
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Create Posts" icon="pen-to-square" href="/posts/drafting-posts">
-    Learn to create engaging Facebook content.
+  <Card title="Instagram" icon="instagram" href="/social-profiles/instagram">
+    Shares Meta authentication.
   </Card>
-  <Card title="View Analytics" icon="chart-line" href="/analytics/overview">
-    Track your Facebook page performance.
+  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+    Publish to multiple platforms at once.
   </Card>
 </CardGroup>
