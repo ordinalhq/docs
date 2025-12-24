@@ -65,8 +65,8 @@
                 "group": "Posts",
                 "icon": "file-lines",
                 "pages": [
+                  "posts/creating-posts",
                   "posts/drafting-posts",
-                  "posts/post-editor",
                   "posts/media",
                   "posts/ai-writing",
                   "posts/scheduling-posts",

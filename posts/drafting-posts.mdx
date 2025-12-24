@@ -1,160 +1,143 @@
 ---
 title: "Drafting Posts"
-description: "Create and compose content for your social profiles"
 icon: "pen-to-square"
 ---
 
-Posts are the core content unit in Ordinal. A post contains your content, media, and settings for publishing to one or more social profiles. Posts progress through a workflow from draft to published, with optional approval gates along the way.
+Once you've opened the post composer, this is where your content comes to life. The editor is built for speed—keyboard shortcuts, slash commands, and real-time collaboration help you write and refine faster.
 
-## Creating a post
+## Text formatting
 
-<Tabs>
-  <Tab title="Keyboard">
-    Press `P` anywhere in Ordinal to instantly open a new post. This is the fastest method.
-  </Tab>
-  <Tab title="Calendar">
-    Click any date on the calendar to create a post scheduled for that day. Click and drag to select a specific time slot.
-  </Tab>
-  <Tab title="Command palette">
-    Press `Cmd/Ctrl + K`, type "new post", and press Enter.
-  </Tab>
-  <Tab title="From an idea">
-    Open an idea from your backlog and click **Add to Calendar** to convert it to a schedulable post.
-  </Tab>
-</Tabs>
+Format your content using the toolbar or keyboard shortcuts:
+
+| Format | Shortcut | Notes |
+|--------|----------|-------|
+| **Bold** | `Cmd/Ctrl + B` | Unicode bold on LinkedIn/Twitter |
+| *Italic* | `Cmd/Ctrl + I` | Unicode italic on LinkedIn/Twitter |
+| Link | `Cmd/Ctrl + K` | Opens link dialog |
+
+<Note>
+LinkedIn and Twitter don't support native rich text, so Ordinal uses Unicode characters that render as bold or italic. The result looks right on the platform even though it's technically plain text.
+</Note>
+
+### Platform formatting support
+
+| Platform | Bold/Italic | Clickable Links |
+|----------|-------------|-----------------|
+| LinkedIn | ✅ Unicode | ✅ |
+| Twitter/X | ✅ Unicode | ✅ |
+| Instagram | ❌ | ❌ Caption only |
+| Facebook | ❌ | ✅ |
+| Threads | ✅ | ✅ |
+
+## Mentions
+
+Tag people, companies, and accounts by typing `@` followed by their name. Ordinal searches the platform for matches—select from the dropdown.
+
+| Platform | What you can mention |
+|----------|---------------------|
+| LinkedIn | People and Company pages |
+| Twitter/X | User accounts |
+| Instagram | User accounts (Business/Creator only) |
+| Facebook | Pages (not personal profiles) |
+| Threads | User accounts |
+
+Mentions become clickable links when published and may notify the tagged account.
+
+## Hashtags
+
+Type `#` followed by your tag. Recommended counts vary by platform:
+
+| Platform | Recommended |
+|----------|-------------|
+| LinkedIn | 3-5 |
+| Instagram | 5-10 |
+| Twitter/X | 1-3 |
+| TikTok | 3-5 |
 
 <Tip>
-The calendar method is particularly useful for visual planning—your post opens with the selected date and time pre-filled.
+On Instagram, consider putting hashtags in a first comment (via auto-engagement) rather than the caption.
 </Tip>
 
-## The post composer
+## Links
 
-When you create a post, the composer opens with key areas:
+Paste URLs directly or select text and press `Cmd/Ctrl + K` to add a link.
 
-| Area | Purpose |
-|------|---------|
-| **Channel selector** | Choose platforms to publish to |
-| **Content editor** | Write with formatting, mentions, and media |
-| **Sidebar** | Configure title, campaign, labels, schedule, accounts |
-| **Preview** | See how your post will appear on each platform |
+LinkedIn, Twitter, and Facebook generate preview cards for links. On LinkedIn, you can customize the preview title and thumbnail image.
 
-For cross-posts, each platform gets its own tab with platform-specific character limits and media requirements.
+<Tip>
+Use [link shorteners](/analytics/shortlinks) to track clicks with detailed analytics.
+</Tip>
 
-## Writing content
+## Slash commands
 
-The editor supports rich content creation:
+Type `/` at the start of a line:
 
-- **Text formatting** — Bold, italic, and links via toolbar or keyboard shortcuts
-- **@mentions** — Tag people, companies, or accounts
-- **Hashtags** — Add discoverability with `#` tags
-- **Slash commands** — Type `/` for quick access to media, AI, and more
+| Command | Action |
+|---------|--------|
+| `/ai` | Open AI writing assistant |
+| `/image` | Insert an image |
+| `/video` | Insert a video |
+| `/link` | Insert a link |
 
-<Card title="Post Editor" icon="keyboard" href="/posts/post-editor">
-  Deep dive into editor capabilities, mentions, formatting, and keyboard shortcuts.
-</Card>
+## Character limits
 
-## Adding media
+The editor shows real-time character counts. The counter turns red as you approach the limit.
 
-Attach images, videos, and documents to your posts:
-
-<Steps>
-  <Step title="Add files">
-    Drag and drop, click the media button, or paste from clipboard (`Cmd/Ctrl + V`).
-  </Step>
-  <Step title="Arrange">
-    Drag to reorder multiple images. Click to crop or edit.
-  </Step>
-  <Step title="Preview">
-    See how media will appear on each platform before publishing.
-  </Step>
-</Steps>
-
-<Card title="Media & Assets" icon="image" href="/posts/media">
-  Platform specifications, supported formats, and media best practices.
-</Card>
-
-## AI assistance
-
-Generate and refine content with AI:
-
-1. Type `/ai` or click the AI button (✨)
-2. Describe what you want to create
-3. AI generates content you can edit and refine
-
-AI can also improve existing text—select content and choose to make it shorter, longer, change tone, or fix grammar.
-
-<Card title="AI Writing" icon="wand-magic-sparkles" href="/posts/ai-writing">
-  Prompt strategies, templates, and best practices for AI-assisted content.
-</Card>
+| Platform | Limit |
+|----------|-------|
+| Twitter/X | 280 (4,000 with Premium) |
+| LinkedIn | 3,000 |
+| Instagram | 2,200 |
+| Facebook | 63,206 |
+| Threads | 500 |
+| TikTok | 2,200 |
 
 ## Post settings
 
-### Title
+Configure these options in the sidebar:
 
-The internal title helps you organize and search posts. It's never published—only visible to your team. If left blank, Ordinal auto-generates from your content.
+- **Title** — Internal name for organizing and searching. Never published.
+- **Account** — Which connected account to post from. Set defaults in [Post Defaults](/posts/post-defaults).
+- **Labels** — Categorize by content type, topic, or campaign. Press `L` to open.
+- **Campaign** — Group related posts together for shared timelines and analytics.
+- **Notes** — Internal notes or creative briefs only your team can see.
+- **Status** — Workflow status (Draft → Finalized). See [Post Statuses](/posts/statuses).
 
-### Account selection
-
-Choose which connected account to post from for each platform. Set default accounts in [Post Defaults](/posts/post-defaults) to save time.
-
-### Labels
-
-Apply labels to categorize posts by campaign, content type, topic, or any taxonomy your team uses. Labels enable filtering across the calendar and post lists.
-
-### Campaign
-
-Associate posts with a campaign to group related content together. Campaign posts share a timeline and aggregate analytics.
-
-## Saving and drafts
+## Saving
 
 <Check>
-Your work saves automatically as you type. Look for the "Saved" indicator to confirm.
+Your work saves automatically as you type. Look for the "Saved" indicator.
 </Check>
 
-Posts remain as drafts until you schedule them. Drafts:
-- Won't publish automatically
-- Can be edited without time pressure
-- Appear in Posts filtered by "Draft" status
+Posts remain as drafts until scheduled. Drafts won't publish automatically and can be edited without time pressure.
 
-To schedule a draft, set a publish date and time or click **Post Now** for immediate publishing.
+## Collaboration
 
-## Real-time collaboration
-
-Multiple team members can work on the same post simultaneously:
-
-- Presence indicators show who's viewing
-- Live cursors show where others are editing
-- Changes sync instantly—no version conflicts
+Multiple team members can edit the same post simultaneously—presence indicators show who's viewing, and live cursors show where others are typing. Changes sync instantly with no version conflicts.
 
 For detailed feedback, use comments instead of editing directly.
 
-## Troubleshooting
+## Keyboard shortcuts
 
-<AccordionGroup>
-  <Accordion title="Can't see channel options">
-    Verify you have connected accounts in **Settings → Profiles → Scheduling**. Only connected profiles appear as channel options.
-  </Accordion>
-  <Accordion title="Post not saving">
-    Check your internet connection. Ensure all required fields are filled. Try refreshing if issues persist.
-  </Accordion>
-  <Accordion title="Wrong account selected">
-    Change the account in the post sidebar. Update [Post Defaults](/posts/post-defaults) to change future defaults.
-  </Accordion>
-</AccordionGroup>
+| Shortcut | Action |
+|----------|--------|
+| `Cmd/Ctrl + B` | Bold |
+| `Cmd/Ctrl + I` | Italic |
+| `Cmd/Ctrl + K` | Insert link |
+| `Cmd/Ctrl + Enter` | Save post |
+| `Escape` | Close editor |
+| `/` | Slash commands |
+| `@` | Mention |
+| `#` | Hashtag |
+| `L` | Open labels |
 
-## Related
+## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Scheduling Posts" icon="clock" href="/posts/scheduling-posts">
-    Set publish times and manage your schedule.
+  <Card title="Media & Assets" icon="image" href="/posts/media">
+    Platform specs, formats, and best practices.
   </Card>
-  <Card title="Cross-Posting" icon="arrows-repeat" href="/posts/cross-posting">
-    Customize content for multiple platforms.
-  </Card>
-  <Card title="Ideas" icon="lightbulb" href="/posts/ideas">
-    Capture ideas before scheduling.
-  </Card>
-  <Card title="Labels" icon="tags" href="/posts/labels">
-    Organize content with custom labels.
+  <Card title="AI Writing" icon="wand-magic-sparkles" href="/posts/ai-writing">
+    Generate and refine content with AI.
   </Card>
 </CardGroup>

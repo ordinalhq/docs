@@ -1,219 +1,142 @@
 ---
 title: "Calendar"
-description: "Visualize and manage your content schedule"
 icon: "calendar"
 ---
 
-The calendar is your command center for scheduled content. See everything at a glance, drag to reschedule, and spot gaps in your publishing cadence. Whether you're planning weeks ahead or checking today's queue, the calendar keeps you oriented.
+The calendar is your command center for scheduled content. Toggle between a visual calendar grid and a sortable list view, filter by platform or status, and drag posts to reschedule. Whether you're planning weeks ahead or reviewing today's queue, the calendar keeps everything in one place.
 
-## Calendar views
+![Calendar View](/images/calendar-view.jpg)
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Views" icon="table-columns" href="#views">
+    Calendar, list, and time frames
+  </Card>
+  <Card title="Filtering" icon="filter" href="#filtering">
+    Focus on specific content
+  </Card>
+  <Card title="Campaigns" icon="flag" href="#campaigns-on-calendar">
+    See campaign date ranges
+  </Card>
+</CardGroup>
+
+## Views
+
+Toggle between **Calendar** and **List** using the icons in the top-left corner:
 
 <Tabs>
-  <Tab title="Month">
-    See the full month at a glance:
+  <Tab title="Calendar">
+    The default visual grid showing posts by date:
 
-    - Best for high-level planning and spotting gaps
-    - Each day shows a count of scheduled posts
-    - Click any day to see its posts or create new ones
-    - Great for reviewing publishing consistency
+    - Posts appear as cards on their scheduled day
+    - Platform icons show which channels each post targets
+    - Color-coded by status (gray = draft, yellow = scheduled, green = posted, red = failed)
+    - Drag posts to reschedule them
+    - Click any day to create a new post for that date
+    - US holidays are labeled on their respective days
 
-    Use Month view to answer: "Am I posting consistently throughout the month?"
+    **Time frames**: Choose how much time to display—1 Week (`W`), 2 Weeks (`X`), or 1 Month (`M`). The 2-week view is the default.
   </Tab>
-  <Tab title="Week">
-    Detailed weekly perspective:
+  <Tab title="List">
+    A sortable table format for managing many posts at once:
 
-    - See post titles and platform icons
-    - Hour-by-hour time slots
-    - Ideal balance of overview and detail
-    - Good for scheduling around specific times
-
-    Use Week view for day-to-day scheduling decisions.
-  </Tab>
-  <Tab title="Day">
-    Focus on a single day:
-
-    - Full detail on every scheduled post
-    - Time-slot precision
-    - Best for day-of management
-    - Quickly verify nothing was missed
-
-    Use Day view when managing same-day content.
+    - Columns: Date, Post Name, Status, Channels, Labels, Campaign
+    - Click column headers to sort
+    - Filter by date range using the date column
+    - Bulk select posts for actions
+    - Better for reviewing large volumes of scheduled content
   </Tab>
 </Tabs>
 
-Switch views using the **D / W / M** buttons or keyboard shortcuts.
+## Creating Posts
 
-## Creating from the calendar
-
-<Steps>
-  <Step title="Find your time slot">
-    Navigate to the date and time when you want to post.
-  </Step>
-  <Step title="Click or double-click">
-    - **Click a date** — Opens new post with that date
-    - **Click a time slot** — Opens with date and time pre-filled
-    - **Drag across slots** — Select a specific time window
-  </Step>
-  <Step title="Create your post">
-    The composer opens with your selected time already filled in. Add content, choose platforms, and save.
-
-    <Check>
-      Your post appears on the calendar at the scheduled time.
-    </Check>
-  </Step>
-</Steps>
+Click anywhere on the calendar to create a post for that date. The new post modal opens with the date pre-filled—just add your content and save.
 
 <Tip>
-  Clicking on the calendar is often faster than creating a post and then scheduling it—you go straight to the time you want.
+  Creating from the calendar is often faster than creating a post and then scheduling it—you go straight to the time you want.
 </Tip>
-
-## Viewing posts
-
-### Post cards
-
-Posts appear as cards showing:
-
-| Element | What it shows                      |
-| ------- | ---------------------------------- |
-| Title   | Post title or content preview      |
-| Icons   | Platform badges for each channel   |
-| Color   | Status indicator                   |
-| Time    | Scheduled time (in week/day views) |
-
-### Color coding
-
-Colors indicate status at a glance:
-
-| Color  | Status      | Action needed            |
-| ------ | ----------- | ------------------------ |
-| Gray   | Draft       | Not scheduled            |
-| Yellow | Scheduled   | Will publish at set time |
-| Blue   | In Progress | Currently publishing     |
-| Green  | Posted      | Successfully live        |
-| Red    | Failed      | Needs attention          |
-
-<Warning>
-  Red (Failed) posts need immediate attention. Check the error and retry or reschedule.
-</Warning>
 
 ## Rescheduling
 
-<Tabs>
-  <Tab title="Drag and drop">
-    Drag posts directly to new dates or time slots:
+Drag posts directly to new dates:
 
-    - In Month view, drag between days
-    - In Week/Day view, drag to specific times
-    - Cross-platform posts move together
+- In calendar view, drag posts between days
+- Cross-platform posts (posts scheduled to multiple channels) move together
+- A confirmation toast appears when you successfully reschedule
 
-    <Check>
-      A confirmation appears when you successfully reschedule.
-    </Check>
-  </Tab>
-  <Tab title="From post detail">
-    1. Click the post to open it
-    2. Click the scheduled time
-    3. Select a new date and time
-    4. Save your changes
-  </Tab>
-</Tabs>
+You can also click a post to open it, then change the scheduled date and time in the post editor.
+
+<Note>
+  Published posts cannot be rescheduled—they've already gone live.
+</Note>
 
 ## Filtering
 
-Focus on specific content using filters:
+Focus on specific content using the filter dropdown:
 
-| Filter          | Use case                               |
-| --------------- | -------------------------------------- |
-| **By account**  | Show only posts for specific profiles  |
-| **By platform** | Focus on LinkedIn, Twitter, etc.       |
-| **By status**   | Show only scheduled, posted, or failed |
-| **By label**    | Focus on specific content categories   |
-| **By campaign** | See only posts in a campaign           |
+| Filter | Use case |
+|--------|----------|
+| **Channel** | Show only LinkedIn, Twitter, etc. |
+| **Status** | Show only scheduled, posted, or failed |
+| **Label** | Focus on specific content categories |
+| **Campaign** | See only posts in a campaign |
+| **Account** | Show posts for specific profiles |
 
-Filters combine to narrow your view. Clear filters to see everything.
+Filters combine to narrow your view. Clear all filters to see everything.
 
-<Tip>
-  Check each platform's schedule independently to ensure balanced presence across all channels.
-</Tip>
+### Saved Views
+
+Save frequently-used filter combinations as named views that appear in your sidebar for quick access:
+
+1. Apply your filters (channel, status, label, etc.)
+2. Click **Save** in the filter bar
+3. Name your view (e.g., "LinkedIn Only" or "Scheduled This Week")
+
+Saved views appear in the sidebar under **All Posts**, so you can jump to filtered views with one click. Right-click any saved view to rename or delete it.
+
+## Campaigns on Calendar
+
+Campaigns help you organize larger launches, multi-day events, or themed content series. On the calendar, campaigns appear as colored bars spanning their date range—making it easy to see when campaigns start and end at a glance.
+
+- Each campaign shows as a distinct colored band across its dates
+- Click a campaign bar to open the campaign details
+
+**Show/Hide Campaigns**: Use the eye icon in the calendar header to toggle campaign visibility. This is helpful when you want to focus on individual posts without the campaign overlay.
+
+<Card title="Campaigns" icon="flag" href="/campaigns/overview">
+  Learn more about creating and managing campaigns.
+</Card>
 
 ## Navigation
 
-| Action              | Method                    |
-| ------------------- | ------------------------- |
-| Previous period     | ← arrow or `←` key        |
-| Next period         | → arrow or `→` key        |
-| Jump to today       | "Today" button or `T` key |
-| Go to specific date | Click the date header     |
+| Action | Method |
+|--------|--------|
+| Previous period | Click `←` or press `←` key |
+| Next period | Click `→` or press `→` key |
+| Jump to today | Click **Today** or press `T` |
+| 1 week view | Press `W` |
+| 2 weeks view | Press `X` |
+| 1 month view | Press `M` |
+| New campaign | Press `C` |
 
-## Keyboard shortcuts
-
-| Shortcut  | Action                 |
-| --------- | ---------------------- |
-| `C`       | Go to calendar         |
-| `P`       | Create new post        |
-| `T`       | Jump to today          |
-| `←` / `→` | Previous / next period |
-| `D`       | Day view               |
-| `W`       | Week view              |
-| `M`       | Month view             |
-
-## Calendar settings
+## Settings
 
 ### Timezone
 
-The calendar displays in your workspace timezone, set in **Settings → General**. All team members see the same times regardless of their local timezone.
+The calendar displays in your workspace timezone, set in [**Settings → General**](https://app.tryordinal.com/settings/general). All team members see the same times regardless of their local timezone—this prevents scheduling confusion across distributed teams.
 
-<Note>
-  This prevents scheduling confusion across distributed teams—everyone sees the same schedule.
-</Note>
+### Start of Week
 
-## Tips for effective scheduling
+Choose whether your calendar week starts on Sunday or Monday. Set this in your user preferences under [**Settings → Account**](https://app.tryordinal.com/settings/account).
 
-<AccordionGroup>
-  <Accordion title="Review month view regularly">
-    Spot gaps in your publishing cadence before they become problems. Aim for consistent presence throughout the month.
-  </Accordion>
-  <Accordion title="Use filters purposefully">
-    Check each platform's schedule independently. You might be over-posting on LinkedIn while neglecting Twitter.
-  </Accordion>
-  <Accordion title="Monitor failed posts">
-    Red indicators need immediate attention. Don't let failed posts sit—they may be time-sensitive.
-  </Accordion>
-  <Accordion title="Plan ahead">
-    Schedule content 1-2 weeks out minimum. This gives you buffer for review, approval, and unexpected changes.
-  </Accordion>
-  <Accordion title="Check before weekends">
-    Verify nothing important is scheduled when team coverage is light. Consider approval and response readiness.
-  </Accordion>
-</AccordionGroup>
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Posts not appearing">
-    Check your current filters. Posts may be filtered out by platform, status, or label. Clear all filters to see everything.
-  </Accordion>
-  <Accordion title="Can't drag posts">
-    Ensure you're clicking directly on the post card. Published posts cannot be rescheduled.
-  </Accordion>
-  <Accordion title="Wrong timezone showing">
-    Verify workspace timezone in **Settings → General**. The calendar always uses workspace timezone, not your browser's local time.
-  </Accordion>
-</AccordionGroup>
-
-## Related
+## Learn more
 
 <CardGroup cols={2}>
   <Card title="Scheduling Posts" icon="clock" href="/posts/scheduling-posts">
-    Set publish times.
+    Set publish times for your content.
   </Card>
-  <Card title="Post Statuses" icon="circle" href="/posts/statuses">
-    Understand status indicators.
-  </Card>
-  <Card title="Labels" icon="tags" href="/posts/labels">
-    Organize and filter content.
-  </Card>
-  <Card title="Campaigns" icon="bullhorn" href="/campaigns/overview">
-    Group related content.
+  <Card title="Campaigns" icon="flag" href="/campaigns/overview">
+    Group related posts together.
   </Card>
 </CardGroup>
