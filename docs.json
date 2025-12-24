@@ -12,6 +12,20 @@
     "family": "Inter"
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Dashboard",
+          "icon": "grid-2",
+          "href": "https://app.ordinal.com"
+        },
+        {
+          "anchor": "Support",
+          "icon": "headset",
+          "href": "mailto:support@ordinal.com"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -125,21 +139,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Dashboard",
-          "href": "https://app.ordinal.com",
-          "icon": "grid-2"
-        },
-        {
-          "anchor": "Support",
-          "href": "mailto:support@ordinal.com",
-          "icon": "headset"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/ordinal-lightmode.svg",
