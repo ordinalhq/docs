@@ -5,6 +5,8 @@ icon: "clock"
 
 Scheduling determines when your content goes live. Set a specific date and time, and Ordinal handles publishing automatically—posts go out within seconds of their scheduled time.
 
+![Scheduling](/images/scheduling.jpg)
+
 ## Scheduling a post
 
 1. Open or create a post
@@ -13,11 +15,11 @@ Scheduling determines when your content goes live. Set a specific date and time,
 4. Confirm the timezone matches your workspace settings
 
 <Check>
-Your post moves to "Scheduled" status and appears on the calendar.
+  Your post moves to "Scheduled" status and appears on the calendar.
 </Check>
 
 <Tip>
-The calendar provides visual scheduling—click or drag on any time slot to create a post with that time pre-filled.
+  The calendar provides visual scheduling—click or drag on any time slot to create a post with that time pre-filled.
 </Tip>
 
 ## Recommended times
@@ -25,6 +27,7 @@ The calendar provides visual scheduling—click or drag on any time slot to crea
 When you pick a time, Ordinal suggests optimal posting windows based on the platform and day of the week. Look for the **Recommended** section in the time picker.
 
 How it works:
+
 - Ordinal uses platform-specific optimal time slots (e.g., Twitter performs well 9am–1pm on Mondays)
 - Times are randomized within the optimal window to avoid posting at the exact same time as others
 - If another post is already scheduled within 20 minutes of a suggested time, Ordinal finds the next available slot
@@ -32,7 +35,7 @@ How it works:
 You'll also see **Recently Used** times—your most recent publish times for quick selection.
 
 <Note>
-Recommended times require a workspace timezone. Set this in **Settings → General**.
+  Recommended times require a workspace timezone. Set this in **Settings → General**.
 </Note>
 
 ## Post now vs. schedule
@@ -40,6 +43,7 @@ Recommended times require a workspace timezone. Set this in **Settings → Gener
 <Tabs>
   <Tab title="Schedule for later">
     Choose a specific future date and time. The post:
+
     - Moves to "Scheduled" status
     - Appears on the calendar
     - Publishes automatically when the time arrives
@@ -69,7 +73,7 @@ To return a scheduled post to draft:
 3. The post returns to "Draft" status
 
 <Note>
-You cannot unschedule a post that's currently publishing or already published.
+  You cannot unschedule a post that's currently publishing or already published.
 </Note>
 
 ## Cross-post scheduling
@@ -90,7 +94,7 @@ In the schedule modal, you can choose which connected accounts to include. Unche
 ### Adding channels after scheduling
 
 <Warning>
-If you add cross-post channels to an already-scheduled post, the new channels are **not automatically scheduled**. You'll need to click **Edit scheduling** in the sidebar to add them to the schedule.
+  If you add cross-post channels to an already-scheduled post, the new channels are **not automatically scheduled**. You'll need to click **Edit scheduling** in the sidebar to add them to the schedule.
 </Warning>
 
 View per-channel status by hovering over each platform icon in the post or on the calendar.
@@ -98,20 +102,20 @@ View per-channel status by hovering over each platform icon in the post or on th
 ## CSV bulk scheduling
 
 <Note>
-CSV bulk scheduling is available on Pro plans and supports **Twitter and LinkedIn only**.
+  CSV bulk scheduling is available on Pro plans and supports **Twitter and LinkedIn only**.
 </Note>
 
 Upload a CSV file to create and schedule many posts at once. Find this at **Settings → Bulk Scheduling**.
 
 ### CSV format
 
-| Column | Required | Description |
-|--------|----------|-------------|
-| `channel` | Yes | `Twitter` or `LinkedIn` |
-| `username` | Yes | Account username (no @ for Twitter, vanity name for LinkedIn) |
-| `publish_at` | Yes | ISO 8601 format: `2024-12-25T14:30:00` |
-| `copy` | Yes | Post content |
-| `first_comment_copy` | No | First comment (where supported) |
+| Column               | Required | Description                                                   |
+| -------------------- | -------- | ------------------------------------------------------------- |
+| `channel`            | Yes      | `Twitter` or `LinkedIn`                                       |
+| `username`           | Yes      | Account username (no @ for Twitter, vanity name for LinkedIn) |
+| `publish_at`         | Yes      | ISO 8601 format: `2024-12-25T14:30:00`                        |
+| `copy`               | Yes      | Post content                                                  |
+| `first_comment_copy` | No       | First comment (where supported)                               |
 
 ### Example CSV
 
@@ -124,7 +128,7 @@ Twitter,johndoe,2024-12-01T09:30:00,"Big news coming! 🚀",
 A [Google Sheets template](https://docs.google.com/spreadsheets/d/1Ggg91CzFgk-Scp0Nerb29Lpw3ijD--NuFFwAC0obCSI/edit#gid=0) is available for reference.
 
 <Tip>
-Bulk uploads automatically create a campaign named "Bulk Posts [Date]" containing all uploaded posts.
+  Bulk uploads automatically create a campaign named "Bulk Posts [Date]" containing all uploaded posts.
 </Tip>
 
 ## Timezone handling
@@ -132,6 +136,7 @@ Bulk uploads automatically create a campaign named "Bulk Posts [Date]" containin
 Times display in your computer's local timezone. Hover over any scheduled time to see the conversion to your workspace timezone.
 
 Your workspace timezone is configured in **Settings → General**. This is the timezone used for:
+
 - Recommended time calculations
 - Team coordination (so everyone knows when posts go live in the workspace's primary timezone)
 
@@ -143,6 +148,7 @@ Your workspace timezone is configured in **Settings → General**. This is the t
   </Accordion>
   <Accordion title="Post failed to publish">
     Open the post to see error details. Common causes:
+
     - Expired account authorization (reconnect in Settings)
     - Platform outage (retry later)
     - Content policy violation (review and edit)
