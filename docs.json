@@ -4,8 +4,8 @@
   "name": "Ordinal Knowledge Base",
   "colors": {
     "primary": "#24574D",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#8EF5B5",
+    "dark": "#24574D"
   },
   "favicon": "/ordinal-favicon.svg",
   "fonts": {
@@ -57,7 +57,7 @@
             ]
           },
           {
-            "group": "Posts, Campaigns, and Calendar",
+            "group": "Calendar and Posts",
             "icon": "calendar",
             "pages": [
               "calendar/overview",
