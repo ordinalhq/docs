@@ -1,229 +1,65 @@
 ---
 title: "AI Writing"
-description: "Generate and refine content with AI assistance"
 icon: "wand-magic-sparkles"
 ---
 
-Ordinal's AI writing assistant helps you create, improve, and repurpose social media content. Generate posts from scratch, refine existing drafts, or transform articles into platform-ready content.
+Ordinal AI is a chat-based writing assistant that helps you draft, refine, and publish social content. It has context on all your past posts, so it can match your voice and learn from what's worked before.
 
-## What AI can do
-
-| Capability              | Description                                  |
-| ----------------------- | -------------------------------------------- |
-| **Generate content**    | Create posts from a topic, prompt, or URL    |
-| **Improve text**        | Make content shorter, longer, or change tone |
-| **Fix grammar**         | Correct errors while preserving voice        |
-| **Generate hashtags**   | Suggest relevant hashtags for your content   |
-| **Create hooks**        | Generate engaging opening lines              |
-| **Adapt for platforms** | Adjust content for different audiences       |
+<Note>
+Ordinal AI is currently available to workspace admins. Broader access is coming soon.
+</Note>
 
 ## Accessing AI
 
-<Tabs>
-  <Tab title="Slash command">
-    Type `/ai` in the editor to open the AI assistant. This is the fastest method when you're already typing.
-  </Tab>
-  <Tab title="AI button">
-    Click the AI button (✨) in the editor toolbar to open the assistant panel.
-  </Tab>
-  <Tab title="Selection">
-    Select text in the editor, then click the AI button to improve just that selection.
-  </Tab>
-</Tabs>
+Open Ordinal AI from anywhere in the app:
 
-## Generating content
+| Method | How |
+| ------ | --- |
+| Keyboard shortcut | Press `A` |
+| Sidebar | Click **Ordinal AI** at the bottom of the sidebar |
 
-Create a new post from a prompt:
+The AI chat opens in a sidebar panel, ready for your request.
 
-<Steps>
-  <Step title="Open AI assistant">
-    Type `/ai` or click the AI button in a new or existing post.
-  </Step>
-  <Step title="Describe what you want">
-    Write a prompt describing your desired content:
+## What AI can do
 
-    ```
-    Write a LinkedIn post about the importance of work-life balance 
-    for remote teams. Professional but warm tone. Include a 
-    call-to-action to share experiences.
-    ```
-  </Step>
-  <Step title="Generate">
-    Click Generate and wait for the output (usually a few seconds).
-  </Step>
-  <Step title="Review and refine">
-    Read the generated content. Edit directly, regenerate for a different take, or use AI again to refine specific parts.
-  </Step>
-  <Step title="Insert">
-    Add the content to your post editor. Continue editing as needed.
-  </Step>
-</Steps>
+| Capability | Description |
+| ---------- | ----------- |
+| **Draft posts** | Generate new content based on topics, ideas, or your past posts |
+| **Refine content** | Improve tone, length, or clarity of existing drafts |
+| **Analyze performance** | Review how your content is performing across channels |
+| **Take actions** | Schedule posts, create drafts, and more - directly from chat |
 
-<Tip>
-  Include your target platform in the prompt. AI will respect character limits and adjust tone accordingly: "Write a Twitter thread about..." vs "Write a LinkedIn article about..."
-</Tip>
+## Using AI Chat
 
-## Improving existing content
+Ordinal AI works through natural conversation. Just type what you need:
 
-AI can refine text you've already written:
+- "Draft a LinkedIn post about our product launch"
+- "Make this shorter and more punchy"
+- "What posts performed best last month?"
+- "Schedule this for tomorrow at 9am"
 
-<Steps>
-  <Step title="Select text">
-    Highlight the content you want to improve in the editor.
-  </Step>
-  <Step title="Choose an action">
-    Click the AI button and select:
+When AI generates content you like, click **Create Post** to turn it into a real post in your calendar.
 
-    - **Make it shorter** — Condense without losing meaning
-    - **Make it longer** — Expand with more detail
-    - **Change tone** — More professional, casual, or engaging
-    - **Fix grammar** — Correct errors
-  </Step>
-  <Step title="Review changes">
-    AI shows your original text alongside the improved version. Accept, reject, or regenerate.
-  </Step>
-</Steps>
+### Sources
 
-## Generating from URLs
+Toggle additional context sources to improve AI responses:
 
-Turn articles, blog posts, or web pages into social content:
+| Source | What it provides |
+| ------ | ---------------- |
+| **Web search** | Real-time information from the web |
+| **Company info** | Your company details and context |
+| **Style guidelines** | Your brand voice and writing standards |
+| **Profile analytics** | Performance data from your connected accounts |
 
-<Steps>
-  <Step title="Get the URL">
-    Copy the link to the content you want to repurpose.
-  </Step>
-  <Step title="Prompt with URL">
-    In the AI assistant, reference the URL:
+Click the sources icon in the chat input to enable or disable these.
 
-    ```
-    Turn this article into a LinkedIn post that highlights 
-    the key insights: https://example.com/article
-    ```
-  </Step>
-  <Step title="Add your perspective">
-    AI summarizes the source—add your own take to make it authentic.
-  </Step>
-</Steps>
+## Tips for better results
 
-<Note>
-  Always credit original sources when repurposing content. AI generates summaries, but attribution is your responsibility.
-</Note>
+**Be specific** - Include platform, tone, and any constraints. "Write a casual LinkedIn post about remote work tips, under 150 words" works better than "Write about remote work."
 
-## Writing effective prompts
+**Iterate** - AI responses are starting points. Ask follow-up questions to refine: "Make it more conversational" or "Add a call-to-action."
 
-The quality of AI output depends heavily on your prompt. Include:
-
-<AccordionGroup>
-  <Accordion title="Platform context">
-    Specify which platform you're writing for. Each has different norms:
-
-    ```
-    Write a Twitter thread... (concise, punchy)
-    Write a LinkedIn post... (professional, longer-form)
-    Write an Instagram caption... (visual-focused, hashtag-friendly)
-    ```
-  </Accordion>
-  <Accordion title="Tone and voice">
-    Describe the tone you want:
-
-    ```
-    Professional but approachable
-    Casual and conversational
-    Authoritative and data-driven
-    Inspiring and motivational
-    ```
-  </Accordion>
-  <Accordion title="Specific elements">
-    Request specific components:
-
-    ```
-    Include a hook that grabs attention
-    End with a question to drive comments
-    Add a call-to-action
-    Include 3-5 relevant hashtags
-    ```
-  </Accordion>
-  <Accordion title="Constraints">
-    Set boundaries to focus the output:
-
-    ```
-    Keep it under 200 words
-    Use bullet points
-    No emojis
-    Focus on [specific angle]
-    ```
-  </Accordion>
-</AccordionGroup>
-
-### Example prompts
-
-**Product announcement:**
-
-```
-Write a LinkedIn post announcing our new AI-powered scheduling feature. 
-Tone: excited but professional. Highlight the time-saving benefits for 
-social media managers. End with a CTA to try it out.
-```
-
-**Thought leadership:**
-
-```
-Write a Twitter thread about why authenticity matters more than 
-perfection in personal branding. 5-7 tweets. Conversational tone. 
-Include specific examples.
-```
-
-**Engagement post:**
-
-```
-Write an Instagram caption asking followers about their biggest 
-productivity challenges. Keep it casual and relatable. Include 
-relevant hashtags at the end.
-```
-
-## Custom prompts
-
-Save prompts you use frequently:
-
-1. Go to **Settings → Prompts**
-2. Click **Create Prompt**
-3. Define your prompt template with variables
-4. Save for reuse
-
-Template example:
-
-```
-Create a {platform} post about {topic} for {audience}.
-Tone: {tone}. Include: {elements}.
-```
-
-Fill in the variables each time for consistent but customized output.
-
-## Best practices
-
-**Review everything** — AI output is a starting point, not a final product. Read critically and edit.
-
-**Add your voice** — The best AI-assisted posts combine AI efficiency with your authentic perspective.
-
-**Verify facts** — AI can make mistakes or include outdated information. Check any specific claims.
-
-**Iterate** — If the first generation isn't right, refine your prompt and try again. Prompting is a skill that improves with practice.
-
-**Don't over-rely** — AI helps with scale and ideation, but your unique insights are what make content valuable.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Output doesn't match what I wanted">
-    Be more specific in your prompt. Include platform, tone, length, and any specific elements you need. Vague prompts produce generic output.
-  </Accordion>
-  <Accordion title="Content is too generic">
-    Add unique context: your company, industry, audience, or specific angles you want to cover. Generic inputs produce generic outputs.
-  </Accordion>
-  <Accordion title="AI is slow or not responding">
-    Check your internet connection. If issues persist, try refreshing the page. High-traffic periods may cause slower responses.
-  </Accordion>
-</AccordionGroup>
+**Leverage your history** - AI knows your past content. Ask it to "write something similar to my best-performing post" or "match the tone of my recent LinkedIn posts."
 
 ## Learn more
 
