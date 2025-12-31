@@ -42,8 +42,8 @@ This means:
 ## Creating a Webhook in Discord
 
 1. Open your Discord server
-2. Go to **Server Settings → Integrations → Webhooks**
-3. Click **New Webhook**
+2. Go to **Server Settings → Integrations**
+3. Click **Create Webhook**
 4. Set the name (this appears as the sender, e.g., "Ordinal Updates")
 5. Upload an avatar image
 6. Select which channel this webhook posts to
@@ -57,7 +57,7 @@ Keep this URL private - it's essentially a posting key for that channel.
 
 ## Adding the Webhook to Ordinal
 
-Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/discord), select Discord, paste your webhook URL, and give it a name. The webhook appears as a profile you can select when creating posts.
+Go to [**Settings → Profiles → Scheduling → Discord**](https://app.tryordinal.com/settings/profiles/scheduling/discord), paste your webhook URL and the channel name. The webhook appears as a profile you can select when creating posts.
 
 To post to multiple channels, create a separate webhook for each channel in Discord and add each to Ordinal.
 
@@ -82,7 +82,7 @@ The editor supports Discord's markdown formatting:
 - **Italic**: Use the toolbar or `Cmd/Ctrl + I`
 - **Underline**: Use the toolbar or `Cmd/Ctrl + U`
 - **Code**: Inline code formatting
-- **Links**: Paste URLs or use the link button - Discord displays them as clickable or with `[text](url)` syntax
+- **Links**: Paste URLs or use the link button
 - **Lists**: Bullet and numbered lists
 - **Emoji**: Type `:emoji_name:` or use the emoji picker
 
@@ -101,6 +101,8 @@ Tag users, roles, and broadcast to everyone:
 
 <Note>
   User and role mentions require Discord IDs (not display names). You can find these by enabling Developer Mode in Discord settings, then right-clicking a user or role.
+
+  You can read more from the official Discord docs [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID#h_01HRSTXPS5CRSRTWYCGPHZQ37H).
 </Note>
 
 <Card title="Drafting Posts" icon="keyboard" href="/posts/drafting-posts">
