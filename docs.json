@@ -105,7 +105,7 @@
             "group": "Account and Billing",
             "icon": "user",
             "pages": [
-              "account/managing-your-profile",
+              "account/user-preferences",
               "account/subscription-plans"
             ]
           },
