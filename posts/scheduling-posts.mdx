@@ -82,22 +82,12 @@ When a post targets multiple platforms, each channel is scheduled and published 
 
 ### How it works
 
-- All channels share the same scheduled time by default
-- Each channel publishes separately and has its own status
-- One channel can succeed while another fails
-- You can retry failed channels without affecting successful ones
-
-### Selecting which channels to schedule
-
-In the schedule modal, you can choose which connected accounts to include. Uncheck any channels you don't want to publish yet.
-
-### Adding channels after scheduling
+- In the schedule modal, you can choose which connected accounts to include. Uncheck any channels you don't want to publish yet.
+- All channels share the same scheduled time by default. If you need to schedule a different time for another channel, we recommend creating a separate post for that channel specifically (to save time, can use the **Duplicate** functionality).
 
 <Warning>
-  If you add cross-post channels to an already-scheduled post, the new channels are **not automatically scheduled**. You'll need to click **Edit scheduling** in the sidebar to add them to the schedule.
+  If you add cross-post channels to an already-scheduled post, the new channels are not automatically scheduled. You'll need to click **Edit scheduling** in the sidebar, and select all the channels (including the new one) to add them to the scheduling.
 </Warning>
-
-View per-channel status by hovering over each platform icon in the post or on the calendar.
 
 ## CSV bulk scheduling
 
@@ -105,7 +95,7 @@ View per-channel status by hovering over each platform icon in the post or on th
   CSV bulk scheduling is available on Pro plans and supports **Twitter and LinkedIn only**.
 </Note>
 
-Upload a CSV file to create and schedule many posts at once. Find this at **Settings → Bulk Scheduling**.
+Upload a CSV file to create and schedule many posts at once. Find this at [**Settings → Bulk Scheduling**](https://app.tryordinal.com/settings/bulk-scheduling).
 
 ### CSV format
 
@@ -135,7 +125,7 @@ A [Google Sheets template](https://docs.google.com/spreadsheets/d/1Ggg91CzFgk-Sc
 
 Times display in your computer's local timezone. Hover over any scheduled time to see the conversion to your workspace timezone.
 
-Your workspace timezone is configured in **Settings → General**. This is the timezone used for:
+Your workspace timezone is configured in [**Settings → General**](https://app.tryordinal.com/settings/general). This is the timezone used for:
 
 - Recommended time calculations
 - Team coordination (so everyone knows when posts go live in the workspace's primary timezone)
