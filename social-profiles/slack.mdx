@@ -28,13 +28,13 @@ This page covers **scheduling messages to Slack channels**. Ordinal also offers 
 
 ## Connecting Slack
 
-Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/slack), select Slack, and sign in to your workspace. Choose which channels Ordinal can post to - each channel appears as a selectable profile when creating posts.
+Go to [**Settings → Profiles → Scheduling → Slack**](https://app.tryordinal.com/settings/profiles/scheduling/slack), click **Connect Slack**, and sign in to your workspace. Choose which channel Ordinal can post to. Each channel appears as a selectable profile when creating posts.
 
 | Requirement | Details                            |
 | ----------- | ---------------------------------- |
 | Connection  | OAuth via Slack                    |
 | Permissions | Post messages to selected channels |
-| Sender      | Ordinal app (bot)                  |
+| Sender      | Your Slack profile (not Ordinal)   |
 
 <Tip>
   The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel first.
@@ -99,17 +99,11 @@ Drag and drop files into the editor, paste from clipboard, or use the attachment
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="Channel not appearing">
-    The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel.
-  </Accordion>
   <Accordion title="Can't connect">
     You may need workspace admin permission to add apps. Check with your Slack admin.
   </Accordion>
   <Accordion title="Messages not posting">
     Verify the channel still exists and Ordinal hasn't been removed from your workspace.
-  </Accordion>
-  <Accordion title="Formatting looks wrong">
-    Some advanced formatting may render differently depending on Slack client versions.
   </Accordion>
 </AccordionGroup>
 

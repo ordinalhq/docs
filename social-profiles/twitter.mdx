@@ -30,9 +30,9 @@ With Ordinal, you can connect Twitter accounts for both **scheduling** and **eng
 
 There are two types of connections supported for Twitter: **scheduling** and **engagement-only**. Scheduling profiles can post tweets, threads, and use auto-engagements. Engagement-only profiles are used purely for auto-engagements (liking, retweeting, replying to posts).
 
-**For scheduling**: Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/x), select Twitter/X, and sign in.
+**For scheduling**: Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/x), select "Connect X", and follow the instructions to sign in via X.
 
-**For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/x), select Twitter/X, and sign in.
+**For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/x), select "Connect X", and follow the instructions to sign in via X.
 
 ## Drafting a Tweet
 
@@ -43,7 +43,7 @@ There are two types of connections supported for Twitter: **scheduling** and **e
 | Text tweets                           | ✅         | 280 characters                              |
 | [Long-form tweets](#long-form-tweets) | ✅         | Up to 4,000 characters (Premium)            |
 | [Images](#images)                     | ✅         | Up to 4 per tweet                           |
-| [GIFs](#gifs)                         | ✅         | Animated                                    |
+| [GIFs](#gifs)                         | ✅         | Up to 1280px x 1280px                       |
 | [Videos](#videos)                     | ✅         | Up to 2:20 (10 min for verified)            |
 | [Threads](#threads)                   | ✅         | Multi-tweet sequences with individual media |
 | Polls                                 | ❌         | Not currently supported                     |
@@ -53,7 +53,7 @@ There are two types of connections supported for Twitter: **scheduling** and **e
 The Twitter editor supports Unicode formatting for **bold** and _italic_ text:
 
 - **Bold / Italic**: Use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
-- **Hashtags**: Type `#` followed by your tag - they'll automatically link when published
+- **Hashtags**: Type `#` followed by your tag - it'll automatically link when published
 - **Mentions**: Type `@` followed by a username to mention someone
 - **Links**: Paste URLs directly into your tweet (and use a [link shortener](/analytics/shortlinks) for detailed click analytics)
 
@@ -66,6 +66,11 @@ The Twitter editor supports Unicode formatting for **bold** and _italic_ text:
 ![X Premium](/images/x-premium.jpg)
 
 Twitter Premium subscribers can post tweets up to **4,000 characters** - far beyond the standard 280 limit. Ordinal automatically detects your account type and adjusts the character counter accordingly.
+
+
+<Tip>
+  If your profile is verified you'll see a blue checkmark badge in the editor. If you're not seeing it and you should send us a support message and we'll get it updated.
+</Tip>
 
 Long-form tweets display with a "**Show more**" link in the feed. Note that Twitter does not show link preview images on long-form tweets.
 
@@ -92,17 +97,17 @@ For a more realistic preview, click the **Feed Preview** button to see your twee
   Photo tagging only works for public accounts. If a tagged user has disabled photo-tagging, the tweet will post without their tag.
 </Note>
 
-### Post Types
+### Media Options
+You can upload up to 4 attachments per tweet.
 
 <Tabs>
   <Tab title="Images">
-    You can upload one or multiple image(s) per Tweet. Multiple images display in a grid layout. Add alt text for accessibility via the image options.
+    Multiple images display in a grid layout. Add alt text for accessibility via the image options.
 
     | Spec      | Limit          |
     | --------- | -------------- |
     | Formats   | JPG, PNG, WEBP |
     | Size      | 5MB per image  |
-    | Per tweet | Up to 4 images |
   </Tab>
   <Tab title="Videos">
     Attach video content to any Tweet(s).
@@ -110,8 +115,9 @@ For a more realistic preview, click the **Feed Preview** button to see your twee
     | Spec     | Limit                               |
     | -------- | ----------------------------------- |
     | Formats  | MP4, MOV                            |
-    | Size     | 512MB max                           |
-    | Duration | 2:20 (standard) / 10 min (verified) |
+    | Size     | 350mb                            |
+    | Minimum Duration | 0.5 seconds                     |
+    | Maximum Duration | 2:20 (standard) / 10 min (verified) |
     | Ratio    | Between 1:3 and 3:1                 |
   </Tab>
   <Tab title="GIFs">
@@ -121,7 +127,6 @@ For a more realistic preview, click the **Feed Preview** button to see your twee
     | --------- | -------- |
     | Format    | GIF      |
     | Size      | 15MB max |
-    | Per tweet | 1 GIF    |
   </Tab>
 </Tabs>
 

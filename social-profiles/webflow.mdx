@@ -38,18 +38,12 @@ This integration works with **Webflow CMS collections** - typically your blog or
 
 ## Connecting Webflow
 
-Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/webflow), select Webflow, and sign in with your Webflow account. You'll then:
+Go to [**Settings → Profiles → Scheduling → Webflow**](https://app.tryordinal.com/settings/profiles/scheduling/webflow), click **Connect Webflow CMS**, and sign in with your Webflow account. You'll then:
 
 1. Choose the **site** you want to publish to
 2. Select the **CMS collection** (usually "Blog Posts" or similar)
 3. Map the **title** and **body** fields to your collection's corresponding fields
 4. Set the **base URL** where your blog posts appear (e.g., `https://yoursite.com/blog`)
-
-Ordinal creates an asset folder in your Webflow site to store images and files uploaded through the editor.
-
-<Tip>
-  Review your Webflow collection structure before connecting. Knowing which fields are required helps avoid publishing errors later.
-</Tip>
 
 ## Writing Content
 
@@ -75,7 +69,7 @@ Type `/` to open the slash command menu for quick formatting options. Blog conte
 
 ### How it publishes
 
-Ordinal converts your content to HTML that Webflow understands. Images are uploaded to your Webflow asset folder and embedded with proper formatting classes. The result looks native to your Webflow site's design.
+Ordinal converts your content to HTML that Webflow understands. The result looks native to your Webflow site's design.
 
 ## CMS Fields
 
@@ -113,6 +107,13 @@ The slug determines your post's URL (e.g., `/blog/your-post-slug`). Ordinal auto
 
 If you update your Webflow collection schema (adding new fields, changing requirements), click the refresh link in the CMS Fields tab to pull the latest structure. This ensures Ordinal stays in sync with your Webflow setup.
 
+<Tip>
+  If you're not seeing the fields you expect, you may need to refresh the fields by clicking the refresh link in the CMS Fields tab.
+
+  This happens automatically when you create a new post to ensure you're always using the latest fields.
+</Tip>
+>
+
 ## Previewing Your Post
 
 Before publishing, you can preview exactly how your post will appear on your site. Click **Preview on Webflow** and choose a preview mode:
@@ -122,7 +123,9 @@ Before publishing, you can preview exactly how your post will appear on your sit
 | **Live Site** | Temporarily publishes to your live site for 3 minutes, then auto-deletes |
 | **Designer**  | Creates a draft in Webflow's Designer for 3 minutes, then auto-deletes   |
 
-Use **Live Site** preview to see the final result with your site's styling. Use **Designer** preview if you want to inspect or tweak the content in Webflow before it goes live (requires appropriate Webflow permissions).
+Use **Live Site** preview to see the final result with your site's styling. It will be live for everyone to see though so be careful with what you preview.
+
+Use **Designer** preview if you want to view the content in Webflow's Designer without it being live for the public.
 
 <Note>
   Preview posts are automatically removed after 3 minutes. You can also manually unpublish early by clicking **Unpublish Preview**.
@@ -130,16 +133,7 @@ Use **Live Site** preview to see the final result with your site's styling. Use 
 
 ## Publishing
 
-When you schedule a Webflow post, choose how it should appear:
-
-| Option        | Behavior                                                                 |
-| ------------- | ------------------------------------------------------------------------ |
-| **Draft**     | Creates the CMS item as a draft in Webflow. Review and publish manually. |
-| **Published** | Creates and publishes immediately. It's live on your site.               |
-
-**When to use Draft**: You want to review formatting, add elements Ordinal doesn't support (like custom embeds), or get final approval in Webflow before going live.
-
-**When to use Published**: You're confident in the content and want it live at the scheduled time without additional steps.
+When you schedule a Webflow post, it'll be published at the scheduled time and will appear on your site at the URL specified through the `slug` field.
 
 ## FAQ
 

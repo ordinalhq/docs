@@ -30,12 +30,12 @@ With Ordinal, you can connect and schedule to both LinkedIn **Personal Profiles*
 
 There are two types of connections supported for LinkedIn: **scheduling** and **engagement-only**. Scheduling profiles can schedule posts, use auto-engagements, and view analytics. Engagement-only profiles can only be used for auto-engagements. You can customize which permissions to grant for your profile (like, comment, and/or reposts)
 
-**For scheduling**: Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/linkedin), select LinkedIn, and sign in. If you're a page admin, you'll see your company pages listed after authorization.
+**For scheduling**: Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/linkedin), click on "Connect LinkedIn", and sign in via LinkedIn.
 
-**For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/linkedin) and connect separately.
+**For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/linkedin), click on "Connect LinkedIn", and sign in via LinkedIn.
 
 <Tip>
-  Company pages require Super Admin or Content Admin access to connect.
+  If you're a company admin, you'll see your company pages listed after authorization and you can choose which page to connect.
 </Tip>
 
 ## Drafting a LinkedIn Post
@@ -44,7 +44,7 @@ There are two types of connections supported for LinkedIn: **scheduling** and **
 
 | Feature                           | Supported | Notes                                                 |
 | --------------------------------- | --------- | ----------------------------------------------------- |
-| Text posts                        | ✅         |                                                       |
+| Text posts                        | ✅         | Up to 3,000 characters                                |
 | [Images / GIFs](#images-%26-gifs) | ✅         | Up to 20 images and GIFs per post                     |
 | [Video](#videos)                  | ✅         | Up to 10 minutes                                      |
 | [PDF documents](#pdfs)            | ✅         | Creates a swipeable carousel                          |
@@ -56,7 +56,7 @@ There are two types of connections supported for LinkedIn: **scheduling** and **
 
 The LinkedIn editor supports rich formatting:
 
-- **Bold / Italic**: Use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
+- **Bold / Italic**: Highlight the text you want to format and use the toolbar buttons or press `Cmd/Ctrl + B` for bold and `Cmd/Ctrl + I` for italic
 - **Hashtags**: Type `#` followed by your tag - they'll automatically link when published
 - **Links**: Paste URLs directly into your post (and use a [link shortener](/analytics/shortlinks) for detailed click analytics)
 
@@ -85,10 +85,10 @@ For a more realistic preview, click the **Feed Preview** button to see your post
 Tag people and companies in your LinkedIn posts to increase engagement and notify them:
 
 1. Type `@` in your post
-2. Enter the LinkedIn username (the part after `linkedin.com/in/` or `linkedin.com/company/`)
+2. Paste in the LinkedIn username from the URL of the profile you want to tag (e.g. `www.linkedin.com/in/[username]` or `www.linkedin.com/company/[company-name]`)
 3. Select from the suggestions dropdown
 
-Ordinal searches LinkedIn by username and displays matching accounts, including accounts you've tagged before for quick access. For personal accounts, you can choose to display just the first name or the full name in the published post.
+Ordinal searches LinkedIn by username and displays exact search matches and partial matches to accounts you've tagged before for quick access. For personal accounts, you can choose to display just the first name or the full name in the published post by simply deleting the last name.
 
 <Tip>
   Mentions become clickable links when published and may notify the tagged account, encouraging them to engage with your post.
@@ -130,8 +130,9 @@ Link previews help your content stand out in the feed and give readers context b
     | Formats  | MP4, MOV         |
     | Size     | 200MB max        |
     | Duration | Up to 10 minutes |
+    | Per post | 1 video only     |
 
-    You can select a cover photo frame and add custom captions (.SRT file) for accessibility.
+    **Cover Photo**: You can select a cover photo frame and add custom captions (.SRT file) for accessibility.
   </Tab>
   <Tab title="PDFs">
     PDF documents create swipeable document carousels - one of LinkedIn's highest-performing content types:
@@ -140,6 +141,7 @@ Link previews help your content stand out in the feed and give readers context b
     | ----- | --------- |
     | Size  | 100MB max |
     | Pages | Up to 300 |
+    | Per post | 1 document only |
 
     Great for frameworks, guides, tutorials, or repurposing slide decks. You can customize the document title that appears in the preview bar.
   </Tab>
@@ -185,7 +187,7 @@ Automatically interact with your own posts after they publish to boost initial v
 | **Auto-Comment** | Add a first comment (great for CTAs, additional links, or hashtags) on a custom time delay    |
 | **Auto-Repost**  | Reshare (repost with thoughts) from another connected LinkedIn account on a custom time delay |
 
-Configure timing from **immediately** after posting up to **24 hours** later. Staggering engagements across different delays helps them appear more natural.
+Configure timing from **immediately** after posting up to **24 hours** later. Staggering engagements with different delays helps them appear more natural.
 
 <Card title="Auto-Engagements" icon="thumbs-up" href="/posts/auto-engagements">
   Full guide to setting up timing, best practices, and troubleshooting.
@@ -193,7 +195,7 @@ Configure timing from **immediately** after posting up to **24 hours** later. St
 
 ## Analytics
 
-View post performance in [**Analytics → LinkedIn**](https://app.tryordinal.com/analytics/linkedin). You'll see impressions, engagement breakdown (likes, comments, shares), click-through rate, and follower growth for company pages.
+View post performance in [**Analytics → LinkedIn**](https://app.tryordinal.com/analytics/linkedin). You'll see impressions, engagement breakdown (likes, comments, shares), click-through rate, and follower growth.
 
 <Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
   Learn more about tracking performance across all your connected profiles.
