@@ -1,0 +1,148 @@
+---
+title: 'List post approvals'
+openapi: 'GET /posts/{postId}/approvals'
+---
+
+List all approval requests for a specific post.
+
+## Path parameters
+
+<ParamField path="postId" type="string" required>
+  UUID of the post
+</ParamField>
+
+## Response
+
+<ResponseField name="approvals" type="array">
+  Array of approval objects
+  
+  <Expandable title="approval object">
+    <ResponseField name="id" type="string">
+      UUID of the approval
+    </ResponseField>
+    
+    <ResponseField name="status" type="string">
+      Approval status: `Requested` or `Approved`
+    </ResponseField>
+    
+    <ResponseField name="isBlocking" type="boolean">
+      Whether this approval blocks post scheduling
+    </ResponseField>
+    
+    <ResponseField name="message" type="string">
+      Optional message attached to the approval request
+    </ResponseField>
+    
+    <ResponseField name="dueDate" type="datetime">
+      Optional due date for the approval
+    </ResponseField>
+    
+    <ResponseField name="approvedAt" type="datetime">
+      Timestamp when approved (null if not yet approved)
+    </ResponseField>
+    
+    <ResponseField name="createdAt" type="datetime">
+      Timestamp when the approval was requested
+    </ResponseField>
+    
+    <ResponseField name="user" type="object">
+      User who needs to approve
+      
+      <Expandable title="properties">
+        <ResponseField name="id" type="string">
+          User UUID
+        </ResponseField>
+        
+        <ResponseField name="firstName" type="string">
+          User first name
+        </ResponseField>
+        
+        <ResponseField name="lastName" type="string">
+          User last name
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    
+    <ResponseField name="requestedBy" type="object">
+      User who requested the approval
+      
+      <Expandable title="properties">
+        <ResponseField name="id" type="string">
+          User UUID
+        </ResponseField>
+        
+        <ResponseField name="firstName" type="string">
+          User first name
+        </ResponseField>
+        
+        <ResponseField name="lastName" type="string">
+          User last name
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url https://app.tryordinal.com/api/v1/posts/550e8400-e29b-41d4-a716-446655440000/approvals \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://app.tryordinal.com/api/v1/posts/550e8400-e29b-41d4-a716-446655440000/approvals',
+  {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://app.tryordinal.com/api/v1/posts/550e8400-e29b-41d4-a716-446655440000/approvals',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "approvals": [
+    {
+      "id": "789e0123-e89b-12d3-a456-426614174004",
+      "status": "Requested",
+      "isBlocking": true,
+      "message": "Please review before publishing",
+      "dueDate": "2024-01-19T23:59:59.000Z",
+      "approvedAt": null,
+      "createdAt": "2024-01-15T10:30:00.000Z",
+      "user": {
+        "id": "890e1234-e89b-12d3-a456-426614174005",
+        "firstName": "Jane",
+        "lastName": "Manager"
+      },
+      "requestedBy": {
+        "id": "987e6543-e21b-12d3-a456-426614174000",
+        "firstName": "John",
+        "lastName": "Creator"
+      }
+    }
+  ]
+}
+```
+
+</ResponseExample>

@@ -1,33 +1,86 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'Ordinal API'
+description: 'API to create and manage Ordinal workspaces'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Overview
 
-## Welcome
+The Ordinal API allows you to programmatically manage your social media content, posts, profiles, and workspace. Use the API to integrate Ordinal into your existing workflows and automate content creation and scheduling.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+## Base URL
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+All API requests should be made to:
+
+```
+https://app.tryordinal.com/api/v1
+```
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints require authentication using API keys. Include your API key in the request header:
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+### Getting your API key
+
+1. Log in to your Ordinal workspace
+2. Navigate to Settings → Integrations → API
+3. Create a new API key
+4. Copy and securely store your API key
+
+<Warning>
+  Keep your API keys secure and never share them publicly. Treat them like passwords.
+</Warning>
+
+## Rate limits
+
+API requests are rate limited to ensure service stability. If you exceed the rate limit, you'll receive a `429 Too Many Requests` response.
+
+## Error handling
+
+The API uses standard HTTP status codes to indicate success or failure:
+
+| Status Code | Description |
+|------------|-------------|
+| `200` | Success |
+| `400` | Bad Request - Invalid input parameters |
+| `401` | Unauthorized - Invalid or revoked API key |
+| `404` | Not Found - Resource does not exist |
+| `429` | Too Many Requests - Rate limit exceeded |
+| `500` | Internal Server Error |
+
+### Error response format
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
+{
+  "code": "BAD_REQUEST",
+  "message": "Bad Request",
+  "data": {
+    "errors": {
+      "id": ["Invalid UUID"],
+      "email": ["Invalid email address"]
+    }
   }
-]
+}
 ```
+
+## Supported channels
+
+The API supports the following social media channels:
+
+- LinkedIn
+- Twitter (X)
+- Instagram
+- Facebook
+- Threads
+- TikTok
+- Discord
+- Slack
+- Webflow
+- YouTube Shorts
+
+## Workspace context
+
+All API requests are scoped to a specific workspace. The workspace is determined by the API key you use. Each API key is associated with a single workspace.

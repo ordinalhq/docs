@@ -1,0 +1,143 @@
+---
+title: 'List scheduling profiles'
+openapi: 'GET /profiles/scheduling'
+---
+
+List all scheduling profiles in your workspace. Scheduling profiles support scheduling, auto-engagement, and analytics capabilities.
+
+## Response
+
+Returns an array of scheduling profile objects.
+
+<ResponseField name="id" type="string">
+  UUID of the profile
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Display name of the profile
+</ResponseField>
+
+<ResponseField name="detail" type="string">
+  Additional profile details (e.g., username, handle)
+</ResponseField>
+
+<ResponseField name="channel" type="string">
+  Social media channel: `LinkedIn`, `Twitter`, `Instagram`, `Facebook`, `Threads`, `TikTok`, `Discord`, `Slack`, `Webflow`, or `YouTubeShorts`
+</ResponseField>
+
+<ResponseField name="profileImageUrl" type="string">
+  URL to the profile's avatar image
+</ResponseField>
+
+<ResponseField name="isReintegrationRequired" type="boolean">
+  Whether the profile needs to be reconnected
+</ResponseField>
+
+<ResponseField name="createdAt" type="datetime">
+  Timestamp when the profile was connected
+</ResponseField>
+
+<ResponseField name="createdBy" type="object">
+  User who connected the profile
+  
+  <Expandable title="properties">
+    <ResponseField name="id" type="string">
+      User UUID
+    </ResponseField>
+    
+    <ResponseField name="email" type="string">
+      User email address
+    </ResponseField>
+    
+    <ResponseField name="firstName" type="string">
+      User first name
+    </ResponseField>
+    
+    <ResponseField name="lastName" type="string">
+      User last name
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="isLeadsScrapingEnabled" type="boolean">
+  Whether LinkedIn leads scraping is enabled (LinkedIn only)
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url https://app.tryordinal.com/api/v1/profiles/scheduling \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://app.tryordinal.com/api/v1/profiles/scheduling',
+  {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  }
+);
+
+const profiles = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://app.tryordinal.com/api/v1/profiles/scheduling',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+
+profiles = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+[
+  {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "John Doe",
+    "detail": "@johndoe",
+    "channel": "LinkedIn",
+    "profileImageUrl": "https://example.com/avatar.jpg",
+    "isReintegrationRequired": false,
+    "createdAt": "2024-01-10T08:00:00.000Z",
+    "createdBy": {
+      "id": "987e6543-e21b-12d3-a456-426614174000",
+      "email": "admin@company.com",
+      "firstName": "Admin",
+      "lastName": "User"
+    },
+    "isLeadsScrapingEnabled": true
+  },
+  {
+    "id": "234e5678-e89b-12d3-a456-426614174001",
+    "name": "Company Twitter",
+    "detail": "@company",
+    "channel": "Twitter",
+    "profileImageUrl": "https://example.com/company-logo.jpg",
+    "isReintegrationRequired": false,
+    "createdAt": "2024-01-12T10:30:00.000Z",
+    "createdBy": {
+      "id": "987e6543-e21b-12d3-a456-426614174000",
+      "email": "admin@company.com",
+      "firstName": "Admin",
+      "lastName": "User"
+    },
+    "isLeadsScrapingEnabled": false
+  }
+]
+```
+
+</ResponseExample>
+
+<Info>
+  Scheduling profiles can be used for posting content, auto-engagement features, and viewing analytics.
+</Info>

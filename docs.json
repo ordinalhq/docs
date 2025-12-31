@@ -123,18 +123,49 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting started",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Posts",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/posts/create",
+              "api-reference/posts/list",
+              "api-reference/posts/get",
+              "api-reference/posts/delete"
+            ]
+          },
+          {
+            "group": "Profiles",
+            "pages": [
+              "api-reference/profiles/list-scheduling",
+              "api-reference/profiles/list-engagement"
+            ]
+          },
+          {
+            "group": "Approvals",
+            "pages": [
+              "api-reference/approvals/list",
+              "api-reference/approvals/create",
+              "api-reference/approvals/delete"
+            ]
+          },
+          {
+            "group": "Subscribers",
+            "pages": [
+              "api-reference/subscribers/list",
+              "api-reference/subscribers/create",
+              "api-reference/subscribers/delete"
+            ]
+          },
+          {
+            "group": "Other",
+            "pages": [
+              "api-reference/workspace/get",
+              "api-reference/users/list",
+              "api-reference/labels/list"
             ]
           }
         ]
