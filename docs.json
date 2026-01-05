@@ -118,6 +118,25 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "book",
+            "pages": [
+              "api/introduction",
+              "api/authentication",
+              "api/errors"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "icon": "code",
+            "openapi": "api/openapi.json"
+          }
+        ]
       }
     ]
   },
