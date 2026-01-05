@@ -1,0 +1,2563 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ordinal API",
+    "version": "1.0.0",
+    "description": "API to create and manage Ordinal workspaces, posts, profiles, and analytics"
+  },
+  "servers": [
+    {
+      "url": "https://app.tryordinal.com/api/v1",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Analytics",
+      "description": "Social media analytics data"
+    },
+    {
+      "name": "Approvals",
+      "description": "Post approval workflows"
+    },
+    {
+      "name": "Labels",
+      "description": "Labels for organizing posts"
+    },
+    {
+      "name": "Posts",
+      "description": "Create and manage posts"
+    },
+    {
+      "name": "Profiles",
+      "description": "List connected social profiles"
+    },
+    {
+      "name": "Subscribers",
+      "description": "Post subscribers for notifications"
+    },
+    {
+      "name": "Users",
+      "description": "Workspace users"
+    },
+    {
+      "name": "Workspaces",
+      "description": "Workspace information"
+    }
+  ],
+  "paths": {
+    "/analytics/facebook/{profileId}/followers": {
+      "get": {
+        "operationId": "analytics-facebook-followers",
+        "summary": "Facebook follower growth",
+        "description": "Retrieve follower count history for a Facebook page",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Facebook page ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Facebook follower growth data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FacebookFollowerDataPoint"
+                  }
+                },
+                "example": [
+                  {
+                    "followerCount": 25600,
+                    "recordedAt": "2024-12-01T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 25750,
+                    "recordedAt": "2024-12-02T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 25890,
+                    "recordedAt": "2024-12-03T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/facebook/{profileId}/posts": {
+      "get": {
+        "operationId": "analytics-facebook-posts",
+        "summary": "Facebook post analytics",
+        "description": "Retrieve post analytics for a Facebook page within a date range",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Facebook page ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Facebook post analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FacebookPostAnalytics"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123456789012345_987654321098765",
+                    "caption": "Excited to announce our Q4 product launch! 🚀 Check out what we've been building.",
+                    "statusType": "added_photos",
+                    "publishedAt": "2024-12-15T14:30:00.000Z",
+                    "reactionCount": 1245,
+                    "commentCount": 89,
+                    "shareCount": 156,
+                    "impressionCount": 28500
+                  },
+                  {
+                    "id": "123456789012345_876543210987654",
+                    "caption": "Behind the scenes: How we built our latest feature",
+                    "statusType": "added_video",
+                    "publishedAt": "2024-12-10T10:00:00.000Z",
+                    "reactionCount": 892,
+                    "commentCount": 67,
+                    "shareCount": 98,
+                    "impressionCount": 19200
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/instagram/{profileId}/followers": {
+      "get": {
+        "operationId": "analytics-instagram-followers",
+        "summary": "Instagram follower growth",
+        "description": "Retrieve follower count history for an Instagram profile",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Instagram profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instagram follower growth data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InstagramFollowerDataPoint"
+                  }
+                },
+                "example": [
+                  {
+                    "followerCount": 8920,
+                    "followingCount": 450,
+                    "recordedAt": "2024-12-01T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 8985,
+                    "followingCount": 452,
+                    "recordedAt": "2024-12-02T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 9042,
+                    "followingCount": 455,
+                    "recordedAt": "2024-12-03T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/instagram/{profileId}/posts": {
+      "get": {
+        "operationId": "analytics-instagram-posts",
+        "summary": "Instagram post analytics",
+        "description": "Retrieve post analytics for an Instagram profile within a date range",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Instagram profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instagram post analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InstagramPostAnalytics"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "17895695668004550",
+                    "caption": "Behind the scenes of our latest photoshoot 📸 #BTS #ProductLaunch",
+                    "mediaType": "CAROUSEL_ALBUM",
+                    "mediaProductType": "FEED",
+                    "publishedAt": "2024-12-08T18:00:00.000Z",
+                    "likeCount": 1250,
+                    "commentCount": 89,
+                    "shareCount": 45,
+                    "savedCount": 234,
+                    "impressionCount": 28500,
+                    "reachCount": 22100,
+                    "profileVisitCount": 156,
+                    "followCount": 23
+                  },
+                  {
+                    "id": "17895695668004551",
+                    "caption": "New year, new features! Here's what's coming in 2025 ✨",
+                    "mediaType": "IMAGE",
+                    "mediaProductType": "FEED",
+                    "publishedAt": "2024-12-20T16:00:00.000Z",
+                    "likeCount": 2103,
+                    "commentCount": 145,
+                    "shareCount": 78,
+                    "savedCount": 412,
+                    "impressionCount": 45200,
+                    "reachCount": 38900,
+                    "profileVisitCount": 289,
+                    "followCount": 45
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/linkedin/{profileId}/followers": {
+      "get": {
+        "operationId": "analytics-linkedin-followers",
+        "summary": "LinkedIn follower growth",
+        "description": "Retrieve follower count history for a LinkedIn profile",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LinkedIn follower growth data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FollowerDataPoint"
+                  }
+                },
+                "example": [
+                  {
+                    "followerCount": 5420,
+                    "recordedAt": "2024-12-01T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 5485,
+                    "recordedAt": "2024-12-02T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 5512,
+                    "recordedAt": "2024-12-03T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/linkedin/{profileId}/posts": {
+      "get": {
+        "operationId": "analytics-linkedin-posts",
+        "summary": "LinkedIn post analytics",
+        "description": "Retrieve post analytics for a LinkedIn profile within a date range",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LinkedIn post analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LinkedInPostAnalytics"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "urn:li:share:7123456789012345678",
+                    "commentary": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n✅ Feature A\n✅ Feature B\n✅ Feature C\n\nLearn more in the comments 👇",
+                    "type": "SHARE",
+                    "publishedAt": "2024-12-10T14:00:00.000Z",
+                    "likeCount": 245,
+                    "commentCount": 32,
+                    "shareCount": 18,
+                    "clickCount": 156,
+                    "impressionCount": 12500,
+                    "engagement": 3.62
+                  },
+                  {
+                    "id": "urn:li:share:7123456789012345679",
+                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nThread below:",
+                    "type": "SHARE",
+                    "publishedAt": "2024-12-05T09:30:00.000Z",
+                    "likeCount": 892,
+                    "commentCount": 67,
+                    "shareCount": 134,
+                    "clickCount": 423,
+                    "impressionCount": 28900,
+                    "engagement": 5.21
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/x/{profileId}/followers": {
+      "get": {
+        "operationId": "analytics-x-followers",
+        "summary": "X follower growth",
+        "description": "Retrieve follower count history for an X (Twitter) profile",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "X profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "X follower growth data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/XFollowerDataPoint"
+                  }
+                },
+                "example": [
+                  {
+                    "followerCount": 12450,
+                    "followingCount": 892,
+                    "recordedAt": "2024-12-01T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 12523,
+                    "followingCount": 895,
+                    "recordedAt": "2024-12-02T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 12601,
+                    "followingCount": 898,
+                    "recordedAt": "2024-12-03T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/x/{profileId}/posts": {
+      "get": {
+        "operationId": "analytics-x-posts",
+        "summary": "X post analytics",
+        "description": "Retrieve post analytics for an X (Twitter) profile within a date range",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "X profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "X post analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/XPostAnalytics"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "1234567890123456789",
+                    "text": "Just shipped a major update to our platform! 🎉\n\nHere's what's new:\n\n→ Feature A\n→ Feature B  \n→ Feature C\n\nThread below 👇",
+                    "publishedAt": "2024-12-10T16:30:00.000Z",
+                    "stats": {
+                      "retweetCount": 89,
+                      "replyCount": 45,
+                      "likeCount": 312,
+                      "quoteCount": 12,
+                      "bookmarkCount": 67,
+                      "impressionCount": 45200
+                    }
+                  },
+                  {
+                    "id": "1234567890123456790",
+                    "text": "The biggest mistake I made when starting my company (and how to avoid it)",
+                    "publishedAt": "2024-12-05T14:15:00.000Z",
+                    "stats": {
+                      "retweetCount": 234,
+                      "replyCount": 89,
+                      "likeCount": 1456,
+                      "quoteCount": 45,
+                      "bookmarkCount": 289,
+                      "impressionCount": 98500
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/approvals": {
+      "post": {
+        "operationId": "approvals-create",
+        "summary": "Create approval requests",
+        "description": "Create one or more approval requests for a post",
+        "tags": [
+          "Approvals"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApprovalsInput"
+              },
+              "example": {
+                "postId": "550e8400-e29b-41d4-a716-446655440000",
+                "approvals": [
+                  {
+                    "userId": "550e8400-e29b-41d4-a716-446655440011",
+                    "message": "Please review the messaging before we publish",
+                    "dueDate": "2026-01-14T17:00:00.000Z",
+                    "isBlocking": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Approvals created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "createdApprovals": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Approval"
+                      }
+                    },
+                    "existingApprovals": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Approval"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/approvals/{id}": {
+      "delete": {
+        "operationId": "approvals-delete",
+        "summary": "Delete approval",
+        "description": "Delete an approval request",
+        "tags": [
+          "Approvals"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Approval ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Approval deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deletedApproval": {
+                      "$ref": "#/components/schemas/Approval"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/labels": {
+      "get": {
+        "operationId": "labels-list",
+        "summary": "List all labels",
+        "description": "List all labels in the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of labels",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "labels": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Label"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "labels": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440400",
+                      "name": "Marketing",
+                      "color": "#9333ea",
+                      "backgroundColor": "#f3e8ff",
+                      "createdAt": "2025-06-01T00:00:00.000Z",
+                      "updatedAt": "2025-06-01T00:00:00.000Z"
+                    },
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440401",
+                      "name": "Product",
+                      "color": "#16a34a",
+                      "backgroundColor": "#dcfce7",
+                      "createdAt": "2025-06-01T00:00:00.000Z",
+                      "updatedAt": "2025-06-01T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "labels-create",
+        "summary": "Create a label",
+        "description": "Create a new label in the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLabelInput"
+              },
+              "example": {
+                "name": "Engineering",
+                "color": "green"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Label created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440402",
+                  "name": "Engineering",
+                  "color": "#16a34a",
+                  "backgroundColor": "#dcfce7",
+                  "createdAt": "2026-01-05T10:30:00.000Z",
+                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/labels/{id}": {
+      "delete": {
+        "operationId": "labels-delete",
+        "summary": "Delete a label",
+        "description": "Delete a label from the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Label ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Label deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "operationId": "posts-list",
+        "summary": "List posts",
+        "description": "List all posts in the workspace with pagination",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of posts to return (1-100)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of posts to skip for pagination",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of posts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Post"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "posts": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                      "title": "Q4 Product Launch Announcement",
+                      "channels": [
+                        "LinkedIn"
+                      ],
+                      "status": "Scheduled",
+                      "publishDate": "2026-01-15",
+                      "publishAt": "2026-01-15T14:00:00.000Z",
+                      "createdAt": "2026-01-05T10:30:00.000Z",
+                      "updatedAt": "2026-01-05T11:45:00.000Z",
+                      "linkedIn": {
+                        "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      },
+      "post": {
+        "operationId": "posts-create",
+        "summary": "Create post",
+        "description": "Create a new post in the workspace",
+        "tags": [
+          "Posts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePostInput"
+              },
+              "example": {
+                "title": "Q4 Product Launch Announcement",
+                "publishAt": "2026-01-15T14:00:00.000Z",
+                "status": "Scheduled",
+                "linkedIn": {
+                  "profileId": "550e8400-e29b-41d4-a716-446655440001",
+                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nAfter months of hard work, we're thrilled to share what we've been building.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation"
+                },
+                "labelIds": [
+                  "550e8400-e29b-41d4-a716-446655440002"
+                ],
+                "notes": "Internal note: Coordinate with marketing team"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostCreateResponse"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn"
+                  ],
+                  "status": "Scheduled",
+                  "createdAt": "2026-01-05T10:30:00.000Z",
+                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "operationId": "posts-get",
+        "summary": "Get post",
+        "description": "Get a specific post by ID",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "post": {
+                      "$ref": "#/components/schemas/Post"
+                    }
+                  }
+                },
+                "example": {
+                  "post": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                    "title": "Q4 Product Launch Announcement",
+                    "channels": [
+                      "LinkedIn"
+                    ],
+                    "status": "Scheduled",
+                    "publishDate": "2026-01-15",
+                    "publishAt": "2026-01-15T14:00:00.000Z",
+                    "createdAt": "2026-01-05T10:30:00.000Z",
+                    "updatedAt": "2026-01-05T11:45:00.000Z",
+                    "linkedIn": {
+                      "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "posts-delete",
+        "summary": "Delete post",
+        "description": "Delete a post by ID",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{postId}/approvals": {
+      "get": {
+        "operationId": "approvals-list",
+        "summary": "List post approvals",
+        "description": "List all approval requests for a specific post",
+        "tags": [
+          "Approvals"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of approvals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "approvals": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Approval"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "approvals": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440200",
+                      "status": "Requested",
+                      "isBlocking": true,
+                      "message": "Please review the messaging before we publish",
+                      "dueDate": "2026-01-14T17:00:00.000Z",
+                      "approvedAt": null,
+                      "createdAt": "2026-01-05T10:30:00.000Z",
+                      "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440011",
+                        "firstName": "Jane",
+                        "lastName": "Smith",
+                        "createdAt": "2025-01-01T00:00:00.000Z"
+                      },
+                      "requestedBy": {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "createdAt": "2025-01-01T00:00:00.000Z"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{postId}/subscribers": {
+      "get": {
+        "operationId": "subscribers-list",
+        "summary": "List post subscribers",
+        "description": "List all subscribers for a specific post",
+        "tags": [
+          "Subscribers"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of subscribers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "subscribers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscriber"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "subscribers": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440300",
+                      "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440011",
+                        "firstName": "Jane",
+                        "lastName": "Smith"
+                      },
+                      "createdBy": {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "firstName": "John",
+                        "lastName": "Doe"
+                      },
+                      "createdAt": "2026-01-05T10:30:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/profiles/engagement": {
+      "get": {
+        "operationId": "profiles-listEngagement",
+        "summary": "List engagement profiles",
+        "description": "List all engagement-only profiles in the workspace. Engagement profiles can only be used for auto-engagements.",
+        "tags": [
+          "Profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of engagement profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profile"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440002",
+                    "name": "Acme Marketing",
+                    "detail": "@acme_marketing",
+                    "channel": "Twitter",
+                    "profileImageUrl": "https://pbs.twimg.com/profile_images/example.jpg",
+                    "isReintegrationRequired": false,
+                    "createdAt": "2025-07-20T14:30:00.000Z",
+                    "createdBy": {
+                      "id": "550e8400-e29b-41d4-a716-446655440010",
+                      "email": "john@acme.com",
+                      "firstName": "John",
+                      "lastName": "Doe"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/profiles/scheduling": {
+      "get": {
+        "operationId": "profiles-listScheduling",
+        "summary": "List scheduling profiles",
+        "description": "List all scheduling profiles in the workspace. Scheduling profiles support scheduling, auto-engagement, and analytics capabilities.",
+        "tags": [
+          "Profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of scheduling profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SchedulingProfile"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440001",
+                    "name": "John Doe",
+                    "detail": "Product Manager at Acme Inc",
+                    "channel": "LinkedIn",
+                    "profileImageUrl": "https://media.licdn.com/dms/image/example.jpg",
+                    "isReintegrationRequired": false,
+                    "isLeadsScrapingEnabled": true,
+                    "createdAt": "2025-06-15T09:00:00.000Z",
+                    "createdBy": {
+                      "id": "550e8400-e29b-41d4-a716-446655440010",
+                      "email": "john@acme.com",
+                      "firstName": "John",
+                      "lastName": "Doe"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/subscribers": {
+      "post": {
+        "operationId": "subscribers-create",
+        "summary": "Add subscribers to post",
+        "description": "Add one or more subscribers to a post",
+        "tags": [
+          "Subscribers"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscribersInput"
+              },
+              "example": {
+                "postId": "550e8400-e29b-41d4-a716-446655440000",
+                "userIds": [
+                  "550e8400-e29b-41d4-a716-446655440011",
+                  "550e8400-e29b-41d4-a716-446655440012"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscribers added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "createdSubscribers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscriber"
+                      }
+                    },
+                    "existingSubscribers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscriber"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/subscribers/{id}": {
+      "delete": {
+        "operationId": "subscribers-delete",
+        "summary": "Delete subscriber",
+        "description": "Remove a subscriber from a post",
+        "tags": [
+          "Subscribers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Subscriber ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscriber removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deletedSubscriber": {
+                      "$ref": "#/components/schemas/Subscriber"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "users-list",
+        "summary": "List workspace users",
+        "description": "List all users in the workspace",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440010",
+                    "email": "john@acme.com",
+                    "firstName": "John",
+                    "lastName": "Doe"
+                  },
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440011",
+                    "email": "jane@acme.com",
+                    "firstName": "Jane",
+                    "lastName": "Smith"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/workspace": {
+      "get": {
+        "operationId": "workspace-get",
+        "summary": "Get workspace",
+        "description": "Get details about the current workspace",
+        "tags": [
+          "Workspaces"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440100",
+                  "name": "Acme Inc",
+                  "slug": "acme",
+                  "timezone": "America/New_York",
+                  "createdAt": "2025-01-01T00:00:00.000Z"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "API key authentication. Generate an API key from your workspace settings."
+      }
+    },
+    "schemas": {
+      "Post": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostStatus"
+          },
+          "publishDate": {
+            "type": "string",
+            "description": "Scheduled publish date (YYYY-MM-DD) in workspace timezone"
+          },
+          "publishAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Scheduled publish datetime UTC. Only set when a specific time is specified."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "properties": {
+              "copy": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "PostStatus": {
+        "type": "string",
+        "enum": [
+          "Tentative",
+          "ToDo",
+          "InProgress",
+          "ForReview",
+          "Blocked",
+          "Finalized",
+          "Scheduled",
+          "Posted"
+        ]
+      },
+      "CreatePostInput": {
+        "type": "object",
+        "required": [
+          "title",
+          "publishAt",
+          "status"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "publishAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostStatus"
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "campaignId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "linkedIn": {
+            "$ref": "#/components/schemas/LinkedInConfig"
+          }
+        }
+      },
+      "LinkedInConfig": {
+        "type": "object",
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "LinkedIn profile ID to post from"
+          },
+          "copy": {
+            "type": "string",
+            "description": "Post content text"
+          },
+          "mentions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "User",
+                    "Organization"
+                  ]
+                },
+                "showFirstNameOnly": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "poll": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "duration": {
+                "type": "string",
+                "enum": [
+                  "ONE_DAY",
+                  "THREE_DAYS",
+                  "ONE_WEEK",
+                  "TWO_WEEKS"
+                ]
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "linkPreview": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "thumbnailId": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "PostCreateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "$ref": "#/components/schemas/Channel"
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isReintegrationRequired": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/UserSummary"
+          }
+        }
+      },
+      "SchedulingProfile": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Profile"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "isLeadsScrapingEnabled": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "Channel": {
+        "type": "string",
+        "enum": [
+          "LinkedIn",
+          "Twitter",
+          "Instagram",
+          "Facebook",
+          "Threads",
+          "TikTok",
+          "Discord",
+          "Slack",
+          "Webflow",
+          "YouTubeShorts"
+        ]
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UserSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Approval": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Requested",
+              "Approved"
+            ]
+          },
+          "isBlocking": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/ApprovalUser"
+          },
+          "requestedBy": {
+            "$ref": "#/components/schemas/ApprovalUser"
+          }
+        }
+      },
+      "ApprovalUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateApprovalsInput": {
+        "type": "object",
+        "required": [
+          "postId",
+          "approvals"
+        ],
+        "properties": {
+          "postId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "approvals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "userId"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "dueDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "isBlocking": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "Subscriber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "user": {
+            "$ref": "#/components/schemas/SubscriberUser"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/SubscriberUser"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "SubscriberUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateSubscribersInput": {
+        "type": "object",
+        "required": [
+          "postId",
+          "userIds"
+        ],
+        "properties": {
+          "postId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "Label": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "description": "Hex color code"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "description": "Hex background color code"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateLabelInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "color"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "color": {
+            "type": "string",
+            "enum": [
+              "yellow",
+              "purple",
+              "orange",
+              "red",
+              "brown",
+              "green"
+            ]
+          }
+        }
+      },
+      "LinkedInPostAnalytics": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "commentary": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "likeCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "commentCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "shareCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "clickCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "impressionCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "engagement": {
+            "type": "number",
+            "nullable": true,
+            "description": "Engagement rate as a percentage"
+          }
+        }
+      },
+      "FollowerDataPoint": {
+        "type": "object",
+        "properties": {
+          "followerCount": {
+            "type": "integer"
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "XPostAnalytics": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "retweetCount": {
+                "type": "integer"
+              },
+              "replyCount": {
+                "type": "integer"
+              },
+              "likeCount": {
+                "type": "integer"
+              },
+              "quoteCount": {
+                "type": "integer"
+              },
+              "bookmarkCount": {
+                "type": "integer"
+              },
+              "impressionCount": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "XFollowerDataPoint": {
+        "type": "object",
+        "properties": {
+          "followerCount": {
+            "type": "integer"
+          },
+          "followingCount": {
+            "type": "integer"
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "InstagramPostAnalytics": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          },
+          "mediaType": {
+            "type": "string"
+          },
+          "mediaProductType": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "likeCount": {
+            "type": "integer"
+          },
+          "commentCount": {
+            "type": "integer"
+          },
+          "shareCount": {
+            "type": "integer"
+          },
+          "savedCount": {
+            "type": "integer"
+          },
+          "impressionCount": {
+            "type": "integer"
+          },
+          "reachCount": {
+            "type": "integer"
+          },
+          "profileVisitCount": {
+            "type": "integer"
+          },
+          "followCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "InstagramFollowerDataPoint": {
+        "type": "object",
+        "properties": {
+          "followerCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "followingCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FacebookPostAnalytics": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reactionCount": {
+            "type": "integer"
+          },
+          "commentCount": {
+            "type": "integer"
+          },
+          "shareCount": {
+            "type": "integer"
+          },
+          "impressionCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "FacebookFollowerDataPoint": {
+        "type": "object",
+        "properties": {
+          "followerCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "errors": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad Request - Invalid input parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "example": {
+              "code": "BAD_REQUEST",
+              "message": "Bad Request",
+              "data": {
+                "errors": {
+                  "publishAt": [
+                    "Invalid date format"
+                  ],
+                  "status": [
+                    "Invalid enum value"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized - Missing or invalid API key",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "code": "UNAUTHORIZED",
+              "message": "Invalid or unauthorized API key"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden - Insufficient permissions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "code": "FORBIDDEN",
+              "message": "Engagement profiles cannot be used for analytics"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Not Found - Resource does not exist",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "code": "NOT_FOUND",
+              "message": "Post not found or does not belong to this workspace"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Conflict - Resource already exists",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "code": "CONFLICT",
+              "message": "Label with name \"Marketing\" already exists"
+            }
+          }
+        }
+      },
+      "RateLimited": {
+        "description": "Too Many Requests - Rate limit exceeded",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "code": "TOO_MANY_REQUESTS",
+              "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+            }
+          }
+        }
+      }
+    }
+  }
+}

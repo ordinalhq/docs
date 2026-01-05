@@ -1,0 +1,101 @@
+---
+title: 'Introduction'
+description: 'Programmatically manage your Ordinal workspace with the REST API'
+---
+
+## Overview
+
+The Ordinal API allows you to programmatically create and manage posts, profiles, approvals, labels, and analytics data within your workspace. The API follows REST conventions and uses JSON for request and response bodies.
+
+<Card title="Base URL" icon="globe">
+  ```
+  https://app.tryordinal.com/api/v1
+  ```
+</Card>
+
+## Quick Start
+
+<Warning>
+  **Beta Access Required**
+  
+  The Ordinal API is currently in beta. To request access message us at [francisco@tryordinal.com](mailto:francisco@tryordinal.com).
+</Warning>
+
+<Steps>
+  <Step title="Generate an API Key">
+    Navigate to your workspace settings and create a new API key. See the [Authentication](/api/authentication) guide for details.
+  </Step>
+  <Step title="Make Your First Request">
+    Use the API key as a Bearer token to authenticate your requests:
+
+    We recommend testing the [Get Workspace](/api-reference/workspaces/get-workspace) endpoint to confirm that your API key is working.
+
+    ```bash
+    curl -X GET "https://app.tryordinal.com/api/v1/workspace" \
+      -H "Authorization: Bearer your_api_key"
+    ```
+
+    Confirm that you see your workspace information in the response.
+
+    ```json
+    {
+      "id": "your-workspace-uuid",
+      "name": "Your Workspace",
+      "slug": "your-workspace",
+      "timezone": "America/New_York",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+    ```
+  </Step>
+  <Step title="Explore Endpoints">
+    Browse the endpoint documentation to discover all available operations for posts, profiles, approvals, and more.
+  </Step>
+</Steps>
+
+## Available Resources
+
+<CardGroup cols={2}>
+  <Card title="Posts" icon="file-lines" href="/api-reference/posts">
+    Create, list, retrieve, and delete posts in your workspace
+  </Card>
+  <Card title="Profiles" icon="circle-user" href="/api-reference/profiles">
+    List scheduling and engagement profiles connected to your workspace
+  </Card>
+  <Card title="Approvals" icon="circle-check" href="/api-reference/approvals">
+    Manage approval workflows for posts
+  </Card>
+  <Card title="Labels" icon="tag" href="/api-reference/labels">
+    Create and manage labels for organizing posts
+  </Card>
+  <Card title="Subscribers" icon="bell" href="/api-reference/subscribers">
+    Manage post subscribers for notifications
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="/api-reference/analytics">
+    Retrieve post and follower analytics across platforms
+  </Card>
+</CardGroup>
+
+## Rate Limiting
+
+API requests are rate limited to ensure fair usage of 100 requests per minute per API key. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with information about when your quota resets.
+
+```json
+{
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+}
+```
+
+If you need to increase the rate limit, please contact us at [francisco@tryordinal.com](mailto:francisco@tryordinal.com).
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/api/authentication">
+    Learn how to authenticate your API requests
+  </Card>
+  <Card title="Error Handling" icon="circle-exclamation" href="/api/errors">
+    Understand API error responses
+  </Card>
+</CardGroup>
+

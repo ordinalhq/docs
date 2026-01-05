@@ -1,0 +1,304 @@
+---
+title: 'Error Handling'
+description: 'Understanding and handling API error responses'
+---
+
+## Overview
+
+The Ordinal API uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success, codes in the `4xx` range indicate an error with the provided information, and codes in the `5xx` range indicate an error with Ordinal's servers.
+
+## Error Response Format
+
+All error responses follow a consistent JSON format:
+
+```json
+{
+  "code": "ERROR_CODE",
+  "message": "A human-readable description of the error"
+}
+```
+
+For validation errors, additional field-level details are included:
+
+```json
+{
+  "code": "BAD_REQUEST",
+  "message": "Bad Request",
+  "data": {
+    "errors": {
+      "field_name": ["Error message for this field"]
+    }
+  }
+}
+```
+
+## Error Code Reference
+
+| Code | HTTP Status | Description |
+|------|-------------|-------------|
+| `BAD_REQUEST` | 400 | Invalid input or validation failure |
+| `UNAUTHORIZED` | 401 | Authentication required or failed |
+| `FORBIDDEN` | 403 | Access denied |
+| `NOT_FOUND` | 404 | Resource not found |
+| `CONFLICT` | 409 | Resource conflict |
+| `TOO_MANY_REQUESTS` | 429 | Rate limit exceeded |
+| `INTERNAL_SERVER_ERROR` | 500 | Server error (contact support if persistent) |
+
+## Common Error Codes
+
+### 400 Bad Request
+
+Returned when the request contains invalid parameters or fails validation.
+
+<Tabs>
+  <Tab title="Validation Error">
+    ```json
+    {
+      "code": "BAD_REQUEST",
+      "message": "Bad Request",
+      "data": {
+        "errors": {
+          "id": ["Invalid UUID"],
+          "email": ["Invalid email address"]
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Business Logic Error">
+    ```json
+    {
+      "code": "BAD_REQUEST",
+      "message": "Cannot schedule post in the past"
+    }
+    ```
+  </Tab>
+  <Tab title="Invalid Reference">
+    ```json
+    {
+      "code": "BAD_REQUEST",
+      "message": "Campaign ID is invalid or does not belong to this workspace"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Common causes:**
+- Missing required fields
+- Invalid field formats (e.g., invalid UUID, email, date)
+- Business rule violations
+- References to resources that don't exist or belong to another workspace
+
+### 401 Unauthorized
+
+Returned when authentication fails.
+
+```json
+{
+  "code": "UNAUTHORIZED",
+  "message": "Invalid or unauthorized API key"
+}
+```
+
+**Common causes:**
+- Missing `Authorization` header
+- Invalid API key format
+- API key doesn't exist
+- API key was revoked
+
+### 403 Forbidden
+
+Returned when authentication succeeds but the request is not allowed.
+
+<Tabs>
+  <Tab title="Revoked Key">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "API key was revoked 2 days ago"
+    }
+    ```
+  </Tab>
+  <Tab title="Expired Key">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "API key is expired"
+    }
+    ```
+  </Tab>
+  <Tab title="Insufficient Permissions">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "Insufficient permissions"
+    }
+    ```
+  </Tab>
+  <Tab title="Engagement Profile">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "Engagement profiles cannot be used for analytics"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Common causes:**
+- API key has been revoked or expired
+- Insufficient permissions for the operation
+- Attempting to use engagement-only profiles for analytics
+
+### 404 Not Found
+
+Returned when the requested resource doesn't exist.
+
+```json
+{
+  "code": "NOT_FOUND",
+  "message": "Post not found or does not belong to this workspace"
+}
+```
+
+**Common causes:**
+- Resource ID doesn't exist
+- Resource belongs to a different workspace
+- Resource was deleted
+
+### 409 Conflict
+
+Returned when the request conflicts with existing data.
+
+```json
+{
+  "code": "CONFLICT",
+  "message": "Label with name \"Marketing\" already exists"
+}
+```
+
+**Common causes:**
+- Attempting to create a duplicate resource
+- Unique constraint violation
+
+### 429 Too Many Requests
+
+Returned when you've exceeded the rate limit.
+
+```json
+{
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+}
+```
+
+**How to handle:**
+- Wait for the rate limit to reset
+- Implement exponential backoff
+- Cache responses where appropriate
+- Contact support if you need to increase the rate limit
+
+## Handling Errors
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Check HTTP Status Codes">
+    Always check the HTTP status code before parsing the response body.
+
+    ```javascript
+    const response = await fetch(url, options);
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(`${error.code}: ${error.message}`);
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Handle Validation Errors">
+    For 400 errors, check the `data.errors` field for field-specific messages.
+
+    ```javascript
+    if (error.code === 'BAD_REQUEST' && error.data?.errors) {
+      for (const [field, messages] of Object.entries(error.data.errors)) {
+        console.error(`${field}: ${messages.join(', ')}`);
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Implement Retry Logic">
+    For rate limits and server errors, implement retry with exponential backoff.
+
+    ```javascript
+    async function fetchWithRetry(url, options, maxRetries = 3) {
+      for (let i = 0; i < maxRetries; i++) {
+        const response = await fetch(url, options);
+        
+        if (response.status === 429 || response.status >= 500) {
+          const delay = Math.pow(2, i) * 1000;
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+        
+        return response;
+      }
+      throw new Error('Max retries exceeded');
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Log Errors for Debugging">
+    Log error responses with context for easier debugging.
+
+    ```javascript
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('API Error:', {
+        status: response.status,
+        code: error.code,
+        message: error.message,
+        endpoint: url,
+        timestamp: new Date().toISOString()
+      });
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Example Error Handler
+
+```javascript
+async function handleApiResponse(response) {
+  if (response.ok) {
+    return response.json();
+  }
+
+  const error = await response.json();
+
+  switch (response.status) {
+    case 400:
+      if (error.data?.errors) {
+        throw new ValidationError(error.message, error.data.errors);
+      }
+      throw new BadRequestError(error.message);
+
+    case 401:
+      throw new UnauthorizedError(error.message);
+
+    case 403:
+      throw new ForbiddenError(error.message);
+
+    case 404:
+      throw new NotFoundError(error.message);
+
+    case 429:
+      throw new RateLimitError(error.message);
+
+    default:
+      throw new ApiError(error.code, error.message);
+  }
+}
+```
+
