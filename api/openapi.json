@@ -221,6 +221,176 @@
         }
       }
     },
+    "/analytics/twitter/{profileId}/followers": {
+      "get": {
+        "operationId": "analytics-twitter-followers",
+        "summary": "Twitter follower growth",
+        "description": "Retrieve follower count history for a Twitter profile",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Twitter profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Twitter follower growth data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FollowerDataPoint"
+                  }
+                },
+                "example": [
+                  {
+                    "followerCount": 12450,
+                    "recordedAt": "2024-12-01T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 12523,
+                    "recordedAt": "2024-12-02T00:00:00.000Z"
+                  },
+                  {
+                    "followerCount": 12601,
+                    "recordedAt": "2024-12-03T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/twitter/{profileId}/posts": {
+      "get": {
+        "operationId": "analytics-twitter-posts",
+        "summary": "Twitter post analytics",
+        "description": "Retrieve post analytics for a Twitter profile within a date range",
+        "tags": [
+          "Analytics"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "Twitter profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for analytics (defaults to 30 days ago)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for analytics (defaults to today)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Twitter post analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TwitterPostAnalytics"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440700",
+                    "url": "https://twitter.com/acme/status/1234567890123456789",
+                    "text": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread 🧵👇",
+                    "publishedAt": "2024-12-10T14:00:00.000Z",
+                    "likeCount": 342,
+                    "replyCount": 28,
+                    "retweetCount": 89,
+                    "quoteCount": 15,
+                    "bookmarkCount": 67,
+                    "impressionCount": 45200,
+                    "engagement": 1.20
+                  },
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440701",
+                    "url": "https://twitter.com/acme/status/1234567890123456790",
+                    "text": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nA thread:",
+                    "publishedAt": "2024-12-05T09:30:00.000Z",
+                    "likeCount": 1256,
+                    "replyCount": 94,
+                    "retweetCount": 312,
+                    "quoteCount": 48,
+                    "bookmarkCount": 234,
+                    "impressionCount": 89300,
+                    "engagement": 2.17
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/approvals": {
       "post": {
         "operationId": "approvals-create",
@@ -1747,6 +1917,60 @@
             "nullable": true
           },
           "clickCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "impressionCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "engagement": {
+            "type": "number",
+            "nullable": true,
+            "description": "Engagement rate as a percentage"
+          }
+        }
+      },
+      "TwitterPostAnalytics": {
+        "type": "object",
+        "required": ["id", "url"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Twitter post URL"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true,
+            "description": "Tweet text content"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "likeCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "replyCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "retweetCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "quoteCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "bookmarkCount": {
             "type": "integer",
             "nullable": true
           },
