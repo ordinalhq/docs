@@ -850,6 +850,88 @@
           }
         }
       },
+      "patch": {
+        "operationId": "posts-update",
+        "summary": "Update post",
+        "description": "Update an existing post by ID. All fields are optional - only include the fields you want to update.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePostInput"
+              },
+              "example": {
+                "title": "Updated: Q4 Product Launch Announcement",
+                "publishAt": "2026-01-16T15:00:00.000Z",
+                "status": "Finalized",
+                "linkedIn": {
+                  "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "post": {
+                      "$ref": "#/components/schemas/Post"
+                    }
+                  }
+                },
+                "example": {
+                  "post": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                    "title": "Updated: Q4 Product Launch Announcement",
+                    "channels": [
+                      "LinkedIn"
+                    ],
+                    "status": "Finalized",
+                    "publishDate": "2026-01-16",
+                    "publishAt": "2026-01-16T15:00:00.000Z",
+                    "createdAt": "2026-01-05T10:30:00.000Z",
+                    "updatedAt": "2026-01-13T09:15:00.000Z",
+                    "linkedIn": {
+                      "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "delete": {
         "operationId": "posts-delete",
         "summary": "Delete post",
@@ -1416,6 +1498,41 @@
           },
           "notes": {
             "type": "string"
+          },
+          "linkedIn": {
+            "$ref": "#/components/schemas/LinkedInConfig"
+          }
+        }
+      },
+      "UpdatePostInput": {
+        "type": "object",
+        "description": "All fields are optional. Only include the fields you want to update.",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "publishAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostStatus"
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "campaignId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
           },
           "linkedIn": {
             "$ref": "#/components/schemas/LinkedInConfig"
