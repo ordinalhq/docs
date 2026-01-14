@@ -26,6 +26,53 @@ Click into any account from the Overview to see detailed analytics for that spec
 - **Post table** - Every post with its performance metrics, sortable by any column
 - **Filters** - Narrow down by date range, post type, labels, or campaign
 - **Export** - Download your data as a CSV for external analysis or client reporting
+- **Earned Media Value** - See the dollar value of your organic reach based on configurable CPM
+
+## Earned Media Value (EMV)
+
+Earned Media Value helps you understand the monetary value of your organic social reach. EMV calculates what you would have paid in advertising to achieve the same number of impressions.
+
+### How it works
+
+EMV is calculated using this formula:
+
+```
+EMV = (Impressions / 1,000) × CPM
+```
+
+Where **CPM** (Cost Per Mille) is the amount you'd pay for 1,000 ad impressions on that platform.
+
+### Configuring CPM
+
+Each platform has its own CPM setting that you can customize based on your industry benchmarks or actual ad costs:
+
+1. Go to any account's analytics page
+2. Click the **Earned Media Value** tab
+3. Adjust the **CPM** input to match your target rate
+
+CPM values are saved per channel on the workspace-level. That means if you change the CPM for one LinkedIn account, it'll change the calculation for all other LinkedIn accounts in the workspace.
+
+Default values:
+
+| Platform  | Default CPM |
+| --------- | ----------- |
+| LinkedIn  | \$30        |
+| Twitter   | \$10        |
+| Instagram | \$10        |
+| Facebook  | \$10        |
+
+<Tip>
+  Use your actual advertising CPM rates for the most accurate EMV calculations. If you're not running ads, industry benchmarks are a good starting point - LinkedIn typically has higher CPMs than other platforms due to its B2B audience.
+</Tip>
+
+### Viewing EMV
+
+EMV appears in two places:
+
+- **EMV tab** - A bar chart showing EMV by post, with total EMV for the selected date range
+- **EMV column** - In the post table, showing individual post EMV values (sortable)
+
+EMV is also included when you export analytics to CSV.
 
 ## Filtering
 
@@ -34,7 +81,7 @@ Filters help you slice your analytics to answer specific questions. All account 
 | Filter         | What it does                                                                                   |
 | -------------- | ---------------------------------------------------------------------------------------------- |
 | **Date range** | Focus on a specific time period (presets like "Last 7 days", "Last 30 days", or custom ranges) |
-| **Post type**  | Filter by content format - Text, Image, Video, Carousel, Reel, etc.                              |
+| **Post type**  | Filter by content format - Text, Image, Video, Carousel, Reel, etc.                            |
 | **Labels**     | See how your custom labels perform (e.g., "Product updates" vs. "Industry news")               |
 | **Campaign**   | View only posts from a specific campaign                                                       |
 
