@@ -703,7 +703,8 @@
                       "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
                       "title": "Q4 Product Launch Announcement",
                       "channels": [
-                        "LinkedIn"
+                        "LinkedIn",
+                        "Twitter"
                       ],
                       "status": "Scheduled",
                       "publishDate": "2026-01-15",
@@ -711,7 +712,14 @@
                       "createdAt": "2026-01-05T10:30:00.000Z",
                       "updatedAt": "2026-01-05T11:45:00.000Z",
                       "linkedIn": {
-                        "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                        "copy": "Excited to announce our new product launch! 🚀"
+                      },
+                      "x": {
+                        "tweets": [
+                          {
+                            "copy": "Excited to announce our new product launch! 🚀"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -747,7 +755,18 @@
                 "status": "Scheduled",
                 "linkedIn": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440001",
-                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nAfter months of hard work, we're thrilled to share what we've been building.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation"
+                  "copy": "Excited to announce our new product launch! 🚀\n\nAfter months of hard work, we're thrilled to share what we've been building.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation"
+                },
+                "x": {
+                  "profileId": "550e8400-e29b-41d4-a716-446655440003",
+                  "tweets": [
+                    {
+                      "copy": "Excited to announce our new product launch! 🚀\n\nA thread on what we've been building 🧵"
+                    },
+                    {
+                      "copy": "Key highlights:\n• Feature A\n• Feature B\n• Feature C"
+                    }
+                  ]
                 },
                 "labelIds": [
                   "550e8400-e29b-41d4-a716-446655440002"
@@ -827,7 +846,8 @@
                     "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
                     "title": "Q4 Product Launch Announcement",
                     "channels": [
-                      "LinkedIn"
+                      "LinkedIn",
+                      "Twitter"
                     ],
                     "status": "Scheduled",
                     "publishDate": "2026-01-15",
@@ -835,7 +855,14 @@
                     "createdAt": "2026-01-05T10:30:00.000Z",
                     "updatedAt": "2026-01-05T11:45:00.000Z",
                     "linkedIn": {
-                      "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                      "copy": "Excited to announce our new product launch! 🚀"
+                    },
+                    "x": {
+                      "tweets": [
+                        {
+                          "copy": "Excited to announce our new product launch! 🚀"
+                        }
+                      ]
                     }
                   }
                 }
@@ -882,6 +909,16 @@
                 "status": "Finalized",
                 "linkedIn": {
                   "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                },
+                "x": {
+                  "tweets": [
+                    {
+                      "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
+                    },
+                    {
+                      "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                    }
+                  ]
                 }
               }
             }
@@ -893,29 +930,32 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "post": {
-                      "$ref": "#/components/schemas/Post"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Post"
                 },
                 "example": {
-                  "post": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                    "title": "Updated: Q4 Product Launch Announcement",
-                    "channels": [
-                      "LinkedIn"
-                    ],
-                    "status": "Finalized",
-                    "publishDate": "2026-01-16",
-                    "publishAt": "2026-01-16T15:00:00.000Z",
-                    "createdAt": "2026-01-05T10:30:00.000Z",
-                    "updatedAt": "2026-01-13T09:15:00.000Z",
-                    "linkedIn": {
-                      "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
-                    }
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Updated: Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn",
+                    "Twitter"
+                  ],
+                  "status": "Finalized",
+                  "publishDate": "2026-01-16",
+                  "publishAt": "2026-01-16T15:00:00.000Z",
+                  "updatedAt": "2026-01-13T09:15:00.000Z",
+                  "linkedIn": {
+                    "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                  },
+                  "x": {
+                    "tweets": [
+                      {
+                        "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
+                      },
+                      {
+                        "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                      }
+                    ]
                   }
                 }
               }
@@ -969,6 +1009,204 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/schedule": {
+      "post": {
+        "operationId": "posts-schedule",
+        "summary": "Schedule or reschedule post",
+        "description": "Schedule a post for publishing, or reschedule an already scheduled post to a new time. The post must have at least one channel with a connected profile.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "publishAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When to publish the post (UTC). Required for new schedules, optional for rescheduling (uses existing publishAt if not provided)."
+                  }
+                }
+              },
+              "example": {
+                "publishAt": "2026-01-20T14:00:00.000Z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post scheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/PostStatus"
+                    },
+                    "publishDate": {
+                      "type": "string",
+                      "description": "Scheduled publish date (YYYY-MM-DD) in workspace timezone"
+                    },
+                    "publishAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Scheduled publish datetime UTC"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": ["LinkedIn", "Twitter"],
+                  "status": "Scheduled",
+                  "publishDate": "2026-01-20",
+                  "publishAt": "2026-01-20T14:00:00.000Z",
+                  "updatedAt": "2026-01-19T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/unschedule": {
+      "post": {
+        "operationId": "posts-unschedule",
+        "summary": "Unschedule post",
+        "description": "Cancel a scheduled post. The post status will be changed to Finalized and any pending scheduled publishes will be cancelled.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post unscheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/PostStatus"
+                    },
+                    "publishDate": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Publish date (YYYY-MM-DD) in workspace timezone. May be null if not set."
+                    },
+                    "publishAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "description": "Publish datetime UTC. May be null if not set."
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": ["LinkedIn", "Twitter"],
+                  "status": "Finalized",
+                  "publishDate": "2026-01-20",
+                  "publishAt": "2026-01-20T14:00:00.000Z",
+                  "updatedAt": "2026-01-19T11:00:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -1446,9 +1684,28 @@
           },
           "linkedIn": {
             "type": "object",
+            "nullable": true,
             "properties": {
               "copy": {
                 "type": "string"
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "description": "X (Twitter) content. Present when the post targets the Twitter channel.",
+            "properties": {
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -1501,6 +1758,9 @@
           },
           "linkedIn": {
             "$ref": "#/components/schemas/LinkedInConfig"
+          },
+          "x": {
+            "$ref": "#/components/schemas/TwitterConfig"
           }
         }
       },
@@ -1536,6 +1796,37 @@
           },
           "linkedIn": {
             "$ref": "#/components/schemas/LinkedInConfig"
+          },
+          "x": {
+            "$ref": "#/components/schemas/TwitterConfig"
+          }
+        }
+      },
+      "TwitterConfig": {
+        "type": "object",
+        "description": "X (Twitter) channel configuration for creating or updating posts",
+        "required": ["profileId", "tweets"],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "X (Twitter) profile ID to post from"
+          },
+          "tweets": {
+            "type": "array",
+            "description": "Array of tweets. For threads, include multiple tweets in order.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["copy"],
+              "properties": {
+                "copy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Tweet text content"
+                }
+              }
+            }
           }
         }
       },
