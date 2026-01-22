@@ -835,7 +835,7 @@
                 "status": "Scheduled",
                 "linkedIn": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440001",
-                  "copy": "Excited to announce our new product launch! 🚀\n\nAfter months of hard work, we're thrilled to share what we've been building.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation"
+                  "copy": "Excited to announce our new product launch! 🚀\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation"
                 },
                 "x": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440003",
@@ -988,7 +988,7 @@
                 "publishAt": "2026-01-16T15:00:00.000Z",
                 "status": "Finalized",
                 "linkedIn": {
-                  "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                  "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                 },
                 "x": {
                   "tweets": [
@@ -1025,7 +1025,7 @@
                   "publishAt": "2026-01-16T15:00:00.000Z",
                   "updatedAt": "2026-01-13T09:15:00.000Z",
                   "linkedIn": {
-                    "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
+                    "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                   },
                   "x": {
                     "tweets": [
@@ -1440,7 +1440,7 @@
       "post": {
         "operationId": "engagements-create",
         "summary": "Create for a post",
-        "description": "Add engagements (likes, comments, reposts) to a post. Engagements will be executed automatically when the post is published.\n\n**Tagging on LinkedIn:**\nTo mention someone in a comment or repost, use the format `@[Display Name](urn)`. See [Mention format by username](/api-reference/linkedin/linkedin-get-mention) to look up the URN and get the pre-formatted mention string.\n\n**Validation rules:**\n- `copy` is required for Comment, optional for Repost, must not be provided for Like\n- `delaySeconds` is required for Comment and Repost (allowed values: 0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400 seconds), must not be provided for Like\n- Only one Like engagement per profile is allowed",
+        "description": "Add engagements (likes, comments, reposts) to a post. Engagements will be executed automatically when the post is published.\n\n**Tagging on LinkedIn:**\nTo mention someone in a comment or repost, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details on how to look up URNs.\n\n**Validation rules:**\n- `copy` is required for Comment, optional for Repost, must not be provided for Like\n- `delaySeconds` is required for Comment and Repost (allowed values: 0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400 seconds), must not be provided for Like\n- Only one Like engagement per profile is allowed",
         "tags": [
           "Engagements"
         ],
@@ -2143,28 +2143,7 @@
           },
           "copy": {
             "type": "string",
-            "description": "Post content text"
-          },
-          "mentions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "User",
-                    "Organization"
-                  ]
-                },
-                "showFirstNameOnly": {
-                  "type": "boolean"
-                }
-              }
-            }
+            "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
           },
           "poll": {
             "type": "object",

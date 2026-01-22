@@ -1,0 +1,111 @@
+---
+title: 'LinkedIn Mentions'
+description: 'How to tag people and companies in LinkedIn posts and comments'
+---
+
+## Overview
+
+LinkedIn uses a special mention format to tag people and companies in posts and comments. Unlike platforms like Twitter where you can simply use `@username`, LinkedIn requires a specific format that includes the account's URN (Uniform Resource Name).
+
+## Mention Format
+
+To mention someone on LinkedIn, use this format in your `copy` field:
+
+```
+@[Display Name](urn)
+```
+
+For example:
+- **Person**: `@[John Doe](urn:li:person:ABC123xyz)`
+- **Company**: `@[Acme Inc](urn:li:organization:123456)`
+
+When the post is published, LinkedIn will convert these into clickable profile links and notify the tagged accounts.
+
+## Finding URNs
+
+Use the [Mention format by username](/api-reference/linkedin/linkedin-get-mention) endpoint to look up URNs by LinkedIn username.
+
+The username is the part after `/in/` or `/company/` in a LinkedIn profile URL:
+- `linkedin.com/in/johndoe` → `johndoe`
+- `linkedin.com/company/acme-inc` → `acme-inc`
+
+### Example Request
+
+```bash
+curl -X GET "https://app.tryordinal.com/api/v1/linkedin/johndoe/mentions" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Example Response
+
+```json
+{
+  "user": {
+    "username": "johndoe",
+    "urn": "urn:li:person:ABC123xyz",
+    "type": "User",
+    "displayName": "John Doe",
+    "firstName": "John",
+    "mentionFormat": "@[John Doe](urn:li:person:ABC123xyz)",
+    "firstNameMentionFormat": "@[John](urn:li:person:ABC123xyz)"
+  },
+  "organization": null
+}
+```
+
+The response includes pre-formatted `mentionFormat` strings that you can copy directly into your post content.
+
+## Using Mentions in Posts
+
+Include the mention format directly in your post `copy`:
+
+```json
+{
+  "title": "Product Launch",
+  "publishAt": "2026-01-20T14:00:00.000Z",
+  "status": "Scheduled",
+  "linkedIn": {
+    "profileId": "550e8400-e29b-41d4-a716-446655440001",
+    "copy": "Excited to announce our partnership with @[Acme Inc](urn:li:organization:123456)!\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) for making this happen."
+  }
+}
+```
+
+## Using Mentions in Engagements
+
+Mentions also work in auto-engagement comments and reposts:
+
+```json
+{
+  "channel": "LinkedIn",
+  "engagements": [
+    {
+      "type": "Comment",
+      "profileId": "550e8400-e29b-41d4-a716-446655440002",
+      "copy": "Great insights @[Jane Smith](urn:li:person:XYZ789abc)! What do you think about this?",
+      "delaySeconds": 300
+    }
+  ]
+}
+```
+
+## First Name vs Full Name
+
+For personal profiles, you can choose to display just the first name:
+
+| Format | Result on LinkedIn |
+|--------|-------------------|
+| `@[John Doe](urn:li:person:ABC123)` | **John Doe** |
+| `@[John](urn:li:person:ABC123)` | **John** |
+
+The mention lookup endpoint provides both `mentionFormat` (full name) and `firstNameMentionFormat` (first name only) for convenience.
+
+## Important Notes
+
+<Warning>
+The display name in the mention must be a prefix of the account's actual name. For example, if the account name is "John Doe", you can use `@[John Doe]` or `@[John]`, but not `@[Johnny]` or `@[J. Doe]`.
+</Warning>
+
+<Note>
+Mentions are only supported on LinkedIn. For X (Twitter), use the standard `@username` format directly in your post copy.
+</Note>
