@@ -792,9 +792,19 @@
                       "createdAt": "2026-01-05T10:30:00.000Z",
                       "updatedAt": "2026-01-05T11:45:00.000Z",
                       "linkedIn": {
+                        "profile": {
+                          "id": "550e8400-e29b-41d4-a716-446655440001",
+                          "name": "John Doe",
+                          "detail": "johndoe"
+                        },
                         "copy": "Excited to announce our new product launch! 🚀"
                       },
                       "x": {
+                        "profile": {
+                          "id": "550e8400-e29b-41d4-a716-446655440003",
+                          "name": "Acme Inc",
+                          "detail": "@acme_inc"
+                        },
                         "tweets": [
                           {
                             "copy": "Excited to announce our new product launch! 🚀"
@@ -935,9 +945,19 @@
                     "createdAt": "2026-01-05T10:30:00.000Z",
                     "updatedAt": "2026-01-05T11:45:00.000Z",
                     "linkedIn": {
+                      "profile": {
+                        "id": "550e8400-e29b-41d4-a716-446655440001",
+                        "name": "John Doe",
+                        "detail": "johndoe"
+                      },
                       "copy": "Excited to announce our new product launch! 🚀"
                     },
                     "x": {
+                      "profile": {
+                        "id": "550e8400-e29b-41d4-a716-446655440003",
+                        "name": "Acme Inc",
+                        "detail": "@acme_inc"
+                      },
                       "tweets": [
                         {
                           "copy": "Excited to announce our new product launch! 🚀"
@@ -1989,6 +2009,12 @@
             "type": "object",
             "nullable": true,
             "properties": {
+              "profile": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/ChannelProfile" }
+                ],
+                "nullable": true
+              },
               "copy": {
                 "type": "string"
               }
@@ -1999,6 +2025,12 @@
             "nullable": true,
             "description": "X (Twitter) content. Present when the post targets the Twitter channel.",
             "properties": {
+              "profile": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/ChannelProfile" }
+                ],
+                "nullable": true
+              },
               "tweets": {
                 "type": "array",
                 "items": {
@@ -2820,6 +2852,27 @@
           "mentionFormat": {
             "type": "string",
             "description": "Pre-formatted mention string, e.g. @[Acme Inc](urn:li:organization:123456)"
+          }
+        }
+      },
+      "ChannelProfile": {
+        "type": "object",
+        "description": "Profile information for a channel (LinkedIn or X)",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Profile ID"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Profile name"
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true,
+            "description": "Profile detail (vanity name for LinkedIn, @username for X)"
           }
         }
       },
