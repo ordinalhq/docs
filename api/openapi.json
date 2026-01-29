@@ -30,6 +30,10 @@
       "description": "Auto-engagements for posts (likes, comments, reposts)"
     },
     {
+      "name": "Invites",
+      "description": "Workspace invitations for adding new users"
+    },
+    {
       "name": "Labels",
       "description": "Labels for organizing posts"
     },
@@ -395,6 +399,164 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/invites": {
+      "get": {
+        "operationId": "invites-list",
+        "summary": "List pending invites",
+        "description": "List all pending invites for the workspace",
+        "tags": [
+          "Invites"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of pending invites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invite"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440500",
+                    "email": "newuser@example.com",
+                    "createdAt": "2026-01-15T10:00:00.000Z"
+                  },
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440501",
+                    "email": "another@example.com",
+                    "createdAt": "2026-01-16T14:30:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "invites-create",
+        "summary": "Create an invite",
+        "description": "Invite a user to the workspace by email. If the user already has an Ordinal account, they will be added to the workspace immediately. Otherwise, an invite email will be sent.",
+        "tags": [
+          "Invites"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInviteInput"
+              },
+              "example": {
+                "email": "newuser@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invite created or user added to workspace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "invite": {
+                      "allOf": [
+                        { "$ref": "#/components/schemas/Invite" }
+                      ],
+                      "nullable": true,
+                      "description": "The created invite, or null if the user was added directly to the workspace"
+                    },
+                    "sentEmail": {
+                      "type": "boolean",
+                      "description": "Whether an invite email was sent"
+                    }
+                  }
+                },
+                "example": {
+                  "invite": {
+                    "id": "550e8400-e29b-41d4-a716-446655440500",
+                    "email": "newuser@example.com",
+                    "createdAt": "2026-01-15T10:00:00.000Z"
+                  },
+                  "sentEmail": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/invites/{id}": {
+      "delete": {
+        "operationId": "invites-delete",
+        "summary": "Delete an invite",
+        "description": "Delete a pending invite. This will prevent the invited user from joining the workspace using this invite.",
+        "tags": [
+          "Invites"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Invite ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invite deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean",
+                      "description": "Whether the invite was deleted"
+                    }
+                  }
+                },
+                "example": {
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -2811,6 +2973,39 @@
               "brown",
               "green"
             ]
+          }
+        }
+      },
+      "Invite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the invite"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the invited user"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the invite was created"
+          }
+        }
+      },
+      "CreateInviteInput": {
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the user to invite"
           }
         }
       },
