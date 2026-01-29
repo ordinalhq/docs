@@ -2976,6 +2976,39 @@
           }
         }
       },
+      "Invite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the invite"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the invited user"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the invite was created"
+          }
+        }
+      },
+      "CreateInviteInput": {
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the user to invite"
+          }
+        }
+      },
       "LinkedInPostAnalytics": {
         "type": "object",
         "required": ["id", "url", "type"],
