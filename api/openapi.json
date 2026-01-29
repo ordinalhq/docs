@@ -30,6 +30,10 @@
       "description": "Auto-engagements for posts (likes, comments, reposts)"
     },
     {
+      "name": "Invites",
+      "description": "Workspace invitations for adding new users"
+    },
+    {
       "name": "Labels",
       "description": "Labels for organizing posts"
     },
