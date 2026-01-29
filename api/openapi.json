@@ -1566,6 +1566,92 @@
       }
     },
     "/engagements/{id}": {
+      "patch": {
+        "operationId": "engagements-update",
+        "summary": "Update an engagement",
+        "description": "Update an existing engagement's copy, delay, or profile.\n\n**Validation rules:**\n- `copy` cannot be updated for Like engagements\n- `copy` cannot be removed from Comment engagements (must have content)\n- `delaySeconds` cannot be updated for Like engagements\n- When changing `profileId`, the new profile must have the required engagement permissions\n- Cannot update engagements for posts that have already been published\n- Only one Like engagement per profile is allowed (cannot change profileId to a profile that already has a Like)",
+        "tags": [
+          "Engagements"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Engagement ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEngagementInput"
+              },
+              "examples": {
+                "updateComment": {
+                  "summary": "Update comment text and delay",
+                  "value": {
+                    "copy": "Updated comment text with great insights!",
+                    "delaySeconds": 600
+                  }
+                },
+                "changeProfile": {
+                  "summary": "Change the profile performing the engagement",
+                  "value": {
+                    "profileId": "550e8400-e29b-41d4-a716-446655440003"
+                  }
+                },
+                "clearRepostCopy": {
+                  "summary": "Remove copy from a repost",
+                  "value": {
+                    "copy": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Engagement updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "engagement": {
+                      "$ref": "#/components/schemas/EngagementResponse"
+                    }
+                  }
+                },
+                "example": {
+                  "engagement": {
+                    "id": "550e8400-e29b-41d4-a716-446655440801",
+                    "type": "Comment",
+                    "profileId": "550e8400-e29b-41d4-a716-446655440002",
+                    "copy": "Updated comment text with great insights!",
+                    "delaySeconds": 600
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "delete": {
         "operationId": "engagements-delete",
         "summary": "Delete an engagement",
@@ -2399,6 +2485,56 @@
             "items": {
               "$ref": "#/components/schemas/EngagementInput"
             }
+          }
+        }
+      },
+      "UpdateEngagementInput": {
+        "type": "object",
+        "description": "All fields are optional. Only include the fields you want to update.",
+        "properties": {
+          "copy": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": true,
+            "description": "The text content. Cannot be updated for Like engagements. Cannot be removed from Comment engagements. Set to null to remove copy from Repost engagements."
+          },
+          "delaySeconds": {
+            "type": "integer",
+            "enum": [0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400],
+            "nullable": true,
+            "description": "Delay in seconds after post publishes. Cannot be updated for Like engagements."
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Change the profile that will perform the engagement. The new profile must have the required engagement permissions."
+          }
+        }
+      },
+      "EngagementResponse": {
+        "type": "object",
+        "description": "Engagement object returned from update operations (without channel)",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/EngagementType"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The profile ID that will perform the engagement"
+          },
+          "copy": {
+            "type": "string",
+            "nullable": true,
+            "description": "The text content for Comment or Repost engagements"
+          },
+          "delaySeconds": {
+            "type": "integer",
+            "description": "Delay in seconds after post publishes"
           }
         }
       },
