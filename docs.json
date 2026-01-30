@@ -128,6 +128,7 @@
             "pages": [
               "api/introduction",
               "api/authentication",
+              "api/mcp",
               "api/linkedin-mentions",
               "api/errors"
             ]

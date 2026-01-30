@@ -1,0 +1,231 @@
+---
+title: 'MCP Server'
+description: 'Connect AI tools to the Ordinal API with Model Context Protocol'
+---
+
+## Overview
+
+The Ordinal API exposes an MCP (Model Context Protocol) server that allows AI tools to interact directly with your Ordinal workspace. This enables AI assistants to create posts, manage profiles, retrieve analytics, and more on your behalf.
+
+<Card title="MCP Server URL" icon="server">
+  ```
+  http://app.tryordinal.com/api/mcp
+  ```
+</Card>
+
+## Prerequisites
+
+Before connecting to the MCP server, you'll need an **API key**. See the [Authentication](/api/authentication) guide for details on generating an API key.
+
+## Install
+
+Select a method below to install the server. After installation, you'll need to replace `YOUR_API_KEY` with your actual API key.
+
+<Tabs>
+  <Tab title="Cursor">
+    <Card 
+      title="Add to Cursor" 
+      icon="code" 
+      href="cursor://anysphere.cursor-deeplink/mcp/install?name=ordinal&config=eyJ1cmwiOiJodHRwOi8vYXBwLnRyeW9yZGluYWwuY29tL2FwaS9tY3AiLCJoZWFkZXJzIjp7IkF1dGhvcml6YXRpb24iOiJCZWFyZXIgWU9VUl9BUElfS0VZIn19"
+    >
+      One-click install for Cursor IDE
+    </Card>
+
+    Or manually configure by opening the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`), searching for "Open MCP settings", and adding:
+
+    ```json
+    {
+      "mcpServers": {
+        "ordinal": {
+          "url": "http://app.tryordinal.com/api/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+
+  <Tab title="Claude Code">
+    Run the following command in your terminal:
+
+    ```bash
+    claude mcp add --transport http ordinal http://app.tryordinal.com/api/mcp \
+      --header "Authorization: Bearer YOUR_API_KEY"
+    ```
+
+    Verify the connection with:
+
+    ```bash
+    claude mcp list
+    ```
+  </Tab>
+
+  <Tab title="Claude Desktop">
+    Open your Claude Desktop configuration file:
+    - **Mac**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+    - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+    Add the Ordinal MCP server:
+
+    ```json
+    {
+      "mcpServers": {
+        "ordinal": {
+          "url": "http://app.tryordinal.com/api/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+
+    Restart Claude Desktop to apply the changes.
+  </Tab>
+
+  <Tab title="VS Code">
+    <Card 
+      title="Add to VS Code" 
+      icon="microsoft" 
+      href="vscode://ms-vscode.mcp/install?name=ordinal&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22http%3A%2F%2Fapp.tryordinal.com%2Fapi%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20YOUR_API_KEY%22%7D%7D"
+    >
+      One-click install for VS Code
+    </Card>
+
+    Or manually create a `.vscode/mcp.json` file in your project:
+
+    ```json
+    {
+      "servers": {
+        "ordinal": {
+          "type": "http",
+          "url": "http://app.tryordinal.com/api/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+
+  <Tab title="Gemini CLI">
+    Run the following command to add the server:
+
+    ```bash
+    gemini mcp add --transport http ordinal http://app.tryordinal.com/api/mcp \
+      --header "Authorization: Bearer YOUR_API_KEY"
+    ```
+
+    Or add to your `~/.gemini/settings.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "ordinal": {
+          "httpUrl": "http://app.tryordinal.com/api/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+
+    Verify with:
+
+    ```bash
+    gemini mcp list
+    ```
+  </Tab>
+
+  <Tab title="Codex CLI">
+    Run the following command to add the server:
+
+    ```bash
+    codex mcp add ordinal --url http://app.tryordinal.com/api/mcp \
+      --env ORDINAL_API_KEY=YOUR_API_KEY
+    ```
+
+    Or add to your `~/.codex/config.toml`:
+
+    ```toml
+    [mcp_servers.ordinal]
+    url = "http://app.tryordinal.com/api/mcp"
+
+    [mcp_servers.ordinal.http_headers]
+    Authorization = "Bearer YOUR_API_KEY"
+    ```
+
+    Verify with `/mcp` in the Codex TUI.
+  </Tab>
+</Tabs>
+
+## Available Capabilities
+
+Once connected, the MCP server provides AI tools with access to your Ordinal workspace:
+
+<CardGroup cols={2}>
+  <Card title="Posts" icon="file-lines">
+    Create, list, retrieve, and delete posts
+  </Card>
+  <Card title="Profiles" icon="circle-user">
+    Access connected social profiles
+  </Card>
+  <Card title="Analytics" icon="chart-line">
+    Retrieve post and follower analytics
+  </Card>
+  <Card title="Labels" icon="tag">
+    Manage labels for organizing posts
+  </Card>
+  <Card title="Approvals" icon="circle-check">
+    Handle approval workflows
+  </Card>
+  <Card title="Engagements" icon="heart">
+    Configure auto-engagements
+  </Card>
+</CardGroup>
+
+## Security
+
+<Warning>
+  Your API key grants full access to your Ordinal workspace. Keep it secure and never share it publicly.
+</Warning>
+
+- **Environment Variables**: Consider storing your API key in an environment variable and referencing it in your MCP config
+- **Workspace Scope**: API keys are scoped to a single workspace
+- **Revocation**: If compromised, revoke your API key immediately in [workspace settings](https://app.tryordinal.com/settings/integrations)
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection Failed">
+    - Verify your API key is correct and hasn't been revoked
+    - Ensure the URL is exactly `http://app.tryordinal.com/api/mcp`
+  </Accordion>
+
+  <Accordion title="Authentication Errors">
+    - Confirm the `Authorization` header format is `Bearer YOUR_API_KEY`
+    - Check for extra spaces or missing characters in your API key
+    - Try generating a new API key
+  </Accordion>
+
+  <Accordion title="Tools Not Appearing">
+    - Restart your AI tool after configuring the MCP server
+    - Check for JSON syntax errors in your configuration file
+    - Verify the server name matches what you configured
+  </Accordion>
+</AccordionGroup>
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Authentication Guide" icon="key" href="/api/authentication">
+    Learn how to generate and manage API keys
+  </Card>
+  <Card title="API Reference" icon="code" href="/api/introduction">
+    Explore the full API documentation
+  </Card>
+</CardGroup>
