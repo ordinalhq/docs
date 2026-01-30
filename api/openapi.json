@@ -194,7 +194,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440600",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345678",
-                    "commentary": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n✅ Feature A\n✅ Feature B\n✅ Feature C\n\nLearn more in the comments 👇",
+                    "commentary": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n\u2705 Feature A\n\u2705 Feature B\n\u2705 Feature C\n\nLearn more in the comments \ud83d\udc47",
                     "type": "SHARE",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 245,
@@ -207,7 +207,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440601",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345679",
-                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nThread below:",
+                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nThread below:",
                     "type": "SHARE",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 892,
@@ -364,7 +364,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440700",
                     "url": "https://twitter.com/acme/status/1234567890123456789",
-                    "text": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread 🧵👇",
+                    "text": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread \ud83e\uddf5\ud83d\udc47",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 342,
                     "replyCount": 28,
@@ -372,12 +372,12 @@
                     "quoteCount": 15,
                     "bookmarkCount": 67,
                     "impressionCount": 45200,
-                    "engagement": 1.20
+                    "engagement": 1.2
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440701",
                     "url": "https://twitter.com/acme/status/1234567890123456790",
-                    "text": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nA thread:",
+                    "text": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nA thread:",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 1256,
                     "replyCount": 94,
@@ -399,164 +399,6 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/invites": {
-      "get": {
-        "operationId": "invites-list",
-        "summary": "List pending invites",
-        "description": "List all pending invites for the workspace",
-        "tags": [
-          "Invites"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of pending invites",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Invite"
-                  }
-                },
-                "example": [
-                  {
-                    "id": "550e8400-e29b-41d4-a716-446655440500",
-                    "email": "newuser@example.com",
-                    "createdAt": "2026-01-15T10:00:00.000Z"
-                  },
-                  {
-                    "id": "550e8400-e29b-41d4-a716-446655440501",
-                    "email": "another@example.com",
-                    "createdAt": "2026-01-16T14:30:00.000Z"
-                  }
-                ]
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
-        }
-      },
-      "post": {
-        "operationId": "invites-create",
-        "summary": "Create an invite",
-        "description": "Invite a user to the workspace by email. If the user already has an Ordinal account, they will be added to the workspace immediately. Otherwise, an invite email will be sent.",
-        "tags": [
-          "Invites"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateInviteInput"
-              },
-              "example": {
-                "email": "newuser@example.com"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Invite created or user added to workspace",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "invite": {
-                      "allOf": [
-                        { "$ref": "#/components/schemas/Invite" }
-                      ],
-                      "nullable": true,
-                      "description": "The created invite, or null if the user was added directly to the workspace"
-                    },
-                    "sentEmail": {
-                      "type": "boolean",
-                      "description": "Whether an invite email was sent"
-                    }
-                  }
-                },
-                "example": {
-                  "invite": {
-                    "id": "550e8400-e29b-41d4-a716-446655440500",
-                    "email": "newuser@example.com",
-                    "createdAt": "2026-01-15T10:00:00.000Z"
-                  },
-                  "sentEmail": true
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          }
-        }
-      }
-    },
-    "/invites/{id}": {
-      "delete": {
-        "operationId": "invites-delete",
-        "summary": "Delete an invite",
-        "description": "Delete a pending invite. This will prevent the invited user from joining the workspace using this invite.",
-        "tags": [
-          "Invites"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Invite ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Invite deleted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "deleted": {
-                      "type": "boolean",
-                      "description": "Whether the invite was deleted"
-                    }
-                  }
-                },
-                "example": {
-                  "deleted": true
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -659,810 +501,6 @@
                       "$ref": "#/components/schemas/Approval"
                     }
                   }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/labels": {
-      "get": {
-        "operationId": "labels-list",
-        "summary": "List all labels",
-        "description": "List all labels in the workspace",
-        "tags": [
-          "Labels"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of labels",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "labels": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Label"
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "labels": [
-                    {
-                      "id": "550e8400-e29b-41d4-a716-446655440400",
-                      "name": "Marketing",
-                      "color": "#9333ea",
-                      "backgroundColor": "#f3e8ff",
-                      "createdAt": "2025-06-01T00:00:00.000Z",
-                      "updatedAt": "2025-06-01T00:00:00.000Z"
-                    },
-                    {
-                      "id": "550e8400-e29b-41d4-a716-446655440401",
-                      "name": "Product",
-                      "color": "#16a34a",
-                      "backgroundColor": "#dcfce7",
-                      "createdAt": "2025-06-01T00:00:00.000Z",
-                      "updatedAt": "2025-06-01T00:00:00.000Z"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
-        }
-      },
-      "post": {
-        "operationId": "labels-create",
-        "summary": "Create a label",
-        "description": "Create a new label in the workspace",
-        "tags": [
-          "Labels"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateLabelInput"
-              },
-              "example": {
-                "name": "Engineering",
-                "color": "green"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Label created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                },
-                "example": {
-                  "id": "550e8400-e29b-41d4-a716-446655440402",
-                  "name": "Engineering",
-                  "color": "#16a34a",
-                  "backgroundColor": "#dcfce7",
-                  "createdAt": "2026-01-05T10:30:00.000Z",
-                  "updatedAt": "2026-01-05T10:30:00.000Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          }
-        }
-      }
-    },
-    "/labels/{id}": {
-      "delete": {
-        "operationId": "labels-delete",
-        "summary": "Delete a label",
-        "description": "Delete a label from the workspace",
-        "tags": [
-          "Labels"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Label ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Label deleted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Label"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/linkedin/{username}/mentions": {
-      "get": {
-        "operationId": "linkedin-getMention",
-        "summary": "Mention format by username",
-        "description": "Look up the mention format for a LinkedIn user or organization by their username to use in posts or comments.\n\nThe username is the part after `/in/` or `/company/` in a LinkedIn profile URL:\n- Personal profile: `linkedin.com/in/johndoe` → username is `johndoe`\n- Company page: `linkedin.com/company/acme-inc` → username is `acme-inc`\n\nReturns both user and organization results if a username matches both (rare but possible).",
-        "tags": [
-          "LinkedIn"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "required": true,
-            "description": "LinkedIn username (vanity name) to look up",
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "LinkedIn mention information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "user": {
-                      "allOf": [
-                        { "$ref": "#/components/schemas/LinkedInMentionUser" }
-                      ],
-                      "nullable": true
-                    },
-                    "organization": {
-                      "allOf": [
-                        { "$ref": "#/components/schemas/LinkedInMentionOrganization" }
-                      ],
-                      "nullable": true
-                    }
-                  }
-                },
-                "example": {
-                  "user": {
-                    "username": "johndoe",
-                    "urn": "urn:li:person:ABC123xyz",
-                    "type": "User",
-                    "displayName": "John Doe",
-                    "firstName": "John",
-                    "mentionFormat": "@[John Doe](urn:li:person:ABC123xyz)",
-                    "firstNameMentionFormat": "@[John](urn:li:person:ABC123xyz)"
-                  },
-                  "organization": {
-                    "username": "acme-inc",
-                    "urn": "urn:li:organization:123456",
-                    "type": "Organization",
-                    "displayName": "Acme Inc",
-                    "mentionFormat": "@[Acme Inc](urn:li:organization:123456)"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/posts": {
-      "get": {
-        "operationId": "posts-list",
-        "summary": "List posts",
-        "description": "List all posts in the workspace with pagination",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of posts to return (1-100)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": 10
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Number of posts to skip for pagination",
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "default": 0
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of posts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "posts": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Post"
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "posts": [
-                    {
-                      "id": "550e8400-e29b-41d4-a716-446655440000",
-                      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                      "title": "Q4 Product Launch Announcement",
-                      "channels": [
-                        "LinkedIn",
-                        "Twitter"
-                      ],
-                      "status": "Scheduled",
-                      "publishDate": "2026-01-15",
-                      "publishAt": "2026-01-15T14:00:00.000Z",
-                      "createdAt": "2026-01-05T10:30:00.000Z",
-                      "updatedAt": "2026-01-05T11:45:00.000Z",
-                      "linkedIn": {
-                        "profile": {
-                          "id": "550e8400-e29b-41d4-a716-446655440001",
-                          "name": "John Doe",
-                          "detail": "johndoe"
-                        },
-                        "copy": "Excited to announce our new product launch! 🚀"
-                      },
-                      "x": {
-                        "profile": {
-                          "id": "550e8400-e29b-41d4-a716-446655440003",
-                          "name": "Acme Inc",
-                          "detail": "@acme_inc"
-                        },
-                        "tweets": [
-                          {
-                            "copy": "Excited to announce our new product launch! 🚀"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "429": {
-            "$ref": "#/components/responses/RateLimited"
-          }
-        }
-      },
-      "post": {
-        "operationId": "posts-create",
-        "summary": "Create post",
-        "description": "Create a new post in the workspace",
-        "tags": [
-          "Posts"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatePostInput"
-              },
-              "example": {
-                "title": "Q4 Product Launch Announcement",
-                "publishAt": "2026-01-15T14:00:00.000Z",
-                "status": "Scheduled",
-                "linkedIn": {
-                  "profileId": "550e8400-e29b-41d4-a716-446655440001",
-                  "copy": "Excited to announce our new product launch! 🚀\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation"
-                },
-                "x": {
-                  "profileId": "550e8400-e29b-41d4-a716-446655440003",
-                  "tweets": [
-                    {
-                      "copy": "Excited to announce our new product launch! 🚀\n\nA thread on what we've been building 🧵"
-                    },
-                    {
-                      "copy": "Key highlights:\n• Feature A\n• Feature B\n• Feature C"
-                    }
-                  ]
-                },
-                "labelIds": [
-                  "550e8400-e29b-41d4-a716-446655440002"
-                ],
-                "notes": "Internal note: Coordinate with marketing team"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Post created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PostCreateResponse"
-                },
-                "example": {
-                  "id": "550e8400-e29b-41d4-a716-446655440000",
-                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                  "title": "Q4 Product Launch Announcement",
-                  "channels": [
-                    "LinkedIn"
-                  ],
-                  "status": "Scheduled",
-                  "createdAt": "2026-01-05T10:30:00.000Z",
-                  "updatedAt": "2026-01-05T10:30:00.000Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
-        }
-      }
-    },
-    "/posts/{id}": {
-      "get": {
-        "operationId": "posts-get",
-        "summary": "Get post",
-        "description": "Get a specific post by ID",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Post ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "post": {
-                      "$ref": "#/components/schemas/Post"
-                    }
-                  }
-                },
-                "example": {
-                  "post": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                    "title": "Q4 Product Launch Announcement",
-                    "channels": [
-                      "LinkedIn",
-                      "Twitter"
-                    ],
-                    "status": "Scheduled",
-                    "publishDate": "2026-01-15",
-                    "publishAt": "2026-01-15T14:00:00.000Z",
-                    "createdAt": "2026-01-05T10:30:00.000Z",
-                    "updatedAt": "2026-01-05T11:45:00.000Z",
-                    "linkedIn": {
-                      "profile": {
-                        "id": "550e8400-e29b-41d4-a716-446655440001",
-                        "name": "John Doe",
-                        "detail": "johndoe"
-                      },
-                      "copy": "Excited to announce our new product launch! 🚀"
-                    },
-                    "x": {
-                      "profile": {
-                        "id": "550e8400-e29b-41d4-a716-446655440003",
-                        "name": "Acme Inc",
-                        "detail": "@acme_inc"
-                      },
-                      "tweets": [
-                        {
-                          "copy": "Excited to announce our new product launch! 🚀"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "patch": {
-        "operationId": "posts-update",
-        "summary": "Update post",
-        "description": "Update an existing post by ID. All fields are optional - only include the fields you want to update.",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Post ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePostInput"
-              },
-              "example": {
-                "title": "Updated: Q4 Product Launch Announcement",
-                "publishAt": "2026-01-16T15:00:00.000Z",
-                "status": "Finalized",
-                "linkedIn": {
-                  "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
-                },
-                "x": {
-                  "tweets": [
-                    {
-                      "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
-                    },
-                    {
-                      "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Post updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Post"
-                },
-                "example": {
-                  "id": "550e8400-e29b-41d4-a716-446655440000",
-                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                  "title": "Updated: Q4 Product Launch Announcement",
-                  "channels": [
-                    "LinkedIn",
-                    "Twitter"
-                  ],
-                  "status": "Finalized",
-                  "publishDate": "2026-01-16",
-                  "publishAt": "2026-01-16T15:00:00.000Z",
-                  "updatedAt": "2026-01-13T09:15:00.000Z",
-                  "linkedIn": {
-                    "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
-                  },
-                  "x": {
-                    "tweets": [
-                      {
-                        "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
-                      },
-                      {
-                        "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "delete": {
-        "operationId": "posts-delete",
-        "summary": "Delete post",
-        "description": "Delete a post by ID",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Post ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post deleted successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "example": {
-                  "success": true
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/posts/{id}/schedule": {
-      "post": {
-        "operationId": "posts-schedule",
-        "summary": "Schedule or reschedule post",
-        "description": "Schedule a post for publishing, or reschedule an already scheduled post to a new time. The post must have at least one channel with a connected profile.",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Post ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "publishAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "When to publish the post (UTC). Required for new schedules, optional for rescheduling (uses existing publishAt if not provided)."
-                  }
-                }
-              },
-              "example": {
-                "publishAt": "2026-01-20T14:00:00.000Z"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Post scheduled successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "format": "uuid"
-                    },
-                    "url": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "channels": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/PostStatus"
-                    },
-                    "publishDate": {
-                      "type": "string",
-                      "description": "Scheduled publish date (YYYY-MM-DD) in workspace timezone"
-                    },
-                    "publishAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Scheduled publish datetime UTC"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                },
-                "example": {
-                  "id": "550e8400-e29b-41d4-a716-446655440000",
-                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                  "title": "Q4 Product Launch Announcement",
-                  "channels": ["LinkedIn", "Twitter"],
-                  "status": "Scheduled",
-                  "publishDate": "2026-01-20",
-                  "publishAt": "2026-01-20T14:00:00.000Z",
-                  "updatedAt": "2026-01-19T10:30:00.000Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/posts/{id}/unschedule": {
-      "post": {
-        "operationId": "posts-unschedule",
-        "summary": "Unschedule post",
-        "description": "Cancel a scheduled post. The post status will be changed to Finalized and any pending scheduled publishes will be cancelled.",
-        "tags": [
-          "Posts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Post ID (UUID)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post unscheduled successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "format": "uuid"
-                    },
-                    "url": {
-                      "type": "string",
-                      "format": "uri"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "channels": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/PostStatus"
-                    },
-                    "publishDate": {
-                      "type": "string",
-                      "nullable": true,
-                      "description": "Publish date (YYYY-MM-DD) in workspace timezone. May be null if not set."
-                    },
-                    "publishAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "nullable": true,
-                      "description": "Publish datetime UTC. May be null if not set."
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                },
-                "example": {
-                  "id": "550e8400-e29b-41d4-a716-446655440000",
-                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
-                  "title": "Q4 Product Launch Announcement",
-                  "channels": ["LinkedIn", "Twitter"],
-                  "status": "Finalized",
-                  "publishDate": "2026-01-20",
-                  "publishAt": "2026-01-20T14:00:00.000Z",
-                  "updatedAt": "2026-01-19T11:00:00.000Z"
                 }
               }
             }
@@ -1861,17 +899,565 @@
         }
       }
     },
-    "/posts/{postId}/subscribers": {
+    "/invites": {
       "get": {
-        "operationId": "subscribers-list",
-        "summary": "List post subscribers",
-        "description": "List all subscribers for a specific post",
+        "operationId": "invites-list",
+        "summary": "List pending invites",
+        "description": "List all pending invites for the workspace",
         "tags": [
-          "Subscribers"
+          "Invites"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of pending invites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invite"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440500",
+                    "email": "newuser@example.com",
+                    "createdAt": "2026-01-15T10:00:00.000Z"
+                  },
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440501",
+                    "email": "another@example.com",
+                    "createdAt": "2026-01-16T14:30:00.000Z"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "invites-create",
+        "summary": "Create an invite",
+        "description": "Invite a user to the workspace by email. If the user already has an Ordinal account, they will be added to the workspace immediately. Otherwise, an invite email will be sent.",
+        "tags": [
+          "Invites"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInviteInput"
+              },
+              "example": {
+                "email": "newuser@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invite created or user added to workspace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "invite": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Invite"
+                        }
+                      ],
+                      "nullable": true,
+                      "description": "The created invite, or null if the user was added directly to the workspace"
+                    },
+                    "sentEmail": {
+                      "type": "boolean",
+                      "description": "Whether an invite email was sent"
+                    }
+                  }
+                },
+                "example": {
+                  "invite": {
+                    "id": "550e8400-e29b-41d4-a716-446655440500",
+                    "email": "newuser@example.com",
+                    "createdAt": "2026-01-15T10:00:00.000Z"
+                  },
+                  "sentEmail": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/invites/{id}": {
+      "delete": {
+        "operationId": "invites-delete",
+        "summary": "Delete an invite",
+        "description": "Delete a pending invite. This will prevent the invited user from joining the workspace using this invite.",
+        "tags": [
+          "Invites"
         ],
         "parameters": [
           {
-            "name": "postId",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Invite ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invite deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean",
+                      "description": "Whether the invite was deleted"
+                    }
+                  }
+                },
+                "example": {
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/labels": {
+      "get": {
+        "operationId": "labels-list",
+        "summary": "List all labels",
+        "description": "List all labels in the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of labels",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "labels": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Label"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "labels": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440400",
+                      "name": "Marketing",
+                      "color": "#9333ea",
+                      "backgroundColor": "#f3e8ff",
+                      "createdAt": "2025-06-01T00:00:00.000Z",
+                      "updatedAt": "2025-06-01T00:00:00.000Z"
+                    },
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440401",
+                      "name": "Product",
+                      "color": "#16a34a",
+                      "backgroundColor": "#dcfce7",
+                      "createdAt": "2025-06-01T00:00:00.000Z",
+                      "updatedAt": "2025-06-01T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "labels-create",
+        "summary": "Create a label",
+        "description": "Create a new label in the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLabelInput"
+              },
+              "example": {
+                "name": "Engineering",
+                "color": "green"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Label created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440402",
+                  "name": "Engineering",
+                  "color": "#16a34a",
+                  "backgroundColor": "#dcfce7",
+                  "createdAt": "2026-01-05T10:30:00.000Z",
+                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/labels/{id}": {
+      "delete": {
+        "operationId": "labels-delete",
+        "summary": "Delete a label",
+        "description": "Delete a label from the workspace",
+        "tags": [
+          "Labels"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Label ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Label deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/linkedin/{username}/mentions": {
+      "get": {
+        "operationId": "linkedin-getMention",
+        "summary": "Mention format by username",
+        "description": "Look up the mention format for a LinkedIn user or organization by their username to use in posts or comments.\n\nThe username is the part after `/in/` or `/company/` in a LinkedIn profile URL:\n- Personal profile: `linkedin.com/in/johndoe` \u2192 username is `johndoe`\n- Company page: `linkedin.com/company/acme-inc` \u2192 username is `acme-inc`\n\nReturns both user and organization results if a username matches both (rare but possible).",
+        "tags": [
+          "LinkedIn"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn username (vanity name) to look up",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LinkedIn mention information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/LinkedInMentionUser"
+                        }
+                      ],
+                      "nullable": true
+                    },
+                    "organization": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/LinkedInMentionOrganization"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "username": "johndoe",
+                    "urn": "urn:li:person:ABC123xyz",
+                    "type": "User",
+                    "displayName": "John Doe",
+                    "firstName": "John",
+                    "mentionFormat": "@[John Doe](urn:li:person:ABC123xyz)",
+                    "firstNameMentionFormat": "@[John](urn:li:person:ABC123xyz)"
+                  },
+                  "organization": {
+                    "username": "acme-inc",
+                    "urn": "urn:li:organization:123456",
+                    "type": "Organization",
+                    "displayName": "Acme Inc",
+                    "mentionFormat": "@[Acme Inc](urn:li:organization:123456)"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "operationId": "posts-list",
+        "summary": "List posts",
+        "description": "List all posts in the workspace with pagination",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of posts to return (1-100)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of posts to skip for pagination",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of posts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Post"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "posts": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                      "title": "Q4 Product Launch Announcement",
+                      "channels": [
+                        "LinkedIn",
+                        "Twitter"
+                      ],
+                      "status": "Scheduled",
+                      "publishDate": "2026-01-15",
+                      "publishAt": "2026-01-15T14:00:00.000Z",
+                      "createdAt": "2026-01-05T10:30:00.000Z",
+                      "updatedAt": "2026-01-05T11:45:00.000Z",
+                      "linkedIn": {
+                        "profile": {
+                          "id": "550e8400-e29b-41d4-a716-446655440001",
+                          "name": "John Doe",
+                          "detail": "johndoe"
+                        },
+                        "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                      },
+                      "x": {
+                        "profile": {
+                          "id": "550e8400-e29b-41d4-a716-446655440003",
+                          "name": "Acme Inc",
+                          "detail": "@acme_inc"
+                        },
+                        "tweets": [
+                          {
+                            "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      },
+      "post": {
+        "operationId": "posts-create",
+        "summary": "Create post",
+        "description": "Create a new post in the workspace",
+        "tags": [
+          "Posts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePostInput"
+              },
+              "example": {
+                "title": "Q4 Product Launch Announcement",
+                "publishAt": "2026-01-15T14:00:00.000Z",
+                "status": "Scheduled",
+                "linkedIn": {
+                  "profileId": "550e8400-e29b-41d4-a716-446655440001",
+                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation"
+                },
+                "x": {
+                  "profileId": "550e8400-e29b-41d4-a716-446655440003",
+                  "tweets": [
+                    {
+                      "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nA thread on what we've been building \ud83e\uddf5"
+                    },
+                    {
+                      "copy": "Key highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C"
+                    }
+                  ]
+                },
+                "labelIds": [
+                  "550e8400-e29b-41d4-a716-446655440002"
+                ],
+                "notes": "Internal note: Coordinate with marketing team"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostCreateResponse"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn"
+                  ],
+                  "status": "Scheduled",
+                  "createdAt": "2026-01-05T10:30:00.000Z",
+                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "operationId": "posts-get",
+        "summary": "Get post",
+        "description": "Get a specific post by ID",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
             "in": "path",
             "required": true,
             "description": "Post ID (UUID)",
@@ -1883,40 +1469,400 @@
         ],
         "responses": {
           "200": {
-            "description": "List of subscribers",
+            "description": "Post details",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "subscribers": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Subscriber"
-                      }
+                    "post": {
+                      "$ref": "#/components/schemas/Post"
                     }
                   }
                 },
                 "example": {
-                  "subscribers": [
+                  "post": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                    "title": "Q4 Product Launch Announcement",
+                    "channels": [
+                      "LinkedIn",
+                      "Twitter"
+                    ],
+                    "status": "Scheduled",
+                    "publishDate": "2026-01-15",
+                    "publishAt": "2026-01-15T14:00:00.000Z",
+                    "createdAt": "2026-01-05T10:30:00.000Z",
+                    "updatedAt": "2026-01-05T11:45:00.000Z",
+                    "linkedIn": {
+                      "profile": {
+                        "id": "550e8400-e29b-41d4-a716-446655440001",
+                        "name": "John Doe",
+                        "detail": "johndoe"
+                      },
+                      "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                    },
+                    "x": {
+                      "profile": {
+                        "id": "550e8400-e29b-41d4-a716-446655440003",
+                        "name": "Acme Inc",
+                        "detail": "@acme_inc"
+                      },
+                      "tweets": [
+                        {
+                          "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "posts-update",
+        "summary": "Update post",
+        "description": "Update an existing post by ID. All fields are optional - only include the fields you want to update.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePostInput"
+              },
+              "example": {
+                "title": "Updated: Q4 Product Launch Announcement",
+                "publishAt": "2026-01-16T15:00:00.000Z",
+                "status": "Finalized",
+                "linkedIn": {
+                  "copy": "Updated content for our product launch! \ud83d\ude80\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                },
+                "x": {
+                  "tweets": [
                     {
-                      "id": "550e8400-e29b-41d4-a716-446655440300",
-                      "user": {
-                        "id": "550e8400-e29b-41d4-a716-446655440011",
-                        "firstName": "Jane",
-                        "lastName": "Smith"
-                      },
-                      "createdBy": {
-                        "id": "550e8400-e29b-41d4-a716-446655440010",
-                        "firstName": "John",
-                        "lastName": "Doe"
-                      },
-                      "createdAt": "2026-01-05T10:30:00.000Z"
+                      "copy": "Updated content for our product launch! \ud83d\ude80\n\nWe've added even more features \ud83e\uddf5"
+                    },
+                    {
+                      "copy": "\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
                     }
                   ]
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Updated: Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn",
+                    "Twitter"
+                  ],
+                  "status": "Finalized",
+                  "publishDate": "2026-01-16",
+                  "publishAt": "2026-01-16T15:00:00.000Z",
+                  "updatedAt": "2026-01-13T09:15:00.000Z",
+                  "linkedIn": {
+                    "copy": "Updated content for our product launch! \ud83d\ude80\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                  },
+                  "x": {
+                    "tweets": [
+                      {
+                        "copy": "Updated content for our product launch! \ud83d\ude80\n\nWe've added even more features \ud83e\uddf5"
+                      },
+                      {
+                        "copy": "\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "posts-delete",
+        "summary": "Delete post",
+        "description": "Delete a post by ID",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/schedule": {
+      "post": {
+        "operationId": "posts-schedule",
+        "summary": "Schedule or reschedule post",
+        "description": "Schedule a post for publishing, or reschedule an already scheduled post to a new time. The post must have at least one channel with a connected profile.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "publishAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When to publish the post (UTC). Required for new schedules, optional for rescheduling (uses existing publishAt if not provided)."
+                  }
+                }
+              },
+              "example": {
+                "publishAt": "2026-01-20T14:00:00.000Z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post scheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/PostStatus"
+                    },
+                    "publishDate": {
+                      "type": "string",
+                      "description": "Scheduled publish date (YYYY-MM-DD) in workspace timezone"
+                    },
+                    "publishAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Scheduled publish datetime UTC"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn",
+                    "Twitter"
+                  ],
+                  "status": "Scheduled",
+                  "publishDate": "2026-01-20",
+                  "publishAt": "2026-01-20T14:00:00.000Z",
+                  "updatedAt": "2026-01-19T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/unschedule": {
+      "post": {
+        "operationId": "posts-unschedule",
+        "summary": "Unschedule post",
+        "description": "Cancel a scheduled post. The post status will be changed to Finalized and any pending scheduled publishes will be cancelled.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post unscheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/PostStatus"
+                    },
+                    "publishDate": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Publish date (YYYY-MM-DD) in workspace timezone. May be null if not set."
+                    },
+                    "publishAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "description": "Publish datetime UTC. May be null if not set."
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Q4 Product Launch Announcement",
+                  "channels": [
+                    "LinkedIn",
+                    "Twitter"
+                  ],
+                  "status": "Finalized",
+                  "publishDate": "2026-01-20",
+                  "publishAt": "2026-01-20T14:00:00.000Z",
+                  "updatedAt": "2026-01-19T11:00:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -2014,6 +1960,72 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/posts/{postId}/subscribers": {
+      "get": {
+        "operationId": "subscribers-list",
+        "summary": "List post subscribers",
+        "description": "List all subscribers for a specific post",
+        "tags": [
+          "Subscribers"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of subscribers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "subscribers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscriber"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "subscribers": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440300",
+                      "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440011",
+                        "firstName": "Jane",
+                        "lastName": "Smith"
+                      },
+                      "createdBy": {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "firstName": "John",
+                        "lastName": "Doe"
+                      },
+                      "createdAt": "2026-01-05T10:30:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -2259,7 +2271,9 @@
             "properties": {
               "profile": {
                 "allOf": [
-                  { "$ref": "#/components/schemas/ChannelProfile" }
+                  {
+                    "$ref": "#/components/schemas/ChannelProfile"
+                  }
                 ],
                 "nullable": true
               },
@@ -2275,7 +2289,9 @@
             "properties": {
               "profile": {
                 "allOf": [
-                  { "$ref": "#/components/schemas/ChannelProfile" }
+                  {
+                    "$ref": "#/components/schemas/ChannelProfile"
+                  }
                 ],
                 "nullable": true
               },
@@ -2388,7 +2404,10 @@
       "TwitterConfig": {
         "type": "object",
         "description": "X (Twitter) channel configuration for creating or updating posts",
-        "required": ["profileId", "tweets"],
+        "required": [
+          "profileId",
+          "tweets"
+        ],
         "properties": {
           "profileId": {
             "type": "string",
@@ -2401,7 +2420,9 @@
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["copy"],
+              "required": [
+                "copy"
+              ],
               "properties": {
                 "copy": {
                   "type": "string",
@@ -2575,11 +2596,18 @@
       },
       "EngagementType": {
         "type": "string",
-        "enum": ["Like", "Comment", "Repost"]
+        "enum": [
+          "Like",
+          "Comment",
+          "Repost"
+        ]
       },
       "EngagementChannel": {
         "type": "string",
-        "enum": ["LinkedIn", "X"]
+        "enum": [
+          "LinkedIn",
+          "X"
+        ]
       },
       "Engagement": {
         "type": "object",
@@ -2612,7 +2640,10 @@
       },
       "EngagementInput": {
         "type": "object",
-        "required": ["type", "profileId"],
+        "required": [
+          "type",
+          "profileId"
+        ],
         "properties": {
           "type": {
             "$ref": "#/components/schemas/EngagementType"
@@ -2629,14 +2660,27 @@
           },
           "delaySeconds": {
             "type": "integer",
-            "enum": [0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400],
+            "enum": [
+              0,
+              300,
+              600,
+              1800,
+              3600,
+              14400,
+              28800,
+              43200,
+              86400
+            ],
             "description": "Delay in seconds after post publishes. Required for Comment and Repost, must not be provided for Like."
           }
         }
       },
       "CreateEngagementsInput": {
         "type": "object",
-        "required": ["channel", "engagements"],
+        "required": [
+          "channel",
+          "engagements"
+        ],
         "properties": {
           "channel": {
             "$ref": "#/components/schemas/EngagementChannel"
@@ -2662,7 +2706,17 @@
           },
           "delaySeconds": {
             "type": "integer",
-            "enum": [0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400],
+            "enum": [
+              0,
+              300,
+              600,
+              1800,
+              3600,
+              14400,
+              28800,
+              43200,
+              86400
+            ],
             "nullable": true,
             "description": "Delay in seconds after post publishes. Cannot be updated for Like engagements."
           },
@@ -3011,7 +3065,11 @@
       },
       "LinkedInPostAnalytics": {
         "type": "object",
-        "required": ["id", "url", "type"],
+        "required": [
+          "id",
+          "url",
+          "type"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -3063,7 +3121,10 @@
       },
       "TwitterPostAnalytics": {
         "type": "object",
-        "required": ["id", "url"],
+        "required": [
+          "id",
+          "url"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -3117,7 +3178,10 @@
       },
       "FollowerDataPoint": {
         "type": "object",
-        "required": ["followerCount", "recordedAt"],
+        "required": [
+          "followerCount",
+          "recordedAt"
+        ],
         "properties": {
           "followerCount": {
             "type": "integer"
@@ -3141,7 +3205,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["User"]
+            "enum": [
+              "User"
+            ]
           },
           "displayName": {
             "type": "string",
@@ -3174,7 +3240,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["Organization"]
+            "enum": [
+              "Organization"
+            ]
           },
           "displayName": {
             "type": "string",
