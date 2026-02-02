@@ -235,9 +235,9 @@
     },
     "/analytics/x/{profileId}/followers": {
       "get": {
-        "operationId": "analytics-twitter-followers",
-        "summary": "Twitter follower growth",
-        "description": "Retrieve follower count history for a Twitter profile",
+        "operationId": "analytics-x-followers",
+        "summary": "X follower growth",
+        "description": "Retrieve follower count history for an X profile",
         "tags": [
           "Analytics"
         ],
@@ -246,7 +246,7 @@
             "name": "profileId",
             "in": "path",
             "required": true,
-            "description": "Twitter profile ID (UUID)",
+            "description": "X profile ID (UUID)",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -273,7 +273,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Twitter follower growth data",
+            "description": "X follower growth data",
             "content": {
               "application/json": {
                 "schema": {
@@ -313,9 +313,9 @@
     },
     "/analytics/x/{profileId}/posts": {
       "get": {
-        "operationId": "analytics-twitter-posts",
-        "summary": "Twitter post analytics",
-        "description": "Retrieve post analytics for a Twitter profile within a date range",
+        "operationId": "analytics-x-posts",
+        "summary": "X post analytics",
+        "description": "Retrieve post analytics for an X profile within a date range",
         "tags": [
           "Analytics"
         ],
@@ -324,7 +324,7 @@
             "name": "profileId",
             "in": "path",
             "required": true,
-            "description": "Twitter profile ID (UUID)",
+            "description": "X profile ID (UUID)",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -351,7 +351,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Twitter post analytics",
+            "description": "X post analytics",
             "content": {
               "application/json": {
                 "schema": {
@@ -363,7 +363,7 @@
                 "example": [
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440700",
-                    "url": "https://twitter.com/acme/status/1234567890123456789",
+                    "url": "https://x.com/acme/status/1234567890123456789",
                     "text": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread \ud83e\uddf5\ud83d\udc47",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 342,
@@ -376,7 +376,7 @@
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440701",
-                    "url": "https://twitter.com/acme/status/1234567890123456790",
+                    "url": "https://x.com/acme/status/1234567890123456790",
                     "text": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nA thread:",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 1256,
