@@ -233,7 +233,7 @@
         }
       }
     },
-    "/analytics/twitter/{profileId}/followers": {
+    "/analytics/x/{profileId}/followers": {
       "get": {
         "operationId": "analytics-twitter-followers",
         "summary": "Twitter follower growth",
@@ -311,7 +311,7 @@
         }
       }
     },
-    "/analytics/twitter/{profileId}/posts": {
+    "/analytics/x/{profileId}/posts": {
       "get": {
         "operationId": "analytics-twitter-posts",
         "summary": "Twitter post analytics",
