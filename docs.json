@@ -97,8 +97,8 @@
             "group": "Analytics and Reporting",
             "icon": "chart-line",
             "pages": [
-              "analytics/shortlinks",
-              "analytics/overview"
+              "analytics/overview",
+              "analytics/shortlinks"
             ]
           },
           {
