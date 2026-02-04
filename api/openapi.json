@@ -2817,7 +2817,7 @@
             "type": "string",
             "description": "Original filename of the uploaded file"
           },
-          "contentType": {
+          "mimetype": {
             "type": "string",
             "description": "MIME type of the file (e.g., image/jpeg, video/mp4)"
           },
