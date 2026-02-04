@@ -1351,7 +1351,19 @@
                           "name": "John Doe",
                           "detail": "johndoe"
                         },
-                        "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                        "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                        "assets": [
+                          {
+                            "id": "550e8400-e29b-41d4-a716-446655440010",
+                            "name": "product-photo.jpg",
+                            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                            "mimetype": "image/jpeg",
+                            "size": 245678,
+                            "width": 1920,
+                            "height": 1080,
+                            "duration": null
+                          }
+                        ]
                       },
                       "x": {
                         "profile": {
@@ -1361,7 +1373,8 @@
                         },
                         "tweets": [
                           {
-                            "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                            "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                            "assets": []
                           }
                         ]
                       }
@@ -1435,11 +1448,50 @@
                   "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
                   "title": "Q4 Product Launch Announcement",
                   "channels": [
-                    "LinkedIn"
+                    "LinkedIn",
+                    "Twitter"
                   ],
                   "status": "Scheduled",
                   "createdAt": "2026-01-05T10:30:00.000Z",
-                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                  "updatedAt": "2026-01-05T10:30:00.000Z",
+                  "linkedIn": {
+                    "copy": "Excited to announce our new product launch!",
+                    "assets": [
+                      {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "name": "product-photo.jpg",
+                        "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                        "mimetype": "image/jpeg",
+                        "size": 245678,
+                        "width": 1920,
+                        "height": 1080,
+                        "duration": null
+                      }
+                    ]
+                  },
+                  "x": {
+                    "tweets": [
+                      {
+                        "copy": "Excited to announce our new product launch!",
+                        "assets": [
+                          {
+                            "id": "550e8400-e29b-41d4-a716-446655440011",
+                            "name": "product-photo.jpg",
+                            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                            "mimetype": "image/jpeg",
+                            "size": 245678,
+                            "width": 1920,
+                            "height": 1080,
+                            "duration": null
+                          }
+                        ]
+                      },
+                      {
+                        "copy": "Key highlights: Feature A, Feature B, Feature C",
+                        "assets": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -1506,7 +1558,19 @@
                         "name": "John Doe",
                         "detail": "johndoe"
                       },
-                      "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                      "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                      "assets": [
+                        {
+                          "id": "550e8400-e29b-41d4-a716-446655440010",
+                          "name": "product-photo.jpg",
+                          "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                          "mimetype": "image/jpeg",
+                          "size": 245678,
+                          "width": 1920,
+                          "height": 1080,
+                          "duration": null
+                        }
+                      ]
                     },
                     "x": {
                       "profile": {
@@ -1516,7 +1580,8 @@
                       },
                       "tweets": [
                         {
-                          "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                          "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                          "assets": []
                         }
                       ]
                     }
@@ -2007,7 +2072,7 @@
                       "status": "ready",
                       "assetId": "550e8400-e29b-41d4-a716-446655440001",
                       "filename": "product-photo.jpg",
-                      "contentType": "image/jpeg",
+                      "mimetype": "image/jpeg",
                       "size": 245678,
                       "width": 1920,
                       "height": 1080,
@@ -2454,6 +2519,13 @@
               },
               "copy": {
                 "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "description": "Assets attached to the LinkedIn post",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
               }
             }
           },
@@ -2477,6 +2549,13 @@
                   "properties": {
                     "copy": {
                       "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "description": "Assets attached to this tweet",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
                     }
                   }
                 }
@@ -2720,6 +2799,48 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "nullable": true,
+            "description": "LinkedIn content with assets. Present when the post targets the LinkedIn channel.",
+            "properties": {
+              "copy": {
+                "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "description": "Assets attached to the LinkedIn post",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "description": "X (Twitter) content with assets. Present when the post targets the Twitter channel.",
+            "properties": {
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "description": "Assets attached to this tweet",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -2803,7 +2924,7 @@
             "type": "string",
             "description": "Original filename of the uploaded file"
           },
-          "contentType": {
+          "mimetype": {
             "type": "string",
             "description": "MIME type of the file (e.g., image/jpeg, video/mp4)"
           },
@@ -3610,6 +3731,49 @@
           "mentionFormat": {
             "type": "string",
             "description": "Pre-formatted mention string, e.g. @[Acme Inc](urn:li:organization:123456)"
+          }
+        }
+      },
+      "Asset": {
+        "type": "object",
+        "description": "Asset metadata for files attached to posts",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Original filename"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to access the asset"
+          },
+          "mimetype": {
+            "type": "string",
+            "description": "MIME type of the file (e.g., image/jpeg, video/mp4)"
+          },
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Width in pixels for images and videos"
+          },
+          "height": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Height in pixels for images and videos"
+          },
+          "duration": {
+            "type": "number",
+            "nullable": true,
+            "description": "Duration in seconds for videos"
           }
         }
       },
