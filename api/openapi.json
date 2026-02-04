@@ -2454,6 +2454,13 @@
               },
               "copy": {
                 "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "description": "Assets attached to the LinkedIn post",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
               }
             }
           },
@@ -2477,6 +2484,13 @@
                   "properties": {
                     "copy": {
                       "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "description": "Assets attached to this tweet",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
                     }
                   }
                 }
