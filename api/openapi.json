@@ -54,6 +54,10 @@
       "description": "Post subscribers for notifications"
     },
     {
+      "name": "File Uploads",
+      "description": "Upload files from URLs for use in posts. Supports images (JPEG, PNG, GIF, WebP) up to 10 MB and videos (MP4, MOV) up to 350 MB."
+    },
+    {
       "name": "Users",
       "description": "Workspace users"
     },
@@ -1395,13 +1399,15 @@
                 "status": "Scheduled",
                 "linkedIn": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440001",
-                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation"
+                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation",
+                  "assetIds": ["550e8400-e29b-41d4-a716-446655440010"]
                 },
                 "x": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440003",
                   "tweets": [
                     {
-                      "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nA thread on what we've been building \ud83e\uddf5"
+                      "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nA thread on what we've been building \ud83e\uddf5",
+                      "assetIds": ["550e8400-e29b-41d4-a716-446655440011"]
                     },
                     {
                       "copy": "Key highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C"
@@ -1863,6 +1869,175 @@
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/uploads": {
+      "post": {
+        "operationId": "uploads-create",
+        "summary": "Upload a file from a URL",
+        "description": "Uploads a file by downloading it from the provided URL. The file will be processed asynchronously. Poll the GET endpoint to check when it's ready, then use the returned assetId in post creation.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\n**Additional constraints:**\n- Images cannot exceed 36 megapixels\n- URL must be publicly accessible",
+        "tags": [
+          "File Uploads"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL of the file to upload. Must be publicly accessible."
+                  }
+                }
+              },
+              "example": {
+                "url": "https://example.com/images/product-photo.jpg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload job created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadJobCreated"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "status": "pending",
+                  "createdAt": "2026-02-04T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      }
+    },
+    "/uploads/{id}": {
+      "get": {
+        "operationId": "uploads-get",
+        "summary": "Get upload status",
+        "description": "Returns the current status and metadata of an upload. Poll this endpoint until status is 'ready', then use the returned assetId when creating posts.",
+        "tags": [
+          "File Uploads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Upload job ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload status and metadata. Response shape depends on status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/UploadPending"
+                    },
+                    {
+                      "$ref": "#/components/schemas/UploadProcessing"
+                    },
+                    {
+                      "$ref": "#/components/schemas/UploadReady"
+                    },
+                    {
+                      "$ref": "#/components/schemas/UploadFailed"
+                    },
+                    {
+                      "$ref": "#/components/schemas/UploadExpired"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "status"
+                  }
+                },
+                "examples": {
+                  "pending": {
+                    "summary": "Upload pending",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "pending",
+                      "createdAt": "2026-02-04T10:30:00.000Z"
+                    }
+                  },
+                  "processing": {
+                    "summary": "Upload processing",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "processing",
+                      "createdAt": "2026-02-04T10:30:00.000Z"
+                    }
+                  },
+                  "ready": {
+                    "summary": "Upload ready",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "ready",
+                      "assetId": "550e8400-e29b-41d4-a716-446655440001",
+                      "filename": "product-photo.jpg",
+                      "contentType": "image/jpeg",
+                      "size": 245678,
+                      "width": 1920,
+                      "height": 1080,
+                      "duration": null,
+                      "expiresAt": "2026-02-11T10:30:00.000Z",
+                      "createdAt": "2026-02-04T10:30:00.000Z",
+                      "readyAt": "2026-02-04T10:30:15.000Z"
+                    }
+                  },
+                  "failed": {
+                    "summary": "Upload failed",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "failed",
+                      "error": "Failed to download file: HTTP 404",
+                      "createdAt": "2026-02-04T10:30:00.000Z"
+                    }
+                  },
+                  "expired": {
+                    "summary": "Upload expired",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "expired",
+                      "expiredAt": "2026-02-11T10:30:00.000Z",
+                      "createdAt": "2026-02-04T10:30:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -2428,6 +2603,15 @@
                   "type": "string",
                   "minLength": 1,
                   "description": "Tweet text content"
+                },
+                "assetIds": {
+                  "type": "array",
+                  "description": "Array of asset IDs to attach to this tweet. Obtain asset IDs by uploading files via the Uploads API. Maximum 4 attachments per tweet.",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "maxItems": 4
                 }
               }
             }
@@ -2445,6 +2629,15 @@
           "copy": {
             "type": "string",
             "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
+          },
+          "assetIds": {
+            "type": "array",
+            "description": "Array of asset IDs to attach to the post. Obtain asset IDs by uploading files via the Uploads API. Maximum 20 attachments for LinkedIn posts.",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 20
           },
           "poll": {
             "type": "object",
@@ -2525,6 +2718,172 @@
             "format": "date-time"
           },
           "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UploadJobCreated": {
+        "type": "object",
+        "description": "Response when an upload job is created",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Upload job ID. Use this to poll the GET /uploads/{id} endpoint."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending"],
+            "description": "Initial status of the upload"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UploadPending": {
+        "title": "pending",
+        "type": "object",
+        "description": "Upload is queued and waiting to be processed",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UploadProcessing": {
+        "title": "processing",
+        "type": "object",
+        "description": "Upload is being downloaded and processed",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["processing"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UploadReady": {
+        "title": "ready",
+        "type": "object",
+        "description": "Upload is complete and ready to use. Use the assetId when creating posts.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ready"]
+          },
+          "assetId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID to use when creating posts with attachments"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Original filename of the uploaded file"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME type of the file (e.g., image/jpeg, video/mp4)"
+          },
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Width in pixels for images and videos"
+          },
+          "height": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Height in pixels for images and videos"
+          },
+          "duration": {
+            "type": "number",
+            "nullable": true,
+            "description": "Duration in seconds for videos"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the upload will expire if not used"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "readyAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the upload finished processing"
+          }
+        }
+      },
+      "UploadFailed": {
+        "title": "failed",
+        "type": "object",
+        "description": "Upload failed to process",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["failed"]
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message describing why the upload failed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UploadExpired": {
+        "title": "expired",
+        "type": "object",
+        "description": "Upload has expired and can no longer be used",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["expired"]
+          },
+          "expiredAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the upload expired"
+          },
+          "createdAt": {
             "type": "string",
             "format": "date-time"
           }
