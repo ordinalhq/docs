@@ -3627,6 +3627,49 @@
           }
         }
       },
+      "Asset": {
+        "type": "object",
+        "description": "Asset metadata for files attached to posts",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Original filename"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to access the asset"
+          },
+          "mimetype": {
+            "type": "string",
+            "description": "MIME type of the file (e.g., image/jpeg, video/mp4)"
+          },
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Width in pixels for images and videos"
+          },
+          "height": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Height in pixels for images and videos"
+          },
+          "duration": {
+            "type": "number",
+            "nullable": true,
+            "description": "Duration in seconds for videos"
+          }
+        }
+      },
       "ChannelProfile": {
         "type": "object",
         "description": "Profile information for a channel (LinkedIn or X)",
