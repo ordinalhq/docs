@@ -1435,11 +1435,50 @@
                   "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440000",
                   "title": "Q4 Product Launch Announcement",
                   "channels": [
-                    "LinkedIn"
+                    "LinkedIn",
+                    "Twitter"
                   ],
                   "status": "Scheduled",
                   "createdAt": "2026-01-05T10:30:00.000Z",
-                  "updatedAt": "2026-01-05T10:30:00.000Z"
+                  "updatedAt": "2026-01-05T10:30:00.000Z",
+                  "linkedIn": {
+                    "copy": "Excited to announce our new product launch!",
+                    "assets": [
+                      {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "name": "product-photo.jpg",
+                        "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                        "mimetype": "image/jpeg",
+                        "size": 245678,
+                        "width": 1920,
+                        "height": 1080,
+                        "duration": null
+                      }
+                    ]
+                  },
+                  "x": {
+                    "tweets": [
+                      {
+                        "copy": "Excited to announce our new product launch!",
+                        "assets": [
+                          {
+                            "id": "550e8400-e29b-41d4-a716-446655440011",
+                            "name": "product-photo.jpg",
+                            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                            "mimetype": "image/jpeg",
+                            "size": 245678,
+                            "width": 1920,
+                            "height": 1080,
+                            "duration": null
+                          }
+                        ]
+                      },
+                      {
+                        "copy": "Key highlights: Feature A, Feature B, Feature C",
+                        "assets": []
+                      }
+                    ]
+                  }
                 }
               }
             }
