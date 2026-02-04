@@ -2734,6 +2734,48 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "nullable": true,
+            "description": "LinkedIn content with assets. Present when the post targets the LinkedIn channel.",
+            "properties": {
+              "copy": {
+                "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "description": "Assets attached to the LinkedIn post",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "description": "X (Twitter) content with assets. Present when the post targets the Twitter channel.",
+            "properties": {
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "description": "Assets attached to this tweet",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
