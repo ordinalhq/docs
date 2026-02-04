@@ -1351,7 +1351,19 @@
                           "name": "John Doe",
                           "detail": "johndoe"
                         },
-                        "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                        "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                        "assets": [
+                          {
+                            "id": "550e8400-e29b-41d4-a716-446655440010",
+                            "name": "product-photo.jpg",
+                            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+                            "mimetype": "image/jpeg",
+                            "size": 245678,
+                            "width": 1920,
+                            "height": 1080,
+                            "duration": null
+                          }
+                        ]
                       },
                       "x": {
                         "profile": {
@@ -1361,7 +1373,8 @@
                         },
                         "tweets": [
                           {
-                            "copy": "Excited to announce our new product launch! \ud83d\ude80"
+                            "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                            "assets": []
                           }
                         ]
                       }
