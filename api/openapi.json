@@ -54,7 +54,7 @@
       "description": "Post subscribers for notifications"
     },
     {
-      "name": "Uploads",
+      "name": "File Uploads",
       "description": "Upload files from URLs for use in posts. Supports images (JPEG, PNG, GIF, WebP) up to 10 MB and videos (MP4, MOV) up to 350 MB."
     },
     {
@@ -1885,7 +1885,7 @@
         "summary": "Upload a file from a URL",
         "description": "Uploads a file by downloading it from the provided URL. The file will be processed asynchronously. Poll the GET endpoint to check when it's ready, then use the returned assetId in post creation.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\n**Additional constraints:**\n- Images cannot exceed 36 megapixels\n- URL must be publicly accessible",
         "tags": [
-          "Uploads"
+          "File Uploads"
         ],
         "requestBody": {
           "required": true,
@@ -1942,7 +1942,7 @@
         "summary": "Get upload status",
         "description": "Returns the current status and metadata of an upload. Poll this endpoint until status is 'ready', then use the returned assetId when creating posts.",
         "tags": [
-          "Uploads"
+          "File Uploads"
         ],
         "parameters": [
           {
@@ -2744,6 +2744,7 @@
         }
       },
       "UploadPending": {
+        "title": "pending",
         "type": "object",
         "description": "Upload is queued and waiting to be processed",
         "properties": {
@@ -2762,6 +2763,7 @@
         }
       },
       "UploadProcessing": {
+        "title": "processing",
         "type": "object",
         "description": "Upload is being downloaded and processed",
         "properties": {
@@ -2780,6 +2782,7 @@
         }
       },
       "UploadReady": {
+        "title": "ready",
         "type": "object",
         "description": "Upload is complete and ready to use. Use the assetId when creating posts.",
         "properties": {
@@ -2840,6 +2843,7 @@
         }
       },
       "UploadFailed": {
+        "title": "failed",
         "type": "object",
         "description": "Upload failed to process",
         "properties": {
@@ -2862,6 +2866,7 @@
         }
       },
       "UploadExpired": {
+        "title": "expired",
         "type": "object",
         "description": "Upload has expired and can no longer be used",
         "properties": {
