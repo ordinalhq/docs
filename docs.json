@@ -129,6 +129,7 @@
               "api/introduction",
               "api/authentication",
               "api/mcp",
+              "api/file-uploads",
               "api/linkedin-mentions",
               "api/errors"
             ]

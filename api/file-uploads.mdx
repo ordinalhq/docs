@@ -1,0 +1,158 @@
+---
+title: 'File Uploads'
+description: 'How to upload files from URLs for use in posts'
+---
+
+## Overview
+
+The Ordinal API uses a URL-based upload system. Instead of uploading files directly, you provide a publicly accessible URL and Ordinal downloads and processes the file for you. This approach simplifies integration and avoids the complexity of multipart form uploads.
+
+Uploads are processed asynchronously. When you submit a URL, you receive an upload job ID that you can poll until the file is ready. Once ready, you'll receive an `assetId` to use when creating posts.
+
+## Supported File Types
+
+| Type | Formats |
+|------|---------|
+| Images | JPEG, PNG, GIF, WebP |
+| Videos | MP4, QuickTime (MOV) |
+
+## File Size Limits
+
+| Type | Max Size |
+|------|----------|
+| Images | 10 MB |
+| GIFs | 15 MB |
+| Videos | 350 MB |
+
+<Note>
+Images cannot exceed 36 megapixels total resolution.
+</Note>
+
+## Upload Workflow
+
+<Steps>
+  <Step title="Submit the File URL">
+    [POST to `/uploads`](/api-reference/file-uploads/uploads-create) with the publicly accessible URL of the file you want to upload.
+  </Step>
+  <Step title="Receive Upload Job ID">
+    The API returns an upload job ID with `pending` status.
+  </Step>
+  <Step title="Poll for Status">
+    [Poll GET `/uploads/{id}`](/api-reference/file-uploads/uploads-get) until the status changes to `ready`.
+  </Step>
+  <Step title="Use the Asset ID">
+    Once ready, use the returned `assetId` in the `assetIds` array when [creating posts](/api-reference/posts/posts-create).
+  </Step>
+</Steps>
+
+## Upload Statuses
+
+| Status | Description |
+|--------|-------------|
+| `pending` | Upload is queued and waiting to be processed |
+| `processing` | File is being downloaded and processed |
+| `ready` | Upload is complete. Use the `assetId` to attach to posts |
+| `failed` | Upload failed. Check the `error` field for details |
+| `expired` | Upload expired before being used in a post |
+
+## Creating an Upload
+
+Submit a file URL to create an upload job:
+
+```bash
+curl -X POST "https://app.tryordinal.com/api/v1/uploads" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com/images/product-photo.jpg"}'
+```
+
+### Response
+
+```json
+{
+  "id": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+  "status": "pending",
+  "createdAt": "2026-02-04T10:30:00.000Z"
+}
+```
+
+## Checking Upload Status
+
+Poll the upload endpoint to check when processing is complete:
+
+```bash
+curl -X GET "https://app.tryordinal.com/api/v1/uploads/d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Ready Response
+
+When the upload is ready, the response includes the `assetId` and file metadata:
+
+```json
+{
+  "id": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+  "status": "ready",
+  "assetId": "a7c2e4b9-5d1f-4a8e-9c3b-2f6d8e1a4b7c",
+  "filename": "product-photo.jpg",
+  "mimetype": "image/jpeg",
+  "size": 245678,
+  "width": 1920,
+  "height": 1080,
+  "duration": null,
+  "expiresAt": "2026-02-11T10:30:00.000Z",
+  "createdAt": "2026-02-04T10:30:00.000Z",
+  "readyAt": "2026-02-04T10:30:15.000Z"
+}
+```
+
+### Failed Response
+
+If the upload fails, the response includes an error message:
+
+```json
+{
+  "id": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+  "status": "failed",
+  "error": "Failed to download file: HTTP 404",
+  "createdAt": "2026-02-04T10:30:00.000Z"
+}
+```
+
+## Using Assets in Posts
+
+Include the `assetId` in the `assetIds` array when creating a post:
+
+```json
+{
+  "title": "Product Launch",
+  "publishAt": "2026-02-10T14:00:00.000Z",
+  "status": "Scheduled",
+  "linkedIn": {
+    "profileId": "b3e7f1c9-2d4a-4f8b-a6c1-9e5d7b2f8a3c",
+    "copy": "Check out our new product!",
+    "assetIds": ["a7c2e4b9-5d1f-4a8e-9c3b-2f6d8e1a4b7c"]
+  }
+}
+```
+
+### Platform Attachment Limits
+
+| Platform | Max Attachments |
+|----------|-----------------|
+| X (Twitter) | 4 |
+| LinkedIn | 20 |
+
+## Important Notes
+
+<Warning>
+The file URL must be publicly accessible. Ordinal's servers need to download the file, so URLs that require authentication or are behind firewalls will fail.
+</Warning>
+
+<Note>
+Uploads expire within 24 hours if not used in a post. Once an upload expires, you'll need to create a new upload job with the file URL.
+</Note>
+
+<Note>
+For videos, the `duration` field in the ready response contains the video length in seconds. For images, this field is `null`.
+</Note>
