@@ -32,10 +32,13 @@ Select a method below to install the server. After installation, you'll need to 
     {
       "mcpServers": {
         "ordinal": {
-          "url": "https://app.tryordinal.com/api/mcp",
-          "headers": {
-            "Authorization": "Bearer YOUR_API_KEY"
-          }
+          "command": "npx",
+          "args": [
+            "mcp-remote",
+            "https://app.tryordinal.com/api/mcp",
+            "--header",
+            "Authorization: Bearer YOUR_API_KEY"
+          ]
         }
       }
     }
