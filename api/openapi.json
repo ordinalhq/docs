@@ -1211,7 +1211,7 @@
       "get": {
         "operationId": "linkedin-getMention",
         "summary": "Mention format by username",
-        "description": "Look up the mention format for a LinkedIn user or organization by their username to use in posts or comments.\n\nThe username is the part after `/in/` or `/company/` in a LinkedIn profile URL:\n- Personal profile: `linkedin.com/in/johndoe` \u2192 username is `johndoe`\n- Company page: `linkedin.com/company/acme-inc` \u2192 username is `acme-inc`\n\nReturns both user and organization results if a username matches both (rare but possible).",
+        "description": "Look up the mention format for a LinkedIn user or organization by their username to use in posts or comments.\n\nThe username is the part after `/in/` or `/company/` in a LinkedIn profile URL:\n- Personal profile: `linkedin.com/in/johndoe`  - username is `johndoe`\n- Company page: `linkedin.com/company/acme-inc`  - username is `acme-inc`\n\nReturns both user and organization results if a username matches both (rare but possible).",
         "tags": [
           "LinkedIn"
         ],

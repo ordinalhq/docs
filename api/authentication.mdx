@@ -59,7 +59,7 @@ curl -X GET "https://app.tryordinal.com/api/v1/workspace" \
 ```javascript JavaScript
 const response = await fetch('https://app.tryordinal.com/api/v1/workspace', {
   headers: {
-    'Authorization': 'Bearer ord_live_abc123...'
+    'Authorization': 'Bearer ord_XXXXXXXXXXXXXXXX'
   }
 });
 ```
@@ -70,7 +70,7 @@ import requests
 
 response = requests.get(
     'https://app.tryordinal.com/api/v1/workspace',
-    headers={'Authorization': 'Bearer ord_live_abc123...'}
+    headers={'Authorization': 'Bearer ord_XXXXXXXXXXXXXXXX'}
 )
 ```
 
@@ -212,7 +212,7 @@ If you've exceeded your usage quota:
     Store your API key in environment variables rather than hardcoding it in your application.
 
     ```bash
-    export ORDINAL_API_KEY="ord_live_abc123..."
+    export ORDINAL_API_KEY="ord_XXXXXXXXXXXXXXXX"
     ```
 
     ```javascript
