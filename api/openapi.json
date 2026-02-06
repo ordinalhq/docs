@@ -26,6 +26,10 @@
       "description": "Post approval workflows"
     },
     {
+      "name": "Comments",
+      "description": "Post comments for team collaboration. Supports @mentions using the format @[Display Name](userId)."
+    },
+    {
       "name": "Engagements",
       "description": "Auto-engagements for posts (likes, comments, reposts)"
     },
@@ -56,6 +60,10 @@
     {
       "name": "File Uploads",
       "description": "Upload files from URLs for use in posts. Supports images (JPEG, PNG, GIF, WebP) up to 10 MB and videos (MP4, MOV) up to 350 MB."
+    },
+    {
+      "name": "Inline Comments",
+      "description": "Text-anchored comments on specific post content. Read-only API for retrieving inline comments across channels."
     },
     {
       "name": "Users",
@@ -2204,6 +2212,252 @@
         }
       }
     },
+    "/posts/{postId}/comments": {
+      "get": {
+        "operationId": "comments-list",
+        "summary": "List post comments",
+        "description": "List all comments on a post, ordered by creation time (oldest first)",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Comment"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "comments": [
+                    {
+                      "id": "a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                      "message": "Great post! @[Jane Smith](550e8400-e29b-41d4-a716-446655440002) what do you think?",
+                      "postId": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+                      "createdAt": "2026-02-04T10:30:00.000Z",
+                      "updatedAt": "2026-02-04T10:30:00.000Z",
+                      "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440001",
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "email": "john@example.com"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "operationId": "comments-create",
+        "summary": "Create a comment on a post",
+        "description": "Add a comment to a post. Supports @mentions using the format `@[Display Name](userId)`. Tagged users must be workspace members. The commenter and any tagged users are automatically subscribed to the post.",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommentInput"
+              },
+              "example": {
+                "message": "Looks good! @[Jane Smith](550e8400-e29b-41d4-a716-446655440002) can you review the first paragraph?"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                },
+                "example": {
+                  "id": "b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+                  "message": "Looks good! @[Jane Smith](550e8400-e29b-41d4-a716-446655440002) can you review the first paragraph?",
+                  "postId": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+                  "createdAt": "2026-02-04T11:00:00.000Z",
+                  "updatedAt": "2026-02-04T11:00:00.000Z",
+                  "user": {
+                    "id": "550e8400-e29b-41d4-a716-446655440001",
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john@example.com"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{postId}/inline-comments": {
+      "get": {
+        "operationId": "inline-comments-list",
+        "summary": "List inline comments on a post",
+        "description": "Returns inline comments (text-anchored comments) from all channels on a post. Optionally filter by channel or resolution status.",
+        "tags": [
+          "Inline Comments"
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "description": "Filter by channel",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LinkedIn",
+                "Twitter",
+                "Instagram",
+                "Facebook",
+                "Threads",
+                "TikTok",
+                "Discord",
+                "Slack",
+                "Webflow",
+                "YouTubeShorts"
+              ]
+            }
+          },
+          {
+            "name": "resolved",
+            "in": "query",
+            "description": "Filter by resolution status",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of inline comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "inlineComments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/InlineComment"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "inlineComments": [
+                    {
+                      "id": "th_abc123xyz",
+                      "resolved": false,
+                      "channel": "LinkedIn",
+                      "highlightedText": "innovative approach to marketing",
+                      "replies": [
+                        {
+                          "id": "cm_def456uvw",
+                          "user": {
+                            "id": "550e8400-e29b-41d4-a716-446655440001",
+                            "firstName": "John",
+                            "lastName": "Doe",
+                            "email": "john@example.com"
+                          },
+                          "message": "Should we rephrase this? @[Jane Smith](550e8400-e29b-41d4-a716-446655440002)",
+                          "createdAt": "2026-02-04T10:30:00.000Z",
+                          "reactions": [
+                            {
+                              "emoji": "👍",
+                              "users": [
+                                {
+                                  "id": "550e8400-e29b-41d4-a716-446655440002",
+                                  "firstName": "Jane",
+                                  "lastName": "Smith",
+                                  "email": "jane@example.com"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "createdAt": "2026-02-04T10:30:00.000Z",
+                      "updatedAt": "2026-02-04T10:45:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/posts/{postId}/subscribers": {
       "get": {
         "operationId": "subscribers-list",
@@ -3795,6 +4049,160 @@
             "type": "string",
             "nullable": true,
             "description": "Profile detail (vanity name for LinkedIn, @username for X)"
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "description": "A comment on a post",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the comment"
+          },
+          "message": {
+            "type": "string",
+            "description": "The comment text. Mentions use the format @[Display Name](userId)"
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The post this comment belongs to"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the comment was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the comment was last updated"
+          },
+          "user": {
+            "$ref": "#/components/schemas/CommentUser"
+          }
+        }
+      },
+      "CommentUser": {
+        "type": "object",
+        "description": "User who created a comment",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "CreateCommentInput": {
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The comment text. Cannot be empty. Supports @mentions using the format @[Display Name](userId)"
+          }
+        }
+      },
+      "InlineComment": {
+        "type": "object",
+        "description": "A text-anchored inline comment thread",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the inline comment thread"
+          },
+          "resolved": {
+            "type": "boolean",
+            "description": "Whether the comment thread has been marked as resolved"
+          },
+          "channel": {
+            "type": "string",
+            "description": "The channel this comment is on (LinkedIn, Twitter, etc.)"
+          },
+          "highlightedText": {
+            "type": "string",
+            "description": "The text that was highlighted when the comment was created"
+          },
+          "replies": {
+            "type": "array",
+            "description": "Array of replies in the thread",
+            "items": {
+              "$ref": "#/components/schemas/InlineCommentReply"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the thread was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the thread was last updated"
+          }
+        }
+      },
+      "InlineCommentReply": {
+        "type": "object",
+        "description": "A reply within an inline comment thread",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the reply"
+          },
+          "user": {
+            "$ref": "#/components/schemas/CommentUser"
+          },
+          "message": {
+            "type": "string",
+            "description": "The reply text. Mentions use the format @[Display Name](userId)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the reply was created"
+          },
+          "reactions": {
+            "type": "array",
+            "description": "Array of emoji reactions on this reply",
+            "items": {
+              "$ref": "#/components/schemas/InlineCommentReaction"
+            }
+          }
+        }
+      },
+      "InlineCommentReaction": {
+        "type": "object",
+        "description": "An emoji reaction on an inline comment reply",
+        "properties": {
+          "emoji": {
+            "type": "string",
+            "description": "The emoji used for the reaction"
+          },
+          "users": {
+            "type": "array",
+            "description": "Array of users who added this reaction",
+            "items": {
+              "$ref": "#/components/schemas/CommentUser"
+            }
           }
         }
       },
