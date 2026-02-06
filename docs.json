@@ -131,8 +131,6 @@
               "api/mcp",
               "api/file-uploads",
               "api/linkedin-mentions",
-              "api/comments",
-              "api/inline-comments",
               "api/errors"
             ]
           },
