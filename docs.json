@@ -140,6 +140,27 @@
             "openapi": "api/openapi.json"
           }
         ]
+      },
+      {
+        "tab": "Agency API",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "building",
+            "pages": [
+              "agency-api/introduction",
+              "agency-api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "icon": "code",
+            "openapi": {
+              "source": "agency-api/openapi.json",
+              "directory": "agency-api-reference"
+            }
+          }
+        ]
       }
     ]
   },

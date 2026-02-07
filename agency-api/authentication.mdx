@@ -1,0 +1,220 @@
+---
+title: "Authentication"
+description: "Secure your Agency API requests with company API keys"
+---
+
+## Overview
+
+The Agency API uses Bearer token authentication with company-scoped API keys. All API requests must include a valid company API key in the `Authorization` header.
+
+```bash
+Authorization: Bearer ord_c_XXXXXXXXXXXXXXXX
+```
+
+<Info>
+  **Company-Level Authentication**
+
+  Company API keys provide access to all workspaces within your company. This is different from workspace API keys, which only provide access to a single workspace.
+</Info>
+
+## Key Differences from Workspace API Keys
+
+| Feature | Company API Key | Workspace API Key |
+| ------- | --------------- | ----------------- |
+| **Prefix** | `ord_c_*` | `ord_*` |
+| **Scope** | All workspaces in company | Single workspace |
+| **Can create workspaces** | Yes | No |
+| **Can manage workspace API keys** | Yes | No |
+| **Can access posts/profiles** | No | Yes |
+
+## Generating a Company API Key
+
+<Info>
+  **Enterprise Plan Required**
+
+  Company API keys are available on the Enterprise plan. [Contact sales](mailto:sales@tryordinal.com) to upgrade your account.
+</Info>
+
+<Steps>
+  <Step title="Navigate to Company Settings">
+    Go to the Company Settings page in your Ordinal dashboard.
+  </Step>
+  <Step title="Open API Keys Section">
+    Click on the "API Keys" tab in the company settings menu.
+  </Step>
+  <Step title="Create New Key">
+    Click "Create Company API Key" and provide a descriptive name for the key.
+  </Step>
+  <Step title="Copy Your Key">
+    Copy the generated API key immediately. For security reasons, the full key is only shown once.
+  </Step>
+</Steps>
+
+<Warning>
+  Store your company API key securely. It provides access to all workspaces in your company. Never expose it in client-side code, public repositories, or share it with unauthorized users.
+</Warning>
+
+## Making Authenticated Requests
+
+Include your company API key in the `Authorization` header with the `Bearer` prefix:
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://app.tryordinal.com/api/v1/company/workspaces" \
+  -H "Authorization: Bearer ord_c_XXXXXXXXXXXXXXXX"
+```
+
+
+```javascript JavaScript
+const response = await fetch('https://app.tryordinal.com/api/v1/company/workspaces', {
+  headers: {
+    'Authorization': 'Bearer ord_c_XXXXXXXXXXXXXXXX'
+  }
+});
+```
+
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://app.tryordinal.com/api/v1/company/workspaces',
+    headers={'Authorization': 'Bearer ord_c_XXXXXXXXXXXXXXXX'}
+)
+```
+
+</CodeGroup>
+
+## Authentication Errors
+
+When authentication fails, the API returns specific error codes to help you diagnose the issue.
+
+### Missing Token
+
+If no authorization header is provided:
+
+```json
+{
+  "code": "UNAUTHORIZED",
+  "message": "Missing bearer token"
+}
+```
+
+**Status Code:** `401 Unauthorized`
+
+### Invalid or Not Found
+
+If the API key is invalid or doesn't exist:
+
+```json
+{
+  "code": "UNAUTHORIZED",
+  "message": "Invalid or unauthorized API key"
+}
+```
+
+**Status Code:** `401 Unauthorized`
+
+### Wrong Key Type
+
+If you use a workspace API key instead of a company API key:
+
+```json
+{
+  "code": "FORBIDDEN",
+  "message": "This endpoint requires a company API key. Use a company-scoped API key to access company-level resources."
+}
+```
+
+**Status Code:** `403 Forbidden`
+
+### Revoked Key
+
+If the company API key has been revoked:
+
+```json
+{
+  "code": "FORBIDDEN",
+  "message": "API key was revoked 2 days ago"
+}
+```
+
+**Status Code:** `403 Forbidden`
+
+### Rate Limited
+
+If you've exceeded the rate limit for your API key:
+
+```json
+{
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+}
+```
+
+**Status Code:** `429 Too Many Requests`
+
+## Error Code Reference
+
+| Error Code          | HTTP Status | Description                                                 |
+| ------------------- | ----------- | ----------------------------------------------------------- |
+| `UNAUTHORIZED`      | 401         | Missing or invalid API key                                  |
+| `FORBIDDEN`         | 403         | Wrong key type, revoked, or insufficient permissions        |
+| `TOO_MANY_REQUESTS` | 429         | Rate limit exceeded                                         |
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Environment Variables">
+    Store your company API key in environment variables rather than hardcoding it in your application.
+
+    ```bash
+    export ORDINAL_COMPANY_API_KEY="ord_c_XXXXXXXXXXXXXXXX"
+    ```
+
+    ```javascript
+    const apiKey = process.env.ORDINAL_COMPANY_API_KEY;
+    ```
+  </Accordion>
+  <Accordion title="Use Workspace Keys for Workspace Operations">
+    Company API keys cannot access workspace-specific resources like posts and profiles. Use the Agency API to create workspace API keys, then use those keys with the Workspace API.
+
+    ```javascript
+    // 1. Create a workspace API key using your company key
+    const { key: workspaceKey } = await createWorkspaceApiKey(companyKey, workspaceId);
+
+    // 2. Use the workspace key for post operations
+    const posts = await listPosts(workspaceKey);
+    ```
+  </Accordion>
+  <Accordion title="Rotate Keys Regularly">
+    Periodically rotate your company API keys to minimize the impact of potential key exposure.
+  </Accordion>
+  <Accordion title="Revoke Compromised Keys">
+    If you suspect a company API key has been compromised, revoke it immediately and generate a new one. Remember that this affects all workspaces in your company.
+  </Accordion>
+</AccordionGroup>
+
+## Managing Company API Keys
+
+### Viewing Keys
+
+You can view all your company API keys in the company settings. Each key shows:
+
+- Name and description
+- Creation date
+- Last used timestamp
+
+### Revoking Keys
+
+To revoke a company API key:
+
+1. Navigate to company settings
+2. Find the key you want to revoke
+3. Click the `...` button and select "Revoke"
+4. Confirm the action
+
+<Warning>
+  Revoking a company API key is permanent and cannot be undone. Any applications using the revoked key will immediately lose access to all company-level operations.
+</Warning>
