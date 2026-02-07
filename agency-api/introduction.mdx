@@ -1,0 +1,125 @@
+---
+title: 'Introduction'
+description: 'Programmatically manage multiple workspaces with the Agency API'
+---
+
+## Overview
+
+The Ordinal Agency API allows agencies and teams to programmatically manage multiple workspaces from a single company account. With company-level API access, you can create new workspaces, manage workspace API keys, and automate your multi-client workflows.
+
+<Card title="Base URL" icon="globe">
+  ```
+  https://app.tryordinal.com/api/v1/company
+  ```
+</Card>
+
+## Use Cases
+
+The Agency API is designed for:
+
+- **Agencies** managing social media for multiple clients, each with their own workspace
+- **Enterprises** with multiple brands or business units
+- **Platforms** building integrations that provision Ordinal workspaces for their users
+
+## Quick Start
+
+<Info>
+  **Enterprise Plan Required**
+  
+  The Agency API requires an Enterprise plan. [Contact sales](mailto:sales@tryordinal.com) to upgrade your account.
+</Info>
+
+<Steps>
+  <Step title="Generate a Company API Key">
+    Navigate to your company settings and create a new company API key. See the [Authentication](/agency-api/authentication) guide for details.
+  </Step>
+  <Step title="Make Your First Request">
+    Use the company API key as a Bearer token to authenticate your requests:
+
+    ```bash
+    curl -X GET "https://app.tryordinal.com/api/v1/company/workspaces" \
+      -H "Authorization: Bearer ord_c_XXXXXXXXXXXXXXXX"
+    ```
+
+    Confirm that you see your workspaces in the response.
+
+    ```json
+    {
+      "workspaces": [
+        {
+          "id": "workspace-uuid-1",
+          "name": "Client A",
+          "slug": "client-a",
+          "timezone": "America/New_York",
+          "createdAt": "2025-01-01T00:00:00.000Z"
+        },
+        {
+          "id": "workspace-uuid-2",
+          "name": "Client B",
+          "slug": "client-b",
+          "timezone": "Europe/London",
+          "createdAt": "2025-02-01T00:00:00.000Z"
+        }
+      ]
+    }
+    ```
+  </Step>
+  <Step title="Explore Endpoints">
+    Browse the endpoint documentation to discover all available operations for managing workspaces and API keys.
+  </Step>
+</Steps>
+
+## Available Operations
+
+<CardGroup cols={2}>
+  <Card title="List Workspaces" icon="list" href="/agency-api-reference/company/list-workspaces">
+    List all workspaces in your company
+  </Card>
+  <Card title="Create Workspace" icon="plus" href="/agency-api-reference/company/create-workspace">
+    Create a new workspace for a client
+  </Card>
+  <Card title="Get Workspace" icon="magnifying-glass" href="/agency-api-reference/company/get-workspace">
+    Retrieve details of a specific workspace
+  </Card>
+  <Card title="Manage API Keys" icon="key" href="/agency-api-reference/company/create-workspace-api-key">
+    Create and list workspace API keys programmatically
+  </Card>
+</CardGroup>
+
+## Agency API vs Workspace API
+
+| Feature | Agency API | Workspace API |
+| ------- | ---------- | ------------- |
+| **Scope** | All workspaces in your company | Single workspace |
+| **Key prefix** | `ord_c_*` | `ord_*` |
+| **Create workspaces** | Yes | No |
+| **Manage workspace API keys** | Yes | No |
+| **Access posts and profiles** | No (use workspace keys) | Yes |
+
+<Tip>
+  Use the Agency API to create workspaces and generate workspace API keys. Then use those workspace API keys with the [Workspace API](/api/introduction) to manage posts, profiles, and other workspace-specific resources.
+</Tip>
+
+## Rate Limiting
+
+API requests are rate limited to ensure fair usage. The Agency API has a limit of 100 requests per minute per API key.
+
+```json
+{
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+}
+```
+
+If you need a higher rate limit, please reach out to support.
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/agency-api/authentication">
+    Learn how to authenticate your Agency API requests
+  </Card>
+  <Card title="Error Handling" icon="circle-exclamation" href="/api/errors">
+    Understand API error responses
+  </Card>
+</CardGroup>
