@@ -1215,6 +1215,211 @@
         }
       }
     },
+    "/linkedin/leads/{profileId}/posts": {
+      "get": {
+        "operationId": "linkedin-leads-listPosts",
+        "x-hidden": true,
+        "summary": "List posts",
+        "description": "Returns all LinkedIn posts for a profile with scraped lead counts (reactions, comments, reshares). Supports pagination and filtering by date range. Requires leads scraping to be enabled for the profile.",
+        "tags": [
+          "LinkedIn Leads"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Filter posts published on or after this date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Filter posts published on or before this date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of posts to return (1-100)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor from previous response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of LinkedIn posts with lead counts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LinkedInLeadPost"
+                      }
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Cursor for fetching the next page"
+                    },
+                    "hasMore": {
+                      "type": "boolean",
+                      "description": "Whether more posts are available"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/linkedin/leads/{profileId}/posts/{postId}": {
+      "get": {
+        "operationId": "linkedin-leads-getLeadsByPost",
+        "x-hidden": true,
+        "summary": "Get posts leads",
+        "description": "Returns leads (reactions, comments, reshares) for a specific LinkedIn post. Supports filtering by engagement type and minimum follower count.",
+        "tags": [
+          "LinkedIn Leads"
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn profile ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Filter by engagement types (comma-separated: LIKE,COMMENT,RESHARE)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minFollowerCount",
+            "in": "query",
+            "description": "Filter leads by minimum follower count",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of leads to return (1-250)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 250,
+              "default": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor from previous response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of leads for the post",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "leads": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LinkedInLead"
+                      }
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Cursor for fetching the next page"
+                    },
+                    "hasMore": {
+                      "type": "boolean",
+                      "description": "Whether more leads are available"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/linkedin/{username}/mentions": {
       "get": {
         "operationId": "linkedin-getMention",
@@ -2718,6 +2923,127 @@
       }
     },
     "schemas": {
+      "LinkedInLeadPost": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "LinkedIn post URL"
+          },
+          "commentary": {
+            "type": "string",
+            "nullable": true,
+            "description": "Post text content"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "likeCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "commentCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "shareCount": {
+            "type": "integer",
+            "nullable": true
+          },
+          "scrapedLeadsCount": {
+            "type": "object",
+            "properties": {
+              "reactions": {
+                "type": "integer"
+              },
+              "comments": {
+                "type": "integer"
+              },
+              "reshares": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "LinkedInLeadAuthor": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "vanityName": {
+            "type": "string"
+          },
+          "profileUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "headline": {
+            "type": "string",
+            "nullable": true
+          },
+          "followerCount": {
+            "type": "integer"
+          },
+          "currentJob": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "organizationName": {
+                "type": "string"
+              },
+              "organizationIndustry": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        }
+      },
+      "LinkedInLead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["LIKE", "COMMENT", "RESHARE"]
+          },
+          "text": {
+            "type": "string",
+            "nullable": true,
+            "description": "Comment or reshare text (null for likes)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "author": {
+            "$ref": "#/components/schemas/LinkedInLeadAuthor"
+          }
+        }
+      },
       "Post": {
         "type": "object",
         "properties": {
