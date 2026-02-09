@@ -1500,7 +1500,7 @@
       "get": {
         "operationId": "posts-list",
         "summary": "List posts",
-        "description": "List all posts in the workspace with pagination",
+        "description": "List all posts in the workspace with pagination and filtering",
         "tags": [
           "Posts"
         ],
@@ -1513,17 +1513,148 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 100,
-              "default": 10
+              "default": 20
             }
           },
           {
-            "name": "offset",
+            "name": "cursor",
             "in": "query",
-            "description": "Number of posts to skip for pagination",
+            "description": "Cursor for pagination (post ID from the last item of previous page)",
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "default": 0
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Fetch specific posts by IDs. Can be a single UUID or comma-separated list.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by post status",
+            "schema": {
+              "type": "string",
+              "enum": ["Draft", "In Review", "Finalized", "Scheduled", "Published", "Partially Published"]
+            }
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "description": "Filter by channel",
+            "schema": {
+              "type": "string",
+              "enum": ["LinkedIn", "Twitter"]
+            }
+          },
+          {
+            "name": "linkedInProfileId",
+            "in": "query",
+            "description": "Filter by LinkedIn profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "xProfileId",
+            "in": "query",
+            "description": "Filter by X/Twitter profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "labelIds",
+            "in": "query",
+            "description": "Filter by label IDs (posts with any of these labels). Can be a single UUID or comma-separated list.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "publishAtStart",
+            "in": "query",
+            "description": "Filter posts scheduled on or after this datetime (ISO 8601 format)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "publishAtEnd",
+            "in": "query",
+            "description": "Filter posts scheduled on or before this datetime (ISO 8601 format)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "createdAtStart",
+            "in": "query",
+            "description": "Filter posts created on or after this datetime (ISO 8601 format)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "createdAtEnd",
+            "in": "query",
+            "description": "Filter posts created on or before this datetime (ISO 8601 format)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string",
+              "enum": ["createdAt", "publishAt"],
+              "default": "createdAt"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"],
+              "default": "desc"
             }
           }
         ],
@@ -1540,6 +1671,15 @@
                       "items": {
                         "$ref": "#/components/schemas/Post"
                       }
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Cursor for the next page of results"
+                    },
+                    "hasMore": {
+                      "type": "boolean",
+                      "description": "Whether there are more results"
                     }
                   }
                 },
@@ -1592,7 +1732,9 @@
                         ]
                       }
                     }
-                  ]
+                  ],
+                  "nextCursor": "550e8400-e29b-41d4-a716-446655440001",
+                  "hasMore": true
                 }
               }
             }
