@@ -1602,36 +1602,36 @@
             }
           },
           {
-            "name": "publishAtStart",
+            "name": "publishDateMin",
             "in": "query",
-            "description": "Filter posts scheduled on or after this datetime (ISO 8601 format)",
+            "description": "Filter posts scheduled on or after this date (ISO 8601 format)",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "publishAtEnd",
+            "name": "publishDateMax",
             "in": "query",
-            "description": "Filter posts scheduled on or before this datetime (ISO 8601 format)",
+            "description": "Filter posts scheduled on or before this date (ISO 8601 format)",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "createdAtStart",
+            "name": "createdAtMin",
             "in": "query",
-            "description": "Filter posts created on or after this datetime (ISO 8601 format)",
+            "description": "Filter posts created on or after this date (ISO 8601 format)",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "createdAtEnd",
+            "name": "createdAtMax",
             "in": "query",
-            "description": "Filter posts created on or before this datetime (ISO 8601 format)",
+            "description": "Filter posts created on or before this date (ISO 8601 format)",
             "schema": {
               "type": "string",
               "format": "date-time"
