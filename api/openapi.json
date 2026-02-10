@@ -207,7 +207,7 @@
                     "id": "550e8400-e29b-41d4-a716-446655440600",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345678",
                     "commentary": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n\u2705 Feature A\n\u2705 Feature B\n\u2705 Feature C\n\nLearn more in the comments \ud83d\udc47",
-                    "type": "SHARE",
+                    "type": "Text",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 245,
                     "commentCount": 32,
@@ -221,7 +221,7 @@
                     "id": "550e8400-e29b-41d4-a716-446655440601",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345679",
                     "commentary": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nThread below:",
-                    "type": "SHARE",
+                    "type": "Image",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 892,
                     "commentCount": 67,
@@ -4397,7 +4397,22 @@
             "nullable": true
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Text",
+              "Article",
+              "Image",
+              "Video",
+              "Poll",
+              "Celebration",
+              "Job",
+              "Event",
+              "Document",
+              "Repost",
+              "QuotePost",
+              "MultiImage"
+            ],
+            "description": "The type of LinkedIn post"
           },
           "publishedAt": {
             "type": "string",
