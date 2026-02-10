@@ -214,7 +214,8 @@
                     "shareCount": 18,
                     "clickCount": 156,
                     "impressionCount": 12500,
-                    "engagement": 3.62
+                    "engagement": 3.62,
+                    "emv": 375
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440601",
@@ -227,7 +228,8 @@
                     "shareCount": 134,
                     "clickCount": 423,
                     "impressionCount": 28900,
-                    "engagement": 5.21
+                    "engagement": 5.21,
+                    "emv": 867
                   }
                 ]
               }
@@ -384,7 +386,8 @@
                     "quoteCount": 15,
                     "bookmarkCount": 67,
                     "impressionCount": 45200,
-                    "engagement": 1.2
+                    "engagement": 1.2,
+                    "emv": 452
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440701",
@@ -397,7 +400,8 @@
                     "quoteCount": 48,
                     "bookmarkCount": 234,
                     "impressionCount": 89300,
-                    "engagement": 2.17
+                    "engagement": 2.17,
+                    "emv": 893
                   }
                 ]
               }
@@ -411,6 +415,113 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/analytics/cpm": {
+      "get": {
+        "operationId": "analytics-cpm-get",
+        "summary": "Get CPM Values",
+        "description": "Retrieve the current CPM (Cost Per Mille) values used for EMV (Earned Media Value) calculations across all platforms. CPM values represent the cost per 1,000 impressions for each social media platform.",
+        "tags": [
+          "Analytics"
+        ],
+        "responses": {
+          "200": {
+            "description": "Current CPM values for all platforms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CpmValues"
+                },
+                "example": {
+                  "linkedIn": 30,
+                  "x": 10,
+                  "instagram": 10,
+                  "facebook": 10,
+                  "threads": 10
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      },
+      "put": {
+        "operationId": "analytics-cpm-update",
+        "summary": "Update CPM Values",
+        "description": "Update the CPM (Cost Per Mille) values used for EMV (Earned Media Value) calculations. You can update one or more platform CPM values in a single request. Only provide the platforms you want to update.",
+        "tags": [
+          "Analytics"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CpmUpdateInput"
+              },
+              "examples": {
+                "updateSingle": {
+                  "summary": "Update single platform",
+                  "value": {
+                    "linkedIn": 35
+                  }
+                },
+                "updateMultiple": {
+                  "summary": "Update multiple platforms",
+                  "value": {
+                    "linkedIn": 35,
+                    "x": 12,
+                    "instagram": 15
+                  }
+                },
+                "updateAll": {
+                  "summary": "Update all platforms",
+                  "value": {
+                    "linkedIn": 35,
+                    "x": 12,
+                    "instagram": 15,
+                    "facebook": 12,
+                    "threads": 8
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated CPM values for all platforms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CpmValues"
+                },
+                "example": {
+                  "linkedIn": 35,
+                  "x": 12,
+                  "instagram": 15,
+                  "facebook": 10,
+                  "threads": 10
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
@@ -4317,6 +4428,11 @@
             "type": "number",
             "nullable": true,
             "description": "Engagement rate as a percentage"
+          },
+          "emv": {
+            "type": "number",
+            "nullable": true,
+            "description": "Earned Media Value calculated as (impressionCount / 1000) * CPM"
           }
         }
       },
@@ -4374,6 +4490,11 @@
             "type": "number",
             "nullable": true,
             "description": "Engagement rate as a percentage"
+          },
+          "emv": {
+            "type": "number",
+            "nullable": true,
+            "description": "Earned Media Value calculated as (impressionCount / 1000) * CPM"
           }
         }
       },
@@ -4390,6 +4511,70 @@
           "recordedAt": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "CpmValues": {
+        "type": "object",
+        "description": "CPM (Cost Per Mille) values for EMV calculations across all platforms",
+        "required": [
+          "linkedIn",
+          "x",
+          "instagram",
+          "facebook",
+          "threads"
+        ],
+        "properties": {
+          "linkedIn": {
+            "type": "number",
+            "description": "LinkedIn CPM value (default: 30)"
+          },
+          "x": {
+            "type": "number",
+            "description": "X (Twitter) CPM value (default: 10)"
+          },
+          "instagram": {
+            "type": "number",
+            "description": "Instagram CPM value (default: 10)"
+          },
+          "facebook": {
+            "type": "number",
+            "description": "Facebook CPM value (default: 10)"
+          },
+          "threads": {
+            "type": "number",
+            "description": "Threads CPM value (default: 10)"
+          }
+        }
+      },
+      "CpmUpdateInput": {
+        "type": "object",
+        "description": "Input for updating CPM values. All fields are optional - only provide the platforms you want to update.",
+        "properties": {
+          "linkedIn": {
+            "type": "number",
+            "minimum": 0,
+            "description": "LinkedIn CPM value"
+          },
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "description": "X (Twitter) CPM value"
+          },
+          "instagram": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Instagram CPM value"
+          },
+          "facebook": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Facebook CPM value"
+          },
+          "threads": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Threads CPM value"
           }
         }
       },
