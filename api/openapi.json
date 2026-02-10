@@ -1550,8 +1550,7 @@
             "in": "query",
             "description": "Filter by post status",
             "schema": {
-              "type": "string",
-              "enum": ["Draft", "In Review", "Finalized", "Scheduled", "Published", "Partially Published"]
+              "$ref": "#/components/schemas/PostStatus"
             }
           },
           {
