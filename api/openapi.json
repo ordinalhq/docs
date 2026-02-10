@@ -214,7 +214,7 @@
                     "shareCount": 18,
                     "clickCount": 156,
                     "impressionCount": 12500,
-                    "engagement": 3.62,
+                    "engagement": 0.036,
                     "emv": 375
                   },
                   {
@@ -228,7 +228,7 @@
                     "shareCount": 134,
                     "clickCount": 423,
                     "impressionCount": 28900,
-                    "engagement": 5.21,
+                    "engagement": 0.052,
                     "emv": 867
                   }
                 ]
@@ -386,7 +386,7 @@
                     "quoteCount": 15,
                     "bookmarkCount": 67,
                     "impressionCount": 45200,
-                    "engagement": 1.2,
+                    "engagement": 0.010,
                     "emv": 452
                   },
                   {
@@ -400,7 +400,7 @@
                     "quoteCount": 48,
                     "bookmarkCount": 234,
                     "impressionCount": 89300,
-                    "engagement": 2.17,
+                    "engagement": 0.019,
                     "emv": 893
                   }
                 ]
@@ -4427,7 +4427,7 @@
           "engagement": {
             "type": "number",
             "nullable": true,
-            "description": "Engagement rate as a percentage"
+            "description": "Engagement rate (total engagements / impressions), typically between 0 and 1"
           },
           "emv": {
             "type": "number",
@@ -4489,7 +4489,7 @@
           "engagement": {
             "type": "number",
             "nullable": true,
-            "description": "Engagement rate as a percentage"
+            "description": "Engagement rate (total engagements / impressions), typically between 0 and 1"
           },
           "emv": {
             "type": "number",
