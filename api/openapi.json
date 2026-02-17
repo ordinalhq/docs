@@ -1611,7 +1611,7 @@
       "get": {
         "operationId": "posts-list",
         "summary": "List posts",
-        "description": "List all posts in the workspace with pagination and filtering",
+        "description": "List all posts in the workspace with pagination and filtering. Archived posts are excluded from results.",
         "tags": [
           "Posts"
         ],
@@ -2066,7 +2066,7 @@
       "patch": {
         "operationId": "posts-update",
         "summary": "Update post",
-        "description": "Update an existing post by ID. All fields are optional - only include the fields you want to update.",
+        "description": "Update an existing post by ID. All fields are optional - only include the fields you want to update. Archived posts cannot be updated; unarchive them first.",
         "tags": [
           "Posts"
         ],
@@ -2157,11 +2157,13 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
-      },
-      "delete": {
-        "operationId": "posts-delete",
-        "summary": "Delete post",
-        "description": "Delete a post by ID",
+      }
+    },
+    "/posts/{id}/archive": {
+      "post": {
+        "operationId": "posts-archive",
+        "summary": "Archive post",
+        "description": "Archive a post by ID. The post is moved to Trash and will be permanently deleted after 30 days. Use the unarchive endpoint to restore it.",
         "tags": [
           "Posts"
         ],
@@ -2179,7 +2181,55 @@
         ],
         "responses": {
           "200": {
-            "description": "Post deleted successfully",
+            "description": "Post archived successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/unarchive": {
+      "post": {
+        "operationId": "posts-unarchive",
+        "summary": "Unarchive post",
+        "description": "Restore an archived post from Trash. The post will no longer be scheduled for permanent deletion.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post unarchived successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -2209,7 +2259,7 @@
       "post": {
         "operationId": "posts-schedule",
         "summary": "Schedule or reschedule post",
-        "description": "Schedule a post for publishing, or reschedule an already scheduled post to a new time. The post must have at least one channel with a connected profile.",
+        "description": "Schedule a post for publishing, or reschedule an already scheduled post to a new time. The post must have at least one channel with a connected profile. Archived posts cannot be scheduled; unarchive them first.",
         "tags": [
           "Posts"
         ],
@@ -3336,6 +3386,12 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the post was archived. Null if the post is not archived."
           },
           "linkedIn": {
             "type": "object",
