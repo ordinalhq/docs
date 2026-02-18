@@ -157,7 +157,7 @@
       "get": {
         "operationId": "analytics-linkedin-posts",
         "summary": "LinkedIn post analytics",
-        "description": "Retrieve post analytics for a LinkedIn profile within a date range",
+        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign.",
         "tags": [
           "Analytics"
         ],
@@ -215,7 +215,15 @@
                     "clickCount": 156,
                     "impressionCount": 12500,
                     "engagement": 0.036,
-                    "emv": 375
+                    "emv": 375,
+                    "ordinalPost": {
+                      "id": "44444444-4444-4444-a444-444444444444",
+                      "title": "LinkedIn Ordinal Post",
+                      "labels": [
+                        { "name": "Product", "labelId": "55555555-5555-4555-a555-555555555555" }
+                      ],
+                      "campaign": { "id": "66666666-6666-4666-a666-666666666666", "name": "Launch Campaign" }
+                    }
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440601",
@@ -229,7 +237,8 @@
                     "clickCount": 423,
                     "impressionCount": 28900,
                     "engagement": 0.052,
-                    "emv": 867
+                    "emv": 867,
+                    "ordinalPost": null
                   }
                 ]
               }
@@ -329,7 +338,7 @@
       "get": {
         "operationId": "analytics-x-posts",
         "summary": "X post analytics",
-        "description": "Retrieve post analytics for an X profile within a date range",
+        "description": "Retrieve post analytics for an X profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign.",
         "tags": [
           "Analytics"
         ],
@@ -387,7 +396,15 @@
                     "bookmarkCount": 67,
                     "impressionCount": 45200,
                     "engagement": 0.010,
-                    "emv": 452
+                    "emv": 452,
+                    "ordinalPost": {
+                      "id": "11111111-1111-4111-a111-111111111111",
+                      "title": "My Ordinal Post",
+                      "labels": [
+                        { "name": "Marketing", "labelId": "22222222-2222-4222-a222-222222222222" }
+                      ],
+                      "campaign": { "id": "33333333-3333-4333-a333-333333333333", "name": "Q1 Campaign" }
+                    }
                   },
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440701",
@@ -401,7 +418,8 @@
                     "bookmarkCount": 234,
                     "impressionCount": 89300,
                     "engagement": 0.019,
-                    "emv": 893
+                    "emv": 893,
+                    "ordinalPost": null
                   }
                 ]
               }
@@ -4504,6 +4522,60 @@
             "type": "number",
             "nullable": true,
             "description": "Earned Media Value calculated as (impressionCount / 1000) * CPM"
+          },
+          "ordinalPost": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/OrdinalPostReference" },
+              { "type": "null" }
+            ],
+            "description": "Linked Ordinal post when this external post was published from Ordinal, null otherwise"
+          }
+        }
+      },
+      "OrdinalPostReference": {
+        "type": "object",
+        "description": "Reference to the Ordinal post linked to an external social post",
+        "required": ["id", "title", "labels"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Ordinal post ID"
+          },
+          "title": {
+            "type": "string",
+            "description": "Ordinal post title"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "labelId"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Label name"
+                },
+                "labelId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Label ID"
+                }
+              }
+            }
+          },
+          "campaign": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -4566,6 +4638,13 @@
             "type": "number",
             "nullable": true,
             "description": "Earned Media Value calculated as (impressionCount / 1000) * CPM"
+          },
+          "ordinalPost": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/OrdinalPostReference" },
+              { "type": "null" }
+            ],
+            "description": "Linked Ordinal post when this external post was published from Ordinal, null otherwise"
           }
         }
       },
