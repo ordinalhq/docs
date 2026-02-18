@@ -62,6 +62,10 @@
       "description": "Upload files from URLs for use in posts. Supports images (JPEG, PNG, GIF, WebP) up to 10 MB and videos (MP4, MOV) up to 350 MB."
     },
     {
+      "name": "Ideas",
+      "description": "Create and manage content ideas. Ideas are draft posts without scheduled dates that can be converted to calendar posts."
+    },
+    {
       "name": "Inline Comments",
       "description": "Text-anchored comments on specific post content. Read-only API for retrieving inline comments across channels."
     },
@@ -1625,6 +1629,665 @@
         }
       }
     },
+    "/ideas": {
+      "get": {
+        "operationId": "ideas-list",
+        "summary": "List ideas",
+        "description": "List all ideas in the workspace with pagination and filtering. Archived ideas are excluded from results.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of ideas to return (1-100)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Cursor for pagination (idea ID from the last item of previous page)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Fetch specific ideas by IDs",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            }
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "description": "Filter by channel",
+            "schema": {
+              "type": "string",
+              "enum": ["LinkedIn", "Twitter"]
+            }
+          },
+          {
+            "name": "linkedInProfileId",
+            "in": "query",
+            "description": "Filter by LinkedIn profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "xProfileId",
+            "in": "query",
+            "description": "Filter by X/Twitter profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "labelIds",
+            "in": "query",
+            "description": "Filter by label IDs (ideas with any of these labels)",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            }
+          },
+          {
+            "name": "createdAtMin",
+            "in": "query",
+            "description": "Filter ideas created on or after this date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "createdAtMax",
+            "in": "query",
+            "description": "Filter ideas created on or before this date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string",
+              "enum": ["createdAt"],
+              "default": "createdAt"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"],
+              "default": "desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ideas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ideas": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Idea"
+                      }
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Cursor for the next page of results"
+                    },
+                    "hasMore": {
+                      "type": "boolean",
+                      "description": "Whether there are more results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "ideas-create",
+        "summary": "Create idea",
+        "description": "Create a new idea in the workspace. At least one channel (linkedIn or x) is required.",
+        "tags": [
+          "Ideas"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Idea title"
+                  },
+                  "labelIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "default": [],
+                    "description": "Label IDs to attach to the idea"
+                  },
+                  "campaignId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Campaign ID to link the idea to"
+                  },
+                  "linkedIn": {
+                    "$ref": "#/components/schemas/LinkedInChannelConfig"
+                  },
+                  "x": {
+                    "$ref": "#/components/schemas/TwitterChannelConfig"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Internal notes for the idea"
+                  }
+                }
+              },
+              "example": {
+                "title": "My Idea",
+                "linkedIn": {
+                  "copy": "This is my idea content for LinkedIn"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Idea created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdeaCreateResponse"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/workspace/ideas/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "My Idea",
+                  "channels": ["LinkedIn"],
+                  "status": "Idea",
+                  "createdAt": "2026-02-18T14:30:00.000Z",
+                  "updatedAt": "2026-02-18T14:30:00.000Z",
+                  "linkedIn": {
+                    "copy": "This is my idea content for LinkedIn",
+                    "assets": []
+                  },
+                  "x": null
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/ideas/{id}": {
+      "get": {
+        "operationId": "ideas-get",
+        "summary": "Get idea",
+        "description": "Get a single idea by ID.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Idea ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idea details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "idea": {
+                      "$ref": "#/components/schemas/Idea"
+                    }
+                  }
+                },
+                "example": {
+                  "idea": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "url": "https://app.tryordinal.com/workspace/ideas/550e8400-e29b-41d4-a716-446655440000",
+                    "title": "My Idea",
+                    "channels": ["LinkedIn"],
+                    "status": "Idea",
+                    "createdAt": "2026-02-18T14:30:00.000Z",
+                    "updatedAt": "2026-02-18T14:30:00.000Z",
+                    "linkedIn": {
+                      "profile": {
+                        "id": "660e8400-e29b-41d4-a716-446655440000",
+                        "name": "John Doe",
+                        "detail": "johndoe"
+                      },
+                      "copy": "This is my idea content for LinkedIn",
+                      "assets": []
+                    },
+                    "x": null
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "ideas-update",
+        "summary": "Update idea",
+        "description": "Update an existing idea by ID. All fields are optional - only include the fields you want to update. Archived ideas cannot be updated; unarchive them first.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Idea ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Idea title"
+                  },
+                  "labelIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "description": "Label IDs to attach to the idea (replaces existing labels)"
+                  },
+                  "campaignId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "nullable": true,
+                    "description": "Campaign ID to link the idea to (null to unlink)"
+                  },
+                  "linkedIn": {
+                    "type": "object",
+                    "properties": {
+                      "copy": {
+                        "type": "string"
+                      },
+                      "assetIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "uuid"
+                        }
+                      }
+                    },
+                    "description": "LinkedIn channel content updates"
+                  },
+                  "x": {
+                    "type": "object",
+                    "properties": {
+                      "tweets": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "copy": {
+                              "type": "string"
+                            },
+                            "assetIds": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "format": "uuid"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "description": "X/Twitter channel content updates"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Internal notes for the idea"
+                  }
+                }
+              },
+              "example": {
+                "title": "Updated Idea Title",
+                "linkedIn": {
+                  "copy": "Updated LinkedIn content"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Idea updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdeaUpdateResponse"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "url": "https://app.tryordinal.com/workspace/ideas/550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Updated Idea Title",
+                  "channels": ["LinkedIn"],
+                  "status": "Idea",
+                  "updatedAt": "2026-02-18T15:00:00.000Z",
+                  "linkedIn": {
+                    "copy": "Updated LinkedIn content",
+                    "assets": []
+                  },
+                  "x": null
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/ideas/{id}/archive": {
+      "post": {
+        "operationId": "ideas-archive",
+        "summary": "Archive idea",
+        "description": "Archive an idea by ID. The idea is moved to Trash and will be permanently deleted after 30 days. Use the unarchive endpoint to restore it.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Idea ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idea archived successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Idea ID"
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Workspace ID"
+                    },
+                    "archivedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "description": "When the idea was archived"
+                    }
+                  },
+                  "required": ["id", "workspaceId", "archivedAt"]
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "workspaceId": "660e8400-e29b-41d4-a716-446655440000",
+                  "archivedAt": "2026-02-18T14:30:00.000Z"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/ideas/{id}/unarchive": {
+      "post": {
+        "operationId": "ideas-unarchive",
+        "summary": "Unarchive idea",
+        "description": "Restore an archived idea from Trash. The idea will no longer be scheduled for permanent deletion.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Idea ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idea unarchived successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Idea ID"
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Workspace ID"
+                    },
+                    "archivedAt": {
+                      "type": "null",
+                      "description": "Always null for unarchived ideas"
+                    }
+                  },
+                  "required": ["id", "workspaceId", "archivedAt"]
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "workspaceId": "660e8400-e29b-41d4-a716-446655440000",
+                  "archivedAt": null
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/ideas/{id}/add-to-calendar": {
+      "post": {
+        "operationId": "ideas-add-to-calendar",
+        "summary": "Add idea to calendar",
+        "description": "Convert an idea to a calendar post by assigning it a publish date. The idea becomes a regular post that can be scheduled.",
+        "tags": [
+          "Ideas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Idea ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["publishDate"],
+                "properties": {
+                  "publishDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Date to add the idea to on the calendar (YYYY-MM-DD or ISO 8601)"
+                  }
+                }
+              },
+              "example": {
+                "publishDate": "2026-03-01"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Idea added to calendar successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "The post ID (same as the original idea ID)"
+                    }
+                  },
+                  "required": ["id"]
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/posts": {
       "get": {
         "operationId": "posts-list",
@@ -2205,13 +2868,29 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "success": {
-                      "type": "boolean"
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post ID"
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Workspace ID"
+                    },
+                    "archivedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true,
+                      "description": "When the post was archived"
                     }
-                  }
+                  },
+                  "required": ["id", "workspaceId", "archivedAt"]
                 },
                 "example": {
-                  "success": true
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "workspaceId": "660e8400-e29b-41d4-a716-446655440000",
+                  "archivedAt": "2026-02-18T14:30:00.000Z"
                 }
               }
             }
@@ -2253,13 +2932,27 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "success": {
-                      "type": "boolean"
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post ID"
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Workspace ID"
+                    },
+                    "archivedAt": {
+                      "type": "null",
+                      "description": "Always null for unarchived posts"
                     }
-                  }
+                  },
+                  "required": ["id", "workspaceId", "archivedAt"]
                 },
                 "example": {
-                  "success": true
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "workspaceId": "660e8400-e29b-41d4-a716-446655440000",
+                  "archivedAt": null
                 }
               }
             }
@@ -3361,6 +4054,238 @@
           },
           "author": {
             "$ref": "#/components/schemas/LinkedInLeadAuthor"
+          }
+        }
+      },
+      "Idea": {
+        "type": "object",
+        "description": "Content idea that can be converted to a calendar post",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Always 'Idea' for ideas"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "profile": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChannelProfile"
+                  }
+                ],
+                "nullable": true
+              },
+              "copy": {
+                "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "description": "Assets attached to the LinkedIn content",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "description": "X (Twitter) content",
+            "properties": {
+              "profile": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChannelProfile"
+                  }
+                ],
+                "nullable": true
+              },
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "description": "Assets attached to this tweet",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "IdeaCreateResponse": {
+        "type": "object",
+        "description": "Response when creating an idea",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "copy": {
+                "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "IdeaUpdateResponse": {
+        "type": "object",
+        "description": "Response when updating an idea",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "linkedIn": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "copy": {
+                "type": "string"
+              },
+              "assets": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "x": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "tweets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "copy": {
+                      "type": "string"
+                    },
+                    "assets": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
