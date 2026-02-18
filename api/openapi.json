@@ -1831,10 +1831,10 @@
                     "description": "Campaign ID to link the idea to"
                   },
                   "linkedIn": {
-                    "$ref": "#/components/schemas/LinkedInChannelConfig"
+                    "$ref": "#/components/schemas/LinkedInConfig"
                   },
                   "x": {
-                    "$ref": "#/components/schemas/TwitterChannelConfig"
+                    "$ref": "#/components/schemas/TwitterConfig"
                   },
                   "notes": {
                     "type": "string",
