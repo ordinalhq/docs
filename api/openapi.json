@@ -1831,10 +1831,109 @@
                     "description": "Campaign ID to link the idea to"
                   },
                   "linkedIn": {
-                    "$ref": "#/components/schemas/LinkedInConfig"
+                    "type": "object",
+                    "description": "LinkedIn channel configuration",
+                    "properties": {
+                      "profileId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "LinkedIn profile ID to post from"
+                      },
+                      "copy": {
+                        "type": "string",
+                        "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
+                      },
+                      "assetIds": {
+                        "type": "array",
+                        "description": "Array of asset IDs to attach. Maximum 20 attachments.",
+                        "items": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "maxItems": 20
+                      },
+                      "poll": {
+                        "type": "object",
+                        "properties": {
+                          "question": {
+                            "type": "string"
+                          },
+                          "duration": {
+                            "type": "string",
+                            "enum": ["ONE_DAY", "THREE_DAYS", "ONE_WEEK", "TWO_WEEKS"]
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "linkPreview": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "thumbnailId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
                   },
                   "x": {
-                    "$ref": "#/components/schemas/TwitterConfig"
+                    "type": "object",
+                    "description": "X (Twitter) channel configuration",
+                    "required": ["profileId", "tweets"],
+                    "properties": {
+                      "profileId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "X (Twitter) profile ID to post from"
+                      },
+                      "tweets": {
+                        "type": "array",
+                        "description": "Array of tweets. For threads, include multiple tweets in order.",
+                        "minItems": 1,
+                        "items": {
+                          "type": "object",
+                          "required": ["copy"],
+                          "properties": {
+                            "copy": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "Tweet text content"
+                            },
+                            "assetIds": {
+                              "type": "array",
+                              "description": "Array of asset IDs to attach. Maximum 4 per tweet.",
+                              "items": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "maxItems": 4
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
                   "notes": {
                     "type": "string",
