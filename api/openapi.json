@@ -210,7 +210,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440600",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345678",
-                    "commentary": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n\u2705 Feature A\n\u2705 Feature B\n\u2705 Feature C\n\nLearn more in the comments \ud83d\udc47",
+                    "commentary": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work:\n\n✅ Feature A\n✅ Feature B\n✅ Feature C\n\nLearn more in the comments 👇",
                     "type": "Text",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 245,
@@ -232,7 +232,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440601",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345679",
-                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nThread below:",
+                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nThread below:",
                     "type": "Image",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 892,
@@ -391,7 +391,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440700",
                     "url": "https://x.com/acme/status/1234567890123456789",
-                    "text": "Excited to share our latest product update! \ud83d\ude80\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread \ud83e\uddf5\ud83d\udc47",
+                    "text": "Excited to share our latest product update! 🚀\n\nAfter months of development, we're launching three new features that will transform how you work.\n\nThread 🧵👇",
                     "publishedAt": "2024-12-10T14:00:00.000Z",
                     "likeCount": 342,
                     "replyCount": 28,
@@ -413,7 +413,7 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440701",
                     "url": "https://x.com/acme/status/1234567890123456790",
-                    "text": "5 lessons learned from scaling our startup from 0 to 10k users \ud83d\udcc8\n\nA thread:",
+                    "text": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nA thread:",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 1256,
                     "replyCount": 94,
@@ -2594,7 +2594,7 @@
                           "name": "John Doe",
                           "detail": "johndoe"
                         },
-                        "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                        "copy": "Excited to announce our new product launch! 🚀",
                         "assets": [
                           {
                             "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -2616,7 +2616,7 @@
                         },
                         "tweets": [
                           {
-                            "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                            "copy": "Excited to announce our new product launch! 🚀",
                             "assets": []
                           }
                         ]
@@ -2657,18 +2657,18 @@
                 "status": "Scheduled",
                 "linkedIn": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440001",
-                  "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C\n\n#ProductLaunch #Innovation",
+                  "copy": "Excited to announce our new product launch! 🚀\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation",
                   "assetIds": ["550e8400-e29b-41d4-a716-446655440010"]
                 },
                 "x": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440003",
                   "tweets": [
                     {
-                      "copy": "Excited to announce our new product launch! \ud83d\ude80\n\nA thread on what we've been building \ud83e\uddf5",
+                      "copy": "Excited to announce our new product launch! 🚀\n\nA thread on what we've been building 🧵",
                       "assetIds": ["550e8400-e29b-41d4-a716-446655440011"]
                     },
                     {
-                      "copy": "Key highlights:\n\u2022 Feature A\n\u2022 Feature B\n\u2022 Feature C"
+                      "copy": "Key highlights:\n• Feature A\n• Feature B\n• Feature C"
                     }
                   ]
                 },
@@ -2803,7 +2803,7 @@
                         "name": "John Doe",
                         "detail": "johndoe"
                       },
-                      "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                      "copy": "Excited to announce our new product launch! 🚀",
                       "assets": [
                         {
                           "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -2825,7 +2825,7 @@
                       },
                       "tweets": [
                         {
-                          "copy": "Excited to announce our new product launch! \ud83d\ude80",
+                          "copy": "Excited to announce our new product launch! 🚀",
                           "assets": []
                         }
                       ]
@@ -2874,15 +2874,15 @@
                 "publishAt": "2026-01-16T15:00:00.000Z",
                 "status": "Finalized",
                 "linkedIn": {
-                  "copy": "Updated content for our product launch! \ud83d\ude80\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                  "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                 },
                 "x": {
                   "tweets": [
                     {
-                      "copy": "Updated content for our product launch! \ud83d\ude80\n\nWe've added even more features \ud83e\uddf5"
+                      "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
                     },
                     {
-                      "copy": "\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                      "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                     }
                   ]
                 }
@@ -2911,15 +2911,15 @@
                   "publishAt": "2026-01-16T15:00:00.000Z",
                   "updatedAt": "2026-01-13T09:15:00.000Z",
                   "linkedIn": {
-                    "copy": "Updated content for our product launch! \ud83d\ude80\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                    "copy": "Updated content for our product launch! 🚀\n\nShoutout to @[Jane Smith](urn:li:person:XYZ789abc) for leading this effort.\n\nWe've added even more features:\n• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                   },
                   "x": {
                     "tweets": [
                       {
-                        "copy": "Updated content for our product launch! \ud83d\ude80\n\nWe've added even more features \ud83e\uddf5"
+                        "copy": "Updated content for our product launch! 🚀\n\nWe've added even more features 🧵"
                       },
                       {
-                        "copy": "\u2022 Feature D\n\u2022 Feature E\n\n#ProductLaunch #Innovation"
+                        "copy": "• Feature D\n• Feature E\n\n#ProductLaunch #Innovation"
                       }
                     ]
                   }
