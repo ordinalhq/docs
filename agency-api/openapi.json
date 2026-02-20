@@ -229,7 +229,9 @@
                     "pattern": "^(?=.{1,48}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
                   },
                   "timezone": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "IANA timezone identifier for the workspace (e.g., 'America/New_York', 'Europe/London', 'Asia/Tokyo')",
+                    "example": "America/New_York"
                   },
                   "userIds": {
                     "type": "array",
@@ -241,8 +243,28 @@
                 },
                 "required": [
                   "name",
-                  "slug"
+                  "slug",
+                  "timezone"
                 ]
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Create workspace with timezone",
+                  "value": {
+                    "name": "Acme Corp",
+                    "slug": "acme-corp",
+                    "timezone": "America/New_York"
+                  }
+                },
+                "withUsers": {
+                  "summary": "Create workspace with users",
+                  "value": {
+                    "name": "Marketing Team",
+                    "slug": "marketing-team",
+                    "timezone": "Europe/London",
+                    "userIds": ["550e8400-e29b-41d4-a716-446655440000"]
+                  }
+                }
               }
             }
           }
