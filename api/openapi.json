@@ -2597,6 +2597,14 @@
                       "publishAt": "2026-01-15T14:00:00.000Z",
                       "createdAt": "2026-01-05T10:30:00.000Z",
                       "updatedAt": "2026-01-05T11:45:00.000Z",
+                      "labels": [
+                        {
+                          "id": "550e8400-e29b-41d4-a716-446655440400",
+                          "name": "Marketing",
+                          "color": "#9333ea",
+                          "backgroundColor": "#f3e8ff"
+                        }
+                      ],
                       "linkedIn": {
                         "profile": {
                           "id": "550e8400-e29b-41d4-a716-446655440001",
@@ -2806,6 +2814,14 @@
                     "publishAt": "2026-01-15T14:00:00.000Z",
                     "createdAt": "2026-01-05T10:30:00.000Z",
                     "updatedAt": "2026-01-05T11:45:00.000Z",
+                    "labels": [
+                      {
+                        "id": "550e8400-e29b-41d4-a716-446655440400",
+                        "name": "Marketing",
+                        "color": "#9333ea",
+                        "backgroundColor": "#f3e8ff"
+                      }
+                    ],
                     "linkedIn": {
                       "profile": {
                         "id": "550e8400-e29b-41d4-a716-446655440001",
@@ -4443,6 +4459,32 @@
             "format": "date-time",
             "nullable": true,
             "description": "When the post was archived. Null if the post is not archived."
+          },
+          "labels": {
+            "type": "array",
+            "description": "Labels assigned to this post",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Label ID"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Label name"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Label text color (hex)"
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "description": "Label background color (hex)"
+                }
+              }
+            }
           },
           "linkedIn": {
             "type": "object",
