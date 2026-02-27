@@ -53,6 +53,14 @@ All webhook payloads follow a consistent top-level structure with event-specific
     <ResponseField name="rescheduledAt" type="string" required>
       ISO 8601 timestamp when the post was rescheduled.
     </ResponseField>
+
+    <ResponseField name="linkedIn" type="object | null">
+      LinkedIn content when the post includes LinkedIn. Contains `profile` (id, name, detail), `copy`, and `assets` (id, name, url, mimetype, size, width, height, duration).
+    </ResponseField>
+
+    <ResponseField name="x" type="object | null">
+      X/Twitter content when the post includes Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
@@ -66,16 +74,46 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.rescheduled",
   "data": {
-    "id": "clx123abc",
-    "title": "Q1 Launch",
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "title": "Q4 Product Launch Announcement",
     "channels": ["LinkedIn"],
     "campaign": null,
-    "url": "https://app.tryordinal.com/my-workspace/posts/clx123abc",
+    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
     "previousPublishAt": "2025-03-01T14:00:00.000Z",
     "newPublishAt": "2025-03-01T16:00:00.000Z",
-    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
-    "rescheduledBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
-    "rescheduledAt": "2025-02-26T13:00:00.000Z"
+    "workspace": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "slug": "acme",
+      "name": "Acme Inc"
+    },
+    "rescheduledBy": {
+      "id": "550e8400-e29b-41d4-a716-446655440010",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com"
+    },
+    "rescheduledAt": "2025-02-26T13:00:00.000Z",
+    "linkedIn": {
+      "profile": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "name": "Acme Inc",
+        "detail": "acme-inc"
+      },
+      "copy": "Excited to announce our new product launch!",
+      "assets": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440010",
+          "name": "product-photo.jpg",
+          "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+          "mimetype": "image/jpeg",
+          "size": 245678,
+          "width": 1920,
+          "height": 1080,
+          "duration": null
+        }
+      ]
+    },
+    "x": null
   },
   "createdAt": "2025-02-26T13:00:00.000Z"
 }

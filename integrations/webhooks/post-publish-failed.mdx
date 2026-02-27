@@ -70,16 +70,29 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.publish_failed",
   "data": {
-    "id": "clx123abc",
-    "title": "Q1 Launch",
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "title": "Q4 Product Launch Announcement",
     "channel": "LinkedIn",
     "error": "Token expired",
     "campaign": null,
-    "url": "https://app.tryordinal.com/my-workspace/posts/clx123abc",
-    "profile": { "id": "prof_1", "name": "Company Page", "detail": "LinkedIn" },
+    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+    "profile": {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Acme Inc",
+      "detail": "acme-inc"
+    },
     "scheduledPublishAt": "2025-03-01T14:00:00.000Z",
-    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
-    "createdBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "workspace": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "slug": "acme",
+      "name": "Acme Inc"
+    },
+    "createdBy": {
+      "id": "550e8400-e29b-41d4-a716-446655440010",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com"
+    },
     "failedAt": "2025-03-01T14:00:05.000Z"
   },
   "createdAt": "2025-03-01T14:00:05.000Z"
