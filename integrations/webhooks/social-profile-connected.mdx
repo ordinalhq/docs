@@ -1,0 +1,54 @@
+---
+title: "social_profile.connected"
+description: "Fired when a social profile is connected to the workspace"
+sidebarTitle: "social_profile.connected"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `social_profile.connected`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="profile" type="object" required>
+      The connected profile. Contains `id`, `name`, `detail`, `channel`, and `profileImageUrl`.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the profile was connected to. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="connectedBy" type="object" required>
+      User who connected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="connectedAt" type="string" required>
+      ISO 8601 timestamp when the profile was connected.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "social_profile.connected",
+  "data": {
+    "profile": { "id": "prof_1", "name": "Company Page", "detail": "LinkedIn", "channel": "LinkedIn", "profileImageUrl": "https://..." },
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "connectedBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "connectedAt": "2025-02-26T10:00:00.000Z"
+  },
+  "createdAt": "2025-02-26T10:00:00.000Z"
+}
+```
+
+</ResponseExample>

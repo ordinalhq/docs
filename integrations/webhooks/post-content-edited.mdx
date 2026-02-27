@@ -1,0 +1,64 @@
+---
+title: "post.content.edited"
+description: "Fired when a post's content is edited (debounced, fires after 5 minutes)"
+sidebarTitle: "post.content.edited"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `post.content.edited`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="id" type="string" required>
+      Post ID.
+    </ResponseField>
+
+    <ResponseField name="title" type="string" required>
+      Post title.
+    </ResponseField>
+
+    <ResponseField name="channel" type="string" required>
+      Channel being edited.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="editedBy" type="object" required>
+      User who edited the post. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="editedAt" type="string" required>
+      ISO 8601 timestamp when the edit was recorded.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "post.content.edited",
+  "data": {
+    "id": "clx123abc",
+    "title": "Q1 Launch",
+    "channel": "LinkedIn",
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "editedBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "editedAt": "2025-02-26T15:30:00.000Z"
+  },
+  "createdAt": "2025-02-26T15:30:00.000Z"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,74 @@
+---
+title: "post.unscheduled"
+description: "Fired when a post is unscheduled"
+sidebarTitle: "post.unscheduled"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `post.unscheduled`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="id" type="string" required>
+      Post ID.
+    </ResponseField>
+
+    <ResponseField name="title" type="string" required>
+      Post title.
+    </ResponseField>
+
+    <ResponseField name="channels" type="array" required>
+      Channels the post was scheduled for.
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object | null">
+      Campaign if assigned. Contains `id` and `name`.
+    </ResponseField>
+
+    <ResponseField name="url" type="string" required>
+      Ordinal post URL.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="unscheduledBy" type="object" required>
+      User who unscheduled the post. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="unscheduledAt" type="string" required>
+      ISO 8601 timestamp when the post was unscheduled.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "post.unscheduled",
+  "data": {
+    "id": "clx123abc",
+    "title": "Q1 Launch",
+    "channels": ["LinkedIn"],
+    "campaign": null,
+    "url": "https://app.tryordinal.com/my-workspace/posts/clx123abc",
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "unscheduledBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "unscheduledAt": "2025-02-26T14:00:00.000Z"
+  },
+  "createdAt": "2025-02-26T14:00:00.000Z"
+}
+```
+
+</ResponseExample>
