@@ -38,6 +38,10 @@ All webhook payloads follow a consistent top-level structure with event-specific
       Ordinal post URL.
     </ResponseField>
 
+    <ResponseField name="labels" type="array" required>
+      Labels attached to the post. Each contains `id`, `name`, `color`, and `backgroundColor`.
+    </ResponseField>
+
     <ResponseField name="workspace" type="object" required>
       Workspace the post belonged to. Contains `id`, `slug`, and `name`.
     </ResponseField>
@@ -76,6 +80,14 @@ All webhook payloads follow a consistent top-level structure with event-specific
     "channels": ["LinkedIn"],
     "campaign": null,
     "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440400",
+        "name": "Marketing",
+        "color": "#9333ea",
+        "backgroundColor": "#f3e8ff"
+      }
+    ],
     "workspace": {
       "id": "550e8400-e29b-41d4-a716-446655440000",
       "slug": "acme",

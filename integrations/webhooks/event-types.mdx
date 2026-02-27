@@ -69,4 +69,4 @@ Events for post lifecycle and content changes:
 | [`post.publish_failed`](/integrations/webhooks/post-publish-failed) | A post fails to publish |
 | [`post.archived`](/integrations/webhooks/post-archived) | A post is archived (moved to trash) |
 | [`post.permanently_deleted`](/integrations/webhooks/post-permanently-deleted) | A post is permanently deleted |
-| [`post.content.edited`](/integrations/webhooks/post-content-edited) | A post's content is edited (debounced, fires after ~5 minutes) |
+| [`post.content.edited`](/integrations/webhooks/post-content-edited) | A post's content is edited (debounced per post, fires after ~5 minutes). Includes latest content for all channels. |

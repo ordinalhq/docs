@@ -1,6 +1,6 @@
 ---
 title: "post.content.edited"
-description: "Fired when a post's content is edited (debounced, fires after 5 minutes)"
+description: "Fired when a post's content is edited (debounced per post, fires after 5 minutes). Includes latest content for all channels."
 sidebarTitle: "post.content.edited"
 ---
 
@@ -22,8 +22,16 @@ All webhook payloads follow a consistent top-level structure with event-specific
       Post title.
     </ResponseField>
 
-    <ResponseField name="channel" type="string" required>
-      Channel being edited.
+    <ResponseField name="channels" type="array" required>
+      Channels the post is scheduled for.
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object | null">
+      Campaign if assigned. Contains `id` and `name`.
+    </ResponseField>
+
+    <ResponseField name="url" type="string" required>
+      Ordinal post URL.
     </ResponseField>
 
     <ResponseField name="workspace" type="object" required>
@@ -36,6 +44,18 @@ All webhook payloads follow a consistent top-level structure with event-specific
 
     <ResponseField name="editedAt" type="string" required>
       ISO 8601 timestamp when the edit was recorded.
+    </ResponseField>
+
+    <ResponseField name="labels" type="array" required>
+      Labels attached to the post. Each contains `id`, `name`, `color`, and `backgroundColor`.
+    </ResponseField>
+
+    <ResponseField name="linkedIn" type="object | null">
+      LinkedIn content when the post includes LinkedIn. Contains `profile` (id, name, detail), `copy`, and `assets` (id, name, url, mimetype, size, width, height, duration).
+    </ResponseField>
+
+    <ResponseField name="x" type="object | null">
+      X/Twitter content when the post includes Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -52,7 +72,12 @@ All webhook payloads follow a consistent top-level structure with event-specific
   "data": {
     "id": "550e8400-e29b-41d4-a716-446655440001",
     "title": "Q4 Product Launch Announcement",
-    "channel": "LinkedIn",
+    "channels": ["LinkedIn", "Twitter"],
+    "campaign": {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "name": "Launch 2025"
+    },
+    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
     "workspace": {
       "id": "550e8400-e29b-41d4-a716-446655440000",
       "slug": "acme",
@@ -64,7 +89,48 @@ All webhook payloads follow a consistent top-level structure with event-specific
       "lastName": "Doe",
       "email": "jane@example.com"
     },
-    "editedAt": "2025-02-26T15:30:00.000Z"
+    "editedAt": "2025-02-26T15:30:00.000Z",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440400",
+        "name": "Marketing",
+        "color": "#9333ea",
+        "backgroundColor": "#f3e8ff"
+      }
+    ],
+    "linkedIn": {
+      "profile": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "name": "Acme Inc",
+        "detail": "acme-inc"
+      },
+      "copy": "Updated LinkedIn content for the launch!",
+      "assets": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440010",
+          "name": "product-photo.jpg",
+          "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+          "mimetype": "image/jpeg",
+          "size": 245678,
+          "width": 1920,
+          "height": 1080,
+          "duration": null
+        }
+      ]
+    },
+    "x": {
+      "profile": {
+        "id": "550e8400-e29b-41d4-a716-446655440004",
+        "name": "Acme Inc",
+        "detail": "@acme_inc"
+      },
+      "tweets": [
+        {
+          "copy": "Updated Twitter content for the launch!",
+          "assets": []
+        }
+      ]
+    }
   },
   "createdAt": "2025-02-26T15:30:00.000Z"
 }
