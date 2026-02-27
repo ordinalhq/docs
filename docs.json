@@ -162,6 +162,40 @@
             }
           }
         ]
+      },
+      {
+        "tab": "Webhooks",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "webhook",
+            "pages": ["integrations/webhooks/introduction", "integrations/webhooks/event-types"]
+          },
+          {
+            "group": "Social Profile",
+            "icon": "circle-user",
+            "pages": [
+              "integrations/webhooks/social-profile-connected",
+              "integrations/webhooks/social-profile-disconnected",
+              "integrations/webhooks/social-profile-reconnect-needed"
+            ]
+          },
+          {
+            "group": "Posts",
+            "icon": "file-lines",
+            "pages": [
+              "integrations/webhooks/post-created",
+              "integrations/webhooks/post-scheduled",
+              "integrations/webhooks/post-rescheduled",
+              "integrations/webhooks/post-unscheduled",
+              "integrations/webhooks/post-published",
+              "integrations/webhooks/post-publish-failed",
+              "integrations/webhooks/post-archived",
+              "integrations/webhooks/post-permanently-deleted",
+              "integrations/webhooks/post-content-edited"
+            ]
+          }
+        ]
       }
     ]
   },

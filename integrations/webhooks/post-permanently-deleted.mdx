@@ -1,0 +1,79 @@
+---
+title: "post.permanently_deleted"
+description: "Fired when a post is permanently deleted"
+sidebarTitle: "post.permanently_deleted"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `post.permanently_deleted`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="id" type="string" required>
+      Post ID.
+    </ResponseField>
+
+    <ResponseField name="title" type="string" required>
+      Post title.
+    </ResponseField>
+
+    <ResponseField name="status" type="string" required>
+      Post status.
+    </ResponseField>
+
+    <ResponseField name="channels" type="array" required>
+      Channels the post was scheduled for.
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object | null">
+      Campaign if assigned. Contains `id` and `name`.
+    </ResponseField>
+
+    <ResponseField name="url" type="string" required>
+      Ordinal post URL.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the post belonged to. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="deletedBy" type="object | null">
+      User who deleted the post, or null if auto-deleted after trash retention. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="deletedAt" type="string" required>
+      ISO 8601 timestamp when the post was permanently deleted.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "post.permanently_deleted",
+  "data": {
+    "id": "clx123abc",
+    "title": "Old Draft",
+    "status": "archived",
+    "channels": ["LinkedIn"],
+    "campaign": null,
+    "url": "https://app.tryordinal.com/my-workspace/posts/clx123abc",
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "deletedBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "deletedAt": "2025-03-15T10:00:00.000Z"
+  },
+  "createdAt": "2025-03-15T10:00:00.000Z"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,48 @@
+---
+title: "Introduction"
+description: "Get real-time notifications on events across your Ordinal workspace"
+sidebarTitle: "Introduction"
+---
+
+Use webhooks to get real-time notifications on events happening across your Ordinal workspace. With Ordinal webhooks, you can build custom integrations, such as:
+
+- Syncing post data to your CRM when content goes live
+- Building internal dashboards that track publishing activity across your team
+
+In this guide, we'll show you how to configure webhooks and document the available events you can listen to.
+
+## Creating a webhook
+
+<Steps>
+  <Step title="Go to Webhooks Settings">
+    Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks).
+  </Step>
+  <Step title="Select Events">
+    Click **Create a Webhook** and choose which events to subscribe to. Each webhook can listen to one or more event types.
+  </Step>
+  <Step title="Configure Your Webhook">
+    Enter a name, your endpoint URL, and optionally a description. You can add custom headers (e.g. for authentication) if needed.
+  </Step>
+</Steps>
+
+## Payload format
+
+All webhook deliveries use the same envelope. The request body is JSON:
+
+```json
+{
+  "type": "post.published",
+  "data": { ... },
+  "createdAt": "2025-02-26T14:30:00.000Z"
+}
+```
+
+| Field | Description |
+| ----- | ----------- |
+| `type` | The event type (e.g. `post.published`, `post.archived`) |
+| `data` | Event-specific payload. See each event page for the schema. |
+| `createdAt` | ISO 8601 timestamp when the event was emitted |
+
+Your endpoint should respond with a `2xx` status code to acknowledge receipt.
+
+See [Event types](/integrations/webhooks/event-types) for the full list of supported events and links to each payload schema.

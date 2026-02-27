@@ -1,0 +1,84 @@
+---
+title: "post.published"
+description: "Fired when a post is successfully published to a social channel"
+sidebarTitle: "post.published"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `post.published`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="id" type="string" required>
+      Post ID.
+    </ResponseField>
+
+    <ResponseField name="title" type="string" required>
+      Post title.
+    </ResponseField>
+
+    <ResponseField name="channel" type="string" required>
+      Channel where the post was published (e.g. LinkedIn, Twitter).
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object | null">
+      Campaign if the post is assigned to one. Contains `id` and `name`.
+    </ResponseField>
+
+    <ResponseField name="url" type="string" required>
+      Ordinal post URL.
+    </ResponseField>
+
+    <ResponseField name="postUrl" type="string | null">
+      Published URL on the social platform.
+    </ResponseField>
+
+    <ResponseField name="profile" type="object" required>
+      Profile that published the post. Contains `id`, `name`, and `detail`.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="publishedBy" type="object" required>
+      User who triggered the publish. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="publishedAt" type="string" required>
+      ISO 8601 timestamp when the post was published.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "post.published",
+  "data": {
+    "id": "clx123abc",
+    "title": "Q1 Product Launch",
+    "channel": "LinkedIn",
+    "campaign": { "id": "clx456", "name": "Launch 2025" },
+    "url": "https://app.tryordinal.com/my-workspace/posts/clx123abc",
+    "postUrl": "https://linkedin.com/feed/update/urn:li:activity:123",
+    "profile": { "id": "prof_1", "name": "Company Page", "detail": "LinkedIn" },
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "publishedBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "publishedAt": "2025-02-26T14:30:00.000Z"
+  },
+  "createdAt": "2025-02-26T14:30:00.000Z"
+}
+```
+
+</ResponseExample>

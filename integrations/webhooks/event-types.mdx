@@ -1,0 +1,45 @@
+---
+title: "Event types"
+description: "Supported webhook event types and their payloads"
+sidebarTitle: "Event types"
+---
+
+Ordinal sends webhook notifications when events occur in your workspace. Every payload uses this structure:
+
+```json
+{
+  "type": "post.published",
+  "data": {},
+  "createdAt": "2025-02-26T14:30:00.000Z"
+}
+```
+
+- **type** – Event type (e.g. `post.published`)
+- **data** – Event-specific payload; see each event page for the schema
+- **createdAt** – ISO 8601 timestamp when the event was emitted
+
+## Social Profile
+
+Events for connected social accounts (LinkedIn, Twitter, Instagram, etc.):
+
+| Event Type | Description |
+| ---------- | ----------- |
+| [`social_profile.connected`](/integrations/webhooks/social-profile-connected) | A profile is connected to the workspace |
+| [`social_profile.disconnected`](/integrations/webhooks/social-profile-disconnected) | A profile is disconnected from the workspace |
+| [`social_profile.reconnect_needed`](/integrations/webhooks/social-profile-reconnect-needed) | A profile needs reconnecting (e.g. token expired) |
+
+## Posts
+
+Events for post lifecycle and content changes:
+
+| Event Type | Description |
+| ---------- | ----------- |
+| [`post.created`](/integrations/webhooks/post-created) | A new post is created |
+| [`post.scheduled`](/integrations/webhooks/post-scheduled) | A post is scheduled for publishing |
+| [`post.rescheduled`](/integrations/webhooks/post-rescheduled) | A post's scheduled time is changed |
+| [`post.unscheduled`](/integrations/webhooks/post-unscheduled) | A post is unscheduled |
+| [`post.published`](/integrations/webhooks/post-published) | A post is successfully published to a channel |
+| [`post.publish_failed`](/integrations/webhooks/post-publish-failed) | A post fails to publish |
+| [`post.archived`](/integrations/webhooks/post-archived) | A post is archived (moved to trash) |
+| [`post.permanently_deleted`](/integrations/webhooks/post-permanently-deleted) | A post is permanently deleted |
+| [`post.content.edited`](/integrations/webhooks/post-content-edited) | A post's content is edited (debounced, fires after ~5 minutes) |

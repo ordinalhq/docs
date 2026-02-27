@@ -1,0 +1,61 @@
+---
+title: "social_profile.disconnected"
+description: "Fired when a social profile is disconnected from the workspace"
+sidebarTitle: "social_profile.disconnected"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `social_profile.disconnected`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="profile" type="object" required>
+      The disconnected profile. Contains `id`, `name`, `detail`, `channel`, and `profileImageUrl`.
+    </ResponseField>
+
+    <ResponseField name="workspace" type="object" required>
+      Workspace the profile was disconnected from. Contains `id`, `slug`, and `name`.
+    </ResponseField>
+
+    <ResponseField name="disconnectedBy" type="object" required>
+      User who disconnected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
+    </ResponseField>
+
+    <ResponseField name="disconnectedAt" type="string" required>
+      ISO 8601 timestamp when the profile was disconnected.
+    </ResponseField>
+
+    <ResponseField name="unscheduledPosts" type="array" required>
+      Posts that were unscheduled due to the disconnect. Each item contains `id`, `title`, and `url`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "social_profile.disconnected",
+  "data": {
+    "profile": { "id": "prof_1", "name": "Company Page", "detail": "LinkedIn", "channel": "LinkedIn", "profileImageUrl": null },
+    "workspace": { "id": "ws_1", "slug": "my-workspace", "name": "My Workspace" },
+    "disconnectedBy": { "id": "u_1", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com" },
+    "disconnectedAt": "2025-02-26T11:00:00.000Z",
+    "unscheduledPosts": [
+      { "id": "clx123", "title": "Q1 Launch", "url": "https://app.tryordinal.com/my-workspace/posts/clx123" }
+    ]
+  },
+  "createdAt": "2025-02-26T11:00:00.000Z"
+}
+```
+
+</ResponseExample>
