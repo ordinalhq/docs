@@ -27,7 +27,7 @@ All webhook payloads follow a consistent top-level structure with event-specific
     </ResponseField>
 
     <ResponseField name="campaign" type="object | null">
-      Campaign if the post is assigned to one. Contains `id` and `name`.
+      Campaign if the post is assigned to one. Contains `id`, `name`, `startDate`, and `endDate`.
     </ResponseField>
 
     <ResponseField name="url" type="string" required>
@@ -71,7 +71,9 @@ All webhook payloads follow a consistent top-level structure with event-specific
     "channel": "LinkedIn",
     "campaign": {
       "id": "550e8400-e29b-41d4-a716-446655440003",
-      "name": "Launch 2025"
+      "name": "Launch 2025",
+      "startDate": "2025-01-01",
+      "endDate": "2025-12-31"
     },
     "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
     "postUrl": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345678",
