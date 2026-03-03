@@ -72,3 +72,5 @@ Events for post lifecycle and content changes:
 | [`post.archived`](/integrations/webhooks/post-archived) | A post is archived (moved to trash) |
 | [`post.permanently_deleted`](/integrations/webhooks/post-permanently-deleted) | A post is permanently deleted |
 | [`post.content.edited`](/integrations/webhooks/post-content-edited) | A post's content is edited (debounced per post, fires after ~5 minutes). Includes latest content for all channels. |
+| [`post.comment.created`](/integrations/webhooks/post-comment-created) | A comment is added to a post (post-level comments) |
+| [`post.inline_comment.created`](/integrations/webhooks/post-inline-comment-created) | An inline comment (text-anchored) is added to a post. One event per comment, including replies in a thread. |
