@@ -192,7 +192,9 @@
               "integrations/webhooks/post-publish-failed",
               "integrations/webhooks/post-archived",
               "integrations/webhooks/post-permanently-deleted",
-              "integrations/webhooks/post-content-edited"
+              "integrations/webhooks/post-content-edited",
+              "integrations/webhooks/post-comment-created",
+              "integrations/webhooks/post-inline-comment-created"
             ]
           }
         ]
