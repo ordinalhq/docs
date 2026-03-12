@@ -13,17 +13,11 @@ In this guide, we'll show you how to configure webhooks and document the availab
 
 ## Creating a webhook
 
-<Steps>
-  <Step title="Go to Webhooks Settings">
-    Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks).
-  </Step>
-  <Step title="Select Events">
-    Click **Create a Webhook** and choose which events to subscribe to. Each webhook can listen to one or more event types.
-  </Step>
-  <Step title="Configure Your Webhook">
-    Enter a name, your endpoint URL, and optionally a description. You can add custom headers (e.g. for authentication) if needed.
-  </Step>
-</Steps>
+You can create webhooks via the dashboard or the API.
+
+**Dashboard:** Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks), click **Create a Webhook**, choose events, then enter a name, endpoint URL, and optionally a description and custom headers.
+
+**API:** Use [POST `/webhooks`](/api-reference/webhooks/webhooks-create) to create webhooks programmatically. See the API documentation for request parameters and event types.
 
 ## Payload format
 

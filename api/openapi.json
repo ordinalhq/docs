@@ -74,6 +74,10 @@
       "description": "Workspace users"
     },
     {
+      "name": "Webhooks",
+      "description": "Create webhooks to receive real-time event notifications"
+    },
+    {
       "name": "Workspaces",
       "description": "Workspace information"
     }
@@ -4008,6 +4012,112 @@
                 ]
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/webhooks": {
+      "post": {
+        "operationId": "webhooks-create",
+        "summary": "Create webhook",
+        "description": "Create a webhook for the current workspace. The webhook will receive events for the specified topics.",
+        "tags": [
+          "Webhooks"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "url", "topics"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the webhook"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The URL that will receive webhook events"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "An optional description for the webhook"
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "social_profile.connected",
+                        "social_profile.disconnected",
+                        "social_profile.reconnect_needed",
+                        "post.created",
+                        "post.scheduled",
+                        "post.rescheduled",
+                        "post.unscheduled",
+                        "post.published",
+                        "post.publish_failed",
+                        "post.archived",
+                        "post.permanently_deleted",
+                        "post.content.edited",
+                        "post.comment.created",
+                        "post.inline_comment.created"
+                      ]
+                    },
+                    "minItems": 1,
+                    "description": "The event types this webhook should listen to"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": { "type": "string" },
+                    "description": "Optional custom headers to include in webhook requests"
+                  }
+                }
+              },
+              "example": {
+                "name": "CRM Sync",
+                "url": "https://example.com/webhooks/ordinal",
+                "description": "Sync published posts to our CRM",
+                "topics": ["post.published", "post.archived"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "name": { "type": "string" },
+                    "url": { "type": "string", "format": "uri" },
+                    "topics": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "createdAt": { "type": "string", "format": "date-time" }
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440900",
+                  "name": "CRM Sync",
+                  "url": "https://example.com/webhooks/ordinal",
+                  "topics": ["post.published", "post.archived"],
+                  "createdAt": "2026-01-15T10:00:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
