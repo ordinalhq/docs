@@ -714,12 +714,14 @@
                       "createdAt": "2026-01-05T10:30:00.000Z",
                       "user": {
                         "id": "550e8400-e29b-41d4-a716-446655440011",
+                        "email": "jane.smith@example.com",
                         "firstName": "Jane",
                         "lastName": "Smith",
                         "createdAt": "2025-01-01T00:00:00.000Z"
                       },
                       "requestedBy": {
                         "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "email": "john.doe@example.com",
                         "firstName": "John",
                         "lastName": "Doe",
                         "createdAt": "2025-01-01T00:00:00.000Z"
@@ -5469,6 +5471,10 @@
           "id": {
             "type": "string",
             "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
           },
           "firstName": {
             "type": "string",
