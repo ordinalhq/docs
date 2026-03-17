@@ -11,13 +11,117 @@ Use webhooks to get real-time notifications on events happening across your Ordi
 
 In this guide, we'll show you how to configure webhooks and document the available events you can listen to.
 
-## Creating a webhook
+## Managing webhooks
 
-You can create webhooks via the dashboard or the API.
+You can manage webhooks via the dashboard or the API.
 
-**Dashboard:** Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks), click **Create a Webhook**, choose events, then enter a name, endpoint URL, and optionally a description and custom headers.
+**Dashboard:** Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks) to create, view, edit, and delete webhooks.
 
-**API:** Use [POST `/webhooks`](/api-reference/webhooks/webhooks-create) to create webhooks programmatically. See the API documentation for request parameters and event types.
+**API:** The webhooks API supports full CRUD operations. All endpoints require [API key authentication](/api/authentication).
+
+| Operation | Method | Endpoint | Description |
+| --------- | ------ | -------- | ----------- |
+| List | `GET` | `/webhooks` | List all webhooks for the workspace |
+| Create | `POST` | `/webhooks` | Create a new webhook |
+| Get | `GET` | `/webhooks/{id}` | Get a webhook by ID |
+| Update | `PATCH` | `/webhooks/{id}` | Update an existing webhook |
+| Delete | `DELETE` | `/webhooks/{id}` | Delete a webhook |
+
+### List webhooks
+
+```bash
+curl -X GET "https://app.tryordinal.com/api/v1/webhooks" \
+  -H "Authorization: Bearer your_api_key"
+```
+
+Response:
+
+```json
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440900",
+    "name": "CRM Sync",
+    "url": "https://example.com/webhooks/ordinal",
+    "description": "Sync published posts to our CRM",
+    "headers": { "X-Custom-Header": "value" },
+    "topics": ["post.published", "post.archived"],
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "createdBy": {
+      "id": "550e8400-e29b-41d4-a716-446655440010",
+      "email": "john@acme.com",
+      "firstName": "John",
+      "lastName": "Doe"
+    }
+  }
+]
+```
+
+### Create webhook
+
+```bash
+curl -X POST "https://app.tryordinal.com/api/v1/webhooks" \
+  -H "Authorization: Bearer your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "CRM Sync",
+    "url": "https://example.com/webhooks/ordinal",
+    "description": "Sync published posts to our CRM",
+    "topics": ["post.published", "post.archived"],
+    "headers": { "X-Custom-Header": "value" }
+  }'
+```
+
+Response:
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440900",
+  "name": "CRM Sync",
+  "url": "https://example.com/webhooks/ordinal",
+  "topics": ["post.published", "post.archived"],
+  "createdAt": "2026-01-15T10:00:00.000Z"
+}
+```
+
+(Note: Create response omits `description`, `headers`, and `createdBy`; use Get for the full webhook object.)
+
+### Get webhook
+
+```bash
+curl -X GET "https://app.tryordinal.com/api/v1/webhooks/550e8400-e29b-41d4-a716-446655440900" \
+  -H "Authorization: Bearer your_api_key"
+```
+
+### Update webhook
+
+Send only the fields you want to change. All request body fields are optional.
+
+```bash
+curl -X PATCH "https://app.tryordinal.com/api/v1/webhooks/550e8400-e29b-41d4-a716-446655440900" \
+  -H "Authorization: Bearer your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Updated CRM Sync",
+    "topics": ["post.published", "post.archived", "post.content.edited"]
+  }'
+```
+
+### Delete webhook
+
+```bash
+curl -X DELETE "https://app.tryordinal.com/api/v1/webhooks/550e8400-e29b-41d4-a716-446655440900" \
+  -H "Authorization: Bearer your_api_key"
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+See the [Webhooks API reference](/api-reference/webhooks) for full request/response schemas, valid event types, and error handling.
 
 ## Payload format
 

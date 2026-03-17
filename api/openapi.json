@@ -75,7 +75,7 @@
     },
     {
       "name": "Webhooks",
-      "description": "Create webhooks to receive real-time event notifications"
+      "description": "Create, list, get, update, and delete webhooks to receive real-time event notifications"
     },
     {
       "name": "Workspaces",
@@ -4022,6 +4022,43 @@
       }
     },
     "/webhooks": {
+      "get": {
+        "operationId": "webhooks-list",
+        "summary": "List webhooks",
+        "description": "List all webhooks for the current workspace.",
+        "tags": ["Webhooks"],
+        "responses": {
+          "200": {
+            "description": "List of webhooks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Webhook" }
+                },
+                "example": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440900",
+                    "name": "CRM Sync",
+                    "url": "https://example.com/webhooks/ordinal",
+                    "description": "Sync published posts to our CRM",
+                    "headers": { "X-Custom-Header": "value" },
+                    "topics": ["post.published", "post.archived"],
+                    "createdAt": "2026-01-15T10:00:00.000Z",
+                    "createdBy": {
+                      "id": "550e8400-e29b-41d4-a716-446655440010",
+                      "email": "john@acme.com",
+                      "firstName": "John",
+                      "lastName": "Doe"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      },
       "post": {
         "operationId": "webhooks-create",
         "summary": "Create webhook",
@@ -4124,6 +4161,154 @@
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           }
+        }
+      }
+    },
+    "/webhooks/{id}": {
+      "get": {
+        "operationId": "webhooks-get",
+        "summary": "Get webhook",
+        "description": "Get a webhook by ID for the current workspace.",
+        "tags": ["Webhooks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the webhook",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Webhook" },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440900",
+                  "name": "CRM Sync",
+                  "url": "https://example.com/webhooks/ordinal",
+                  "description": "Sync published posts to our CRM",
+                  "headers": { "X-Custom-Header": "value" },
+                  "topics": ["post.published", "post.archived"],
+                  "createdAt": "2026-01-15T10:00:00.000Z",
+                  "createdBy": {
+                    "id": "550e8400-e29b-41d4-a716-446655440010",
+                    "email": "john@acme.com",
+                    "firstName": "John",
+                    "lastName": "Doe"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "patch": {
+        "operationId": "webhooks-update",
+        "summary": "Update webhook",
+        "description": "Update an existing webhook for the current workspace. All fields are optional—only include the fields you want to update.",
+        "tags": ["Webhooks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the webhook to update",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "minLength": 1, "description": "The name of the webhook" },
+                  "url": { "type": "string", "format": "uri", "description": "The URL that will receive webhook events" },
+                  "description": { "type": "string", "description": "An optional description for the webhook" },
+                  "topics": {
+                    "type": "array",
+                    "items": { "type": "string", "enum": ["social_profile.connected", "social_profile.disconnected", "social_profile.reconnect_needed", "post.created", "post.scheduled", "post.rescheduled", "post.unscheduled", "post.published", "post.publish_failed", "post.archived", "post.permanently_deleted", "post.content.edited", "post.comment.created", "post.inline_comment.created"] },
+                    "minItems": 1,
+                    "description": "The event types this webhook should listen to"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": { "type": "string" },
+                    "description": "Optional custom headers to include in webhook requests"
+                  }
+                }
+              },
+              "example": {
+                "name": "CRM Sync (Updated)",
+                "url": "https://example.com/webhooks/ordinal-v2",
+                "topics": ["post.published", "post.archived", "post.content.edited"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Webhook" },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440900",
+                  "name": "CRM Sync (Updated)",
+                  "url": "https://example.com/webhooks/ordinal-v2",
+                  "description": "Sync published posts to our CRM",
+                  "headers": { "X-Custom-Header": "value" },
+                  "topics": ["post.published", "post.archived", "post.content.edited"],
+                  "createdAt": "2026-01-15T10:00:00.000Z",
+                  "createdBy": {
+                    "id": "550e8400-e29b-41d4-a716-446655440010",
+                    "email": "john@acme.com",
+                    "firstName": "John",
+                    "lastName": "Doe"
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "delete": {
+        "operationId": "webhooks-delete",
+        "summary": "Delete webhook",
+        "description": "Delete a webhook from the current workspace. The webhook will no longer receive events.",
+        "tags": ["Webhooks"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the webhook to delete",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "success": { "type": "boolean", "description": "Whether the webhook was deleted" } }
+                },
+                "example": { "success": true }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
         }
       }
     },
@@ -5355,6 +5540,37 @@
             "nullable": true,
             "description": "LinkedIn reaction type for Like engagements"
           }
+        }
+      },
+      "WebhookCreatedBy": {
+        "type": "object",
+        "description": "User who created the webhook",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "email": { "type": "string", "format": "email" },
+          "firstName": { "type": "string", "nullable": true },
+          "lastName": { "type": "string", "nullable": true }
+        }
+      },
+      "Webhook": {
+        "type": "object",
+        "description": "A webhook configuration for receiving event notifications",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "description": { "type": "string", "nullable": true },
+          "headers": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "nullable": true
+          },
+          "topics": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "createdBy": { "$ref": "#/components/schemas/WebhookCreatedBy" }
         }
       },
       "Workspace": {
