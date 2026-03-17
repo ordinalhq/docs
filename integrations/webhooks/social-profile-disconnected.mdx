@@ -15,23 +15,53 @@ All webhook payloads follow a consistent top-level structure with event-specific
 
   <Expandable title="Data object parameters">
     <ResponseField name="profile" type="object" required>
-      The disconnected profile. Contains `id`, `name`, `detail`, `channel`, and `profileImageUrl`.
-    </ResponseField>
+      The disconnected profile.
 
-    <ResponseField name="workspace" type="object" required>
-      Workspace the profile was disconnected from. Contains `id`, `slug`, and `name`.
-    </ResponseField>
+      <Expandable title="Profile object parameters">
+        <ResponseField name="id" type="string" required>
+          Profile ID.
+        </ResponseField>
 
-    <ResponseField name="disconnectedBy" type="object" required>
-      User who disconnected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
-    </ResponseField>
+        <ResponseField name="name" type="string | null">
+          Profile display name.
+        </ResponseField>
 
-    <ResponseField name="disconnectedAt" type="string" required>
-      ISO 8601 timestamp when the profile was disconnected.
-    </ResponseField>
+        <ResponseField name="detail" type="string | null">
+          Profile vanity name or handle.
+        </ResponseField>
 
-    <ResponseField name="unscheduledPosts" type="array" required>
-      Posts that were unscheduled due to the disconnect. Each item contains `id`, `title`, and `url`.
+        <ResponseField name="channel" type="string" required>
+          Social channel (e.g. LinkedIn, Twitter).
+        </ResponseField>
+
+        <ResponseField name="profileImageUrl" type="string | null">
+          URL of the profile image.
+        </ResponseField>
+
+        <ResponseField name="type" type="string">
+          Optional. LinkedIn account type (e.g. Company, Personal).
+        </ResponseField>
+
+        <ResponseField name="url" type="string">
+          Optional. Profile URL on the social platform.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the profile was disconnected from. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+
+        <ResponseField name="disconnectedBy" type="object" required>
+          User who disconnected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="disconnectedAt" type="string" required>
+          ISO 8601 timestamp when the profile was disconnected.
+        </ResponseField>
+
+        <ResponseField name="unscheduledPosts" type="array" required>
+          Posts that were unscheduled due to the disconnect. Each item contains `id`, `title`, and `url`.
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -51,27 +81,27 @@ All webhook payloads follow a consistent top-level structure with event-specific
       "name": "Acme Inc",
       "detail": "acme-inc",
       "channel": "LinkedIn",
-      "profileImageUrl": null
-    },
-    "workspace": {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "slug": "acme",
-      "name": "Acme Inc"
-    },
-    "disconnectedBy": {
-      "id": "550e8400-e29b-41d4-a716-446655440010",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@example.com"
-    },
-    "disconnectedAt": "2025-02-26T11:00:00.000Z",
-    "unscheduledPosts": [
-      {
-        "id": "550e8400-e29b-41d4-a716-446655440001",
-        "title": "Q4 Product Launch Announcement",
-        "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
-      }
-    ]
+      "profileImageUrl": null,
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "disconnectedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "disconnectedAt": "2025-02-26T11:00:00.000Z",
+      "unscheduledPosts": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440001",
+          "title": "Q4 Product Launch Announcement",
+          "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
+        }
+      ]
+    }
   },
   "createdAt": "2025-02-26T11:00:00.000Z"
 }

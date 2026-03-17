@@ -14,28 +14,34 @@ All webhook payloads follow a consistent top-level structure with event-specific
   Event-specific payload for this webhook.
 
   <Expandable title="Data object parameters">
-    <ResponseField name="id" type="string" required>
-      Comment ID.
-    </ResponseField>
+    <ResponseField name="comment" type="object" required>
+      The comment.
 
-    <ResponseField name="message" type="string" required>
-      Comment message text.
-    </ResponseField>
+      <Expandable title="Comment object parameters">
+        <ResponseField name="id" type="string" required>
+          Comment ID.
+        </ResponseField>
 
-    <ResponseField name="post" type="object" required>
-      Post the comment was added to. Contains `id`, `title`, and `url`.
-    </ResponseField>
+        <ResponseField name="message" type="string" required>
+          Comment message text.
+        </ResponseField>
 
-    <ResponseField name="workspace" type="object" required>
-      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
-    </ResponseField>
+        <ResponseField name="post" type="object" required>
+          Post the comment was added to. Contains `id`, `title`, and `url`.
+        </ResponseField>
 
-    <ResponseField name="createdBy" type="object" required>
-      User who added the comment. Contains `id`, `firstName`, `lastName`, and `email`.
-    </ResponseField>
+        <ResponseField name="workspace" type="object" required>
+          Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
 
-    <ResponseField name="createdAt" type="string" required>
-      ISO 8601 timestamp when the comment was created.
+        <ResponseField name="createdBy" type="object" required>
+          User who added the comment. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="createdAt" type="string" required>
+          ISO 8601 timestamp when the comment was created.
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -50,25 +56,27 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.comment.created",
   "data": {
-    "id": "550e8400-e29b-41d4-a716-446655440050",
-    "message": "Looks good! Let's add a CTA at the end.",
-    "post": {
-      "id": "550e8400-e29b-41d4-a716-446655440001",
-      "title": "Q4 Product Launch Announcement",
-      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
-    },
-    "workspace": {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "slug": "acme",
-      "name": "Acme Inc"
-    },
-    "createdBy": {
-      "id": "550e8400-e29b-41d4-a716-446655440010",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@example.com"
-    },
-    "createdAt": "2025-02-26T16:00:00.000Z"
+    "comment": {
+      "id": "550e8400-e29b-41d4-a716-446655440050",
+      "message": "Looks good! Let's add a CTA at the end.",
+      "post": {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "title": "Q4 Product Launch Announcement",
+        "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "createdAt": "2025-02-26T16:00:00.000Z"
+    }
   },
   "createdAt": "2025-02-26T16:00:00.000Z"
 }
