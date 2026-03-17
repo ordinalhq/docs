@@ -14,11 +14,15 @@ All webhook payloads follow a consistent top-level structure with event-specific
   Event-specific payload for this webhook.
 
   <Expandable title="Data object parameters">
-    <ResponseField name="id" type="string" required>
-      Post ID.
-    </ResponseField>
+    <ResponseField name="post" type="object" required>
+      The permanently deleted post.
 
-    <ResponseField name="title" type="string" required>
+      <Expandable title="Post object parameters">
+        <ResponseField name="id" type="string" required>
+          Post ID.
+        </ResponseField>
+
+        <ResponseField name="title" type="string" required>
       Post title.
     </ResponseField>
 
@@ -61,6 +65,8 @@ All webhook payloads follow a consistent top-level structure with event-specific
     <ResponseField name="x" type="object | null">
       X/Twitter content when the post included Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
     </ResponseField>
+      </Expandable>
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
@@ -74,7 +80,8 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.permanently_deleted",
   "data": {
-    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "post": {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
     "title": "Old Draft",
     "status": "archived",
     "channels": ["LinkedIn"],
@@ -121,6 +128,7 @@ All webhook payloads follow a consistent top-level structure with event-specific
       ]
     },
     "x": null
+    }
   },
   "createdAt": "2025-03-15T10:00:00.000Z"
 }

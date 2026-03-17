@@ -15,19 +15,49 @@ All webhook payloads follow a consistent top-level structure with event-specific
 
   <Expandable title="Data object parameters">
     <ResponseField name="profile" type="object" required>
-      The connected profile. Contains `id`, `name`, `detail`, `channel`, and `profileImageUrl`.
-    </ResponseField>
+      The connected profile.
 
-    <ResponseField name="workspace" type="object" required>
-      Workspace the profile was connected to. Contains `id`, `slug`, and `name`.
-    </ResponseField>
+      <Expandable title="Profile object parameters">
+        <ResponseField name="id" type="string" required>
+          Profile ID.
+        </ResponseField>
 
-    <ResponseField name="connectedBy" type="object" required>
-      User who connected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
-    </ResponseField>
+        <ResponseField name="name" type="string | null">
+          Profile display name.
+        </ResponseField>
 
-    <ResponseField name="connectedAt" type="string" required>
-      ISO 8601 timestamp when the profile was connected.
+        <ResponseField name="detail" type="string | null">
+          Profile vanity name or handle.
+        </ResponseField>
+
+        <ResponseField name="channel" type="string" required>
+          Social channel (e.g. LinkedIn, Twitter).
+        </ResponseField>
+
+        <ResponseField name="profileImageUrl" type="string | null">
+          URL of the profile image.
+        </ResponseField>
+
+        <ResponseField name="type" type="string">
+          Optional. LinkedIn account type (e.g. Company, Personal).
+        </ResponseField>
+
+        <ResponseField name="url" type="string">
+          Optional. Profile URL on the social platform.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the profile was connected to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+
+        <ResponseField name="connectedBy" type="object" required>
+          User who connected the profile. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="connectedAt" type="string" required>
+          ISO 8601 timestamp when the profile was connected.
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -47,20 +77,20 @@ All webhook payloads follow a consistent top-level structure with event-specific
       "name": "Acme Inc",
       "detail": "acme-inc",
       "channel": "LinkedIn",
-      "profileImageUrl": "https://cdn.tryordinal.com/profiles/acme.png"
-    },
-    "workspace": {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "slug": "acme",
-      "name": "Acme Inc"
-    },
-    "connectedBy": {
-      "id": "550e8400-e29b-41d4-a716-446655440010",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@example.com"
-    },
-    "connectedAt": "2025-02-26T10:00:00.000Z"
+      "profileImageUrl": "https://cdn.tryordinal.com/profiles/acme.png",
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "connectedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "connectedAt": "2025-02-26T10:00:00.000Z"
+    }
   },
   "createdAt": "2025-02-26T10:00:00.000Z"
 }

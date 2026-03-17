@@ -14,48 +14,54 @@ All webhook payloads follow a consistent top-level structure with event-specific
   Event-specific payload for this webhook.
 
   <Expandable title="Data object parameters">
-    <ResponseField name="id" type="string" required>
-      Post ID.
-    </ResponseField>
+    <ResponseField name="post" type="object" required>
+      The post that failed to publish.
 
-    <ResponseField name="title" type="string" required>
-      Post title.
-    </ResponseField>
+      <Expandable title="Post object parameters">
+        <ResponseField name="id" type="string" required>
+          Post ID.
+        </ResponseField>
 
-    <ResponseField name="channel" type="string" required>
-      Channel where publish failed.
-    </ResponseField>
+        <ResponseField name="title" type="string" required>
+          Post title.
+        </ResponseField>
 
-    <ResponseField name="error" type="string" required>
-      Error message describing the failure.
-    </ResponseField>
+        <ResponseField name="channel" type="string" required>
+          Channel where publish failed.
+        </ResponseField>
 
-    <ResponseField name="campaign" type="object | null">
-      Campaign if assigned. Contains `id`, `name`, `startDate`, and `endDate`.
-    </ResponseField>
+        <ResponseField name="error" type="string" required>
+          Error message describing the failure.
+        </ResponseField>
 
-    <ResponseField name="url" type="string" required>
-      Ordinal post URL.
-    </ResponseField>
+        <ResponseField name="campaign" type="object | null">
+          Campaign if assigned. Contains `id`, `name`, `startDate`, and `endDate`.
+        </ResponseField>
 
-    <ResponseField name="profile" type="object" required>
-      Profile that attempted to publish. Contains `id`, `name`, and `detail`.
-    </ResponseField>
+        <ResponseField name="url" type="string" required>
+          Ordinal post URL.
+        </ResponseField>
 
-    <ResponseField name="scheduledPublishAt" type="string" required>
-      ISO 8601 timestamp when publish was attempted.
-    </ResponseField>
+        <ResponseField name="profile" type="object" required>
+          Profile that attempted to publish. Contains `id`, `name`, and `detail`.
+        </ResponseField>
 
-    <ResponseField name="workspace" type="object" required>
-      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
-    </ResponseField>
+        <ResponseField name="scheduledPublishAt" type="string" required>
+          ISO 8601 timestamp when publish was attempted.
+        </ResponseField>
 
-    <ResponseField name="createdBy" type="object" required>
-      User who created the post. Contains `id`, `firstName`, `lastName`, and `email`.
-    </ResponseField>
+        <ResponseField name="workspace" type="object" required>
+          Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
 
-    <ResponseField name="failedAt" type="string" required>
-      ISO 8601 timestamp when the publish failed.
+        <ResponseField name="createdBy" type="object" required>
+          User who created the post. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="failedAt" type="string" required>
+          ISO 8601 timestamp when the publish failed.
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -70,30 +76,32 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.publish_failed",
   "data": {
-    "id": "550e8400-e29b-41d4-a716-446655440001",
-    "title": "Q4 Product Launch Announcement",
-    "channel": "LinkedIn",
-    "error": "Token expired",
-    "campaign": null,
-    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
-    "profile": {
-      "id": "550e8400-e29b-41d4-a716-446655440002",
-      "name": "Acme Inc",
-      "detail": "acme-inc"
-    },
-    "scheduledPublishAt": "2025-03-01T14:00:00.000Z",
-    "workspace": {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "slug": "acme",
-      "name": "Acme Inc"
-    },
-    "createdBy": {
-      "id": "550e8400-e29b-41d4-a716-446655440010",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@example.com"
-    },
-    "failedAt": "2025-03-01T14:00:05.000Z"
+    "post": {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "Q4 Product Launch Announcement",
+      "channel": "LinkedIn",
+      "error": "Token expired",
+      "campaign": null,
+      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+      "profile": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "name": "Acme Inc",
+        "detail": "acme-inc"
+      },
+      "scheduledPublishAt": "2025-03-01T14:00:00.000Z",
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "failedAt": "2025-03-01T14:00:05.000Z"
+    }
   },
   "createdAt": "2025-03-01T14:00:05.000Z"
 }

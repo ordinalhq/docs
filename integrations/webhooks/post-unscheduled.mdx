@@ -14,48 +14,54 @@ All webhook payloads follow a consistent top-level structure with event-specific
   Event-specific payload for this webhook.
 
   <Expandable title="Data object parameters">
-    <ResponseField name="id" type="string" required>
-      Post ID.
-    </ResponseField>
+    <ResponseField name="post" type="object" required>
+      The unscheduled post.
 
-    <ResponseField name="title" type="string" required>
-      Post title.
-    </ResponseField>
+      <Expandable title="Post object parameters">
+        <ResponseField name="id" type="string" required>
+          Post ID.
+        </ResponseField>
 
-    <ResponseField name="channels" type="array" required>
-      Channels the post was scheduled for.
-    </ResponseField>
+        <ResponseField name="title" type="string" required>
+          Post title.
+        </ResponseField>
 
-    <ResponseField name="campaign" type="object | null">
-      Campaign if assigned. Contains `id`, `name`, `startDate`, and `endDate`.
-    </ResponseField>
+        <ResponseField name="channels" type="array" required>
+          Channels the post was scheduled for.
+        </ResponseField>
 
-    <ResponseField name="url" type="string" required>
-      Ordinal post URL.
-    </ResponseField>
+        <ResponseField name="campaign" type="object | null">
+          Campaign if assigned. Contains `id`, `name`, `startDate`, and `endDate`.
+        </ResponseField>
 
-    <ResponseField name="labels" type="array" required>
-      Labels attached to the post. Each contains `id`, `name`, `color`, and `backgroundColor`.
-    </ResponseField>
+        <ResponseField name="url" type="string" required>
+          Ordinal post URL.
+        </ResponseField>
 
-    <ResponseField name="workspace" type="object" required>
-      Workspace the post belongs to. Contains `id`, `slug`, and `name`.
-    </ResponseField>
+        <ResponseField name="labels" type="array" required>
+          Labels attached to the post. Each contains `id`, `name`, `color`, and `backgroundColor`.
+        </ResponseField>
 
-    <ResponseField name="unscheduledBy" type="object" required>
-      User who unscheduled the post. Contains `id`, `firstName`, `lastName`, and `email`.
-    </ResponseField>
+        <ResponseField name="workspace" type="object" required>
+          Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
 
-    <ResponseField name="unscheduledAt" type="string" required>
-      ISO 8601 timestamp when the post was unscheduled.
-    </ResponseField>
+        <ResponseField name="unscheduledBy" type="object" required>
+          User who unscheduled the post. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
 
-    <ResponseField name="linkedIn" type="object | null">
-      LinkedIn content when the post includes LinkedIn. Contains `profile` (id, name, detail), `copy`, and `assets` (id, name, url, mimetype, size, width, height, duration).
-    </ResponseField>
+        <ResponseField name="unscheduledAt" type="string" required>
+          ISO 8601 timestamp when the post was unscheduled.
+        </ResponseField>
 
-    <ResponseField name="x" type="object | null">
-      X/Twitter content when the post includes Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
+        <ResponseField name="linkedIn" type="object | null">
+          LinkedIn content when the post includes LinkedIn. Contains `profile` (id, name, detail), `copy`, and `assets` (id, name, url, mimetype, size, width, height, duration).
+        </ResponseField>
+
+        <ResponseField name="x" type="object | null">
+          X/Twitter content when the post includes Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -70,52 +76,54 @@ All webhook payloads follow a consistent top-level structure with event-specific
 {
   "type": "post.unscheduled",
   "data": {
-    "id": "550e8400-e29b-41d4-a716-446655440001",
-    "title": "Q4 Product Launch Announcement",
-    "channels": ["LinkedIn"],
-    "campaign": null,
-    "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
-    "labels": [
-      {
-        "id": "550e8400-e29b-41d4-a716-446655440400",
-        "name": "Marketing",
-        "color": "#9333ea",
-        "backgroundColor": "#f3e8ff"
-      }
-    ],
-    "workspace": {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "slug": "acme",
-      "name": "Acme Inc"
-    },
-    "unscheduledBy": {
-      "id": "550e8400-e29b-41d4-a716-446655440010",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane@example.com"
-    },
-    "unscheduledAt": "2025-02-26T14:00:00.000Z",
-    "linkedIn": {
-      "profile": {
-        "id": "550e8400-e29b-41d4-a716-446655440002",
-        "name": "Acme Inc",
-        "detail": "acme-inc"
-      },
-      "copy": "Excited to announce our new product launch!",
-      "assets": [
+    "post": {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "Q4 Product Launch Announcement",
+      "channels": ["LinkedIn"],
+      "campaign": null,
+      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+      "labels": [
         {
-          "id": "550e8400-e29b-41d4-a716-446655440010",
-          "name": "product-photo.jpg",
-          "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
-          "mimetype": "image/jpeg",
-          "size": 245678,
-          "width": 1920,
-          "height": 1080,
-          "duration": null
+          "id": "550e8400-e29b-41d4-a716-446655440400",
+          "name": "Marketing",
+          "color": "#9333ea",
+          "backgroundColor": "#f3e8ff"
         }
-      ]
-    },
-    "x": null
+      ],
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "unscheduledBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "unscheduledAt": "2025-02-26T14:00:00.000Z",
+      "linkedIn": {
+        "profile": {
+          "id": "550e8400-e29b-41d4-a716-446655440002",
+          "name": "Acme Inc",
+          "detail": "acme-inc"
+        },
+        "copy": "Excited to announce our new product launch!",
+        "assets": [
+          {
+            "id": "550e8400-e29b-41d4-a716-446655440010",
+            "name": "product-photo.jpg",
+            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+            "mimetype": "image/jpeg",
+            "size": 245678,
+            "width": 1920,
+            "height": 1080,
+            "duration": null
+          }
+        ]
+      },
+      "x": null
+    }
   },
   "createdAt": "2025-02-26T14:00:00.000Z"
 }
