@@ -73,7 +73,8 @@
                   "posts/media",
                   "posts/ai-writing",
                   "posts/cross-posting",
-                  "posts/post-defaults"
+                  "posts/post-defaults",
+                  "posts/version-history"
                 ]
               },
               "campaigns/overview",
