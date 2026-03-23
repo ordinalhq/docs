@@ -197,6 +197,14 @@
               "integrations/webhooks/post-comment-created",
               "integrations/webhooks/post-inline-comment-created"
             ]
+          },
+          {
+            "group": "Invites",
+            "icon": "user-plus",
+            "pages": [
+              "integrations/webhooks/invite-created",
+              "integrations/webhooks/invite-accepted"
+            ]
           }
         ]
       }

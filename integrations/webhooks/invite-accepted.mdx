@@ -1,0 +1,91 @@
+---
+title: "invite.accepted"
+description: "Fired when a user accepts a workspace invite"
+sidebarTitle: "invite.accepted"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `invite.accepted`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="invite" type="object" required>
+      The accepted invite.
+
+      <Expandable title="Invite object parameters">
+        <ResponseField name="id" type="string" required>
+          Invite ID.
+        </ResponseField>
+
+        <ResponseField name="email" type="string" required>
+          Email address of the invited user.
+        </ResponseField>
+
+        <ResponseField name="createdAt" type="string" required>
+          ISO 8601 timestamp when the invite was created.
+        </ResponseField>
+
+        <ResponseField name="acceptedAt" type="string" required>
+          ISO 8601 timestamp when the invite was accepted.
+        </ResponseField>
+
+        <ResponseField name="invitedBy" type="object" required>
+          User who sent the invite. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="acceptedBy" type="object" required>
+          User who accepted the invite. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the user joined. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "invite.accepted",
+  "data": {
+    "invite": {
+      "id": "550e8400-e29b-41d4-a716-446655440600",
+      "email": "newmember@example.com",
+      "createdAt": "2025-02-26T11:00:00.000Z",
+      "acceptedAt": "2025-02-26T14:30:00.000Z",
+      "invitedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "acceptedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440020",
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "newmember@example.com"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      }
+    }
+  },
+  "createdAt": "2025-02-26T14:30:00.000Z"
+}
+```
+
+</ResponseExample>
