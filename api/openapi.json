@@ -4105,7 +4105,9 @@
                         "post.permanently_deleted",
                         "post.content.edited",
                         "post.comment.created",
-                        "post.inline_comment.created"
+                        "post.inline_comment.created",
+                        "invite.created",
+                        "invite.accepted"
                       ]
                     },
                     "minItems": 1,
@@ -4232,7 +4234,7 @@
                   "description": { "type": "string", "description": "An optional description for the webhook" },
                   "topics": {
                     "type": "array",
-                    "items": { "type": "string", "enum": ["social_profile.connected", "social_profile.disconnected", "social_profile.reconnect_needed", "post.created", "post.scheduled", "post.rescheduled", "post.unscheduled", "post.published", "post.publish_failed", "post.archived", "post.permanently_deleted", "post.content.edited", "post.comment.created", "post.inline_comment.created"] },
+                    "items": { "type": "string", "enum": ["social_profile.connected", "social_profile.disconnected", "social_profile.reconnect_needed", "post.created", "post.scheduled", "post.rescheduled", "post.unscheduled", "post.published", "post.publish_failed", "post.archived", "post.permanently_deleted", "post.content.edited", "post.comment.created", "post.inline_comment.created", "invite.created", "invite.accepted"] },
                     "minItems": 1,
                     "description": "The event types this webhook should listen to"
                   },

@@ -76,3 +76,12 @@ Events for post lifecycle and content changes:
 | [`post.content.edited`](/integrations/webhooks/post-content-edited) | A post's content is edited (debounced per post, fires after ~5 minutes). Includes latest content for all channels. |
 | [`post.comment.created`](/integrations/webhooks/post-comment-created) | A comment is added to a post (post-level comments) |
 | [`post.inline_comment.created`](/integrations/webhooks/post-inline-comment-created) | An inline comment (text-anchored) is added to a post. One event per comment, including replies in a thread. |
+
+## Invites
+
+Events for workspace invitations:
+
+| Event Type | Description |
+| ---------- | ----------- |
+| [`invite.created`](/integrations/webhooks/invite-created) | A user is invited to the workspace. If the invitee already has an account, they are added directly and no email is sent. |
+| [`invite.accepted`](/integrations/webhooks/invite-accepted) | A user accepts a workspace invite |

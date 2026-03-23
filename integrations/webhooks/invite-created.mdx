@@ -1,0 +1,81 @@
+---
+title: "invite.created"
+description: "Fired when a user is invited to the workspace. If the invitee already has an account, they are added directly and no email is sent."
+sidebarTitle: "invite.created"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `invite.created`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="invite" type="object" required>
+      The invite.
+
+      <Expandable title="Invite object parameters">
+        <ResponseField name="id" type="string" required>
+          Invite ID.
+        </ResponseField>
+
+        <ResponseField name="email" type="string" required>
+          Email address of the invited user.
+        </ResponseField>
+
+        <ResponseField name="createdAt" type="string" required>
+          ISO 8601 timestamp when the invite was created.
+        </ResponseField>
+
+        <ResponseField name="invitedBy" type="object" required>
+          User who sent the invite. Contains `id`, `firstName`, `lastName`, and `email`.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the user was invited to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+
+        <ResponseField name="sentEmail" type="boolean" required>
+          Whether an invitation email was sent. If the invitee already had an account, they are added directly and no email is sent (`false`).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "invite.created",
+  "data": {
+    "invite": {
+      "id": "550e8400-e29b-41d4-a716-446655440600",
+      "email": "newmember@example.com",
+      "createdAt": "2025-02-26T11:00:00.000Z",
+      "invitedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "sentEmail": true
+    }
+  },
+  "createdAt": "2025-02-26T11:00:00.000Z"
+}
+```
+
+</ResponseExample>
