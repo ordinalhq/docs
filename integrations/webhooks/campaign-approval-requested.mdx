@@ -1,0 +1,92 @@
+---
+title: "campaign.approval.requested"
+description: "Fired when someone requests approval from users for a campaign"
+sidebarTitle: "campaign.approval.requested"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `campaign.approval.requested`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="approval" type="object" required>
+      Approval request context for the campaign.
+
+      <Expandable title="Approval object parameters">
+        <ResponseField name="campaign" type="object" required>
+          Campaign being approved. Contains `id`, `name`, `startDate`, and `endDate`.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the campaign belongs to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+
+        <ResponseField name="createdApprovals" type="array" required>
+          New approval requests created by this action. Each item has `id`, `isBlocking`, `message`, `dueDate`, `createdAt`, `status` (`Requested`), `user` (approver), and `requestedBy` (who asked for approval). User objects contain `id`, `firstName`, `lastName`, and `email`. Dates are ISO 8601 strings where present.
+        </ResponseField>
+
+        <ResponseField name="existingApprovals" type="array" required>
+          Approvals already on the campaign before this request. Each item is either a requested approval (`status` `Requested`) or an approved one (`status` `Approved`). Approved items include `approvedAt` and `approvedBy`.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "campaign.approval.requested",
+  "data": {
+    "approval": {
+      "campaign": {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "name": "Launch 2025",
+        "startDate": "2025-01-01",
+        "endDate": "2025-12-31"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdApprovals": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440710",
+          "isBlocking": true,
+          "message": "Legal sign-off needed for this campaign.",
+          "dueDate": "2025-03-05T17:00:00.000Z",
+          "createdAt": "2025-02-26T14:00:00.000Z",
+          "status": "Requested",
+          "user": {
+            "id": "550e8400-e29b-41d4-a716-446655440021",
+            "firstName": "Sam",
+            "lastName": "Chen",
+            "email": "sam@example.com"
+          },
+          "requestedBy": {
+            "id": "550e8400-e29b-41d4-a716-446655440010",
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@example.com"
+          }
+        }
+      ],
+      "existingApprovals": []
+    }
+  },
+  "createdAt": "2025-02-26T14:00:00.000Z"
+}
+```
+
+</ResponseExample>

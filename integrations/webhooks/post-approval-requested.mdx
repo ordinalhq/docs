@@ -1,0 +1,101 @@
+---
+title: "post.approval.requested"
+description: "Fired when someone requests approval from users for a post"
+sidebarTitle: "post.approval.requested"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<ResponseField name="type" type="string" required>
+  The event type (e.g. `post.approval.requested`).
+</ResponseField>
+
+<ResponseField name="data" type="object" required>
+  Event-specific payload for this webhook.
+
+  <Expandable title="Data object parameters">
+    <ResponseField name="approval" type="object" required>
+      Approval request context for the post.
+
+      <Expandable title="Approval object parameters">
+        <ResponseField name="post" type="object" required>
+          Post being approved. Contains `id`, `title`, and `url`.
+        </ResponseField>
+
+        <ResponseField name="campaign" type="object">
+          Campaign the post belongs to, if any. Contains `id`, `name`, `startDate`, and `endDate`.
+        </ResponseField>
+
+        <ResponseField name="workspace" type="object" required>
+          Workspace the post belongs to. Contains `id`, `slug`, and `name`.
+        </ResponseField>
+
+        <ResponseField name="createdApprovals" type="array" required>
+          New approval requests created by this action. Each item has `id`, `isBlocking`, `message`, `dueDate`, `createdAt`, `status` (`Requested`), `user` (approver), and `requestedBy` (who asked for approval). User objects contain `id`, `firstName`, `lastName`, and `email`. Dates are ISO 8601 strings where present.
+        </ResponseField>
+
+        <ResponseField name="existingApprovals" type="array" required>
+          Approvals already on the post before this request. Each item is either a requested approval (`status` `Requested`) or an approved one (`status` `Approved`). Approved items include `approvedAt` and `approvedBy`.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 timestamp when the webhook event was created.
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "type": "post.approval.requested",
+  "data": {
+    "approval": {
+      "post": {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "title": "Q4 Product Launch Announcement",
+        "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
+      },
+      "campaign": {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "name": "Launch 2025",
+        "startDate": "2025-01-01",
+        "endDate": "2025-12-31"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdApprovals": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440700",
+          "isBlocking": true,
+          "message": "Please review before we publish.",
+          "dueDate": "2025-02-28T17:00:00.000Z",
+          "createdAt": "2025-02-26T14:00:00.000Z",
+          "status": "Requested",
+          "user": {
+            "id": "550e8400-e29b-41d4-a716-446655440020",
+            "firstName": "Alex",
+            "lastName": "Rivera",
+            "email": "alex@example.com"
+          },
+          "requestedBy": {
+            "id": "550e8400-e29b-41d4-a716-446655440010",
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@example.com"
+          }
+        }
+      ],
+      "existingApprovals": []
+    }
+  },
+  "createdAt": "2025-02-26T14:00:00.000Z"
+}
+```
+
+</ResponseExample>

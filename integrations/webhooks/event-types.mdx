@@ -77,6 +77,17 @@ Events for post lifecycle and content changes:
 | [`post.comment.created`](/integrations/webhooks/post-comment-created) | A comment is added to a post (post-level comments) |
 | [`post.inline_comment.created`](/integrations/webhooks/post-inline-comment-created) | An inline comment (text-anchored) is added to a post. One event per comment, including replies in a thread. |
 
+## Approvals
+
+Events for post and campaign approval workflows:
+
+| Event Type | Description |
+| ---------- | ----------- |
+| [`post.approval.requested`](/integrations/webhooks/post-approval-requested) | Someone requests approval from users for a post |
+| [`post.approval.approved`](/integrations/webhooks/post-approval-approved) | An approver grants approval for a post |
+| [`campaign.approval.requested`](/integrations/webhooks/campaign-approval-requested) | Someone requests approval from users for a campaign |
+| [`campaign.approval.approved`](/integrations/webhooks/campaign-approval-approved) | An approver grants approval for a campaign |
+
 ## Invites
 
 Events for workspace invitations:

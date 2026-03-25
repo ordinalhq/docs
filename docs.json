@@ -199,6 +199,16 @@
             ]
           },
           {
+            "group": "Approvals",
+            "icon": "circle-check",
+            "pages": [
+              "integrations/webhooks/post-approval-requested",
+              "integrations/webhooks/post-approval-approved",
+              "integrations/webhooks/campaign-approval-requested",
+              "integrations/webhooks/campaign-approval-approved"
+            ]
+          },
+          {
             "group": "Invites",
             "icon": "user-plus",
             "pages": [
