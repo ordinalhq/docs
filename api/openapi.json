@@ -3692,6 +3692,62 @@
         }
       }
     },
+    "/comments/{commentId}": {
+      "delete": {
+        "operationId": "comments-delete",
+        "summary": "Delete a comment",
+        "description": "Delete a comment from a post. Only the author of the comment can delete it.",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "description": "Comment ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                },
+                "example": {
+                  "id": "a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+                  "message": "This comment has been deleted",
+                  "postId": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+                  "createdAt": "2026-02-04T10:30:00.000Z",
+                  "updatedAt": "2026-02-04T10:30:00.000Z",
+                  "user": {
+                    "id": "550e8400-e29b-41d4-a716-446655440001",
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john@example.com"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/posts/{postId}/inline-comments": {
       "get": {
         "operationId": "inline-comments-list",
