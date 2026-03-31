@@ -43,7 +43,7 @@
     },
     {
       "name": "LinkedIn",
-      "description": "LinkedIn utilities for tagging and mentions"
+      "description": "LinkedIn utilities for profile lookups, tagging, and mentions"
     },
     {
       "name": "Posts",
@@ -1631,6 +1631,88 @@
                     "displayName": "Acme Inc",
                     "mentionFormat": "@[Acme Inc](urn:li:organization:123456)"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/linkedin/profile/{urn}": {
+      "get": {
+        "operationId": "linkedin-getProfile",
+        "summary": "Get LinkedIn profile by URN",
+        "description": "Look up a LinkedIn user or organization by their URN (e.g. `urn:li:person:xyz` or `urn:li:organization:xyz`) to get the username, name, and profile picture.",
+        "tags": [
+          "LinkedIn"
+        ],
+        "parameters": [
+          {
+            "name": "urn",
+            "in": "path",
+            "required": true,
+            "description": "LinkedIn URN of the person or organization (e.g. `urn:li:person:abc123` or `urn:li:organization:99999`)",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^urn:li:(person|organization):.+"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LinkedIn profile information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "urn",
+                    "username",
+                    "name",
+                    "profileImageUrl",
+                    "type"
+                  ],
+                  "properties": {
+                    "urn": {
+                      "type": "string",
+                      "description": "LinkedIn URN of the account"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "LinkedIn vanity name (username)"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Display name of the account"
+                    },
+                    "profileImageUrl": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "URL of the profile image, or null if not available"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "User",
+                        "Organization"
+                      ],
+                      "description": "Type of the LinkedIn account"
+                    }
+                  }
+                },
+                "example": {
+                  "urn": "urn:li:person:ABC123xyz",
+                  "username": "johndoe",
+                  "name": "John Doe",
+                  "profileImageUrl": "https://media.licdn.com/dms/image/photo.jpg",
+                  "type": "User"
                 }
               }
             }
