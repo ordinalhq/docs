@@ -55,6 +55,31 @@ curl -X GET "https://app.tryordinal.com/api/v1/linkedin/johndoe/mentions" \
 
 The response includes pre-formatted `mentionFormat` strings that you can copy directly into your post content.
 
+## Looking up profiles by URN
+
+If you already have a URN and need to resolve it to a username, name, or profile picture, use the [Get LinkedIn profile by URN](/api-reference/linkedin/linkedin-get-profile) endpoint.
+
+### Example request
+
+```bash
+curl -X GET "https://app.tryordinal.com/api/v1/linkedin/profile/urn:li:person:ABC123xyz" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Example response
+
+```json
+{
+  "urn": "urn:li:person:ABC123xyz",
+  "username": "johndoe",
+  "name": "John Doe",
+  "profileImageUrl": "https://media.licdn.com/dms/image/photo.jpg",
+  "type": "User"
+}
+```
+
+This works for both person and organization URNs.
+
 ## Using Mentions in Posts
 
 Include the mention format directly in your post `copy`:
