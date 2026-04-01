@@ -71,33 +71,34 @@ Target the right audience for each post. A company announcement might go to `#al
 
 ## Slack Boost API
 
-You can manage slack boosts programmatically. All endpoints require [API key authentication](/api/authentication).
+You can list connected Slack channels and manage slack boosts programmatically. All endpoints require [API key authentication](/api/authentication).
 
 | Action | Method | Path | Description |
 | ------ | ------ | ---- | ----------- |
-| List | `GET` | `/slack-boosts` | List slack boosts; optional `?postId=` filter |
+| List webhooks | `GET` | `/slack-webhooks` | List connected marketing boost channels (use `id` as `slackWebhookId` when creating a boost) |
+| List for post | `GET` | `/posts/{postId}/slack-boosts` | List all slack boosts for a given post |
 | Create | `POST` | `/slack-boosts` | Attach a boost to a post and Slack channel |
 | Get | `GET` | `/slack-boosts/{id}` | Get one slack boost by ID |
 | Update | `PATCH` | `/slack-boosts/{id}` | Update copy or target channel |
 | Delete | `DELETE` | `/slack-boosts/{id}` | Remove the boost |
 
-### List slack boosts
+### List Slack webhooks
 
 ```bash
-curl -X GET "https://app.tryordinal.com/api/v1/slack-boosts" \
+curl -X GET "https://app.tryordinal.com/api/v1/slack-webhooks" \
   -H "Authorization: Bearer ord_XXXXXXXXXXXXXXXX"
 ```
 
-Filter by post:
+### List slack boosts for a post
 
 ```bash
-curl -X GET "https://app.tryordinal.com/api/v1/slack-boosts?postId=550e8400-e29b-41d4-a716-446655440300" \
+curl -X GET "https://app.tryordinal.com/api/v1/posts/550e8400-e29b-41d4-a716-446655440300/slack-boosts" \
   -H "Authorization: Bearer ord_XXXXXXXXXXXXXXXX"
 ```
 
 ### Create slack boost
 
-Use a post ID and a `slackWebhookId` for a [connected marketing boost channel](https://app.tryordinal.com/settings/integrations/slack).
+Use a post ID and a `slackWebhookId` from `GET /slack-webhooks` or from a [connected marketing boost channel](https://app.tryordinal.com/settings/integrations/slack).
 
 ```bash
 curl -X POST "https://app.tryordinal.com/api/v1/slack-boosts" \
@@ -129,7 +130,7 @@ curl -X DELETE "https://app.tryordinal.com/api/v1/slack-boosts/550e8400-e29b-41d
   -H "Authorization: Bearer ord_XXXXXXXXXXXXXXXX"
 ```
 
-See the [Slack Boosts API reference](/api-reference/slack-boosts) for request and response schemas and error handling.
+See the [Slack Boosts API reference](/api-reference/slack-boosts) for full schemas (including `GET /slack-webhooks`) and error handling.
 
 ## Learn more
 
