@@ -54,6 +54,10 @@
       "description": "List connected social profiles"
     },
     {
+      "name": "Slack Boosts",
+      "description": "Configure Slack notifications when posts publish. Requires Slack connected with marketing boost channels."
+    },
+    {
       "name": "Subscribers",
       "description": "Post subscribers for notifications"
     },
@@ -4456,6 +4460,284 @@
         }
       }
     },
+    "/slack-boosts": {
+      "get": {
+        "operationId": "slack-boosts-list",
+        "summary": "List slack boosts",
+        "description": "List all slack boosts for the current workspace. Optionally filter by post ID.",
+        "tags": ["Slack Boosts"],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "query",
+            "required": false,
+            "description": "Filter slack boosts by post ID (UUID)",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of slack boosts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "slackBoosts": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/SlackBoost" }
+                    }
+                  }
+                },
+                "example": {
+                  "slackBoosts": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440910",
+                      "copy": "Our latest launch is live — help us amplify!",
+                      "isAutoCreated": false,
+                      "postId": "550e8400-e29b-41d4-a716-446655440300",
+                      "slackWebhook": {
+                        "id": "550e8400-e29b-41d4-a716-446655440920",
+                        "channelName": "marketing-boost",
+                        "teamName": "Acme Corp"
+                      },
+                      "createdAt": "2026-01-15T10:00:00.000Z",
+                      "updatedAt": "2026-01-15T10:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      },
+      "post": {
+        "operationId": "slack-boosts-create",
+        "summary": "Create slack boost",
+        "description": "Create a slack boost for a post. When the post publishes, Ordinal sends a notification to the selected Slack channel. Each post can have at most one slack boost. Use a `slackWebhookId` from a [connected Slack marketing boost channel](/integrations/slack).",
+        "tags": ["Slack Boosts"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["postId", "slackWebhookId"],
+                "properties": {
+                  "postId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "The ID of the post to attach the slack boost to"
+                  },
+                  "slackWebhookId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "The ID of the Slack webhook (channel) to send notifications to"
+                  },
+                  "copy": {
+                    "type": "string",
+                    "description": "Optional custom message included in the Slack notification"
+                  }
+                }
+              },
+              "example": {
+                "postId": "550e8400-e29b-41d4-a716-446655440300",
+                "slackWebhookId": "550e8400-e29b-41d4-a716-446655440920",
+                "copy": "New post — please like and share!"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Slack boost created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "slackBoost": { "$ref": "#/components/schemas/SlackBoost" }
+                  }
+                },
+                "example": {
+                  "slackBoost": {
+                    "id": "550e8400-e29b-41d4-a716-446655440910",
+                    "copy": "New post — please like and share!",
+                    "isAutoCreated": false,
+                    "postId": "550e8400-e29b-41d4-a716-446655440300",
+                    "slackWebhook": {
+                      "id": "550e8400-e29b-41d4-a716-446655440920",
+                      "channelName": "marketing-boost",
+                      "teamName": "Acme Corp"
+                    },
+                    "createdAt": "2026-01-15T10:30:00.000Z",
+                    "updatedAt": "2026-01-15T10:30:00.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/slack-boosts/{id}": {
+      "get": {
+        "operationId": "slack-boosts-get",
+        "summary": "Get slack boost",
+        "description": "Get a slack boost by ID for the current workspace.",
+        "tags": ["Slack Boosts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the slack boost",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Slack boost details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "slackBoost": { "$ref": "#/components/schemas/SlackBoost" }
+                  }
+                },
+                "example": {
+                  "slackBoost": {
+                    "id": "550e8400-e29b-41d4-a716-446655440910",
+                    "copy": "Our latest launch is live — help us amplify!",
+                    "isAutoCreated": false,
+                    "postId": "550e8400-e29b-41d4-a716-446655440300",
+                    "slackWebhook": {
+                      "id": "550e8400-e29b-41d4-a716-446655440920",
+                      "channelName": "marketing-boost",
+                      "teamName": "Acme Corp"
+                    },
+                    "createdAt": "2026-01-15T10:00:00.000Z",
+                    "updatedAt": "2026-01-15T10:00:00.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "patch": {
+        "operationId": "slack-boosts-update",
+        "summary": "Update slack boost",
+        "description": "Update an existing slack boost. Only include fields you want to change. Set `copy` to `null` to clear the custom message.",
+        "tags": ["Slack Boosts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the slack boost to update",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "copy": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Custom message in the Slack notification, or null to clear"
+                  },
+                  "slackWebhookId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "The ID of the Slack webhook (channel) to send notifications to"
+                  }
+                }
+              },
+              "example": {
+                "copy": "Updated: please engage with this week's spotlight post."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Slack boost updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "slackBoost": { "$ref": "#/components/schemas/SlackBoost" }
+                  }
+                },
+                "example": {
+                  "slackBoost": {
+                    "id": "550e8400-e29b-41d4-a716-446655440910",
+                    "copy": "Updated: please engage with this week's spotlight post.",
+                    "isAutoCreated": false,
+                    "postId": "550e8400-e29b-41d4-a716-446655440300",
+                    "slackWebhook": {
+                      "id": "550e8400-e29b-41d4-a716-446655440920",
+                      "channelName": "marketing-boost",
+                      "teamName": "Acme Corp"
+                    },
+                    "createdAt": "2026-01-15T10:00:00.000Z",
+                    "updatedAt": "2026-01-15T11:15:00.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "delete": {
+        "operationId": "slack-boosts-delete",
+        "summary": "Delete slack boost",
+        "description": "Delete a slack boost. The Slack notification will no longer be sent when the post is published.",
+        "tags": ["Slack Boosts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the slack boost to delete",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Slack boost deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean", "description": "Whether the slack boost was deleted" }
+                  }
+                },
+                "example": { "success": true }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
     "/workspace": {
       "get": {
         "operationId": "workspace-get",
@@ -5715,6 +5997,31 @@
           },
           "createdAt": { "type": "string", "format": "date-time" },
           "createdBy": { "$ref": "#/components/schemas/WebhookCreatedBy" }
+        }
+      },
+      "SlackWebhookSummary": {
+        "type": "object",
+        "description": "Slack channel (webhook) targeted by a slack boost",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "channelName": { "type": "string", "nullable": true },
+          "teamName": { "type": "string", "nullable": true }
+        }
+      },
+      "SlackBoost": {
+        "type": "object",
+        "description": "A slack boost sends a Slack notification when its post publishes",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "copy": { "type": "string", "nullable": true, "description": "Optional custom message in the Slack notification" },
+          "isAutoCreated": {
+            "type": "boolean",
+            "description": "True when the boost was added automatically via channel auto-boost"
+          },
+          "postId": { "type": "string", "format": "uuid" },
+          "slackWebhook": { "$ref": "#/components/schemas/SlackWebhookSummary" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
         }
       },
       "Workspace": {
