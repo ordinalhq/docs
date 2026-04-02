@@ -42,6 +42,10 @@
       "description": "Labels for organizing posts"
     },
     {
+      "name": "Instagram",
+      "description": "Instagram utilities for location search and tagging"
+    },
+    {
       "name": "LinkedIn",
       "description": "LinkedIn utilities for profile lookups, tagging, and mentions"
     },
@@ -1730,6 +1734,130 @@
         }
       }
     },
+    "/instagram/locations/search": {
+      "get": {
+        "operationId": "instagram-searchLocations",
+        "summary": "Search Instagram locations",
+        "description": "Search for locations to tag in Instagram posts. Requires at least one Instagram profile connected to the workspace.",
+        "tags": [
+          "Instagram"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "description": "Search query for location name",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matching locations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "locations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "pageId": {
+                            "type": "string",
+                            "description": "Facebook Page ID - use this as the location identifier when creating or updating posts"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Display name of the location"
+                          },
+                          "address": {
+                            "type": "object",
+                            "properties": {
+                              "city": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "street": {
+                                "type": "string"
+                              },
+                              "zip": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "coordinates": {
+                            "type": "object",
+                            "properties": {
+                              "latitude": {
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "type": "number"
+                              }
+                            }
+                          },
+                          "profileImageUrl": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Profile image URL of the location page"
+                          },
+                          "link": {
+                            "type": "string",
+                            "description": "Facebook Page URL"
+                          },
+                          "isVerified": {
+                            "type": "boolean",
+                            "description": "Whether the location page is verified"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "locations": [
+                    {
+                      "pageId": "123456789",
+                      "name": "Central Park",
+                      "address": {
+                        "city": "New York",
+                        "state": "NY",
+                        "country": "United States",
+                        "street": "Central Park",
+                        "zip": "10024"
+                      },
+                      "coordinates": {
+                        "latitude": 40.7829,
+                        "longitude": -73.9654
+                      },
+                      "profileImageUrl": "https://example.com/central-park.jpg",
+                      "link": "https://www.facebook.com/centralparknyc",
+                      "isVerified": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
     "/ideas": {
       "get": {
         "operationId": "ideas-list",
@@ -2551,7 +2679,7 @@
             "description": "Filter by channel",
             "schema": {
               "type": "string",
-              "enum": ["LinkedIn", "Twitter"]
+              "enum": ["LinkedIn", "Twitter", "Instagram"]
             }
           },
           {
@@ -2567,6 +2695,15 @@
             "name": "xProfileId",
             "in": "query",
             "description": "Filter by X/Twitter profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "instagramProfileId",
+            "in": "query",
+            "description": "Filter by Instagram profile ID",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -2749,7 +2886,7 @@
       "post": {
         "operationId": "posts-create",
         "summary": "Create post",
-        "description": "Create a new post in the workspace",
+        "description": "Create a new post in the workspace. At least one channel (linkedIn, x, or instagram) is required.",
         "tags": [
           "Posts"
         ],
@@ -5308,6 +5445,9 @@
                 }
               }
             }
+          },
+          "instagram": {
+            "$ref": "#/components/schemas/InstagramContent"
           }
         }
       },
@@ -5361,6 +5501,9 @@
           },
           "x": {
             "$ref": "#/components/schemas/TwitterConfig"
+          },
+          "instagram": {
+            "$ref": "#/components/schemas/InstagramConfig"
           }
         }
       },
@@ -5399,6 +5542,9 @@
           },
           "x": {
             "$ref": "#/components/schemas/TwitterConfig"
+          },
+          "instagram": {
+            "$ref": "#/components/schemas/InstagramConfig"
           }
         }
       },
@@ -5516,6 +5662,251 @@
           }
         }
       },
+      "InstagramConfig": {
+        "type": "object",
+        "description": "Instagram channel configuration for creating or updating posts",
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Instagram profile ID to post from"
+          },
+          "copy": {
+            "type": "string",
+            "maxLength": 2200,
+            "description": "Caption text. Maximum 2,200 characters. Not supported for Stories."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Feed", "Reel", "Story"],
+            "description": "Instagram content type. Defaults to Feed."
+          },
+          "assets": {
+            "type": "array",
+            "description": "Array of assets with optional user tags. Feed/Story: max 10, Reel: max 1 (video only).",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAssetInput"
+            }
+          },
+          "coverPhotoId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID for a custom Reel cover photo (JPEG or PNG). Only supported for Reels."
+          },
+          "reelShareToFeed": {
+            "type": "boolean",
+            "description": "Whether to also share the Reel to the Feed. Defaults to true."
+          },
+          "collaborators": {
+            "type": "array",
+            "description": "Instagram usernames to invite as collaborators. Maximum 3.",
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstagramLocationInput"
+              }
+            ],
+            "nullable": true,
+            "description": "Location to tag on the post. Use the search locations endpoint to find locations. Set to null to remove."
+          }
+        }
+      },
+      "InstagramAssetInput": {
+        "type": "object",
+        "description": "An asset to attach to an Instagram post, with optional user tags",
+        "required": ["assetId"],
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID from the Uploads API"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Users to tag on this asset",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAssetTagInput"
+            }
+          }
+        }
+      },
+      "InstagramAssetTagInput": {
+        "type": "object",
+        "description": "A user tag on an Instagram asset",
+        "required": ["username"],
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Instagram username to tag (with or without @ prefix)"
+          },
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "X coordinate (0-1) for tag position on images. Required for image assets."
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Y coordinate (0-1) for tag position on images. Required for image assets."
+          }
+        }
+      },
+      "InstagramLocationInput": {
+        "type": "object",
+        "description": "Location to tag on an Instagram post",
+        "required": ["pageId", "name"],
+        "properties": {
+          "pageId": {
+            "type": "string",
+            "description": "Facebook Page ID for the location. Obtain from the search locations endpoint."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the location"
+          }
+        }
+      },
+      "InstagramAssetTag": {
+        "type": "object",
+        "description": "A user tag on an Instagram asset in responses",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Instagram username"
+          },
+          "x": {
+            "type": "number",
+            "nullable": true,
+            "description": "X coordinate (0-1) for images, null for videos"
+          },
+          "y": {
+            "type": "number",
+            "nullable": true,
+            "description": "Y coordinate (0-1) for images, null for videos"
+          }
+        }
+      },
+      "InstagramAsset": {
+        "type": "object",
+        "description": "An asset attached to an Instagram post with user tags",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "mimetype": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "nullable": true
+          },
+          "duration": {
+            "type": "number",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAssetTag"
+            }
+          }
+        }
+      },
+      "InstagramLocation": {
+        "type": "object",
+        "description": "A location tagged on an Instagram post",
+        "properties": {
+          "pageId": {
+            "type": "string",
+            "description": "Facebook Page ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the location"
+          }
+        }
+      },
+      "InstagramContent": {
+        "type": "object",
+        "nullable": true,
+        "description": "Instagram content. Present when the post targets the Instagram channel.",
+        "properties": {
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelProfile"
+              }
+            ],
+            "nullable": true
+          },
+          "copy": {
+            "type": "string",
+            "description": "Caption text"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Feed", "Reel", "Story"],
+            "description": "Instagram content type"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAsset"
+            }
+          },
+          "coverPhoto": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Asset"
+              }
+            ],
+            "nullable": true,
+            "description": "Custom cover photo for Reels"
+          },
+          "reelShareToFeed": {
+            "type": "boolean",
+            "description": "Whether the Reel is also shared to the Feed"
+          },
+          "collaborators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Instagram usernames invited as collaborators"
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstagramLocation"
+              }
+            ],
+            "nullable": true,
+            "description": "Tagged location"
+          }
+        }
+      },
       "PostCreateResponse": {
         "type": "object",
         "properties": {
@@ -5588,6 +5979,9 @@
                 }
               }
             }
+          },
+          "instagram": {
+            "$ref": "#/components/schemas/InstagramContent"
           }
         }
       },
@@ -6782,7 +7176,7 @@
       },
       "ChannelProfile": {
         "type": "object",
-        "description": "Profile information for a channel (LinkedIn or X)",
+        "description": "Profile information for a channel (LinkedIn, X, or Instagram)",
         "properties": {
           "id": {
             "type": "string",
