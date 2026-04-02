@@ -2918,6 +2918,26 @@
                     }
                   ]
                 },
+                "instagram": {
+                  "profileId": "550e8400-e29b-41d4-a716-446655440004",
+                  "type": "Reel",
+                  "copy": "Check out our new product! 🚀",
+                  "assets": [
+                    {
+                      "assetId": "550e8400-e29b-41d4-a716-446655440012",
+                      "tags": [
+                        {
+                          "username": "tryordinal",
+                          "x": 0.5,
+                          "y": 0.5
+                        }
+                      ]
+                    }
+                  ],
+                  "shareToFeed": true,
+                  "coverPhotoId": "550e8400-e29b-41d4-a716-446655440013",
+                  "collaborators": ["tryordinal"]
+                },
                 "labelIds": [
                   "550e8400-e29b-41d4-a716-446655440002"
                 ],
@@ -2940,7 +2960,8 @@
                   "title": "Q4 Product Launch Announcement",
                   "channels": [
                     "LinkedIn",
-                    "Twitter"
+                    "Twitter",
+                    "Instagram"
                   ],
                   "status": "Scheduled",
                   "createdAt": "2026-01-05T10:30:00.000Z",
@@ -2982,6 +3003,31 @@
                         "assets": []
                       }
                     ]
+                  },
+                  "instagram": {
+                    "type": "Reel",
+                    "copy": "Check out our new product! 🚀",
+                    "assets": [
+                      {
+                        "id": "550e8400-e29b-41d4-a716-446655440012",
+                        "name": "product-video.mp4",
+                        "url": "https://cdn.tryordinal.com/assets/product-video.mp4",
+                        "mimetype": "video/mp4",
+                        "size": 5245678,
+                        "width": 1080,
+                        "height": 1920,
+                        "duration": 30,
+                        "tags": [
+                          {
+                            "username": "tryordinal",
+                            "x": 0.5,
+                            "y": 0.5
+                          }
+                        ]
+                      }
+                    ],
+                    "shareToFeed": true,
+                    "collaborators": ["tryordinal"]
                   }
                 }
               }
@@ -5663,27 +5709,98 @@
         }
       },
       "InstagramConfig": {
+        "description": "Instagram channel configuration for creating or updating posts. The shape of the object depends on the `type` field.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/InstagramFeedConfig"
+          },
+          {
+            "$ref": "#/components/schemas/InstagramReelConfig"
+          },
+          {
+            "$ref": "#/components/schemas/InstagramStoryConfig"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "Feed": "#/components/schemas/InstagramFeedConfig",
+            "Reel": "#/components/schemas/InstagramReelConfig",
+            "Story": "#/components/schemas/InstagramStoryConfig"
+          }
+        }
+      },
+      "InstagramFeedConfig": {
         "type": "object",
-        "description": "Instagram channel configuration for creating or updating posts",
+        "description": "Instagram Feed post configuration",
+        "required": ["type"],
         "properties": {
           "profileId": {
             "type": "string",
             "format": "uuid",
             "description": "Instagram profile ID to post from"
           },
+          "type": {
+            "type": "string",
+            "enum": ["Feed"],
+            "description": "Must be `Feed`"
+          },
           "copy": {
             "type": "string",
             "maxLength": 2200,
-            "description": "Caption text. Maximum 2,200 characters. Not supported for Stories."
-          },
-          "type": {
-            "type": "string",
-            "enum": ["Feed", "Reel", "Story"],
-            "description": "Instagram content type. Defaults to Feed."
+            "description": "Caption text. Maximum 2,200 characters."
           },
           "assets": {
             "type": "array",
-            "description": "Array of assets with optional user tags. Feed/Story: max 10, Reel: max 1 (video only).",
+            "description": "Array of assets with optional user tags. Maximum 10.",
+            "maxItems": 10,
+            "items": {
+              "$ref": "#/components/schemas/InstagramAssetInput"
+            }
+          },
+          "collaborators": {
+            "type": "array",
+            "description": "Instagram usernames to invite as collaborators. Maximum 3.",
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstagramLocationInput"
+              }
+            ],
+            "nullable": true,
+            "description": "Location to tag on the post. Use the search locations endpoint to find locations. Set to null to remove."
+          }
+        }
+      },
+      "InstagramReelConfig": {
+        "type": "object",
+        "description": "Instagram Reel post configuration",
+        "required": ["type"],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Instagram profile ID to post from"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Reel"],
+            "description": "Must be `Reel`"
+          },
+          "copy": {
+            "type": "string",
+            "maxLength": 2200,
+            "description": "Caption text. Maximum 2,200 characters."
+          },
+          "assets": {
+            "type": "array",
+            "description": "Array of video assets. Maximum 1 (video only).",
+            "maxItems": 1,
             "items": {
               "$ref": "#/components/schemas/InstagramAssetInput"
             }
@@ -5691,9 +5808,9 @@
           "coverPhotoId": {
             "type": "string",
             "format": "uuid",
-            "description": "Asset ID for a custom Reel cover photo (JPEG or PNG). Only supported for Reels."
+            "description": "Asset ID for a custom Reel cover photo (JPEG or PNG)."
           },
-          "reelShareToFeed": {
+          "shareToFeed": {
             "type": "boolean",
             "description": "Whether to also share the Reel to the Feed. Defaults to true."
           },
@@ -5713,6 +5830,31 @@
             ],
             "nullable": true,
             "description": "Location to tag on the post. Use the search locations endpoint to find locations. Set to null to remove."
+          }
+        }
+      },
+      "InstagramStoryConfig": {
+        "type": "object",
+        "description": "Instagram Story post configuration",
+        "required": ["type"],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Instagram profile ID to post from"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Story"],
+            "description": "Must be `Story`"
+          },
+          "assets": {
+            "type": "array",
+            "description": "Array of assets. Maximum 10.",
+            "maxItems": 10,
+            "items": {
+              "$ref": "#/components/schemas/InstagramAssetInput"
+            }
           }
         }
       },
@@ -5849,9 +5991,31 @@
         }
       },
       "InstagramContent": {
-        "type": "object",
         "nullable": true,
-        "description": "Instagram content. Present when the post targets the Instagram channel.",
+        "description": "Instagram content. Present when the post targets the Instagram channel. The shape depends on the `type` field.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/InstagramFeedContent"
+          },
+          {
+            "$ref": "#/components/schemas/InstagramReelContent"
+          },
+          {
+            "$ref": "#/components/schemas/InstagramStoryContent"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "Feed": "#/components/schemas/InstagramFeedContent",
+            "Reel": "#/components/schemas/InstagramReelContent",
+            "Story": "#/components/schemas/InstagramStoryContent"
+          }
+        }
+      },
+      "InstagramFeedContent": {
+        "type": "object",
+        "description": "Instagram Feed content in responses",
         "properties": {
           "profile": {
             "allOf": [
@@ -5861,14 +6025,59 @@
             ],
             "nullable": true
           },
+          "type": {
+            "type": "string",
+            "enum": ["Feed"],
+            "description": "Instagram content type"
+          },
           "copy": {
             "type": "string",
             "description": "Caption text"
           },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAsset"
+            }
+          },
+          "collaborators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Instagram usernames invited as collaborators"
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstagramLocation"
+              }
+            ],
+            "nullable": true,
+            "description": "Tagged location"
+          }
+        }
+      },
+      "InstagramReelContent": {
+        "type": "object",
+        "description": "Instagram Reel content in responses",
+        "properties": {
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelProfile"
+              }
+            ],
+            "nullable": true
+          },
           "type": {
             "type": "string",
-            "enum": ["Feed", "Reel", "Story"],
+            "enum": ["Reel"],
             "description": "Instagram content type"
+          },
+          "copy": {
+            "type": "string",
+            "description": "Caption text"
           },
           "assets": {
             "type": "array",
@@ -5883,9 +6092,9 @@
               }
             ],
             "nullable": true,
-            "description": "Custom cover photo for Reels"
+            "description": "Custom cover photo for the Reel"
           },
-          "reelShareToFeed": {
+          "shareToFeed": {
             "type": "boolean",
             "description": "Whether the Reel is also shared to the Feed"
           },
@@ -5904,6 +6113,31 @@
             ],
             "nullable": true,
             "description": "Tagged location"
+          }
+        }
+      },
+      "InstagramStoryContent": {
+        "type": "object",
+        "description": "Instagram Story content in responses",
+        "properties": {
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelProfile"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Story"],
+            "description": "Instagram content type"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstagramAsset"
+            }
           }
         }
       },
