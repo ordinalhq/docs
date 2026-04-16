@@ -150,9 +150,18 @@
             "icon": "server",
             "pages": [
               "mcp/introduction",
-              "mcp/authentication",
-              "mcp/install",
-              "mcp/tools"
+              {
+                "group": "Installation",
+                "icon": "plug",
+                "pages": [
+                  "mcp/install/overview",
+                  "mcp/install/claude-desktop",
+                  "mcp/install/claude-code",
+                  "mcp/install/cursor"
+                ]
+              },
+              "mcp/tools",
+              "mcp/migrating"
             ]
           }
         ]

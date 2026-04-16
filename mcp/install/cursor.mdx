@@ -1,0 +1,51 @@
+---
+title: "Cursor"
+description: "Add the Ordinal MCP server to Cursor"
+---
+
+<Steps>
+  <Step title="Open MCP settings">
+    Open the Cursor command palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows) and search for **Open MCP settings**.
+  </Step>
+  <Step title="Add the Ordinal server">
+    In the MCP settings panel, click **Add new global MCP server** and paste:
+
+    ```json
+    {
+      "mcpServers": {
+        "ordinal": {
+          "url": "https://app.tryordinal.com/mcp"
+        }
+      }
+    }
+    ```
+
+    Save the file.
+  </Step>
+  <Step title="Sign in with Ordinal">
+    Cursor detects the new server and opens a browser window. Sign in with your Ordinal account and approve access.
+  </Step>
+  <Step title="Verify the connection">
+    Back in MCP settings, the `ordinal` server should show a green dot and list the available tools.
+  </Step>
+  <Step title="Try it out">
+    Open the Cursor agent panel and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Cursor doesn't open a sign-in window">
+    Make sure you're on a recent Cursor version with OAuth MCP support. Restart Cursor after editing the MCP config.
+  </Accordion>
+  <Accordion title="I see a red dot next to the server">
+    Click the server entry in MCP settings to see the error. Most common causes:
+
+    - Your sign-in token expired — click **Re-authorize** to refresh it.
+    - The URL is wrong — it should be exactly `https://app.tryordinal.com/mcp` with no trailing slash or `/api/` prefix.
+  </Accordion>
+  <Accordion title="I see duplicate Ordinal tools">
+    You likely have the old server still configured. Remove any `ordinal` entry pointing at `/api/mcp` and restart Cursor. See the [migration guide](/mcp/migrating).
+  </Accordion>
+</AccordionGroup>

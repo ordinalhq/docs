@@ -1,113 +1,90 @@
 ---
-title: "Tools reference"
-description: "Every tool the Ordinal MCP server exposes, grouped by category"
+title: "Tools"
+description: "Everything the Ordinal MCP server lets your assistant do"
 ---
 
 ## Overview
 
-The MCP server exposes **22 tools** across 8 categories. MCP clients fetch full JSON Schemas at runtime via the `list_tools` request — this page is a human-readable overview so you can understand the surface area without connecting.
-
-All tools share a few conventions:
-
-- **`workspaceSlug`** is required on every tool except the initial discovery call. Get it from `ordinal_get_workspace_context` with no arguments.
-- **`responseFormat`** can be `"json"` (default) or `"markdown"` for human-readable output.
-- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`) help the assistant reason about when to call a tool.
+Once connected, your assistant has access to the tools below. You don't need to call them by hand — just ask in plain language ("draft a LinkedIn post for Friday," "show me last month's engagement") and the assistant picks the right tool.
 
 <Info>
-  **Start every session with `ordinal_get_workspace_context`.** It returns the IDs (profiles, labels, users, campaigns) every other tool needs.
+  **Always start with workspaces.** If this is a new session, ask the assistant to "list my Ordinal workspaces" first. It needs to know which workspace you want before it can do anything else.
 </Info>
 
 ## Discovery
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_get_workspace_context` | Bootstrap a session. Omit `workspaceSlug` to list accessible workspaces; pass it for full context — scheduling profiles, engagement profiles, labels, users, workspace, campaigns. |
+| `ordinal_get_workspace_context` | Lists your workspaces, then (once you pick one) returns the profiles, labels, users, and campaigns the assistant needs to do everything else. |
 
-## Content
+## Posts and ideas
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_search_content` | Search posts or ideas with filters (status, labels, campaigns, date range) or fetch a single post/idea by `postId` with comments. |
-| `ordinal_create_post` | Create a post. Requires `title`, `publishAt` (ISO 8601), and at least one channel config (`linkedIn`, `x`, or `instagram`). Optional: `status`, `labelIds`, `campaignId`, `notes`. |
-| `ordinal_create_idea` | Create an idea. Same channel-shaped payload as `ordinal_create_post`; no `publishAt` required. |
-| `ordinal_manage_post` | Update post metadata or channel content, archive, or unarchive a post. |
-| `ordinal_manage_idea` | Update idea metadata or channel content, archive, unarchive, or add idea to calendar. |
+| `ordinal_search_content` | Searches posts or ideas — by status, labels, campaigns, or date — and can fetch a single post with its comments. |
+| `ordinal_create_post` | Creates a post with LinkedIn, X, and/or Instagram content. |
+| `ordinal_create_idea` | Creates an idea (a draft without a scheduled publish time). |
+| `ordinal_manage_post` | Updates, archives, or unarchives a post. |
+| `ordinal_manage_idea` | Updates, archives, unarchives, or adds an idea to the calendar. |
 
-Content mutation tools use **channel-shaped inputs**: keep shared fields (`workspaceSlug`, `title`, `publishAt`, `status`, `labelIds`, `campaignId`, `notes`) at the top level and put channel-specific content inside `linkedIn`, `x`, or `instagram`.
+## Media
 
-## Assets
-
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_create_upload` | Start an async upload job for an image or video URL. Returns an upload job ID. |
-| `ordinal_get_upload` | Poll an upload job by ID. Returns status and the resulting `assetId` when ready. |
+| `ordinal_create_upload` | Uploads an image or video from a URL so it can be attached to a post. |
+| `ordinal_get_upload` | Checks whether an upload is ready. |
 
 ## Analytics
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_get_analytics` | Retrieve post performance or follower growth for LinkedIn, X, Instagram, or Facebook. Pass `platform`, `type` (`"posts"` or `"followers"`), `profileId`, and an optional date range (defaults to the last 30 days). |
+| `ordinal_get_analytics` | Fetches post performance or follower growth for LinkedIn, X, Instagram, or Facebook. |
 
 ## Collaboration
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_list_approvals` | List approval requests on a post — who approved, who is still pending, due dates. |
-| `ordinal_manage_approvals` | Create or delete approval requests on a post. |
-| `ordinal_list_subscribers` | List subscribers notified about a post. |
-| `ordinal_manage_subscribers` | Add or remove subscribers on a post. |
-| `ordinal_manage_comments` | Create a comment (supports `@mentions`) or delete one of your own comments. Reading comments is handled by `ordinal_search_content` with `postId`. |
+| `ordinal_list_approvals` | Shows who needs to approve a post and whether they've approved yet. |
+| `ordinal_manage_approvals` | Requests or cancels approvals on a post. |
+| `ordinal_list_subscribers` | Lists who's subscribed to notifications on a post. |
+| `ordinal_manage_subscribers` | Adds or removes subscribers. |
+| `ordinal_manage_comments` | Adds a comment to a post or deletes one of your own. |
 
 ## Auto-engagements
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_list_engagements` | List auto-engagements (Like, Comment, Repost) attached to a post, including their delay and target channel. |
-| `ordinal_manage_engagements` | Create, update, or delete auto-engagements. `delaySeconds` must be one of the allowed values (0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400). Comments require `copy`; Likes do not. |
+| `ordinal_list_engagements` | Lists automatic likes, comments, and reposts attached to a post. |
+| `ordinal_manage_engagements` | Creates, updates, or removes auto-engagements. |
 
-## Slack Boosts
+## Slack boosts
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_list_slack_boosts` | List Slack boosts on a post, or fetch a single boost by `boostId`. |
-| `ordinal_manage_slack_boosts` | Create, update, or delete Slack boosts tied to a post. |
+| `ordinal_list_slack_boosts` | Lists Slack broadcasts attached to a post. |
+| `ordinal_manage_slack_boosts` | Creates, updates, or deletes Slack boosts. |
 
-## Workspace
+## Labels
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_manage_labels` | Create or delete labels on a workspace. Label colors are restricted to a fixed palette (`yellow`, `purple`, `orange`, `red`, `brown`, `green`). |
+| `ordinal_manage_labels` | Creates or deletes labels used to organize posts. |
 
 ## Platform utilities
 
-| Tool | Purpose |
+| Tool | What it does |
 |------|---------|
-| `ordinal_get_linkedin_mention` | Look up a LinkedIn user or organization by username/vanity name. Returns URN and mention format strings for use in post copy. |
-| `ordinal_get_linkedin_profile` | Look up a LinkedIn profile by URN. |
-| `ordinal_search_instagram_locations` | Search Instagram location tags for use in Instagram posts. |
+| `ordinal_get_linkedin_mention` | Looks up a LinkedIn user or company by username so it can be mentioned in a post. |
+| `ordinal_get_linkedin_profile` | Fetches a LinkedIn profile by its URN. |
+| `ordinal_search_instagram_locations` | Searches Instagram location tags to attach to posts. |
 
-## Response formats
+## Asking the assistant things
 
-All tools accept an optional `responseFormat` argument:
+You don't call these tools by name — you describe what you want. Examples:
 
-- `"json"` — structured JSON (default). Best for programmatic consumers.
-- `"markdown"` — human-readable Markdown. Useful when you want the assistant's reply to embed the result directly.
+- "Create a LinkedIn post for next Tuesday about our new pricing, in the Launch campaign."
+- "Archive the drafts I wrote last month that don't have a label."
+- "Show me which posts are waiting on approval from Sarah."
+- "Give me the last 30 days of follower growth on LinkedIn."
 
-## Errors
-
-Tool errors come back as structured MCP tool errors (`isError: true` with a textual `content` payload), not as JSON-RPC errors. Common cases:
-
-- **Validation errors** include the failing field and constraint (e.g. "At least one channel config is required").
-- **Not found / unauthorized** on `workspaceSlug` indicates either a typo or a workspace the authenticated user can't access.
-- **401 at the transport level** (not a tool error) means the OAuth access token is missing or expired — see [Authentication](/mcp/authentication).
-
-## Need Help?
-
-<CardGroup cols={2}>
-  <Card title="Authentication" icon="key" href="/mcp/authentication">
-    The OAuth 2.1 flow in detail.
-  </Card>
-  <Card title="Install" icon="plug" href="/mcp/install">
-    Add the server to your MCP client.
-  </Card>
-</CardGroup>
+The assistant picks the tools, fills in the arguments, and shows you the result.

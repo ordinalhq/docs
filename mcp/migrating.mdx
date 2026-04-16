@@ -1,0 +1,130 @@
+---
+title: "Migrating from the old MCP"
+description: "Remove the old API-key MCP server and switch to the new OAuth one"
+---
+
+## Why migrate?
+
+The old MCP server at `https://app.tryordinal.com/api/mcp` used a workspace API key that you pasted into your assistant's config. It's been replaced by the new server at `https://app.tryordinal.com/mcp`, which signs you in with OAuth — no key-pasting, and you can reach every workspace you belong to from one connection.
+
+<Warning>
+  **Remove the old server first.** If you leave both servers installed, your assistant sees duplicate tool names (e.g. two versions of `create_post`) and may pick the wrong one or refuse to run either. Always delete the old entry before installing the new one.
+</Warning>
+
+## Step 1 — Remove the old server
+
+Pick your client below.
+
+<Tabs>
+  <Tab title="Claude Desktop">
+    <Steps>
+      <Step title="Open the settings file">
+        - **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+        - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+        You can also open it from Claude Desktop: press `Cmd + ,` (or `Ctrl + ,`), click **Developer**, then click **Edit Config**.
+      </Step>
+      <Step title="Remove the ordinal entry">
+        Find the `ordinal` entry under `mcpServers` and delete it. It will look something like this:
+
+        ```json
+        {
+          "mcpServers": {
+            "ordinal": {
+              "command": "npx",
+              "args": [
+                "mcp-remote",
+                "https://app.tryordinal.com/api/mcp",
+                "--header",
+                "Authorization: Bearer ord_XXXXXXXX"
+              ]
+            }
+          }
+        }
+        ```
+
+        Delete the whole `"ordinal": { ... }` block. If it was the only entry, leave `"mcpServers": {}`.
+      </Step>
+      <Step title="Restart Claude Desktop">
+        Fully quit and relaunch. Confirm Ordinal tools no longer appear in the connector panel.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Claude Code">
+    Run:
+
+    ```bash
+    claude mcp remove ordinal
+    ```
+
+    Then verify with:
+
+    ```bash
+    claude mcp list
+    ```
+
+    `ordinal` should no longer be listed.
+  </Tab>
+
+  <Tab title="Cursor">
+    <Steps>
+      <Step title="Open MCP settings">
+        Command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) → **Open MCP settings**.
+      </Step>
+      <Step title="Remove the ordinal entry">
+        Delete the `"ordinal": { ... }` block from the config. If the entry uses `"command": "npx"` with `mcp-remote` and an `Authorization` header, that's the old server.
+      </Step>
+      <Step title="Restart Cursor">
+        Fully quit and reopen Cursor. In MCP settings, the `ordinal` server should be gone.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Step 2 — (Optional) Revoke the old API key
+
+Since the old server used a workspace API key, revoke it so it can't be used again:
+
+<Steps>
+  <Step title="Open API Keys">
+    Go to [Settings → Integrations → API Keys](https://app.tryordinal.com/settings/integrations/api) in your workspace.
+  </Step>
+  <Step title="Revoke the key">
+    Find the key you used for MCP, click the `...` menu, and select **Revoke**. This is permanent and immediate.
+  </Step>
+</Steps>
+
+<Info>
+  You can skip this step if the same API key is still used for something else (for example, the REST API). The old MCP server will stop accepting requests regardless.
+</Info>
+
+## Step 3 — Install the new server
+
+Follow the install guide for your client:
+
+<CardGroup cols={3}>
+  <Card title="Claude Desktop" icon="message-bot" href="/mcp/install/claude-desktop">
+    Via the Connectors UI
+  </Card>
+  <Card title="Claude Code" icon="terminal" href="/mcp/install/claude-code">
+    Via `claude mcp add`
+  </Card>
+  <Card title="Cursor" icon="code" href="/mcp/install/cursor">
+    Via MCP settings
+  </Card>
+</CardGroup>
+
+## After migrating
+
+<AccordionGroup>
+  <Accordion title="Tool names have changed">
+    The new server's tools are named and organized differently. For example, the old server had separate `create_post` and `update_post` tools — the new server uses `ordinal_create_post` and `ordinal_manage_post`. See the full [tools reference](/mcp/tools).
+  </Accordion>
+  <Accordion title="You now pass workspaceSlug explicitly">
+    The old API key was tied to a single workspace. The new server signs you in as a user, so every tool call takes a `workspaceSlug` argument. Call `ordinal_get_workspace_context` with no arguments to list your workspaces and get the slug.
+  </Accordion>
+  <Accordion title="My assistant still shows the old tools">
+    You probably didn't fully restart the client, or the old entry is still in config. Double-check the config file, fully quit the app (not just close the window), and relaunch.
+  </Accordion>
+</AccordionGroup>

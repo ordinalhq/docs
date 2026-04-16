@@ -1,11 +1,11 @@
 ---
 title: "Introduction"
-description: "Connect AI assistants to your Ordinal workspace with the Model Context Protocol"
+description: "Use Ordinal directly from Claude, Cursor, and other AI assistants"
 ---
 
-## Overview
+## What is it?
 
-The Ordinal MCP server lets AI assistants — Claude, Cursor, ChatGPT, and any other [MCP](https://modelcontextprotocol.io)-capable client — act inside your Ordinal workspace. Once connected, the assistant can draft posts, schedule them, pull analytics, manage approvals, and more, all using the same permissions as your signed-in user.
+The Ordinal MCP server lets AI assistants work inside your Ordinal workspace. Once connected, you can ask Claude, Cursor, or any other [MCP](https://modelcontextprotocol.io)-capable assistant to draft posts, schedule them, pull analytics, manage approvals, and more — all using your own Ordinal account.
 
 <Card title="MCP Server URL" icon="server">
   ```
@@ -13,86 +13,68 @@ The Ordinal MCP server lets AI assistants — Claude, Cursor, ChatGPT, and any o
   ```
 </Card>
 
-{/* TODO(learning-mode): Francisco — write the 5-10 line "Why MCP?" positioning paragraph here.
-    Consider framing around:
-    - Audience: humans working alongside AI assistants vs. autonomous agents vs. developers building integrations
-    - Value vs. REST API: discoverable tools with built-in schemas, OAuth (no key sharing), workspace switching in one session
-    - What it's NOT: a replacement for the REST API when you need deterministic backend integrations
-    Keep it tight — this is the hook above the fold. */}
-
-## Authentication at a glance
-
-The MCP server uses **OAuth 2.1** (via Supabase Auth) — not API keys. Your MCP client handles the sign-in flow: it opens a browser window, you sign in with your Ordinal account, and the client receives a short-lived access token it stores and refreshes automatically.
-
-<Info>
-  **No keys to paste, no keys to rotate.** Every request is scoped to your user account, so the assistant can only do what *you* can do across every workspace you belong to.
-</Info>
-
-See [Authentication](/mcp/authentication) for the protocol details, including the RFC 9728 Protected Resource Metadata document MCP clients use to discover the authorization server.
-
-## Quick Start
+## How it works
 
 <Steps>
-  <Step title="Pick a client">
-    Claude Desktop, Claude Code, Cursor, VS Code, Gemini CLI, and Codex CLI are all supported. See [Install](/mcp/install).
+  <Step title="Add the server to your assistant">
+    Follow the [installation guide](/mcp/install/overview) for your client — Claude Desktop, Claude Code, or Cursor.
   </Step>
-  <Step title="Add the server">
-    Point your client at `https://app.tryordinal.com/mcp`. Clients with native OAuth support will drive the sign-in flow for you; for older clients, use the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge (covered in the install guide).
+  <Step title="Sign in with Ordinal">
+    The first time you use it, a browser window opens. Sign in with your Ordinal account and approve access. Your assistant remembers the session — no API keys to copy or paste.
   </Step>
-  <Step title="Sign in">
-    A browser tab opens. Authenticate with your Ordinal account and grant access. Your client stores the token.
-  </Step>
-  <Step title="Discover workspaces">
-    Ask the assistant to call `ordinal_get_workspace_context` (with no arguments). It returns the list of workspaces you can access. Pick one by slug and call again for the full context — profiles, labels, users, campaigns.
+  <Step title="Ask the assistant to do something">
+    "List my Ordinal workspaces," "Draft a LinkedIn post about our launch," "Show me last week's engagement analytics." It picks the right tool and calls it.
   </Step>
 </Steps>
 
 ## What the assistant can do
 
 <CardGroup cols={2}>
-  <Card title="Discovery" icon="compass">
-    Workspace context — scheduling profiles, engagement profiles, labels, users, campaigns.
+  <Card title="Posts and ideas" icon="file-lines">
+    Create, update, search, and archive posts across LinkedIn, X, and Instagram.
   </Card>
-  <Card title="Content" icon="file-lines">
-    Search, create, update, and archive posts and ideas across LinkedIn, X, and Instagram.
-  </Card>
-  <Card title="Assets" icon="cloud-arrow-up">
-    Upload media from URLs and poll the resulting asset IDs.
+  <Card title="Approvals and comments" icon="circle-check">
+    Request approvals, add comments, manage subscribers.
   </Card>
   <Card title="Analytics" icon="chart-line">
-    Post performance and follower growth for LinkedIn, X, Instagram, and Facebook.
+    Post performance and follower growth for every connected platform.
   </Card>
-  <Card title="Collaboration" icon="circle-check">
-    Approval requests, subscribers, and comments on posts.
+  <Card title="Media uploads" icon="cloud-arrow-up">
+    Attach images and videos to posts from a URL.
   </Card>
   <Card title="Auto-engagements" icon="heart">
-    Configure automatic likes, comments, and reposts tied to posts.
+    Set up automatic likes, comments, and reposts tied to posts.
   </Card>
-  <Card title="Slack Boosts" icon="slack">
-    Create and manage Slack boost broadcasts attached to posts.
-  </Card>
-  <Card title="Platform utilities" icon="wrench">
-    LinkedIn profile lookups, mention resolution, Instagram location search.
+  <Card title="Slack boosts" icon="slack">
+    Create and manage Slack broadcasts attached to posts.
   </Card>
 </CardGroup>
 
-See the full [Tools reference](/mcp/tools) for the complete catalog.
+See the full [tools reference](/mcp/tools) for everything.
 
-## How a session typically flows
+## Signing in
 
-1. **Discover.** Assistant calls `ordinal_get_workspace_context` with no arguments to list workspaces, then again with `workspaceSlug` to get IDs for profiles, labels, users, and campaigns.
-2. **Act.** It uses those IDs to create, update, or query content — for example, `ordinal_create_post` with a `linkedIn` channel payload referencing a scheduling profile.
-3. **Follow up.** It pulls analytics, manages approvals, or adds comments, using IDs returned from prior calls.
+The MCP server uses **OAuth** — the same kind of sign-in you use when connecting Google or GitHub to a third-party app. Your MCP client opens a browser, you sign in to Ordinal, and the client is granted access on your behalf.
 
-Every tool takes a `workspaceSlug` argument so the assistant can switch workspaces mid-session without re-authenticating.
+<Info>
+  **No API keys.** The old MCP server used workspace API keys that you copied into your assistant's config. The new server signs you in as a user, so the assistant can reach every workspace you belong to.
+</Info>
 
-## Need Help?
+## Already using the old MCP server?
+
+If you previously set up the server at `https://app.tryordinal.com/api/mcp` with an API key, you'll need to swap it out. The old and new servers can't coexist — if both are configured, your assistant will see duplicate tools and get confused.
+
+<Card title="Migration guide" icon="arrow-right-arrow-left" href="/mcp/migrating">
+  Remove the old server and set up the new one
+</Card>
+
+## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Install in your client" icon="plug" href="/mcp/install">
-    Step-by-step setup for Claude, Cursor, VS Code, and CLI clients.
+  <Card title="Install" icon="plug" href="/mcp/install/overview">
+    Set up the MCP server in your assistant.
   </Card>
   <Card title="Tools reference" icon="book" href="/mcp/tools">
-    Every tool, grouped by category, with arguments at a glance.
+    Browse everything the assistant can do.
   </Card>
 </CardGroup>
