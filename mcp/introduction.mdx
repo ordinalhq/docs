@@ -1,0 +1,98 @@
+---
+title: "Introduction"
+description: "Connect AI assistants to your Ordinal workspace with the Model Context Protocol"
+---
+
+## Overview
+
+The Ordinal MCP server lets AI assistants — Claude, Cursor, ChatGPT, and any other [MCP](https://modelcontextprotocol.io)-capable client — act inside your Ordinal workspace. Once connected, the assistant can draft posts, schedule them, pull analytics, manage approvals, and more, all using the same permissions as your signed-in user.
+
+<Card title="MCP Server URL" icon="server">
+  ```
+  https://app.tryordinal.com/mcp
+  ```
+</Card>
+
+{/* TODO(learning-mode): Francisco — write the 5-10 line "Why MCP?" positioning paragraph here.
+    Consider framing around:
+    - Audience: humans working alongside AI assistants vs. autonomous agents vs. developers building integrations
+    - Value vs. REST API: discoverable tools with built-in schemas, OAuth (no key sharing), workspace switching in one session
+    - What it's NOT: a replacement for the REST API when you need deterministic backend integrations
+    Keep it tight — this is the hook above the fold. */}
+
+## Authentication at a glance
+
+The MCP server uses **OAuth 2.1** (via Supabase Auth) — not API keys. Your MCP client handles the sign-in flow: it opens a browser window, you sign in with your Ordinal account, and the client receives a short-lived access token it stores and refreshes automatically.
+
+<Info>
+  **No keys to paste, no keys to rotate.** Every request is scoped to your user account, so the assistant can only do what *you* can do across every workspace you belong to.
+</Info>
+
+See [Authentication](/mcp/authentication) for the protocol details, including the RFC 9728 Protected Resource Metadata document MCP clients use to discover the authorization server.
+
+## Quick Start
+
+<Steps>
+  <Step title="Pick a client">
+    Claude Desktop, Claude Code, Cursor, VS Code, Gemini CLI, and Codex CLI are all supported. See [Install](/mcp/install).
+  </Step>
+  <Step title="Add the server">
+    Point your client at `https://app.tryordinal.com/mcp`. Clients with native OAuth support will drive the sign-in flow for you; for older clients, use the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge (covered in the install guide).
+  </Step>
+  <Step title="Sign in">
+    A browser tab opens. Authenticate with your Ordinal account and grant access. Your client stores the token.
+  </Step>
+  <Step title="Discover workspaces">
+    Ask the assistant to call `ordinal_get_workspace_context` (with no arguments). It returns the list of workspaces you can access. Pick one by slug and call again for the full context — profiles, labels, users, campaigns.
+  </Step>
+</Steps>
+
+## What the assistant can do
+
+<CardGroup cols={2}>
+  <Card title="Discovery" icon="compass">
+    Workspace context — scheduling profiles, engagement profiles, labels, users, campaigns.
+  </Card>
+  <Card title="Content" icon="file-lines">
+    Search, create, update, and archive posts and ideas across LinkedIn, X, and Instagram.
+  </Card>
+  <Card title="Assets" icon="cloud-arrow-up">
+    Upload media from URLs and poll the resulting asset IDs.
+  </Card>
+  <Card title="Analytics" icon="chart-line">
+    Post performance and follower growth for LinkedIn, X, Instagram, and Facebook.
+  </Card>
+  <Card title="Collaboration" icon="circle-check">
+    Approval requests, subscribers, and comments on posts.
+  </Card>
+  <Card title="Auto-engagements" icon="heart">
+    Configure automatic likes, comments, and reposts tied to posts.
+  </Card>
+  <Card title="Slack Boosts" icon="slack">
+    Create and manage Slack boost broadcasts attached to posts.
+  </Card>
+  <Card title="Platform utilities" icon="wrench">
+    LinkedIn profile lookups, mention resolution, Instagram location search.
+  </Card>
+</CardGroup>
+
+See the full [Tools reference](/mcp/tools) for the complete catalog.
+
+## How a session typically flows
+
+1. **Discover.** Assistant calls `ordinal_get_workspace_context` with no arguments to list workspaces, then again with `workspaceSlug` to get IDs for profiles, labels, users, and campaigns.
+2. **Act.** It uses those IDs to create, update, or query content — for example, `ordinal_create_post` with a `linkedIn` channel payload referencing a scheduling profile.
+3. **Follow up.** It pulls analytics, manages approvals, or adds comments, using IDs returned from prior calls.
+
+Every tool takes a `workspaceSlug` argument so the assistant can switch workspaces mid-session without re-authenticating.
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Install in your client" icon="plug" href="/mcp/install">
+    Step-by-step setup for Claude, Cursor, VS Code, and CLI clients.
+  </Card>
+  <Card title="Tools reference" icon="book" href="/mcp/tools">
+    Every tool, grouped by category, with arguments at a glance.
+  </Card>
+</CardGroup>
