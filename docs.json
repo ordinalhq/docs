@@ -156,7 +156,8 @@
                   "mcp/install/overview",
                   "mcp/install/claude-desktop",
                   "mcp/install/claude-code",
-                  "mcp/install/cursor"
+                  "mcp/install/cursor",
+                  "mcp/install/vscode"
                 ]
               },
               "mcp/tools",

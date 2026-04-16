@@ -1,0 +1,58 @@
+---
+title: "VS Code"
+description: "Add the Ordinal MCP server to Visual Studio Code"
+---
+
+## One-click install
+
+<a href="vscode:mcp/install?name=ordinal&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.tryordinal.com%2Fmcp%22%7D">
+  <img src="https://img.shields.io/badge/VS_Code-Install_Ordinal_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white" alt="Install in VS Code" height="28" />
+</a>
+&nbsp;
+<a href="vscode-insiders:mcp/install?name=ordinal&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.tryordinal.com%2Fmcp%22%7D">
+  <img src="https://img.shields.io/badge/VS_Code_Insiders-Install_Ordinal_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white" alt="Install in VS Code Insiders" height="28" />
+</a>
+
+Opens VS Code and installs the Ordinal MCP server. Sign in with your Ordinal account when prompted.
+
+## Manual install
+
+<Steps>
+  <Step title="Create the MCP config file">
+    At the root of your project, create `.vscode/mcp.json`:
+
+    ```json
+    {
+      "servers": {
+        "ordinal": {
+          "type": "http",
+          "url": "https://app.tryordinal.com/mcp"
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Reload VS Code">
+    Run the **Developer: Reload Window** command from the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+  </Step>
+  <Step title="Sign in with Ordinal">
+    The first time you use an Ordinal tool from Copilot Chat, VS Code opens a browser for sign-in. Authenticate with your Ordinal account and approve access.
+  </Step>
+  <Step title="Try it out">
+    Open Copilot Chat in agent mode and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The one-click button does nothing">
+    Make sure VS Code is registered as the handler for `vscode://` URLs. On Windows and macOS, this happens on install; on Linux you may need to associate the scheme manually. If the button still fails, use the manual install steps above.
+  </Accordion>
+  <Accordion title="I don't see Ordinal tools in Copilot Chat">
+    Open the MCP view in the sidebar and confirm `ordinal` shows as connected. If it says **Sign in required**, click it to run the OAuth flow.
+  </Accordion>
+  <Accordion title="I see duplicate Ordinal tools">
+    You likely have the old server still configured. Remove any `ordinal` entry pointing at `/api/mcp` from `.vscode/mcp.json` (or your user-level `settings.json`). See the [migration guide](/mcp/migrating).
+  </Accordion>
+</AccordionGroup>

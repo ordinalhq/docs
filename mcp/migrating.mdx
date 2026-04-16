@@ -80,6 +80,20 @@ Pick your client below.
       </Step>
     </Steps>
   </Tab>
+
+  <Tab title="VS Code">
+    <Steps>
+      <Step title="Open the MCP config">
+        Open `.vscode/mcp.json` in your project (or your user-level `settings.json` if you installed it globally).
+      </Step>
+      <Step title="Remove the ordinal entry">
+        Delete the `"ordinal": { ... }` block under `servers`. If the entry references `/api/mcp` or includes an `Authorization` header, that's the old server.
+      </Step>
+      <Step title="Reload VS Code">
+        Run **Developer: Reload Window** from the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`). The MCP view should no longer list `ordinal`.
+      </Step>
+    </Steps>
+  </Tab>
 </Tabs>
 
 ## Step 2 — (Optional) Revoke the old API key
@@ -103,7 +117,7 @@ Since the old server used a workspace API key, revoke it so it can't be used aga
 
 Follow the install guide for your client:
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Claude Desktop" icon="message-bot" href="/mcp/install/claude-desktop">
     Via the Connectors UI
   </Card>
@@ -112,6 +126,9 @@ Follow the install guide for your client:
   </Card>
   <Card title="Cursor" icon="code" href="/mcp/install/cursor">
     Via MCP settings
+  </Card>
+  <Card title="VS Code" icon="microsoft" href="/mcp/install/vscode">
+    Via `.vscode/mcp.json`
   </Card>
 </CardGroup>
 
