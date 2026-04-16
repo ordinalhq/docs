@@ -152,7 +152,6 @@
               "mcp/introduction",
               {
                 "group": "Installation",
-                "icon": "plug",
                 "pages": [
                   "mcp/install/overview",
                   "mcp/install/claude-desktop",
