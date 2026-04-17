@@ -1,0 +1,65 @@
+---
+title: "VS Code"
+description: "Add the Ordinal MCP server to Visual Studio Code"
+---
+
+## One-click install
+
+<div className="not-prose my-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+  <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+    <Icon icon="bolt" iconType="solid" />
+    <span>Install the Ordinal MCP server. Sign in with your Ordinal account when prompted.</span>
+  </div>
+  <a
+    href="vscode:mcp/install?name=ordinal&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.tryordinal.com%2Fmcp%22%7D"
+    className="inline-flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white no-underline hover:bg-gray-800"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="#0098FF"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+    Install in VS Code
+  </a>
+</div>
+
+## Manual install
+
+<Steps>
+  <Step title="Create the MCP config file">
+    At the root of your project, create `.vscode/mcp.json`:
+
+    ```json
+    {
+      "servers": {
+        "ordinal": {
+          "type": "http",
+          "url": "https://app.tryordinal.com/mcp"
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Reload VS Code">
+    Run the **Developer: Reload Window** command from the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+  </Step>
+  <Step title="Sign in with Ordinal">
+    The first time you use an Ordinal tool from Copilot Chat, VS Code opens a browser for sign-in. Authenticate with your Ordinal account and approve access.
+  </Step>
+  <Step title="Try it out">
+    Open Copilot Chat in agent mode and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The one-click button does nothing">
+    Make sure VS Code is registered as the handler for `vscode://` URLs. On Windows and macOS, this happens on install; on Linux you may need to associate the scheme manually. If the button still fails, use the manual install steps above.
+  </Accordion>
+  <Accordion title="I use VS Code Insiders">
+    The one-click button targets stable VS Code. If you use [Insiders](https://code.visualstudio.com/insiders/), follow the manual install steps above — they work the same in both editions.
+  </Accordion>
+  <Accordion title="I don't see Ordinal tools in Copilot Chat">
+    Open the MCP view in the sidebar and confirm `ordinal` shows as connected. If it says **Sign in required**, click it to run the OAuth flow.
+  </Accordion>
+  <Accordion title="I see duplicate Ordinal tools">
+    You likely have the old server still configured. Remove any `ordinal` entry pointing at `/api/mcp` from `.vscode/mcp.json` (or your user-level `settings.json`). See the [migration guide](/mcp/migrating).
+  </Accordion>
+</AccordionGroup>

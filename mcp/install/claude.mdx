@@ -1,0 +1,61 @@
+---
+title: "Claude"
+description: "Add the Ordinal MCP server to Claude Desktop and claude.ai"
+---
+
+<Info>
+  Custom connectors require a **Claude Max, Team, or Enterprise** plan. They aren't available on the free or Pro tiers. Connectors are shared between Claude Desktop and claude.ai — install once, use everywhere.
+</Info>
+
+## Install
+
+<Steps>
+  <Step title="Copy the Ordinal MCP server URL">
+    ```
+    https://app.tryordinal.com/mcp
+    ```
+  </Step>
+  <Step title="Open Claude's connector settings">
+    <div className="not-prose my-4 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+        <Icon icon="bolt" iconType="solid" />
+        <span>Opens Claude's connector settings in a new tab.</span>
+      </div>
+      <a
+        href="https://claude.ai/customize/connectors"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white no-underline hover:bg-gray-800"
+      >
+        <img src="https://cdn.simpleicons.org/claude/white" alt="" className="h-4 w-4" />
+        Open in Claude
+      </a>
+    </div>
+  </Step>
+  <Step title="Add the Ordinal connector">
+    Click **Add custom connector**, paste the URL you copied, name it `Ordinal`, and save.
+  </Step>
+  <Step title="Connect your Ordinal account">
+    On the next screen, click **Connect**. A browser window opens — sign in with your Ordinal account and approve access. The connector should now show **Connected**.
+  </Step>
+  <Step title="Try it out">
+    Ask Claude in any chat: *"List my Ordinal workspaces."* Claude should call the `ordinal_get_workspace_context` tool and return your workspaces.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I don't see 'Add custom connector'">
+    Custom connectors require a Max, Team, or Enterprise plan. Upgrade your Claude subscription at [claude.ai/settings/billing](https://claude.ai/settings/billing). Make sure you're on the latest Claude Desktop version if you don't see the option there either.
+  </Accordion>
+  <Accordion title="The connector won't sign in">
+    Update Claude Desktop to the latest version — older builds don't support OAuth-based MCP connectors. Restart the app after updating, then retry from the connector settings.
+  </Accordion>
+  <Accordion title="I don't see Ordinal tools in the chat">
+    Open the connector panel in chat (the icon in the message bar) and confirm Ordinal is enabled. If it says **Reconnect**, click it to re-run the sign-in.
+  </Accordion>
+  <Accordion title="I see duplicate Ordinal tools">
+    You likely still have the old server configured. Remove any connector pointing at `/api/mcp` before using the new one. See the [migration guide](/mcp/migrating).
+  </Accordion>
+</AccordionGroup>

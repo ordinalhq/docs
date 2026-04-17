@@ -130,7 +130,6 @@
             "pages": [
               "api/introduction",
               "api/authentication",
-              "api/mcp",
               "api/file-uploads",
               "api/linkedin-mentions",
               "api/errors"
@@ -144,23 +143,26 @@
         ]
       },
       {
-        "tab": "Agency API",
+        "tab": "MCP",
         "groups": [
           {
             "group": "Overview",
-            "icon": "building",
+            "icon": "server",
             "pages": [
-              "agency-api/introduction",
-              "agency-api/authentication"
+              "mcp/introduction",
+              {
+                "group": "Installation",
+                "pages": [
+                  "mcp/install/overview",
+                  "mcp/install/claude",
+                  "mcp/install/claude-code",
+                  "mcp/install/cursor",
+                  "mcp/install/vscode"
+                ]
+              },
+              "mcp/tools",
+              "mcp/migrating"
             ]
-          },
-          {
-            "group": "Endpoints",
-            "icon": "code",
-            "openapi": {
-              "source": "agency-api/openapi.json",
-              "directory": "agency-api-reference"
-            }
           }
         ]
       },
@@ -215,6 +217,27 @@
               "integrations/webhooks/invite-created",
               "integrations/webhooks/invite-accepted"
             ]
+          }
+        ]
+      },
+      {
+        "tab": "Agency API",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "building",
+            "pages": [
+              "agency-api/introduction",
+              "agency-api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "icon": "code",
+            "openapi": {
+              "source": "agency-api/openapi.json",
+              "directory": "agency-api-reference"
+            }
           }
         ]
       }

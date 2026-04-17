@@ -1,0 +1,90 @@
+---
+title: "Tools"
+description: "Everything the Ordinal MCP server lets your assistant do"
+---
+
+## Overview
+
+Once connected, your assistant has access to the tools below. You don't need to call them by hand — just ask in plain language ("draft a LinkedIn post for Friday," "show me last month's engagement") and the assistant picks the right tool.
+
+<Info>
+  **Always start with workspaces.** If this is a new session, ask the assistant to "list my Ordinal workspaces" first. It needs to know which workspace you want before it can do anything else.
+</Info>
+
+## Discovery
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_get_workspace_context` | Lists your workspaces, then (once you pick one) returns the profiles, labels, users, and campaigns the assistant needs to do everything else. |
+
+## Posts and ideas
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_search_content` | Searches posts or ideas — by status, labels, campaigns, or date — and can fetch a single post with its comments. |
+| `ordinal_create_post` | Creates a post with LinkedIn, X, and/or Instagram content. |
+| `ordinal_create_idea` | Creates an idea (a draft without a scheduled publish time). |
+| `ordinal_manage_post` | Updates, archives, or unarchives a post. |
+| `ordinal_manage_idea` | Updates, archives, unarchives, or adds an idea to the calendar. |
+
+## Media
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_create_upload` | Uploads an image or video from a URL so it can be attached to a post. |
+| `ordinal_get_upload` | Checks whether an upload is ready. |
+
+## Analytics
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_get_analytics` | Fetches post performance or follower growth for LinkedIn, X, Instagram, or Facebook. |
+
+## Collaboration
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_list_approvals` | Shows who needs to approve a post and whether they've approved yet. |
+| `ordinal_manage_approvals` | Requests or cancels approvals on a post. |
+| `ordinal_list_subscribers` | Lists who's subscribed to notifications on a post. |
+| `ordinal_manage_subscribers` | Adds or removes subscribers. |
+| `ordinal_manage_comments` | Adds a comment to a post or deletes one of your own. |
+
+## Auto-engagements
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_list_engagements` | Lists automatic likes, comments, and reposts attached to a post. |
+| `ordinal_manage_engagements` | Creates, updates, or removes auto-engagements. |
+
+## Slack boosts
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_list_slack_boosts` | Lists Slack broadcasts attached to a post. |
+| `ordinal_manage_slack_boosts` | Creates, updates, or deletes Slack boosts. |
+
+## Labels
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_manage_labels` | Creates or deletes labels used to organize posts. |
+
+## Platform utilities
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_get_linkedin_mention` | Looks up a LinkedIn user or company by username so it can be mentioned in a post. |
+| `ordinal_get_linkedin_profile` | Fetches a LinkedIn profile by its URN. |
+| `ordinal_search_instagram_locations` | Searches Instagram location tags to attach to posts. |
+
+## Asking the assistant things
+
+You don't call these tools by name — you describe what you want. Examples:
+
+- "Create a LinkedIn post for next Tuesday about our new pricing, in the Launch campaign."
+- "Archive the drafts I wrote last month that don't have a label."
+- "Show me which posts are waiting on approval from Sarah."
+- "Give me the last 30 days of follower growth on LinkedIn."
+
+The assistant picks the tools, fills in the arguments, and shows you the result.

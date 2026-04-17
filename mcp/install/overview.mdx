@@ -1,0 +1,45 @@
+---
+title: "Installation"
+description: "Set up the Ordinal MCP server in your AI assistant"
+---
+
+## Before you start
+
+<Info>
+  **Pro Plan Required**
+
+  The Ordinal MCP server is available on the Pro plan or higher, same as the [REST API](/api/introduction). [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to enable MCP access.
+</Info>
+
+You'll need an Ordinal account with access to at least one workspace. No API keys — the MCP server signs you in through your browser the first time you use it.
+
+<Warning>
+  **Already have the old MCP server installed?**
+
+  If you previously set it up with a workspace API key, remove it first. Running both at the same time confuses the assistant — it sees duplicate tools.
+
+  [Follow the migration guide →](/mcp/migrating)
+</Warning>
+
+## Pick your client
+
+The setup is different for each assistant — pick yours below for step-by-step instructions.
+
+<CardGroup cols={2}>
+  <Card title="Claude" icon="message-bot" href="/mcp/install/claude">
+    Claude Desktop and claude.ai.
+  </Card>
+  <Card title="Claude Code" icon="terminal" href="/mcp/install/claude-code">
+    Anthropic's command-line coding assistant.
+  </Card>
+  <Card title="Cursor" icon="code" href="/mcp/install/cursor">
+    The AI-powered code editor.
+  </Card>
+  <Card title="VS Code" icon="microsoft" href="/mcp/install/vscode">
+    Visual Studio Code with GitHub Copilot agent mode.
+  </Card>
+</CardGroup>
+
+<Info>
+  **Using another MCP client?** If your client supports the Streamable HTTP transport with OAuth, point it at `https://app.tryordinal.com/mcp` and follow its own MCP setup docs. Reach out to [support@tryordinal.com](mailto:support@tryordinal.com) if you get stuck.
+</Info>

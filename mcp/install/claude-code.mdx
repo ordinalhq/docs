@@ -1,0 +1,46 @@
+---
+title: "Claude Code"
+description: "Add the Ordinal MCP server to Claude Code"
+---
+
+<Steps>
+  <Step title="Run the add command">
+    In your terminal, run:
+
+    ```bash
+    claude mcp add --transport http ordinal https://app.tryordinal.com/mcp
+    ```
+  </Step>
+  <Step title="Sign in with Ordinal">
+    The first time you use an Ordinal tool, Claude Code opens a browser window for sign-in. Authenticate with your Ordinal account and approve access.
+  </Step>
+  <Step title="Verify the connection">
+    ```bash
+    claude mcp list
+    ```
+
+    You should see `ordinal` listed.
+  </Step>
+  <Step title="Try it out">
+    Start a Claude Code session and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The sign-in browser window doesn't open">
+    Update Claude Code to the latest version — OAuth support was added in recent releases. Run the add command again after upgrading.
+  </Accordion>
+  <Accordion title="My session expired">
+    Claude Code refreshes your token automatically in the background. If that fails, remove and re-add the server:
+
+    ```bash
+    claude mcp remove ordinal
+    claude mcp add --transport http ordinal https://app.tryordinal.com/mcp
+    ```
+  </Accordion>
+  <Accordion title="I see duplicate Ordinal tools">
+    You probably still have the old server configured. Check for an `ordinal` entry pointing at `/api/mcp` and remove it. See the [migration guide](/mcp/migrating).
+  </Accordion>
+</AccordionGroup>
