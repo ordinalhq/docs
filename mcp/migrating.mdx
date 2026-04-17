@@ -16,16 +16,21 @@ The old MCP server at `https://app.tryordinal.com/api/mcp` used a workspace API 
 Pick your client below.
 
 <Tabs>
-  <Tab title="Claude Desktop">
-    <Steps>
-      <Step title="Open the settings file">
-        - **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-        - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+  <Tab title="Claude">
+    The old Ordinal server was installed as a **local MCP server** in Claude Desktop, configured via `claude_desktop_config.json`. Remove it like this:
 
-        You can also open it from Claude Desktop: press `Cmd + ,` (or `Ctrl + ,`), click **Developer**, then click **Edit Config**.
+    <Steps>
+      <Step title="Open Claude Desktop settings">
+        Press `Cmd + ,` (Mac) or `Ctrl + ,` (Windows).
+      </Step>
+      <Step title="Go to Developer">
+        In the sidebar under **Desktop app**, click **Developer**.
+      </Step>
+      <Step title="Edit Config">
+        Click **Edit Config**, then **Open File** to open `claude_desktop_config.json` in your editor.
       </Step>
       <Step title="Remove the ordinal entry">
-        Find the `ordinal` entry under `mcpServers` and delete it. It will look something like this:
+        Find the `"ordinal"` block under `mcpServers` and delete it. It looks like this:
 
         ```json
         {
@@ -33,20 +38,20 @@ Pick your client below.
             "ordinal": {
               "command": "npx",
               "args": [
-                "mcp-remote",
+                "mcp-remote@latest",
                 "https://app.tryordinal.com/api/mcp",
                 "--header",
-                "Authorization: Bearer ord_XXXXXXXX"
+                "Authorization:Bearer ord_XXXXXXXX"
               ]
             }
           }
         }
         ```
 
-        Delete the whole `"ordinal": { ... }` block. If it was the only entry, leave `"mcpServers": {}`.
+        Save the file. If `ordinal` was the only entry, leave `"mcpServers": {}`.
       </Step>
       <Step title="Restart Claude Desktop">
-        Fully quit and relaunch. Confirm Ordinal tools no longer appear in the connector panel.
+        Fully quit and relaunch. In **Settings → Developer**, the `Ordinal` entry should be gone from **Local MCP servers**.
       </Step>
     </Steps>
   </Tab>
@@ -118,7 +123,7 @@ Since the old server used a workspace API key, revoke it so it can't be used aga
 Follow the install guide for your client:
 
 <CardGroup cols={2}>
-  <Card title="Claude Desktop" icon="message-bot" href="/mcp/install/claude-desktop">
+  <Card title="Claude" icon="message-bot" href="/mcp/install/claude">
     Via the Connectors UI
   </Card>
   <Card title="Claude Code" icon="terminal" href="/mcp/install/claude-code">
