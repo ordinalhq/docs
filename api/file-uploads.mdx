@@ -32,16 +32,16 @@ Images cannot exceed 36 megapixels total resolution.
 
 <Steps>
   <Step title="Submit the File URL">
-    [POST to `/uploads`](/api-reference/file-uploads/uploads-create) with the publicly accessible URL of the file you want to upload.
+    [POST to `/uploads`](/api-reference/file-uploads/upload-a-file-from-a-url) with the publicly accessible URL of the file you want to upload.
   </Step>
   <Step title="Receive Upload Job ID">
     The API returns an upload job ID with `pending` status.
   </Step>
   <Step title="Poll for Status">
-    [Poll GET `/uploads/{id}`](/api-reference/file-uploads/uploads-get) until the status changes to `ready`.
+    [Poll GET `/uploads/{id}`](/api-reference/file-uploads/get-upload-status) until the status changes to `ready`.
   </Step>
   <Step title="Use the Asset ID">
-    Once ready, use the returned `assetId` in the `assetIds` array when [creating posts](/api-reference/posts/posts-create).
+    Once ready, use the returned `assetId` in the `assetIds` array when [creating posts](/api-reference/posts/create-post).
   </Step>
 </Steps>
 
