@@ -173,7 +173,7 @@
       "get": {
         "operationId": "analytics-linkedin-posts",
         "summary": "LinkedIn post analytics",
-        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign.",
+        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign. For personal profiles, the response also includes saveCount (times the post was saved) and sendCount (times the post was sent via DM).",
         "tags": [
           "Analytics"
         ],
@@ -229,6 +229,8 @@
                     "commentCount": 32,
                     "shareCount": 18,
                     "clickCount": 156,
+                    "saveCount": 41,
+                    "sendCount": 12,
                     "impressionCount": 12500,
                     "engagement": 0.036,
                     "emv": 375,
@@ -251,6 +253,8 @@
                     "commentCount": 67,
                     "shareCount": 134,
                     "clickCount": 423,
+                    "saveCount": 156,
+                    "sendCount": 48,
                     "impressionCount": 28900,
                     "engagement": 0.052,
                     "emv": 867,
@@ -7083,6 +7087,16 @@
           "clickCount": {
             "type": "integer",
             "nullable": true
+          },
+          "saveCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Times the post was saved to view later. Available for personal LinkedIn profiles only."
+          },
+          "sendCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Times the post was sent via direct message. Available for personal LinkedIn profiles only."
           },
           "impressionCount": {
             "type": "integer",
