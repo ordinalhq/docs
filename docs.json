@@ -277,5 +277,11 @@
       "linkedin": "https://linkedin.com/company/tryordinal",
       "x": "https://x.com/tryordinal"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/api/mcp",
+      "destination": "/mcp/introduction"
+    }
+  ]
 }
