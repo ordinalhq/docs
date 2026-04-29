@@ -95,7 +95,7 @@ The Ordinal API allows you to programmatically create and manage posts, profiles
 
 ## Rate Limiting
 
-API requests are rate limited to ensure fair usage of 100 requests per minute per API key. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with information about when your quota resets.
+API requests are rate limited to ensure fair usage of 100 requests per minute per workspace. The limit is shared across all API keys in a workspace. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with information about when your quota resets.
 
 ```json
 {
