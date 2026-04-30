@@ -1917,7 +1917,7 @@
             "description": "Filter by channel",
             "schema": {
               "type": "string",
-              "enum": ["LinkedIn", "Twitter"]
+              "enum": ["LinkedIn", "Twitter", "TikTok"]
             }
           },
           {
@@ -1933,6 +1933,15 @@
             "name": "xProfileId",
             "in": "query",
             "description": "Filter by X/Twitter profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tikTokProfileId",
+            "in": "query",
+            "description": "Filter by TikTok profile ID",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -2033,7 +2042,7 @@
       "post": {
         "operationId": "ideas-create",
         "summary": "Create idea",
-        "description": "Create a new idea in the workspace. At least one channel (linkedIn or x) is required.",
+        "description": "Create a new idea in the workspace. At least one channel (linkedIn, x, or tikTok) is required.",
         "tags": [
           "Ideas"
         ],
@@ -2167,6 +2176,9 @@
                         }
                       }
                     }
+                  },
+                  "tikTok": {
+                    "$ref": "#/components/schemas/TikTokConfig"
                   },
                   "notes": {
                     "type": "string",
@@ -2366,6 +2378,10 @@
                       }
                     },
                     "description": "X/Twitter channel content updates"
+                  },
+                  "tikTok": {
+                    "$ref": "#/components/schemas/TikTokConfig",
+                    "description": "TikTok channel content updates. All fields are optional."
                   },
                   "notes": {
                     "type": "string",
@@ -2683,7 +2699,7 @@
             "description": "Filter by channel",
             "schema": {
               "type": "string",
-              "enum": ["LinkedIn", "Twitter", "Instagram"]
+              "enum": ["LinkedIn", "Twitter", "Instagram", "TikTok"]
             }
           },
           {
@@ -2708,6 +2724,15 @@
             "name": "instagramProfileId",
             "in": "query",
             "description": "Filter by Instagram profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tikTokProfileId",
+            "in": "query",
+            "description": "Filter by TikTok profile ID",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -2890,7 +2915,7 @@
       "post": {
         "operationId": "posts-create",
         "summary": "Create post",
-        "description": "Create a new post in the workspace. At least one channel (linkedIn, x, or instagram) is required.",
+        "description": "Create a new post in the workspace. At least one channel (linkedIn, x, instagram, or tikTok) is required.",
         "tags": [
           "Posts"
         ],
@@ -5223,6 +5248,9 @@
                 }
               }
             }
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokContent"
           }
         }
       },
@@ -5295,6 +5323,9 @@
                 }
               }
             }
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokContent"
           }
         }
       },
@@ -5363,6 +5394,9 @@
                 }
               }
             }
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokContent"
           }
         }
       },
@@ -5498,6 +5532,9 @@
           },
           "instagram": {
             "$ref": "#/components/schemas/InstagramContent"
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokContent"
           }
         }
       },
@@ -5554,6 +5591,9 @@
           },
           "instagram": {
             "$ref": "#/components/schemas/InstagramConfig"
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokConfig"
           }
         }
       },
@@ -5595,6 +5635,9 @@
           },
           "instagram": {
             "$ref": "#/components/schemas/InstagramConfig"
+          },
+          "tikTok": {
+            "$ref": "#/components/schemas/TikTokConfig"
           }
         }
       },
@@ -6144,6 +6187,110 @@
             }
           }
         }
+      },
+      "TikTokConfig": {
+        "type": "object",
+        "description": "TikTok channel configuration for creating or updating posts. TikTok posts require exactly one video asset.",
+        "required": ["profileId", "copy", "assetIds"],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "TikTok profile ID to post from"
+          },
+          "copy": {
+            "type": "string",
+            "maxLength": 2200,
+            "description": "Caption text. Maximum 2,200 characters."
+          },
+          "assetIds": {
+            "type": "array",
+            "description": "Array containing exactly one video asset ID.",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "privacyLevel": {
+            "$ref": "#/components/schemas/TikTokPrivacyLevel"
+          },
+          "isCommentDisabled": {
+            "type": "boolean",
+            "description": "Disable comments on the video."
+          },
+          "isDuetDisabled": {
+            "type": "boolean",
+            "description": "Disable Duet on the video."
+          },
+          "isStitchDisabled": {
+            "type": "boolean",
+            "description": "Disable Stitch on the video."
+          },
+          "isPromotingBusiness": {
+            "type": "boolean",
+            "description": "Mark the video as promoting the creator's own business (branded content disclosure)."
+          },
+          "isPaidPartnership": {
+            "type": "boolean",
+            "description": "Mark the video as a paid partnership with a third-party brand (branded content disclosure)."
+          }
+        }
+      },
+      "TikTokContent": {
+        "type": "object",
+        "nullable": true,
+        "description": "TikTok content. Present when the post targets the TikTok channel.",
+        "properties": {
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelProfile"
+              }
+            ],
+            "nullable": true
+          },
+          "copy": {
+            "type": "string",
+            "description": "Caption text"
+          },
+          "assets": {
+            "type": "array",
+            "description": "Assets attached to the TikTok post (one video).",
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            }
+          },
+          "privacyLevel": {
+            "$ref": "#/components/schemas/TikTokPrivacyLevel"
+          },
+          "isCommentDisabled": {
+            "type": "boolean"
+          },
+          "isDuetDisabled": {
+            "type": "boolean"
+          },
+          "isStitchDisabled": {
+            "type": "boolean"
+          },
+          "isPromotingBusiness": {
+            "type": "boolean"
+          },
+          "isPaidPartnership": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TikTokPrivacyLevel": {
+        "type": "string",
+        "description": "Audience visibility for the TikTok video.",
+        "enum": [
+          "PUBLIC_TO_EVERYONE",
+          "FOLLOWER_OF_CREATOR",
+          "MUTUAL_FOLLOW_FRIENDS",
+          "SELF_ONLY"
+        ]
       },
       "PostCreateResponse": {
         "type": "object",
