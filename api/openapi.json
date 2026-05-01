@@ -1917,7 +1917,7 @@
             "description": "Filter by channel",
             "schema": {
               "type": "string",
-              "enum": ["LinkedIn", "Twitter", "TikTok"]
+              "enum": ["LinkedIn", "Twitter", "TikTok", "YouTubeShorts"]
             }
           },
           {
@@ -1942,6 +1942,15 @@
             "name": "tikTokProfileId",
             "in": "query",
             "description": "Filter by TikTok profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "youTubeProfileId",
+            "in": "query",
+            "description": "Filter by YouTube channel profile ID",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -2180,6 +2189,9 @@
                   "tikTok": {
                     "$ref": "#/components/schemas/TikTokConfig"
                   },
+                  "youTubeShorts": {
+                    "$ref": "#/components/schemas/YouTubeShortsConfig"
+                  },
                   "notes": {
                     "type": "string",
                     "description": "Internal notes for the idea"
@@ -2382,6 +2394,10 @@
                   "tikTok": {
                     "$ref": "#/components/schemas/TikTokConfig",
                     "description": "TikTok channel content updates. All fields are optional."
+                  },
+                  "youTubeShorts": {
+                    "$ref": "#/components/schemas/YouTubeShortsConfig",
+                    "description": "YouTube Shorts channel content updates. All fields are optional."
                   },
                   "notes": {
                     "type": "string",
@@ -2699,7 +2715,7 @@
             "description": "Filter by channel",
             "schema": {
               "type": "string",
-              "enum": ["LinkedIn", "Twitter", "Instagram", "TikTok"]
+              "enum": ["LinkedIn", "Twitter", "Instagram", "TikTok", "YouTubeShorts"]
             }
           },
           {
@@ -2733,6 +2749,15 @@
             "name": "tikTokProfileId",
             "in": "query",
             "description": "Filter by TikTok profile ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "youTubeProfileId",
+            "in": "query",
+            "description": "Filter by YouTube channel profile ID",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -5251,6 +5276,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokContent"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsContent"
           }
         }
       },
@@ -5326,6 +5354,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokContent"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsContent"
           }
         }
       },
@@ -5397,6 +5428,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokContent"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsContent"
           }
         }
       },
@@ -5535,6 +5569,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokContent"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsContent"
           }
         }
       },
@@ -5594,6 +5631,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokConfig"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsConfig"
           }
         }
       },
@@ -5638,6 +5678,9 @@
           },
           "tikTok": {
             "$ref": "#/components/schemas/TikTokConfig"
+          },
+          "youTubeShorts": {
+            "$ref": "#/components/schemas/YouTubeShortsConfig"
           }
         }
       },
@@ -6290,6 +6333,114 @@
           "FOLLOWER_OF_CREATOR",
           "MUTUAL_FOLLOW_FRIENDS",
           "SELF_ONLY"
+        ]
+      },
+      "YouTubeShortsConfig": {
+        "type": "object",
+        "description": "YouTube Shorts channel configuration for creating or updating posts. YouTube Shorts posts require exactly one video asset (1s–3min).",
+        "required": ["profileId", "title", "assetIds"],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "YouTube channel profile ID to post from"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Video title. Required by YouTube. Maximum 100 characters."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 5000,
+            "description": "Video description. Maximum 5,000 characters."
+          },
+          "assetIds": {
+            "type": "array",
+            "description": "Array containing exactly one video asset ID (1s–3min duration).",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "privacyStatus": {
+            "$ref": "#/components/schemas/YouTubePrivacyStatus"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "YouTube category ID for the video."
+          },
+          "notifySubscribers": {
+            "type": "boolean",
+            "description": "Whether to notify channel subscribers when the video is published."
+          },
+          "isEmbeddable": {
+            "type": "boolean",
+            "description": "Whether the video can be embedded on other sites."
+          },
+          "isSelfDeclaredMadeForKids": {
+            "type": "boolean",
+            "description": "Whether the video is self-declared as made for kids."
+          }
+        }
+      },
+      "YouTubeShortsContent": {
+        "type": "object",
+        "nullable": true,
+        "description": "YouTube Shorts content. Present when the post targets the YouTube Shorts channel.",
+        "properties": {
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelProfile"
+              }
+            ],
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Video title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Video description"
+          },
+          "assets": {
+            "type": "array",
+            "description": "Assets attached to the YouTube Shorts post (one video).",
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            }
+          },
+          "privacyStatus": {
+            "$ref": "#/components/schemas/YouTubePrivacyStatus"
+          },
+          "categoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "notifySubscribers": {
+            "type": "boolean"
+          },
+          "isEmbeddable": {
+            "type": "boolean"
+          },
+          "isSelfDeclaredMadeForKids": {
+            "type": "boolean"
+          }
+        }
+      },
+      "YouTubePrivacyStatus": {
+        "type": "string",
+        "description": "Audience visibility for the YouTube Shorts video.",
+        "enum": [
+          "public",
+          "private",
+          "unlisted"
         ]
       },
       "PostCreateResponse": {
