@@ -2094,12 +2094,11 @@
                         "type": "string",
                         "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
                       },
-                      "assetIds": {
+                      "assets": {
                         "type": "array",
-                        "description": "Array of asset IDs to attach. Maximum 20 attachments.",
+                        "description": "Array of assets to attach. Maximum 20 attachments.",
                         "items": {
-                          "type": "string",
-                          "format": "uuid"
+                          "$ref": "#/components/schemas/ChannelAssetRef"
                         },
                         "maxItems": 20
                       },
@@ -2172,12 +2171,11 @@
                               "minLength": 1,
                               "description": "Tweet text content"
                             },
-                            "assetIds": {
+                            "assets": {
                               "type": "array",
-                              "description": "Array of asset IDs to attach. Maximum 4 per tweet.",
+                              "description": "Array of assets to attach. Maximum 4 per tweet.",
                               "items": {
-                                "type": "string",
-                                "format": "uuid"
+                                "$ref": "#/components/schemas/ChannelAssetRef"
                               },
                               "maxItems": 4
                             }
@@ -2357,11 +2355,10 @@
                       "copy": {
                         "type": "string"
                       },
-                      "assetIds": {
+                      "assets": {
                         "type": "array",
                         "items": {
-                          "type": "string",
-                          "format": "uuid"
+                          "$ref": "#/components/schemas/ChannelAssetRef"
                         }
                       }
                     },
@@ -2378,11 +2375,10 @@
                             "copy": {
                               "type": "string"
                             },
-                            "assetIds": {
+                            "assets": {
                               "type": "array",
                               "items": {
-                                "type": "string",
-                                "format": "uuid"
+                                "$ref": "#/components/schemas/ChannelAssetRef"
                               }
                             }
                           }
@@ -2958,14 +2954,14 @@
                 "linkedIn": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440001",
                   "copy": "Excited to announce our new product launch! 🚀\n\nHuge thanks to @[John Doe](urn:li:person:ABC123xyz) and the @[Acme Inc](urn:li:organization:123456) team for making this happen.\n\nKey highlights:\n• Feature A\n• Feature B\n• Feature C\n\n#ProductLaunch #Innovation",
-                  "assetIds": ["550e8400-e29b-41d4-a716-446655440010"]
+                  "assets": [{ "assetId": "550e8400-e29b-41d4-a716-446655440010" }]
                 },
                 "x": {
                   "profileId": "550e8400-e29b-41d4-a716-446655440003",
                   "tweets": [
                     {
                       "copy": "Excited to announce our new product launch! 🚀\n\nA thread on what we've been building 🧵",
-                      "assetIds": ["550e8400-e29b-41d4-a716-446655440011"]
+                      "assets": [{ "assetId": "550e8400-e29b-41d4-a716-446655440011" }]
                     },
                     {
                       "copy": "Key highlights:\n• Feature A\n• Feature B\n• Feature C"
@@ -5712,12 +5708,11 @@
                   "minLength": 1,
                   "description": "Tweet text content"
                 },
-                "assetIds": {
+                "assets": {
                   "type": "array",
-                  "description": "Array of asset IDs to attach to this tweet. Obtain asset IDs by uploading files via the Uploads API. Maximum 4 attachments per tweet.",
+                  "description": "Array of assets to attach to this tweet. Obtain asset IDs by uploading files via the Uploads API. Maximum 4 attachments per tweet.",
                   "items": {
-                    "type": "string",
-                    "format": "uuid"
+                    "$ref": "#/components/schemas/ChannelAssetRef"
                   },
                   "maxItems": 4
                 }
@@ -5738,12 +5733,11 @@
             "type": "string",
             "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
           },
-          "assetIds": {
+          "assets": {
             "type": "array",
-            "description": "Array of asset IDs to attach to the post. Obtain asset IDs by uploading files via the Uploads API. Maximum 20 attachments for LinkedIn posts.",
+            "description": "Array of assets to attach to the post. Obtain asset IDs by uploading files via the Uploads API. Maximum 20 attachments for LinkedIn posts.",
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "$ref": "#/components/schemas/ChannelAssetRef"
             },
             "maxItems": 20
           },
@@ -5945,6 +5939,18 @@
             "items": {
               "$ref": "#/components/schemas/InstagramAssetInput"
             }
+          }
+        }
+      },
+      "ChannelAssetRef": {
+        "type": "object",
+        "description": "A reference to an asset to attach to a post.",
+        "required": ["assetId"],
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Asset ID from the Uploads API"
           }
         }
       },
@@ -6234,7 +6240,7 @@
       "TikTokConfig": {
         "type": "object",
         "description": "TikTok channel configuration for creating or updating posts. TikTok posts require exactly one video asset.",
-        "required": ["profileId", "copy", "assetIds"],
+        "required": ["profileId", "copy", "assets"],
         "properties": {
           "profileId": {
             "type": "string",
@@ -6246,14 +6252,13 @@
             "maxLength": 2200,
             "description": "Caption text. Maximum 2,200 characters."
           },
-          "assetIds": {
+          "assets": {
             "type": "array",
-            "description": "Array containing exactly one video asset ID.",
+            "description": "Array containing exactly one video asset.",
             "minItems": 1,
             "maxItems": 1,
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "$ref": "#/components/schemas/ChannelAssetRef"
             }
           },
           "privacyLevel": {
@@ -6338,7 +6343,7 @@
       "YouTubeShortsConfig": {
         "type": "object",
         "description": "YouTube Shorts channel configuration for creating or updating posts. YouTube Shorts posts require exactly one video asset (1s–3min).",
-        "required": ["profileId", "title", "assetIds"],
+        "required": ["profileId", "title", "assets"],
         "properties": {
           "profileId": {
             "type": "string",
@@ -6355,14 +6360,13 @@
             "maxLength": 5000,
             "description": "Video description. Maximum 5,000 characters."
           },
-          "assetIds": {
+          "assets": {
             "type": "array",
-            "description": "Array containing exactly one video asset ID (1s–3min duration).",
+            "description": "Array containing exactly one video asset (1s–3min duration).",
             "minItems": 1,
             "maxItems": 1,
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "$ref": "#/components/schemas/ChannelAssetRef"
             }
           },
           "privacyStatus": {
