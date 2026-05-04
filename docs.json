@@ -246,7 +246,6 @@
       },
       {
         "tab": "Help Center",
-        "hidden": true,
         "pages": [
           "help-center"
         ]
