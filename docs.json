@@ -225,6 +225,7 @@
       },
       {
         "tab": "Agency API",
+        "hidden": true,
         "groups": [
           {
             "group": "Overview",
