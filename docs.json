@@ -172,7 +172,10 @@
           {
             "group": "Overview",
             "icon": "webhook",
-            "pages": ["integrations/webhooks/introduction", "integrations/webhooks/event-types"]
+            "pages": [
+              "integrations/webhooks/introduction",
+              "integrations/webhooks/event-types"
+            ]
           },
           {
             "group": "Social Profile",
@@ -240,6 +243,10 @@
             }
           }
         ]
+      },
+      {
+        "tab": "Help Center",
+        "hidden": true
       }
     ]
   },
