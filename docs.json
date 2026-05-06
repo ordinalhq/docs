@@ -1,7 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Ordinal Knowledge Base",
+  "name": "Ordinal Docs",
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:site_name": "Ordinal Docs",
+      "robots": "index, follow"
+    }
+  },
   "colors": {
     "primary": "#24574D",
     "light": "#8EF5B5",
