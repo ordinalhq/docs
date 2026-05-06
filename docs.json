@@ -150,16 +150,7 @@
             "icon": "server",
             "pages": [
               "mcp/introduction",
-              {
-                "group": "Installation",
-                "pages": [
-                  "mcp/install/overview",
-                  "mcp/install/claude",
-                  "mcp/install/claude-code",
-                  "mcp/install/cursor",
-                  "mcp/install/vscode"
-                ]
-              },
+              "mcp/install/overview",
               "mcp/tools",
               "mcp/migrating"
             ]
@@ -292,6 +283,22 @@
     {
       "source": "/api/mcp",
       "destination": "/mcp/introduction"
+    },
+    {
+      "source": "/mcp/install/claude",
+      "destination": "/mcp/install/overview"
+    },
+    {
+      "source": "/mcp/install/claude-code",
+      "destination": "/mcp/install/overview"
+    },
+    {
+      "source": "/mcp/install/cursor",
+      "destination": "/mcp/install/overview"
+    },
+    {
+      "source": "/mcp/install/vscode",
+      "destination": "/mcp/install/overview"
     }
   ]
 }

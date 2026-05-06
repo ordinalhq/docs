@@ -21,25 +21,276 @@ You'll need an Ordinal account with access to at least one workspace. No API key
   [Follow the migration guide →](/mcp/migrating)
 </Warning>
 
-## Pick your client
+## How to connect
 
-The setup is different for each assistant — pick yours below for step-by-step instructions.
+Pick your AI assistant below for step-by-step instructions.
 
-<CardGroup cols={2}>
-  <Card title="Claude" icon="message-bot" href="/mcp/install/claude">
-    Claude Desktop and claude.ai.
-  </Card>
-  <Card title="Claude Code" icon="terminal" href="/mcp/install/claude-code">
-    Anthropic's command-line coding assistant.
-  </Card>
-  <Card title="Cursor" icon="code" href="/mcp/install/cursor">
-    The AI-powered code editor.
-  </Card>
-  <Card title="VS Code" icon="microsoft" href="/mcp/install/vscode">
-    Visual Studio Code with GitHub Copilot agent mode.
-  </Card>
-</CardGroup>
+<AccordionGroup>
+  <Accordion title="Claude" icon="message-bot">
+    <Info>
+      Custom connectors require a **Claude Max, Team, or Enterprise** plan. They aren't available on the free or Pro tiers. Connectors are shared between Claude Desktop and claude.ai — install once, use everywhere.
+    </Info>
 
-<Info>
-  **Using another MCP client?** If your client supports the Streamable HTTP transport with OAuth, point it at `https://app.tryordinal.com/mcp` and follow its own MCP setup docs. Reach out to [support@tryordinal.com](mailto:support@tryordinal.com) if you get stuck.
-</Info>
+    <Steps>
+      <Step title="Copy the Ordinal MCP server URL">
+        ```
+        https://app.tryordinal.com/mcp
+        ```
+      </Step>
+      <Step title="Open Claude's connector settings">
+        <div className="not-prose my-4 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+          <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+            <Icon icon="bolt" iconType="solid" />
+            <span>Opens Claude's connector settings in a new tab.</span>
+          </div>
+          <a
+            href="https://claude.ai/customize/connectors"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white no-underline hover:bg-gray-800"
+          >
+            <img src="https://cdn.simpleicons.org/claude/white" alt="" className="h-4 w-4" />
+            Open in Claude
+          </a>
+        </div>
+      </Step>
+      <Step title="Add the Ordinal connector">
+        Click **Add custom connector**, paste the URL you copied, name it `Ordinal`, and save.
+      </Step>
+      <Step title="Connect your Ordinal account">
+        On the next screen, click **Connect**. A browser window opens — sign in with your Ordinal account and approve access. The connector should now show **Connected**.
+      </Step>
+      <Step title="Try it out">
+        Ask Claude in any chat: *"List my Ordinal workspaces."* Claude should call the `ordinal_get_workspace_context` tool and return your workspaces.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **I don't see "Add custom connector":** Custom connectors require a Max, Team, or Enterprise plan. Upgrade your Claude subscription at [claude.ai/settings/billing](https://claude.ai/settings/billing). Make sure you're on the latest Claude Desktop version if you don't see the option there either.
+    - **The connector won't sign in:** Update Claude Desktop to the latest version — older builds don't support OAuth-based MCP connectors. Restart the app after updating, then retry from the connector settings.
+    - **I don't see Ordinal tools in the chat:** Open the connector panel in chat (the icon in the message bar) and confirm Ordinal is enabled. If it says **Reconnect**, click it to re-run the sign-in.
+    - **I see duplicate Ordinal tools:** You likely still have the old server configured. Remove any connector pointing at `/api/mcp` before using the new one. See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="Claude Code" icon="terminal">
+    <Steps>
+      <Step title="Run the add command">
+        In your terminal, run:
+
+        ```bash
+        claude mcp add --transport http ordinal https://app.tryordinal.com/mcp
+        ```
+      </Step>
+      <Step title="Sign in with Ordinal">
+        The first time you use an Ordinal tool, Claude Code opens a browser window for sign-in. Authenticate with your Ordinal account and approve access.
+      </Step>
+      <Step title="Verify the connection">
+        ```bash
+        claude mcp list
+        ```
+
+        You should see `ordinal` listed.
+      </Step>
+      <Step title="Try it out">
+        Start a Claude Code session and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **The sign-in browser window doesn't open:** Update Claude Code to the latest version — OAuth support was added in recent releases. Run the add command again after upgrading.
+    - **My session expired:** Claude Code refreshes your token automatically in the background. If that fails, remove and re-add the server: `claude mcp remove ordinal` then `claude mcp add --transport http ordinal https://app.tryordinal.com/mcp`.
+    - **I see duplicate Ordinal tools:** You probably still have the old server configured. Check for an `ordinal` entry pointing at `/api/mcp` and remove it. See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="Codex" icon="square-terminal">
+    <Steps>
+      <Step title="Open MCP server settings">
+        In the Codex desktop app, go to **Settings → MCP Servers** and click **Add custom MCP**.
+      </Step>
+      <Step title="Fill in the Ordinal server details">
+        - **Name:** `Ordinal`
+        - **Transport:** select **Streamable HTTP**
+        - **URL:** `https://app.tryordinal.com/mcp`
+
+        Leave **Bearer token env var**, **Headers**, and **Headers from environment variables** empty — Ordinal uses OAuth, not a bearer token.
+
+        <Frame>
+          <img src="/images/codex-custom-mcp.png" alt="Codex Connect to a custom MCP dialog with Name set to Ordinal, transport set to Streamable HTTP, and URL set to https://app.tryordinal.com/mcp" />
+        </Frame>
+
+        Click **Save**.
+      </Step>
+      <Step title="Sign in with Ordinal">
+        Codex won't trigger OAuth automatically. Just ask Codex in chat: *"Authenticate the Ordinal MCP server."* Codex kicks off the OAuth flow and opens a browser window — sign in with your Ordinal account and approve access.
+      </Step>
+      <Step title="Verify the connection">
+        Back in **Settings → MCP Servers**, the Ordinal entry should now show as connected and list its tools.
+      </Step>
+      <Step title="Try it out">
+        Ask Codex: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **I don't see "Add custom MCP":** Update to the latest Codex release — custom Streamable HTTP servers were added in a recent version.
+    - **Tool calls fail with an auth error:** Your OAuth token may have expired. Ask Codex to re-authenticate the Ordinal MCP server.
+    - **The sign-in browser window doesn't open:** Make sure Codex can reach `https://app.tryordinal.com`. If you're behind a corporate proxy, configure it and retry.
+    - **I see duplicate Ordinal tools:** You likely still have the old server configured. Remove any Ordinal MCP entry pointing at `/api/mcp`. See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="Codex CLI" icon="square-terminal">
+    <Steps>
+      <Step title="Add the Ordinal server">
+        In your terminal, run:
+
+        ```bash
+        codex mcp add ordinal --url https://app.tryordinal.com/mcp
+        ```
+      </Step>
+      <Step title="Sign in with Ordinal">
+        Run the login command:
+
+        ```bash
+        codex mcp login ordinal
+        ```
+
+        A browser window opens — sign in with your Ordinal account and approve access.
+      </Step>
+      <Step title="Verify the connection">
+        Inside the Codex TUI, run the `/mcp` slash command. You should see `ordinal` in the list of configured MCP servers along with its tools.
+      </Step>
+      <Step title="Try it out">
+        Ask Codex: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **`codex mcp add` says it's an unknown command:** You're on an older Codex CLI build without remote MCP support. Upgrade to the latest release and try again.
+    - **Tool calls fail with an auth error:** Your OAuth token may have expired. Re-run `codex mcp login ordinal` to refresh it.
+    - **The sign-in browser window doesn't open:** Make sure Codex can reach `https://app.tryordinal.com`. If you're behind a corporate proxy, configure it and retry.
+    - **I see duplicate Ordinal tools:** You likely still have the old server configured. Run `codex mcp list`, remove any `ordinal` entry pointing at `/api/mcp`, and retry. See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="Cursor" icon="code">
+    **One-click install**
+
+    <div className="not-prose my-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+        <Icon icon="bolt" iconType="solid" />
+        <span>Install the Ordinal MCP server. Sign in with your Ordinal account when prompted.</span>
+      </div>
+      <a
+        href="cursor://anysphere.cursor-deeplink/mcp/install?name=ordinal&config=eyJ1cmwiOiJodHRwczovL2FwcC50cnlvcmRpbmFsLmNvbS9tY3AifQ=="
+        className="inline-flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white no-underline hover:bg-gray-800"
+      >
+        <img src="https://cdn.simpleicons.org/cursor/white" alt="" className="h-4 w-4" />
+        Install in Cursor
+      </a>
+    </div>
+
+    **Manual install**
+
+    <Steps>
+      <Step title="Open MCP settings">
+        Open the Cursor command palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows) and search for **Open MCP settings**.
+      </Step>
+      <Step title="Add the Ordinal server">
+        In the MCP settings panel, click **Add new global MCP server** and paste:
+
+        ```json
+        {
+          "mcpServers": {
+            "ordinal": {
+              "url": "https://app.tryordinal.com/mcp"
+            }
+          }
+        }
+        ```
+
+        Save the file.
+      </Step>
+      <Step title="Sign in with Ordinal">
+        Cursor detects the new server and opens a browser window. Sign in with your Ordinal account and approve access.
+      </Step>
+      <Step title="Verify the connection">
+        Back in MCP settings, the `ordinal` server should show a green dot and list the available tools.
+      </Step>
+      <Step title="Try it out">
+        Open the Cursor agent panel and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **Cursor doesn't open a sign-in window:** Make sure you're on a recent Cursor version with OAuth MCP support. Restart Cursor after editing the MCP config.
+    - **I see a red dot next to the server:** Click the server entry in MCP settings to see the error. Most common causes: your sign-in token expired (click **Re-authorize** to refresh it), or the URL is wrong (it should be exactly `https://app.tryordinal.com/mcp` with no trailing slash or `/api/` prefix).
+    - **I see duplicate Ordinal tools:** You likely have the old server still configured. Remove any `ordinal` entry pointing at `/api/mcp` and restart Cursor. See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="VS Code" icon="microsoft">
+    **One-click install**
+
+    <div className="not-prose my-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+        <Icon icon="bolt" iconType="solid" />
+        <span>Install the Ordinal MCP server. Sign in with your Ordinal account when prompted.</span>
+      </div>
+      <a
+        href="vscode:mcp/install?name=ordinal&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.tryordinal.com%2Fmcp%22%7D"
+        className="inline-flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white no-underline hover:bg-gray-800"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4" fill="#0098FF"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+        Install in VS Code
+      </a>
+    </div>
+
+    **Manual install**
+
+    <Steps>
+      <Step title="Create the MCP config file">
+        At the root of your project, create `.vscode/mcp.json`:
+
+        ```json
+        {
+          "servers": {
+            "ordinal": {
+              "type": "http",
+              "url": "https://app.tryordinal.com/mcp"
+            }
+          }
+        }
+        ```
+      </Step>
+      <Step title="Reload VS Code">
+        Run the **Developer: Reload Window** command from the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+      </Step>
+      <Step title="Sign in with Ordinal">
+        The first time you use an Ordinal tool from Copilot Chat, VS Code opens a browser for sign-in. Authenticate with your Ordinal account and approve access.
+      </Step>
+      <Step title="Try it out">
+        Open Copilot Chat in agent mode and ask: *"List my Ordinal workspaces."* It should call the `ordinal_get_workspace_context` tool.
+      </Step>
+    </Steps>
+
+    **Troubleshooting**
+
+    - **The one-click button does nothing:** Make sure VS Code is registered as the handler for `vscode://` URLs. On Windows and macOS, this happens on install; on Linux you may need to associate the scheme manually. If the button still fails, use the manual install steps above.
+    - **I use VS Code Insiders:** The one-click button targets stable VS Code. If you use [Insiders](https://code.visualstudio.com/insiders/), follow the manual install steps above — they work the same in both editions.
+    - **I don't see Ordinal tools in Copilot Chat:** Open the MCP view in the sidebar and confirm `ordinal` shows as connected. If it says **Sign in required**, click it to run the OAuth flow.
+    - **I see duplicate Ordinal tools:** You likely have the old server still configured. Remove any `ordinal` entry pointing at `/api/mcp` from `.vscode/mcp.json` (or your user-level `settings.json`). See the [migration guide](/mcp/migrating).
+  </Accordion>
+
+  <Accordion title="Other AI tools" icon="ellipsis">
+    If your client supports the Streamable HTTP transport with OAuth, point it at:
+
+    ```
+    https://app.tryordinal.com/mcp
+    ```
+
+    Then follow the client's own MCP setup docs. Reach out to [support@tryordinal.com](mailto:support@tryordinal.com) if you get stuck.
+  </Accordion>
+</AccordionGroup>
