@@ -21,12 +21,15 @@ Instagram requires a **Business or Creator account** (not personal) and connects
   <Card title="Connecting Instagram" icon="plug" href="#connecting-instagram">
     Connect your Business or Creator account
   </Card>
+
   <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-an-instagram-post">
     Formatting, tagging, and media
   </Card>
+
   <Card title="Post Types" icon="grid-2" href="#post-types">
     Feed, Reels, and Stories
   </Card>
+
   <Card title="Analytics" icon="chart-line" href="#analytics">
     Track post performance
   </Card>
@@ -37,18 +40,18 @@ Instagram requires a **Business or Creator account** (not personal) and connects
 Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/instagram), click "Connect Instagram", and sign in with Instagram to connect your account.
 
 <Info>
-  Make sure you are logged into the correct Instagram account you wish to connect before going through the integration flow by visiting [instagram.com](http://instagram.com) in your browser. You can always click "More" -> "Switch Accounts" on Instagram to login to the correct account.
+  Make sure you are logged into the correct Instagram account you wish to connect before going through the integration flow by visiting [instagram.com](http://instagram.com) in your browser. You can always click "More" -\> "Switch Accounts" on Instagram to login to the correct account.
 </Info>
 
 ## Drafting an Instagram Post
 
 ### What you can post
 
-| Feature                   | Supported | Notes                                           |
-| ------------------------- | --------- | ----------------------------------------------- |
-| [Feed posts](#feed-posts) | ✅         |  Up to 10 images/videos                     |
-| [Reels](#reels)           | ✅         | Single video, up to 15 minutes                  |
-| [Stories](#stories)       | ⚠️        | Up to 10 images/videos, no interactive elements |
+| Feature | Supported | Notes |
+| --- | --- | --- |
+| [Feed posts](#feed-posts) | ✅ | Up to 10 images/videos |
+| [Reels](#reels) | ✅ | Single video, up to 15 minutes |
+| [Stories](#stories) | ⚠️ | Up to 10 images/videos, no interactive elements |
 
 ### Drafting & Formatting
 
@@ -92,6 +95,13 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 
 **Collaborators**: Invite up to **3 other Instagram accounts** to co-author your post. When published, collaborators receive a DM to accept the invitation, and the post appears on both profiles.
 
+<Warning>
+  Tagging as Collaborator only works if each collaborator's Instagram profile meets the following requirements:
+
+  - **Profile visibility: Set to Public**
+  - **Tags and Mentions**: Both set to **Allow from everyone** (found in Instagram [Settings → Privacy → Tags & Mentions](https://www.instagram.com/accounts/settings/v2/tags_and_mentions/))
+</Warning>
+
 **Cover Photo** (Reels only): Upload a custom thumbnail for your Reel.
 
 **Share to Feed** (Reels only): Control whether your Reel appears in both your profile grid and the Reels tab, or just in Reels.
@@ -102,33 +112,33 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
   <Tab title="Feed Posts">
     Feed posts appear in your profile grid and followers' feeds. They support up to 10 images/videos.
 
-    | Spec       | Limit                                |
-    | ---------- | ------------------------------------ |
-    | Formats    | JPG only (PNG auto-converted)        |
-    | Image size | 8MB max per image                    |
-    | Max pixels | 36 million per image                 |
-    | Per post   | Up to 10 images/videos (carousel)    |
-    | Aspect     | 4:5 (portrait) to 1.91:1 (landscape) |
+    | Spec | Limit |
+    | --- | --- |
+    | Formats | JPG only (PNG auto-converted) |
+    | Image size | 8MB max per image |
+    | Max pixels | 36 million per image |
+    | Per post | Up to 10 images/videos (carousel) |
+    | Aspect | 4:5 (portrait) to 1.91:1 (landscape) |
 
     **Videos in Feed:**
 
-    | Spec     | Limit            |
-    | -------- | ---------------- |
-    | Formats  | MP4, MOV         |
+    | Spec | Limit |
+    | --- | --- |
+    | Formats | MP4, MOV |
     | Duration | Up to 60 seconds |
-    | Aspect   | 4:5 to 16:9      |
+    | Aspect | 4:5 to 16:9 |
 
     Ordinal automatically compresses videos larger than 125MB or wider than 1920px to meet Instagram's requirements.
   </Tab>
   <Tab title="Reels">
     Reels are short-form vertical videos that appear in the Reels tab and can optionally show in your grid.
 
-    | Spec     | Limit                     |
-    | -------- | ------------------------- |
-    | Formats  | MP4, MOV                  |
-    | Duration | Up to 15 minutes          |
-    | Per post | 1 video only              |
-    | Aspect   | 0.01:1 to 10:1 (flexible) |
+    | Spec | Limit |
+    | --- | --- |
+    | Formats | MP4, MOV |
+    | Duration | Up to 15 minutes |
+    | Per post | 1 video only |
+    | Aspect | 0.01:1 to 10:1 (flexible) |
 
     **Reel-specific options:**
 
@@ -142,12 +152,12 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
   <Tab title="Stories">
     Stories are ephemeral content that disappears after 24 hours.
 
-    | Spec     | Limit                  |
-    | -------- | ---------------------- |
-    | Formats  | JPG, PNG, MP4, MOV     |
+    | Spec | Limit |
+    | --- | --- |
+    | Formats | JPG, PNG, MP4, MOV |
     | Per post | Up to 10 images/videos |
-    | Duration | 3–60 seconds (videos)  |
-    | Image    | 8MB max                |
+    | Duration | 3–60 seconds (videos) |
+    | Image | 8MB max |
 
     **Story limitations:**
 
@@ -172,8 +182,8 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 
 Schedule a **first comment** to publish automatically after your post goes live. This is the only auto-engagement type available for Instagram due to API limitations. The comment must be posted from the same account that the post is scheduled for.
 
-| Type              | What it does                                                         |
-| ----------------- | -------------------------------------------------------------------- |
+| Type | What it does |
+| --- | --- |
 | **First Comment** | Add a comment immediately after posting (great for hashtags or CTAs) |
 
 <Tip>
@@ -200,6 +210,7 @@ Analytics sync automatically each day. You can also manually refresh stats using
   <Card title="Facebook" icon="facebook" href="/social-profiles/facebook">
     Shares authentication with Instagram.
   </Card>
+
   <Card title="Threads" icon="threads" href="/social-profiles/threads">
     Also uses Meta authentication.
   </Card>
