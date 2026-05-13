@@ -125,6 +125,14 @@
               "integrations/slack",
               "integrations/dub"
             ]
+          },
+          {
+            "group": "Affiliate and Referrals",
+            "icon": "gift",
+            "pages": [
+              "referrals/affiliate",
+              "referrals/referral"
+            ]
           }
         ]
       },
