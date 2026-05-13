@@ -201,6 +201,9 @@
               }
             }
           }
+        },
+        "x-mint": {
+          "href": "/agency-api-reference/workspaces/list-workspaces"
         }
       },
       "post": {
@@ -262,7 +265,9 @@
                     "name": "Marketing Team",
                     "slug": "marketing-team",
                     "timezone": "Europe/London",
-                    "userIds": ["550e8400-e29b-41d4-a716-446655440000"]
+                    "userIds": [
+                      "550e8400-e29b-41d4-a716-446655440000"
+                    ]
                   }
                 }
               }
@@ -414,6 +419,9 @@
               }
             }
           }
+        },
+        "x-mint": {
+          "href": "/agency-api-reference/workspaces/create-workspace"
         }
       }
     },
@@ -581,6 +589,9 @@
               }
             }
           }
+        },
+        "x-mint": {
+          "href": "/agency-api-reference/workspaces/get-workspace"
         }
       }
     },
@@ -760,6 +771,9 @@
               }
             }
           }
+        },
+        "x-mint": {
+          "href": "/agency-api-reference/api-keys/create-workspace-api-key"
         }
       },
       "get": {
@@ -938,6 +952,9 @@
               }
             }
           }
+        },
+        "x-mint": {
+          "href": "/agency-api-reference/api-keys/list-workspace-api-keys"
         }
       }
     }
