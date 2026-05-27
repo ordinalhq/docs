@@ -32,8 +32,10 @@ Once connected, your assistant has access to the tools below. You don't need to 
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_create_upload` | Uploads an image or video from a URL so it can be attached to a post. |
+| `ordinal_create_upload` | Uploads an image or video from a URL, or prepares signed credentials so a local file can be uploaded. |
 | `ordinal_get_upload` | Checks whether an upload is ready. |
+
+For a local file, the assistant calls `ordinal_create_upload` with `filename`, `mimetype`, and `size`, POSTs the file to the returned `uploadUrl` with `params` and `signature`, then polls `ordinal_get_upload` until status is `ready`.
 
 ## Analytics
 

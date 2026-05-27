@@ -3676,6 +3676,80 @@
         }
       }
     },
+    "/uploads/prepare": {
+      "post": {
+        "operationId": "uploads-prepare",
+        "summary": "Prepare a local file upload",
+        "description": "Creates an upload job and returns signed Transloadit credentials so you can POST a local file directly to the processing partner. After preparing, POST the file to `uploadUrl` as multipart form data with the returned `params`, `signature`, and `file` fields, then poll `GET /uploads/{id}` until status is `ready`.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\nThe returned credentials are short-lived. Upload the file before `expiresAt`.",
+        "tags": [
+          "File Uploads"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["filename", "mimetype", "size"],
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Original filename, including extension."
+                  },
+                  "mimetype": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "MIME type of the file (e.g., image/jpeg, video/mp4)."
+                  },
+                  "size": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "description": "File size in bytes."
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "filename": "product-photo.jpg",
+                "mimetype": "image/jpeg",
+                "size": 245678
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed credentials for uploading the file",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadPrepared"
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "status": "awaiting_upload",
+                  "uploadUrl": "https://api2.transloadit.com/assemblies",
+                  "params": "{\"auth\":{...},\"template_id\":\"...\"}",
+                  "signature": "sha384:...",
+                  "expiresAt": "2026-02-04T11:30:00.000Z",
+                  "createdAt": "2026-02-04T10:30:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      }
+    },
     "/uploads/{id}": {
       "get": {
         "operationId": "uploads-get",
@@ -3704,6 +3778,9 @@
                 "schema": {
                   "oneOf": [
                     {
+                      "$ref": "#/components/schemas/UploadAwaitingUpload"
+                    },
+                    {
                       "$ref": "#/components/schemas/UploadPending"
                     },
                     {
@@ -3724,6 +3801,14 @@
                   }
                 },
                 "examples": {
+                  "awaiting_upload": {
+                    "summary": "Awaiting local file upload",
+                    "value": {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "status": "awaiting_upload",
+                      "createdAt": "2026-02-04T10:30:00.000Z"
+                    }
+                  },
                   "pending": {
                     "summary": "Upload pending",
                     "value": {
@@ -6522,6 +6607,64 @@
           },
           "instagram": {
             "$ref": "#/components/schemas/InstagramContent"
+          }
+        }
+      },
+      "UploadPrepared": {
+        "type": "object",
+        "description": "Response when a local file upload is prepared. Use uploadUrl, params, and signature to POST the file directly to Transloadit.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Upload job ID. Use this to poll GET /uploads/{id}."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["awaiting_upload"],
+            "description": "Initial status while Ordinal waits for the file POST."
+          },
+          "uploadUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to POST the file to as multipart form data."
+          },
+          "params": {
+            "type": "string",
+            "description": "Signed Transloadit assembly params. Include verbatim as the `params` form field."
+          },
+          "signature": {
+            "type": "string",
+            "description": "Transloadit signature for the params. Include verbatim as the `signature` form field."
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time after which the signed credentials are no longer valid."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "status", "uploadUrl", "params", "signature", "expiresAt", "createdAt"]
+      },
+      "UploadAwaitingUpload": {
+        "title": "awaiting_upload",
+        "type": "object",
+        "description": "Upload job is waiting for the file to be POSTed to the signed uploadUrl returned by POST /uploads/prepare.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["awaiting_upload"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
