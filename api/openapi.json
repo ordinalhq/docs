@@ -3680,7 +3680,7 @@
       "post": {
         "operationId": "uploads-prepare",
         "summary": "Prepare a local file upload",
-        "description": "Creates an upload job and returns signed Transloadit credentials so you can POST a local file directly to the processing partner. After preparing, POST the file to `uploadUrl` as multipart form data with the returned `params`, `signature`, and `file` fields, then poll `GET /uploads/{id}` until status is `ready`.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\nThe returned credentials are short-lived. Upload the file before `expiresAt`.",
+        "description": "Creates an upload job and returns signed credentials so you can POST a local file directly to the returned `uploadUrl`. After preparing, POST the file to `uploadUrl` as multipart form data with the returned `params`, `signature`, and `file` fields, then poll `GET /uploads/{id}` until status is `ready`.\n\nSee [File uploads](/api/file-uploads#local-file-upload) for a full walkthrough and curl examples.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\nThe returned credentials are short-lived. Upload the file before `expiresAt`.",
         "tags": [
           "File Uploads"
         ],
@@ -3729,7 +3729,7 @@
                 "example": {
                   "id": "550e8400-e29b-41d4-a716-446655440000",
                   "status": "awaiting_upload",
-                  "uploadUrl": "https://api2.transloadit.com/assemblies",
+                  "uploadUrl": "https://upload.example.com",
                   "params": "{\"auth\":{...},\"template_id\":\"...\"}",
                   "signature": "sha384:...",
                   "expiresAt": "2026-02-04T11:30:00.000Z",
@@ -6612,7 +6612,7 @@
       },
       "UploadPrepared": {
         "type": "object",
-        "description": "Response when a local file upload is prepared. Use uploadUrl, params, and signature to POST the file directly to Transloadit.",
+        "description": "Response when a local file upload is prepared. Use `uploadUrl`, `params`, and `signature` to POST the file. See [File uploads](/api/file-uploads#local-file-upload) for the full multipart upload example.",
         "properties": {
           "id": {
             "type": "string",
@@ -6631,11 +6631,11 @@
           },
           "params": {
             "type": "string",
-            "description": "Signed Transloadit assembly params. Include verbatim as the `params` form field."
+            "description": "Signed upload params. Include verbatim as the `params` form field."
           },
           "signature": {
             "type": "string",
-            "description": "Transloadit signature for the params. Include verbatim as the `signature` form field."
+            "description": "Signature for the params. Include verbatim as the `signature` form field."
           },
           "expiresAt": {
             "type": "string",
