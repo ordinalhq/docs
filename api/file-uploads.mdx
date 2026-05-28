@@ -1,7 +1,7 @@
 ---
-title: "File uploads"
+title: "File Uploads"
 description: "Upload media to Ordinal from a public URL or a local file, then attach the returned assetId when creating posts via the API."
-keywords: ["Ordinal API file upload", "upload media Ordinal", "post media API", "Transloadit local file upload"]
+keywords: ["Ordinal API file upload", "upload media Ordinal", "post media API", "local file upload"]
 ---
 
 ## Overview
@@ -9,7 +9,7 @@ keywords: ["Ordinal API file upload", "upload media Ordinal", "post media API", 
 The Ordinal API supports two ways to upload media:
 
 - **URL upload** — submit a publicly accessible URL and Ordinal downloads the file for you.
-- **Local file upload** — request signed credentials, then upload the file directly to Ordinal's processing partner.
+- **Local file upload** — request signed credentials, then upload the file directly to the returned `uploadUrl`.
 
 Both flows are asynchronous. You receive an upload job ID, poll until the status is `ready`, then use the returned `assetId` when [creating posts](/api-reference/posts/create-post).
 
@@ -94,14 +94,14 @@ The file URL must be publicly accessible. URLs that require authentication or si
 
 ## Local file upload
 
-Use this flow when the file is on disk, in private storage, or otherwise not reachable from the public internet. Ordinal returns signed credentials that let your client upload the bytes directly to its processing partner, Transloadit.
+Use this flow when the file is on disk, in private storage, or otherwise not reachable from the public internet. Ordinal returns signed credentials that let your client upload the bytes directly to the returned `uploadUrl`.
 
 <Steps>
   <Step title="Prepare the upload">
     [POST to `/uploads/prepare`](/api-reference/file-uploads/prepare-a-local-file-upload) with the file's `filename`, `mimetype`, and `size` in bytes.
   </Step>
   <Step title="Upload the file">
-    POST the file to the returned `uploadUrl` as `multipart/form-data` with three fields: `params`, `signature`, and `file` (the file bytes). Ordinal is notified automatically when processing finishes.
+    POST the file to the returned `uploadUrl` as `multipart/form-data` with three form fields: `params` (the JSON string from the prepare response), `signature` (the signature from the prepare response), and `file` (the local file bytes). Copy `params` and `signature` verbatim — do not modify them. Ordinal is notified automatically when processing finishes.
   </Step>
   <Step title="Poll for status">
     [Poll `GET /uploads/{id}`](/api-reference/file-uploads/get-upload-status) until the status changes to `ready`.
@@ -130,26 +130,34 @@ curl -X POST "https://app.tryordinal.com/api/v1/uploads/prepare" \
 {
   "id": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
   "status": "awaiting_upload",
-  "uploadUrl": "https://api2.transloadit.com/assemblies",
-  "params": "{\"auth\":{...},\"template_id\":\"...\"}",
-  "signature": "sha384:...",
+  "uploadUrl": "https://upload.example.com",
+  "params": "{\"auth\":{\"key\":\"...\",\"expires\":\"2026-02-04T11:30:00.000Z\"},\"template_id\":\"...\",\"fields\":{\"uploadJobId\":\"...\",\"workspaceId\":\"...\",\"storagePath\":\"...\"}}",
+  "signature": "sha384:abc123...",
   "expiresAt": "2026-02-04T11:30:00.000Z",
   "createdAt": "2026-02-04T10:30:00.000Z"
 }
 ```
 
-The `params`, `signature`, and `expiresAt` values come from the Transloadit SDK. The credentials are short‑lived — upload the file before `expiresAt`.
+The `params` value is a signed JSON string. It includes `auth` (with `key` and `expires`), `template_id`, and `fields` (`uploadJobId`, `workspaceId`, `storagePath`). The credentials are short‑lived — upload the file before `expiresAt`.
 
 ### Upload the file
 
-POST the file to `uploadUrl` as a multipart form. The `params` and `signature` fields must match the values returned from `/uploads/prepare` exactly.
+POST the file to `uploadUrl` as `multipart/form-data` with three form fields. Use the `params` and `signature` values from the prepare response exactly as returned — do not parse, reformat, or regenerate them.
+
+| Form field | Value |
+|------------|-------|
+| `params` | The `params` string from the prepare response |
+| `signature` | The `signature` string from the prepare response |
+| `file` | The local file bytes |
 
 ```bash
-curl -X POST "$UPLOAD_URL" \
-  -F "params=$PARAMS" \
-  -F "signature=$SIGNATURE" \
-  -F "file=@./product-photo.jpg"
+curl -X POST "https://upload.example.com" \
+  -F 'params={"auth":{"key":"...","expires":"2026-02-04T11:30:00.000Z"},"template_id":"...","fields":{"uploadJobId":"...","workspaceId":"...","storagePath":"..."}}' \
+  -F 'signature=sha384:abc123...' \
+  -F "file=@./video.mp4"
 ```
+
+In practice, substitute `uploadUrl`, `params`, and `signature` with the values returned by `/uploads/prepare`.
 
 Here's the same step in Node.js:
 
@@ -159,12 +167,12 @@ import fs from "node:fs";
 const form = new FormData();
 form.append("params", prepare.params);
 form.append("signature", prepare.signature);
-form.append("file", new Blob([fs.readFileSync("./product-photo.jpg")]), "product-photo.jpg");
+form.append("file", new Blob([fs.readFileSync("./video.mp4")]), "video.mp4");
 
 await fetch(prepare.uploadUrl, { method: "POST", body: form });
 ```
 
-You don't need to do anything else after the upload completes — Transloadit calls an Ordinal webhook that transitions the job to `processing` and then `ready`.
+You don't need to do anything else after the upload completes — Ordinal is notified automatically and transitions the job to `processing` and then `ready`.
 
 ## Checking upload status
 
