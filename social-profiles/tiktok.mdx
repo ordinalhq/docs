@@ -1,11 +1,11 @@
 ---
 title: "TikTok"
-description: "Schedule TikTok videos with captions, hashtags, and privacy settings. Publishes directly to your account."
-keywords: ["TikTok scheduler", "Ordinal TikTok", "schedule TikTok videos", "TikTok auto-publishing"]
+description: "Schedule TikTok videos and photo carousels with captions, hashtags, and privacy settings. Publishes directly to your account."
+keywords: ["TikTok scheduler", "Ordinal TikTok", "schedule TikTok videos", "TikTok photo carousel", "TikTok auto-publishing"]
 icon: "tiktok"
 ---
 
-TikTok offers some of the best organic reach of any platform - if you have the video content to match. In Ordinal, you can schedule videos with captions and hashtags, configure privacy and interaction settings, and publish directly to your account.
+TikTok offers some of the best organic reach of any platform - if you have the content to match. In Ordinal, you can schedule videos and photo carousels with captions and hashtags, configure privacy and interaction settings, and publish directly to your account.
 
 ![Tik Tok Hero](/images/TikTok-hero.jpg)
 
@@ -16,13 +16,13 @@ TikTok offers some of the best organic reach of any platform - if you have the v
     Connect your Business or Creator account
   </Card>
   <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-a-tiktok-post">
-    Captions, hashtags, and mentions
+    Video or photo carousel
   </Card>
   <Card title="Post Settings" icon="sliders" href="#post-settings">
     Privacy, comments, duets, and more
   </Card>
   <Card title="Analytics" icon="chart-line" href="#analytics">
-    Track video performance
+    Track post performance
   </Card>
 </CardGroup>
 
@@ -32,26 +32,28 @@ Go to [**Settings → Profiles → Scheduling → TikTok**](https://app.tryordin
 
 ## Drafting a TikTok Post
 
+TikTok supports two post types in Ordinal. Use the **Video / Photo** toggle at the top of the editor to switch between them - changing types clears any attached media.
+
 ### What you can post
 
-| Content                       | Supported | Notes                 |
-| ----------------------------- | --------- | --------------------- |
-| [Videos](#video-requirements) | ✅         | Single video per post |
-| Images                        | ❌         | Not yet supported     |
-| Trending sounds               | ❌         | API limitation        |
-| Filters/effects               | ❌         | API limitation        |
-| Duets/Stitches                | ❌         | API limitation        |
-| Text overlays                 | ❌         | API limitation        |
+| Content                       | Supported | Notes                          |
+| ----------------------------- | --------- | ------------------------------ |
+| [Videos](#video-posts)        | ✅         | Single video per post          |
+| [Photo carousels](#photo-posts) | ✅       | 1–35 images per post           |
+| Trending sounds               | ❌         | API limitation                 |
+| Filters/effects               | ❌         | API limitation                 |
+| Duets/Stitches                | ❌         | API limitation                 |
+| Text overlays                 | ❌         | API limitation                 |
 
 ### Caption & Formatting
 
-Write captions to accompany your video:
+Write captions to accompany your post:
 
 - **Bold / Italic**: Use the toolbar buttons for Unicode formatting
 - **Hashtags**: Type `#` followed by your tag - they'll link to TikTok's tag page when published
 - **@Mentions**: Type `@` followed by a username to tag other creators
 
-Captions can be up to **2,200 characters**.
+Video captions can be up to **2,200 characters**. Photo descriptions can be up to **4,000 characters**.
 
 <Tip>
   Mix trending hashtags with niche-specific ones. 3–5 per post is a good balance for discoverability without looking spammy.
@@ -59,11 +61,11 @@ Captions can be up to **2,200 characters**.
 
 ### Post Preview
 
-As you draft your post, the editor shows a live preview that matches how your video will appear in the TikTok feed - complete with your profile picture, username, and caption overlay.
+As you draft your post, the editor shows a live preview that matches how your content will appear in the TikTok feed - complete with your profile picture, username, and caption overlay. For photo posts, swipe through the carousel preview to check the order of your images.
 
-### Video Requirements
+## Video posts
 
-TikTok only accepts video - no images. Here are the specs:
+Select **Video** at the top of the editor to upload a single video.
 
 | Spec         | Limit                              |
 | ------------ | ---------------------------------- |
@@ -75,15 +77,42 @@ TikTok only accepts video - no images. Here are the specs:
 
 Vertical video (9:16) performs best and fills the entire screen. Horizontal or square videos work but won't have the same impact. Files over 125MB are automatically compressed before upload.
 
+## Photo posts
+
+Select **Photo** at the top of the editor to publish a photo carousel. TikTok renders photo posts as a swipeable slideshow with an optional title overlay and background music.
+
+### Photo requirements
+
+| Spec        | Limit                                 |
+| ----------- | ------------------------------------- |
+| Formats     | JPEG, PNG, WebP                       |
+| Images      | 1–35 per post                         |
+| File size   | 10mb maximum per image                |
+| Title       | Up to 90 characters (optional)        |
+| Description | Up to 4,000 characters                |
+
+### Photo-specific options
+
+In addition to the standard [post settings](#post-settings), photo posts have:
+
+- **Title**: A short headline (up to 90 characters) that appears above the carousel. Leave blank to use the description only.
+- **Auto-add music**: Let TikTok automatically attach a royalty-free track to your slideshow.
+
+Drag-and-drop the images in the editor to reorder the carousel. The first image becomes the cover.
+
+<Note>
+  TikTok posts can't mix images and video. Switching between Video and Photo clears the current attachments.
+</Note>
+
 ## Post Settings
 
-Configure how viewers can interact with your video. You'll find these options below the caption editor:
+Configure how viewers can interact with your post. You'll find these options below the caption editor:
 
-- **Privacy**: Choose who can see your video - Public, Followers, Friends, or just yourself
-- **Comments**: Enable or disable comments on your video
-- **Duets**: Allow others to create Duets with your video
-- **Stitch**: Allow others to Stitch your video into their content
-- **Sponsored**: Mark the video as promotional content
+- **Privacy**: Choose who can see your post - Public, Followers, Friends, or just yourself
+- **Comments**: Enable or disable comments
+- **Duets**: Allow others to create Duets with your post (video only)
+- **Stitch**: Allow others to Stitch your post into their content (video only)
+- **Sponsored**: Mark the post as promotional content
 - **Paid Partnership**: Disclose paid brand partnerships (only appears if Sponsored is enabled)
 
 <Tip>
