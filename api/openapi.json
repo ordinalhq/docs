@@ -6323,10 +6323,33 @@
         }
       },
       "TikTokConfig": {
+        "description": "TikTok channel configuration for creating or updating posts. The shape of the object depends on the `type` field.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TikTokVideoConfig"
+          },
+          {
+            "$ref": "#/components/schemas/TikTokPhotoConfig"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "Video": "#/components/schemas/TikTokVideoConfig",
+            "Photo": "#/components/schemas/TikTokPhotoConfig"
+          }
+        }
+      },
+      "TikTokVideoConfig": {
         "type": "object",
-        "description": "TikTok channel configuration for creating or updating posts. TikTok posts require exactly one video asset.",
-        "required": ["profileId", "copy", "assets"],
+        "description": "TikTok video post configuration. Requires exactly one video asset.",
+        "required": ["type"],
         "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Video"],
+            "description": "Must be `Video`"
+          },
           "profileId": {
             "type": "string",
             "format": "uuid",
@@ -6363,11 +6386,66 @@
           },
           "isPromotingBusiness": {
             "type": "boolean",
-            "description": "Mark the video as promoting the creator's own business (branded content disclosure)."
+            "description": "Mark the post as promoting the creator's own business (branded content disclosure)."
           },
           "isPaidPartnership": {
             "type": "boolean",
-            "description": "Mark the video as a paid partnership with a third-party brand (branded content disclosure)."
+            "description": "Mark the post as a paid partnership with a third-party brand (branded content disclosure)."
+          }
+        }
+      },
+      "TikTokPhotoConfig": {
+        "type": "object",
+        "description": "TikTok photo carousel configuration. Requires 1–35 image assets.",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Photo"],
+            "description": "Must be `Photo`"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "TikTok profile ID to post from"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 90,
+            "description": "Optional title overlay shown above the carousel. Maximum 90 characters."
+          },
+          "copy": {
+            "type": "string",
+            "maxLength": 4000,
+            "description": "Photo description. Maximum 4,000 characters."
+          },
+          "assets": {
+            "type": "array",
+            "description": "Ordered array of image assets (JPEG, PNG, or WebP). The first image is used as the cover.",
+            "minItems": 1,
+            "maxItems": 35,
+            "items": {
+              "$ref": "#/components/schemas/ChannelAssetRef"
+            }
+          },
+          "autoAddMusic": {
+            "type": "boolean",
+            "description": "Let TikTok automatically attach a royalty-free track to the slideshow."
+          },
+          "privacyLevel": {
+            "$ref": "#/components/schemas/TikTokPrivacyLevel"
+          },
+          "isCommentDisabled": {
+            "type": "boolean",
+            "description": "Disable comments on the post."
+          },
+          "isPromotingBusiness": {
+            "type": "boolean",
+            "description": "Mark the post as promoting the creator's own business (branded content disclosure)."
+          },
+          "isPaidPartnership": {
+            "type": "boolean",
+            "description": "Mark the post as a paid partnership with a third-party brand (branded content disclosure)."
           }
         }
       },
@@ -6384,16 +6462,30 @@
             ],
             "nullable": true
           },
+          "type": {
+            "type": "string",
+            "enum": ["Video", "Photo"],
+            "description": "Whether the post is a video or a photo carousel."
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Title overlay for photo posts. Null for video posts."
+          },
           "copy": {
             "type": "string",
-            "description": "Caption text"
+            "description": "Caption text (video) or description (photo)."
           },
           "assets": {
             "type": "array",
-            "description": "Assets attached to the TikTok post (one video).",
+            "description": "Assets attached to the post. One video for `Video` posts, 1–35 images for `Photo` posts.",
             "items": {
               "$ref": "#/components/schemas/Asset"
             }
+          },
+          "autoAddMusic": {
+            "type": "boolean",
+            "description": "Whether TikTok will auto-attach a royalty-free track. Applies to photo posts."
           },
           "privacyLevel": {
             "$ref": "#/components/schemas/TikTokPrivacyLevel"
@@ -6417,7 +6509,7 @@
       },
       "TikTokPrivacyLevel": {
         "type": "string",
-        "description": "Audience visibility for the TikTok video.",
+        "description": "Audience visibility for the TikTok post.",
         "enum": [
           "PUBLIC_TO_EVERYONE",
           "FOLLOWER_OF_CREATOR",
