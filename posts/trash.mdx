@@ -1,7 +1,7 @@
 ---
 title: "Deleting Posts"
 icon: "trash"
-description: "Manage archived posts and restore or permanently delete them"
+description: "Manage archived posts, restore them, and optionally remove live posts from social platforms"
 ---
 
 When you delete a post, it's moved to **Trash** rather than being permanently removed. Archived posts stay in Trash for 30 days before being automatically deleted.
@@ -31,8 +31,39 @@ Archived posts are automatically permanently deleted after 30 days. To delete im
   Permanent deletion cannot be undone. The post and all its content will be removed from Ordinal.
 </Warning>
 
+## Removing live posts from social platforms
+
+By default, archiving or permanently deleting a post in Ordinal does **not** remove the live post from the social platform it was published to. For supported channels, you can choose to delete the live post at the same time.
+
+**Supported channels:** LinkedIn
+
+### From the Archive or Delete dialog
+
+When you archive or permanently delete a published post that has a live link on a supported channel, the confirmation dialog shows a **Delete live post on the following channels as well?** section with a checkbox per channel:
+
+1. Open the **...** menu on the post and select **Delete** (or **Delete Immediately** from Trash)
+2. In the confirmation dialog, check the channel(s) you want to remove the live post from
+3. Confirm
+
+Use **View Post** next to each channel to open the live post in a new tab before confirming.
+
+### From the post performance panel
+
+You can also remove a live post without archiving it in Ordinal:
+
+1. Open a published post
+2. In the **Published Post** panel, open the **⋮** menu
+3. Select **Delete from LinkedIn**
+4. Confirm
+
+The live link clears from the post in Ordinal and the cached analytics for that channel are removed. The post itself stays in Ordinal so you can keep it for reference or duplicate it later.
+
+<Warning>
+  Deleting a live post on a social platform cannot be undone. If the platform delete fails, the Ordinal action (archive, delete, or live-post removal) still completes and a warning toast surfaces the error so you can retry.
+</Warning>
+
 ## What gets archived
 
 - **Posts and ideas** — Both can be archived from the same menu
 - **Scheduled posts** — Archiving cancels the scheduled publish
-- **Published posts** — Archiving in Ordinal does not remove the post from social platforms
+- **Published posts** — Archiving in Ordinal keeps the live post on the social platform unless you opt in to deleting it
