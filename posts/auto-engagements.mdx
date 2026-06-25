@@ -15,11 +15,11 @@ Auto-engagements allow you to automatically add likes, comments, and/or reposts 
 
 ## Engagement types
 
-| Type             | What it does                                             | Timing                                     |
-| ---------------- | -------------------------------------------------------- | ------------------------------------------ |
-| **Auto-Like**    | Connected profiles like your post                        | Trickles in over 10 minutes after posting  |
-| **Auto-Comment** | Add a first comment (great for CTAs, hashtags, or links) | Configurable delay (immediate to 24 hours) |
-| **Auto-Repost**  | Reshare from another connected account                   | Configurable delay (immediate to 24 hours) |
+| Type             | What it does                                             | Timing                                          |
+| ---------------- | -------------------------------------------------------- | ----------------------------------------------- |
+| **Auto-Like**    | Connected profiles like your post                        | Configurable window (10 minutes to 24 hours)    |
+| **Auto-Comment** | Add a first comment (great for CTAs, hashtags, or links) | Configurable delay (immediate to 24 hours)      |
+| **Auto-Repost**  | Reshare from another connected account                   | Configurable delay (immediate to 24 hours)      |
 
 ## Platform support
 
@@ -37,10 +37,11 @@ For platform-specific details, see each [channel's documentation](/social-profil
 ## Setting up auto-engagements
 
 1. Open a post and scroll to the **Auto-Engagement** section
-2. Click the engagement type(s) you want to add (Like, Comment, or Repost)
+2. Select the engagement type(s) you want to add (Like, Comment, or Repost)
 3. Select which connected account(s) should perform the action
-4. For comments and reposts, write the content and set a delay
-5. Engagements fire automatically when the post publishes
+4. For comments and reposts, write the content
+5. Set a delay for each engagement using the delay input (see [Timing](#timing))
+6. Engagements fire automatically when the post publishes
 
 <Check>
   Auto-engagements are configured per post. They only run once when the post publishes.
@@ -48,8 +49,12 @@ For platform-specific details, see each [channel's documentation](/social-profil
 
 ## Timing
 
-- **Auto-Likes** trickle in automatically over 10 minutes after posting - no configuration needed
-- **Auto-Comments and Reposts** let you set a custom delay from immediate to 24 hours
+Every engagement uses a delay you set in the numeric delay input. Enter a number, then choose **mins** or **hr** for the unit. The input also suggests common presets and a **Recently used** list of delays you've recently saved in this workspace.
+
+- **Auto-Likes** — the value sets the window over which likes trickle in after the post publishes. The first like fires near the start of that window; the rest randomize across it. Minimum is **10 minutes**.
+- **Auto-Comments and Auto-Reposts** — the value sets how long after publish the comment or repost fires. Minimum is **0** (immediate).
+
+The maximum delay for any engagement is **24 hours**. Values outside the allowed range are rejected when you save the post.
 
 <Note>
   Note: auto-engagements must be added **before** the post is published. Adding auto-engagements after a post has already been published from Ordinal will not work.
