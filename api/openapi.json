@@ -824,7 +824,7 @@
       "post": {
         "operationId": "engagements-create",
         "summary": "Create for a post",
-        "description": "Add engagements (likes, comments, reposts) to a post. Engagements will be executed automatically when the post is published.\n\n**Tagging on LinkedIn:**\nTo mention someone in a comment or repost, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details on how to look up URNs.\n\n**LinkedIn reaction types:**\nFor Like engagements on LinkedIn, you can specify a reaction type (Like, Celebrate, Love, Insightful, Support, Funny). Defaults to Like if not specified. Must not be provided for Comment or Repost.\n\n**Validation rules:**\n- `copy` is required for Comment, optional for Repost, must not be provided for Like\n- `delaySeconds` is required for Comment and Repost (allowed values: 0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400 seconds), must not be provided for Like\n- `reactionType` is only for Like engagements on LinkedIn (defaults to Like if omitted)\n- Only one Like engagement per profile is allowed",
+        "description": "Add engagements (likes, comments, reposts) to a post. Engagements will be executed automatically when the post is published.\n\n**Tagging on LinkedIn:**\nTo mention someone in a comment or repost, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details on how to look up URNs.\n\n**LinkedIn reaction types:**\nFor Like engagements on LinkedIn, you can specify a reaction type (Like, Celebrate, Love, Insightful, Support, Funny). Defaults to Like if not specified. Must not be provided for Comment or Repost.\n\n**Validation rules:**\n- `copy` is required for Comment, optional for Repost, must not be provided for Like\n- `delaySeconds` is required for Comment and Repost (any integer from 0 to 86400 — up to 24 hours), must not be provided for Like\n- `reactionType` is only for Like engagements on LinkedIn (defaults to Like if omitted)\n- Only one Like engagement per profile is allowed",
         "tags": [
           "Engagements"
         ],
@@ -6950,7 +6950,9 @@
           },
           "delaySeconds": {
             "type": "integer",
-            "description": "Delay in seconds after post publishes. Required for Comment and Repost, must not be provided for Like. Allowed values: 0, 300, 600, 1800, 3600, 14400, 28800, 43200, 86400"
+            "minimum": 0,
+            "maximum": 86400,
+            "description": "Delay in seconds after the post publishes. For Comment and Repost, this is the delay until the engagement fires (0 means immediate). Always 0 for Like."
           },
           "reactionType": {
             "$ref": "#/components/schemas/LinkedInReactionType",
@@ -6981,18 +6983,9 @@
           },
           "delaySeconds": {
             "type": "integer",
-            "enum": [
-              0,
-              300,
-              600,
-              1800,
-              3600,
-              14400,
-              28800,
-              43200,
-              86400
-            ],
-            "description": "Delay in seconds after post publishes. Required for Comment and Repost, must not be provided for Like."
+            "minimum": 0,
+            "maximum": 86400,
+            "description": "Delay in seconds after the post publishes. Accepts any integer from 0 to 86400 (24 hours). Required for Comment and Repost, must not be provided for Like."
           },
           "reactionType": {
             "$ref": "#/components/schemas/LinkedInReactionType",
@@ -7031,19 +7024,10 @@
           },
           "delaySeconds": {
             "type": "integer",
-            "enum": [
-              0,
-              300,
-              600,
-              1800,
-              3600,
-              14400,
-              28800,
-              43200,
-              86400
-            ],
+            "minimum": 0,
+            "maximum": 86400,
             "nullable": true,
-            "description": "Delay in seconds after post publishes. Cannot be updated for Like engagements."
+            "description": "Delay in seconds after the post publishes. Accepts any integer from 0 to 86400 (24 hours). Cannot be updated for Like engagements."
           },
           "profileId": {
             "type": "string",
