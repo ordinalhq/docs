@@ -11,10 +11,10 @@ Slack Boost notifies your team via Slack when posts publish, encouraging them to
 
 ## How Slack Boost works
 
-1. You configure Slack Boost for a post (or enable it by default)
+1. You add Slack Boost to a post manually, or turn on auto-boost for a channel so every new post is boosted there
 2. Once the post publishes to social platform(s), Ordinal sends a notification to your configured Slack channel
-4. Your team sees the live post with direct links
-5. Team members engage - likes, comments, shares - boosting visibility
+3. Your team sees the live post with direct links
+4. Team members engage - likes, comments, shares - boosting visibility
 
 The Slack message includes:
 
@@ -33,11 +33,16 @@ The Slack message includes:
   <Step title="Choose a channel">
     As part of the configuration, you'll choose the specific channels you want to boost posts to e.g. `#marketing-boost` or `#marketing`.
   </Step>
-  <Step title="Enable auto-boost (optional)">
-    Toggle **Auto-boost** on a channel to notify on every post automatically. You can still remove boosts from individual posts.
+  <Step title="Choose the default notification behavior">
+    After you connect a channel, the channel settings modal opens. **Notify channel of all posts by default** is off — the channel is opt-in.
+
+    - Leave it off to add Slack Boost manually on the posts you want to amplify.
+    - Toggle it on and select **Confirm** to auto-boost every new post to this channel.
+
+    Select **Cancel** or dismiss the modal to keep the setting off. You can change this later from **Integrations → Slack** by opening the channel's settings.
 
     <Check>
-      Slack Boost is configured. Posts will now notify your team.
+      Slack Boost is configured. You can now boost posts to this channel.
     </Check>
   </Step>
 </Steps>
@@ -55,7 +60,7 @@ When the post publishes, your configured channels receive the notification.
 
 ### Auto-boost
 
-When auto-boost is enabled on a channel, every new post automatically includes a Slack Boost to that channel. Remove the boost from individual posts if not needed.
+Newly connected channels start with auto-boost **off**. To turn it on, open **Integrations → Slack**, select the channel, toggle **Notify channel of all posts by default**, and select **Confirm**. From then on, every new post automatically includes a Slack Boost to that channel — you can still remove the boost from individual posts.
 
 <Tip>
   Don't over-notify. Reserve boosts for content where engagement genuinely matters - auto-boosting everything leads to notification fatigue.
