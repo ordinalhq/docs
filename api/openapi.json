@@ -6368,6 +6368,14 @@
           "isPaidPartnership": {
             "type": "boolean",
             "description": "Mark the video as a paid partnership with a third-party brand (branded content disclosure)."
+          },
+          "videoCoverTimestampMs": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "nullable": true,
+            "description": "Timestamp (in milliseconds) of the video frame TikTok should use as the cover thumbnail. Defaults to the first frame when omitted or null."
           }
         }
       },
@@ -6412,6 +6420,12 @@
           },
           "isPaidPartnership": {
             "type": "boolean"
+          },
+          "videoCoverTimestampMs": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "description": "Timestamp (in milliseconds) of the video frame used as the cover thumbnail. Null when not set."
           }
         }
       },
