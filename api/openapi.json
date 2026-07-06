@@ -173,7 +173,7 @@
       "get": {
         "operationId": "analytics-linkedin-posts",
         "summary": "LinkedIn post analytics",
-        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign. For personal profiles, the response also includes saveCount (times the post was saved) and sendCount (times the post was sent via DM).",
+        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign. For personal profiles, the response also includes saveCount (times the post was saved) and sendCount (times the post was sent via DM). Posts with type `Video` also include videoViewCount, videoViewerCount, and videoWatchTimeSeconds; these fields are null for non-video posts and for video posts that have not yet been synced.",
         "tags": [
           "Analytics"
         ],
@@ -246,8 +246,8 @@
                   {
                     "id": "550e8400-e29b-41d4-a716-446655440601",
                     "url": "https://www.linkedin.com/feed/update/urn:li:share:7123456789012345679",
-                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nThread below:",
-                    "type": "Image",
+                    "commentary": "5 lessons learned from scaling our startup from 0 to 10k users 📈\n\nWatch the full breakdown:",
+                    "type": "Video",
                     "publishedAt": "2024-12-05T09:30:00.000Z",
                     "likeCount": 892,
                     "commentCount": 67,
@@ -258,6 +258,9 @@
                     "impressionCount": 28900,
                     "engagement": 0.052,
                     "emv": 867,
+                    "videoViewCount": 15420,
+                    "videoViewerCount": 12800,
+                    "videoWatchTimeSeconds": 82340,
                     "ordinalPost": null
                   }
                 ]
@@ -7554,6 +7557,21 @@
             "type": "number",
             "nullable": true,
             "description": "Earned Media Value calculated as (impressionCount / 1000) * CPM"
+          },
+          "videoViewCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Total views on a video post. Only populated for posts with type `Video`; null for non-video posts and video posts that have not yet been synced."
+          },
+          "videoViewerCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Unique viewers of a video post. Only populated for posts with type `Video`; null for non-video posts and video posts that have not yet been synced."
+          },
+          "videoWatchTimeSeconds": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Total watch time across all viewers, in whole seconds. Only populated for posts with type `Video`; null for non-video posts and video posts that have not yet been synced."
           },
           "ordinalPost": {
             "oneOf": [
