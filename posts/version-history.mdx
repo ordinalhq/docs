@@ -49,6 +49,13 @@ The selected version's content replaces the current post copy for that channel. 
 
 For posts that target multiple channels (e.g. LinkedIn and X), version history is tracked independently per channel. Use the **channel dropdown** in the version history modal to switch between them and review changes for each channel separately.
 
+## Accessing version history programmatically
+
+Version history is also available through the [Ordinal API](/api/introduction) and the [MCP server](/mcp/introduction), so external integrations and AI assistants can list a post's saved versions per channel and read the copy of any version.
+
+- **API:** `GET /posts/{id}/versions` lists versions grouped by channel; `GET /posts/{id}/channels/{channel}/versions/{versionId}` returns the plain-text copy for one version.
+- **MCP:** the `ordinal_list_post_versions` and `ordinal_get_post_version_content` [tools](/mcp/tools) expose the same data to your assistant.
+
 ## Learn more
 
 <CardGroup cols={2}>
