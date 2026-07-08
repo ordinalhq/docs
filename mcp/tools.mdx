@@ -27,6 +27,8 @@ Once connected, your assistant has access to the tools below. You don't need to 
 | `ordinal_create_idea` | Creates an idea (a draft without a scheduled publish time). |
 | `ordinal_manage_post` | Updates, archives, or unarchives a post. |
 | `ordinal_manage_idea` | Updates, archives, unarchives, or adds an idea to the calendar. |
+| `ordinal_list_post_versions` | Lists saved [versions](/posts/version-history) of a post's draft per channel, with the author and timestamp of each. |
+| `ordinal_get_post_version_content` | Reads the copy of a single saved version, so the assistant can diff two revisions or study how a draft evolved. |
 
 ## Media
 
@@ -89,5 +91,6 @@ You don't call these tools by name — you describe what you want. Examples:
 - "Archive the drafts I wrote last month that don't have a label."
 - "Show me which posts are waiting on approval from Sarah."
 - "Give me the last 30 days of follower growth on LinkedIn."
+- "Show me how the LinkedIn copy on this post changed between the last two saves."
 
 The assistant picks the tools, fills in the arguments, and shows you the result.
