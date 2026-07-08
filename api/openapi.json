@@ -3622,6 +3622,305 @@
         }
       }
     },
+    "/posts/{id}/versions": {
+      "get": {
+        "operationId": "posts-listVersions",
+        "summary": "List post draft versions",
+        "description": "List saved draft versions for a post's channel editors, newest first. Each channel with an editor is returned as its own entry with its own `versions` array, `nextCursor`, and optional `error`.\n\n**Pagination:** Each channel paginates independently. To fetch more versions for a channel, call again with `channel` set to that channel and `cursor` set to the `nextCursor` from the previous response. `channel` is required whenever `cursor` is set.\n\n**Errors:** When `channel` is set and that channel has no editor for this post, the endpoint returns `404 NOT_FOUND`. If a single channel's version history fails to load, that channel's entry has an empty `versions` array plus an `error` string — the rest of the response still succeeds.\n\nUse the returned version IDs with `GET /posts/{id}/channels/{channel}/versions/{versionId}` to read the copy of a specific version.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "required": false,
+            "description": "Optional. Only return versions for this channel. Omit to return every channel that has an editor. Required when `cursor` is set.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LinkedIn",
+                "Facebook",
+                "Instagram",
+                "TikTok",
+                "Discord",
+                "Slack",
+                "Webflow",
+                "YouTubeShorts"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Max versions returned per channel, newest first. Default 15, max 100.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 15
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "Pagination cursor from a previous response's `channels[].nextCursor`. Requires `channel` — each channel paginates independently.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Version history grouped by channel",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "postId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "channel": {
+                            "type": "string",
+                            "enum": [
+                              "LinkedIn",
+                              "Facebook",
+                              "Instagram",
+                              "TikTok",
+                              "Discord",
+                              "Slack",
+                              "Webflow",
+                              "YouTubeShorts"
+                            ]
+                          },
+                          "versions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "description": "Version ID. Pass to the get version content endpoint."
+                                },
+                                "createdAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "authors": {
+                                  "type": "array",
+                                  "description": "Workspace users who edited the draft in this version. Empty when Ordinal can't resolve the editor.",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "firstName": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "lastName": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "email": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    },
+                                    "required": ["id", "firstName", "lastName", "email"]
+                                  }
+                                }
+                              },
+                              "required": ["id", "createdAt", "authors"]
+                            }
+                          },
+                          "nextCursor": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Pass as `cursor` (with the same `channel`) to fetch the next page. Null when there are no more versions."
+                          },
+                          "error": {
+                            "type": "string",
+                            "description": "Present only if this channel's version history failed to load. `versions` will be empty."
+                          }
+                        },
+                        "required": ["channel", "versions", "nextCursor"]
+                      }
+                    }
+                  },
+                  "required": ["postId", "channels"]
+                },
+                "example": {
+                  "postId": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+                  "channels": [
+                    {
+                      "channel": "LinkedIn",
+                      "versions": [
+                        {
+                          "id": "01HQZ3VXK9E8R4M2N6P7T8W9Y0",
+                          "createdAt": "2026-02-04T14:22:00.000Z",
+                          "authors": [
+                            {
+                              "id": "550e8400-e29b-41d4-a716-446655440001",
+                              "firstName": "Jane",
+                              "lastName": "Smith",
+                              "email": "jane@example.com"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "01HQZ3T2M4N5P6Q7R8S9T0U1V2",
+                          "createdAt": "2026-02-04T13:58:00.000Z",
+                          "authors": [
+                            {
+                              "id": "550e8400-e29b-41d4-a716-446655440002",
+                              "firstName": "John",
+                              "lastName": "Doe",
+                              "email": "john@example.com"
+                            }
+                          ]
+                        }
+                      ],
+                      "nextCursor": "eyJvZmZzZXQiOjE1fQ=="
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/posts/{id}/channels/{channel}/versions/{versionId}": {
+      "get": {
+        "operationId": "posts-getVersionContent",
+        "summary": "Get post version content",
+        "description": "Read the plain-text copy of a single saved draft version for one channel's editor. Get version IDs from `GET /posts/{id}/versions`.\n\nReturns `404 NOT_FOUND` when the channel has no editor for this post or the version ID can't be read.",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID (UUID)",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channel",
+            "in": "path",
+            "required": true,
+            "description": "Channel whose editor version to read.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LinkedIn",
+                "Facebook",
+                "Instagram",
+                "TikTok",
+                "Discord",
+                "Slack",
+                "Webflow",
+                "YouTubeShorts"
+              ]
+            }
+          },
+          {
+            "name": "versionId",
+            "in": "path",
+            "required": true,
+            "description": "Version ID returned by the list versions endpoint.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reconstructed plain-text copy for the requested version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "postId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "channel": {
+                      "type": "string",
+                      "enum": [
+                        "LinkedIn",
+                        "Facebook",
+                        "Instagram",
+                        "TikTok",
+                        "Discord",
+                        "Slack",
+                        "Webflow",
+                        "YouTubeShorts"
+                      ]
+                    },
+                    "versionId": {
+                      "type": "string"
+                    },
+                    "copy": {
+                      "type": "string",
+                      "description": "Reconstructed plain-text copy for the version."
+                    }
+                  },
+                  "required": ["postId", "channel", "versionId", "copy"]
+                },
+                "example": {
+                  "postId": "d4f8e2a1-3b7c-4e9d-8f2a-1c5b9e7d3a6f",
+                  "channel": "LinkedIn",
+                  "versionId": "01HQZ3VXK9E8R4M2N6P7T8W9Y0",
+                  "copy": "Here's the plain-text copy of this saved draft version..."
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/uploads": {
       "post": {
         "operationId": "uploads-create",
