@@ -34,6 +34,19 @@ Not all platforms support all engagement types due to API limitations:
 
 For platform-specific details, see each [channel's documentation](/social-profiles/overview).
 
+### X (Twitter) eligibility
+
+Because of X API restrictions, only certain accounts can auto-comment or auto-repost on a tweet:
+
+- The **posting account** is always eligible.
+- Any other connected X account must be **@mentioned in the text of the first tweet** to be eligible.
+
+If a connected X account isn't @mentioned, it's disabled in the Auto-Comment and Auto-Repost profile pickers. Add the account's `@handle` to the first tweet to unlock it. This rule is enforced everywhere engagements are configured, including the post editor, the [public API](/api/introduction), and [MCP tools](/mcp/tools).
+
+<Note>
+  Only text `@mentions` count. Tagging an account in an image or video does not make it eligible.
+</Note>
+
 ## Setting up auto-engagements
 
 1. Open a post and scroll to the **Auto-Engagement** section
