@@ -140,16 +140,22 @@ LinkedIn is one of the most comprehensive analytics integrations in Ordinal, wit
 | **Clicks** | Link clicks (for posts containing links) |
 | **Saves** | Times your post was saved to view later (personal profiles only) |
 | **Sends** | Times your post was sent via DM (personal profiles only) |
+| **Link Clicks** | Total clicks on any links in the post (personal profiles only) |
+| **Premium CTA Clicks** | Engagements with a Premium custom call-to-action button on the post (personal profiles only) |
+| **Followers Gained** | New followers attributed to the post (personal profiles only) |
+| **Profile Views** | Profile views attributed to the post (personal profiles only) |
 | **Engagement Rate** | (Likes \+ Comments \+ Shares \+ Clicks) / Impressions |
 | **Video Views** | Total views on a video post |
 | **Video Viewers** | Unique viewers of a video post |
 | **Watch Time** | Total time spent watching a video post, formatted as a duration (e.g. `9m 16s`, `1h 30m`) |
 
 <Note>
-  Video metrics only populate for posts with type **Video**. Non-video posts show `-` in these columns. Personal profile video stats require the `r_member_postAnalytics` LinkedIn OAuth scope, which is granted when you connect a personal LinkedIn profile.
+  Video metrics only populate for posts with type **Video**. Non-video posts show `-` in these columns. Personal profile video stats, along with **Link Clicks**, **Premium CTA Clicks**, **Followers Gained**, and **Profile Views**, require the `r_member_postAnalytics` LinkedIn OAuth scope, which is granted when you connect a personal LinkedIn profile.
 </Note>
 
 The **Video Views**, **Video Viewers**, and **Watch Time** columns are sortable and can be toggled from the column visibility menu. When you export to CSV, watch time is exported as raw seconds under `video_watch_time_seconds` (alongside `video_views` and `video_viewers`) so you can run your own calculations without parsing formatted strings.
+
+The **Link Clicks**, **Premium CTA Clicks**, **Followers Gained**, and **Profile Views** columns are also sortable and toggleable, and are included in CSV exports as `link_clicks`, `premium_cta_clicks`, `followers_from_content`, and `profile_views_from_content`. These columns only appear on analytics for personal LinkedIn profiles - LinkedIn doesn't expose equivalent metrics for company pages, so they're hidden for company page analytics.
 
 ### Post Types
 
