@@ -65,6 +65,10 @@ All webhook payloads follow a consistent top-level structure with event-specific
         <ResponseField name="x" type="object | null">
           X/Twitter content when the post includes Twitter. Contains `profile` (id, name, detail) and `tweets` (array of `{ copy, assets }`).
         </ResponseField>
+
+        <ResponseField name="facebook" type="object | null">
+          Facebook content when the post includes a Facebook Page. Contains `profile` (id, name, detail), `type` (`Feed` or `Reel`), `copy`, and `assets` (id, name, url, mimetype, size, width, height, duration).
+        </ResponseField>
       </Expandable>
     </ResponseField>
   </Expandable>
@@ -127,7 +131,8 @@ All webhook payloads follow a consistent top-level structure with event-specific
           }
         ]
       },
-      "x": null
+      "x": null,
+      "facebook": null
     }
   },
   "createdAt": "2025-02-26T12:00:00.000Z"
