@@ -6285,6 +6285,12 @@
             "type": "boolean",
             "description": "Whether to also share the Reel to the Feed. Defaults to true."
           },
+          "graduationStrategy": {
+            "type": "string",
+            "enum": ["MANUAL", "SS_PERFORMANCE"],
+            "nullable": true,
+            "description": "Publish as an Instagram trial reel that is shown only to non-followers. `MANUAL` keeps the reel as a trial until you graduate it from the Instagram app. `SS_PERFORMANCE` lets Instagram auto-graduate the reel to your followers based on performance in the first 72 hours. Omit or set to `null` for a normal Reel."
+          },
           "collaborators": {
             "type": "array",
             "description": "Instagram usernames to invite as collaborators. Maximum 3.",
@@ -6580,6 +6586,12 @@
           "shareToFeed": {
             "type": "boolean",
             "description": "Whether the Reel is also shared to the Feed"
+          },
+          "graduationStrategy": {
+            "type": "string",
+            "enum": ["MANUAL", "SS_PERFORMANCE"],
+            "nullable": true,
+            "description": "Trial reel graduation strategy, or `null` if the Reel is not a trial reel. `MANUAL` requires you to graduate the reel from the Instagram app; `SS_PERFORMANCE` lets Instagram auto-graduate based on early performance."
           },
           "collaborators": {
             "type": "array",
