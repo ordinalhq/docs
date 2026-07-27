@@ -88,6 +88,16 @@ When you're asked to approve something:
   Approvals work on mobile too. Review and approve posts from anywhere.
 </Note>
 
+### Approving from Slack
+
+If you receive approval requests as Slack DMs, you can approve a post without leaving Slack. Each requested-approval message includes an **Approve** button:
+
+- Click **Approve** to sign off immediately. The message updates to confirm the approval and shows a **View post** link.
+- Only the assigned approver can use the button. If someone else clicks it, Slack shows an error and the approval is not recorded.
+- The button is idempotent - clicking it on an older message after the post is already approved does not trigger duplicate notifications.
+
+To use one-click approvals, connect Slack notifications under [Integrations → Slack](https://app.tryordinal.com/settings/integrations/slack) so Ordinal knows which Slack user maps to your Ordinal account. If you'd rather review in context first, open the post from the message before approving.
+
 ## Notifications
 
 Reviewers receive approval requests via their preferred channels:
