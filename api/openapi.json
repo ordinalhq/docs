@@ -5531,6 +5531,10 @@
               "title": {
                 "type": "string"
               },
+              "location": {
+                "type": "string",
+                "nullable": true
+              },
               "organizationName": {
                 "type": "string"
               },
