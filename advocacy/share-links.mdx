@@ -1,0 +1,53 @@
+---
+title: "Advocacy share links"
+description: "Send a story to a teammate as a share link so they can post it to LinkedIn now or schedule it for later."
+keywords: ["advocacy share link", "LinkedIn employee advocacy", "schedule LinkedIn share", "advocacy story"]
+icon: "share-from-square"
+---
+
+Advocacy share links let you invite a teammate to post a story to their personal LinkedIn from a page they open outside Ordinal. Recipients don't need an Ordinal account — they sign in with LinkedIn on the share page and either post right away or pick a time to publish.
+
+## How share links work
+
+1. An admin creates a shareable link for a story and sends it to a recipient.
+2. The recipient opens the link, signs in with LinkedIn, and reviews the story.
+3. They select **Share to LinkedIn**, then either post immediately or schedule a future time.
+4. When the scheduled time arrives, Ordinal publishes the post to the recipient's LinkedIn profile.
+
+## Scheduling a share
+
+On the share page, select **Share to LinkedIn** to open the schedule modal.
+
+- **Post now** — leave the time set to the current time (or within about 5 seconds of it) and select **Share**. The post publishes immediately.
+- **Schedule for later** — pick any future date and time. The share page shows a scheduled banner with the publish time in your timezone.
+
+After scheduling, use the overflow menu on the scheduled banner to:
+
+- **Edit scheduled time** — reopen the modal and pick a new date and time.
+- **Unschedule** — cancel the scheduled post. The publish job is cancelled and nothing goes out.
+
+Once the post publishes, the share page shows a **Posted** state with a link to the live LinkedIn post.
+
+## Reposts of a company LinkedIn post
+
+If the story is a repost of a company LinkedIn post that hasn't gone live yet, scheduling has two guardrails:
+
+- You can't pick a time before the company post is scheduled to publish. The date picker's minimum is set to the company post's scheduled time.
+- The schedule modal suggests a random time 1–20 minutes after the company post so the reshare doesn't land before the source is live.
+
+If a recipient schedules their share for a valid future time, Ordinal waits until the source company post is live before publishing the reshare. No action is needed from the recipient — the job retries automatically until the source URN is available.
+
+<Note>
+  When you create a share link for a story whose company repost is still scheduled, the create modal warns you that recipients will only be able to schedule after the company post goes live.
+</Note>
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Slack Boost" icon="slack" href="/posts/slack-boost">
+    Notify a Slack channel when a post publishes so your team can amplify it.
+  </Card>
+  <Card title="Auto-engagements" icon="thumbs-up" href="/posts/auto-engagements">
+    Automate likes, comments, and reposts across connected accounts.
+  </Card>
+</CardGroup>
