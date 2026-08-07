@@ -49,6 +49,19 @@ The selected version's content replaces the current post copy for that channel. 
 
 For posts that target multiple channels (e.g. LinkedIn and X), version history is tracked independently per channel. Use the **channel dropdown** in the version history modal to switch between them and review changes for each channel separately.
 
+## Threaded posts (X and Threads)
+
+For X (Twitter) and Threads posts made up of multiple tweets or threads, each block in the version history preview is numbered (**Tweet 1**, **Tweet 2**, or **Thread 1**, **Thread 2**, and so on) so you can tell blocks apart at a glance.
+
+When you toggle **Show changes** on a threaded post, diffs are computed per block:
+
+- **Edits inside a block** are shown as a word-level diff, with added text highlighted in green and removed text in red.
+- **Adding or removing a block** highlights the entire tweet or thread as added or removed, so it's clear when a new block was appended or an old one was deleted.
+
+<Note>
+  Version history for X and Threads posts is behind a feature flag and rolls out per workspace. If you don't see the clock icon on your X or Threads posts yet, it hasn't been enabled for your workspace.
+</Note>
+
 ## Accessing version history programmatically
 
 Version history is also available through the [Ordinal API](/api/introduction) and the [MCP server](/mcp/introduction), so external integrations and AI assistants can list a post's saved versions per channel and read the copy of any version.
