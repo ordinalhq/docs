@@ -144,12 +144,21 @@ Returned when authentication succeeds but the request is not allowed.
     }
     ```
   </Tab>
+  <Tab title="Archived Workspace">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "Workspace has been archived"
+    }
+    ```
+  </Tab>
 </Tabs>
 
 **Common causes:**
 - API key has been revoked or expired
 - Insufficient permissions for the operation
 - Attempting to use engagement-only profiles for analytics
+- The workspace tied to the API key has been archived. Restore the workspace or use a key from an active workspace to resume access.
 
 ### 404 Not Found
 
