@@ -12,7 +12,8 @@ Amplify share links let you invite a teammate to engage with your LinkedIn conte
 1. An admin builds an Amplify link with one or more engagement actions and copies the shareable URL.
 2. The recipient opens the link and sees the landing page with the link title, notes, how-it-works steps, and a preview of each action.
 3. They select **Authorize LinkedIn Account** and complete the LinkedIn OAuth flow.
-4. Once signed in, they see the recipient header on the page and the list of configured actions.
+4. Once signed in, they use the action stepper to configure each engagement, then select **Schedule engagements to LinkedIn**.
+5. When each target post goes live, Ordinal posts the configured like, comment, and repost from the recipient's LinkedIn.
 
 ## The share landing page
 
@@ -39,6 +40,24 @@ Each Amplify link contains one or more actions. The landing page previews each a
 | **Create a new post** | Post new content variants that you drafted on the recipient's LinkedIn. The preview shows the first variant's copy. |
 
 For each action, admins choose which engagement types are enabled (**Like**, **Comment**, **Repost**) and, for likes, which LinkedIn reaction types are allowed.
+
+## Configuring engagements
+
+After the recipient authorizes LinkedIn, the signed-in view replaces the landing with a stepper at the top and a **Connected as** header showing the recipient's LinkedIn name, with a **Sign Out** button to clear the session.
+
+Each tab in the stepper is one action on the link. Select a tab to configure that action.
+
+For an **Engage with a scheduled post** action, the recipient sees a card for every engagement type the admin enabled:
+
+- **Like the Selected Post** — toggle on and pick a reaction from the LinkedIn reactions the admin allowed. The reaction is left within 30 minutes of the post going live.
+- **Comment on the Selected Post** — toggle on and write a comment. The editor supports `@` mentions of LinkedIn profiles and companies, searched directly against LinkedIn from the share page.
+- **Repost the Original Post** — toggle on and edit the repost copy. If the admin added multiple variants, use the variant tabs to load a different draft into the editor. The repost is sent when the post goes live.
+
+Changes auto-save as the recipient toggles switches or edits copy. Selecting **Schedule engagements to LinkedIn** at the bottom of the page finalizes every configured engagement across all actions on the link.
+
+<Note>
+  Each engagement is queued once. If the recipient reloads the page, their saved toggles, reactions, and copy are restored so they can adjust before scheduling.
+</Note>
 
 ## Learn more
 
