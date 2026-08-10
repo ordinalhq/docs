@@ -1,0 +1,52 @@
+---
+title: "Amplify share links"
+description: "Send teammates an Amplify link so they can connect their LinkedIn and engage with your posts from a page outside Ordinal."
+keywords: ["Amplify share link", "LinkedIn employee advocacy", "Amplify link actions", "engage LinkedIn post"]
+icon: "share-from-square"
+---
+
+Amplify share links let you invite a teammate to engage with your LinkedIn content from a page they open outside Ordinal. Recipients don't need an Ordinal account — they open the link, authorize LinkedIn, and then complete the engagement actions you configured on the link.
+
+## How Amplify share links work
+
+1. An admin builds an Amplify link with one or more engagement actions and copies the shareable URL.
+2. The recipient opens the link and sees the landing page with the link title, notes, how-it-works steps, and a preview of each action.
+3. They select **Authorize LinkedIn Account** and complete the LinkedIn OAuth flow.
+4. Once signed in, they see the recipient header on the page and the list of configured actions.
+
+## The share landing page
+
+Before signing in, the recipient sees:
+
+- **Title and notes** — the link's title and any brief you added.
+- **How this works** — a three-step primer: connect LinkedIn, choose how to engage, and let Ordinal handle the rest once the target post is live.
+- **LinkedIn post to engage with** — a preview of each action on the link, including the scheduled publish time for any target post.
+- **Authorize LinkedIn Account** — a single CTA that starts the LinkedIn OAuth flow scoped to the link.
+
+If LinkedIn OAuth fails, the page shows an inline error with a **Dismiss** button so the recipient can retry.
+
+<Note>
+  Amplify share links expire at the link's **Live until** date and time. Expired or unpublished links return a 404 instead of the landing page.
+</Note>
+
+## Action types
+
+Each Amplify link contains one or more actions. The landing page previews each action so recipients know what they're signing up for before they connect LinkedIn.
+
+| Action type | What the recipient does |
+| ----------- | ----------------------- |
+| **Engage with a scheduled post** | Like, comment on, or repost an existing scheduled LinkedIn post. The preview shows the target post and its scheduled publish time. |
+| **Create a new post** | Post new content variants that you drafted on the recipient's LinkedIn. The preview shows the first variant's copy. |
+
+For each action, admins choose which engagement types are enabled (**Like**, **Comment**, **Repost**) and, for likes, which LinkedIn reaction types are allowed.
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Slack Boost" icon="slack" href="/posts/slack-boost">
+    Notify a Slack channel when a post publishes so your team can amplify it.
+  </Card>
+  <Card title="Auto-engagements" icon="thumbs-up" href="/posts/auto-engagements">
+    Automate likes, comments, and reposts across connected accounts.
+  </Card>
+</CardGroup>
