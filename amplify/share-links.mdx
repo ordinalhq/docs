@@ -53,10 +53,27 @@ For an **Engage with a scheduled post** action, the recipient sees a card for ev
 - **Comment on the Selected Post** — toggle on and write a comment. The editor supports `@` mentions of LinkedIn profiles and companies, searched directly against LinkedIn from the share page.
 - **Repost the Original Post** — toggle on and edit the repost copy. If the admin added multiple variants, use the variant tabs to load a different draft into the editor. The repost is sent when the post goes live.
 
-Changes auto-save as the recipient toggles switches or edits copy. Selecting **Schedule engagements to LinkedIn** at the bottom of the page finalizes every configured engagement across all actions on the link.
+If the admin disabled a specific engagement type on the action, that card appears greyed out with the message "Liking this post has been disabled by the creator of this link" (or the equivalent for comment or repost) and no toggle.
+
+Changes auto-save as the recipient toggles switches or edits copy.
+
+## Scheduling and unscheduling engagements
+
+Selecting **Schedule engagements to LinkedIn** opens a confirmation modal to pick when the engagements should run:
+
+- The modal shows the date and time picker, plus a summary of every engagement type currently enabled on the action.
+- The default time is the target post's scheduled publish time.
+- If the target post embeds a repost of another scheduled post, the date picker's minimum is that source repost's publish time and the modal suggests a random time 1–20 minutes after so the engagement doesn't land before the source is live.
+
+Confirming the modal schedules every enabled engagement and swaps the sign-in header for a scheduled banner: **Your engagements are scheduled: [date] at [time] [timezone]**.
+
+While scheduled, the engagement cards are read-only. Use the overflow menu on the banner to:
+
+- **Edit Scheduled Time** — reopen the modal and pick a new time.
+- **Unschedule** — cancel the scheduled engagements. The cards become editable again so the recipient can adjust selections and reschedule.
 
 <Note>
-  Each engagement is queued once. If the recipient reloads the page, their saved toggles, reactions, and copy are restored so they can adjust before scheduling.
+  Each engagement is queued once. If the recipient reloads the page, their saved toggles, reactions, copy, and scheduled time are all restored.
 </Note>
 
 ## Learn more
