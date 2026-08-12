@@ -37,7 +37,7 @@ Each Amplify link contains one or more actions. The landing page previews each a
 | Action type | What the recipient does |
 | ----------- | ----------------------- |
 | **Engage with a scheduled post** | Like, comment on, or repost an existing scheduled LinkedIn post. The preview shows the target post and its scheduled publish time. |
-| **Create a new post** | Post new content variants that you drafted on the recipient's LinkedIn. The preview shows the first variant's copy. |
+| **Create a new post** | Edit and schedule new post copy the admin drafted for them, then publish it to their own LinkedIn. The preview shows the first variant's copy. |
 
 For each action, admins choose which engagement types are enabled (**Like**, **Comment**, **Repost**) and, for likes, which LinkedIn reaction types are allowed.
 
@@ -56,6 +56,20 @@ For an **Engage with a scheduled post** action, the recipient sees a card for ev
 If the admin disabled a specific engagement type on the action, that card appears greyed out with the message "Liking this post has been disabled by the creator of this link" (or the equivalent for comment or repost) and no toggle.
 
 Changes auto-save as the recipient toggles switches or edits copy.
+
+## Drafting a new post
+
+For a **Create a new post** action, the recipient sees a LinkedIn editor pre-filled with the admin's draft copy for the default variant. Above the editor, the page reads: **Customize the post below before scheduling it to your LinkedIn profile.**
+
+- If the admin added multiple variants, tabs appear above the editor (**Variant 1**, **Variant 2**, and so on). Selecting a different variant replaces the copy and any attached assets with that variant's draft.
+- The editor supports `@` mentions of LinkedIn profiles and companies, searched directly against LinkedIn from the share page.
+- Edits auto-save as the recipient types.
+
+<Note>
+  Switching variants overwrites the current draft with the selected variant's copy. If the recipient has been editing, save or copy their changes elsewhere first.
+</Note>
+
+Selecting **Schedule Post** opens a confirmation modal to pick a date and time. Confirming the modal schedules the post, adds a **Your post is scheduled: [date] at [time] [timezone]** banner above the editor, and makes the editor read-only. Use the overflow menu on the banner to **Edit Scheduled Time** or **Unschedule** — unscheduling makes the editor editable again.
 
 ## Scheduling and unscheduling engagements
 
