@@ -21,7 +21,7 @@ Before signing in, the recipient sees:
 
 - **Title and notes** — the link's title and any brief you added.
 - **How this works** — a three-step primer: connect LinkedIn, choose how to engage, and let Ordinal handle the rest once the target post is live.
-- **LinkedIn post to engage with** — a preview of each action on the link, including the scheduled publish time for any target post.
+- **LinkedIn post to engage with** — a preview of each action on the link. Upcoming target posts show a **Scheduled:** badge with the publish time; posts that are already live on LinkedIn show a **Posted:** badge and an embedded LinkedIn preview of the actual post.
 - **Authorize LinkedIn Account** — a single CTA that starts the LinkedIn OAuth flow scoped to the link.
 
 If LinkedIn OAuth fails, the page shows an inline error with a **Dismiss** button so the recipient can retry.
@@ -36,7 +36,7 @@ Each Amplify link contains one or more actions. The landing page previews each a
 
 | Action type | What the recipient does |
 | ----------- | ----------------------- |
-| **Engage with a scheduled post** | Like, comment on, or repost an existing scheduled LinkedIn post. The preview shows the target post and its scheduled publish time. |
+| **Engage with a scheduled post** | Like, comment on, or repost a LinkedIn post the admin picked. Upcoming posts show a **Scheduled:** badge; posts already live on LinkedIn show a **Posted:** badge and an embedded LinkedIn preview. |
 | **Create a new post** | Edit and schedule new post copy the admin drafted for them, then publish it to their own LinkedIn. The preview shows the first variant's copy. |
 
 For each action, admins choose which engagement types are enabled (**Like**, **Comment**, **Repost**) and, for likes, which LinkedIn reaction types are allowed.
@@ -77,7 +77,7 @@ Selecting **Schedule Post** opens a confirmation modal to pick a date and time. 
 Selecting **Schedule engagements to LinkedIn** opens a confirmation modal to pick when the engagements should run:
 
 - The modal shows the date and time picker, plus a summary of every engagement type currently enabled on the action.
-- The default time is the target post's scheduled publish time.
+- If the target post is upcoming, the default time is the target post's scheduled publish time. If the target post is already live on LinkedIn, the default time is **now**.
 - If the target post embeds a repost of another scheduled post, the date picker's minimum is that source repost's publish time and the modal suggests a random time 1–20 minutes after so the engagement doesn't land before the source is live.
 
 Confirming the modal schedules every enabled engagement and swaps the sign-in header for a scheduled banner: **Your engagements are scheduled: [date] at [time] [timezone]**.
