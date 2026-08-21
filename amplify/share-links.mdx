@@ -1,0 +1,103 @@
+---
+title: "Amplify share links"
+description: "Send teammates an Amplify link so they can connect their LinkedIn and engage with your posts from a page outside Ordinal."
+keywords: ["Amplify share link", "LinkedIn employee advocacy", "Amplify link actions", "engage LinkedIn post"]
+icon: "share-from-square"
+---
+
+Amplify share links let you invite a teammate to engage with your LinkedIn content from a page they open outside Ordinal. Recipients don't need an Ordinal account — they open the link, authorize LinkedIn, and then complete the engagement actions you configured on the link.
+
+## How Amplify share links work
+
+1. An admin builds an Amplify link with one or more engagement actions and copies the shareable URL.
+2. The recipient opens the link and sees the landing page with the link title, notes, how-it-works steps, and a preview of each action.
+3. They select **Authorize LinkedIn Account** and complete the LinkedIn OAuth flow.
+4. Once signed in, they use the action stepper to configure each engagement, then select **Schedule engagements to LinkedIn**.
+5. When each target post goes live, Ordinal posts the configured like, comment, and repost from the recipient's LinkedIn.
+
+## The share landing page
+
+Before signing in, the recipient sees:
+
+- **Title and notes** — the link's title and any brief you added.
+- **How this works** — a three-step primer: connect LinkedIn, choose how to engage, and let Ordinal handle the rest once the target post is live.
+- **LinkedIn post to engage with** — a preview of each action on the link. Upcoming target posts show a **Scheduled:** badge with the publish time; posts that are already live on LinkedIn show a **Posted:** badge and an embedded LinkedIn preview of the actual post.
+- **Authorize LinkedIn Account** — a single CTA that starts the LinkedIn OAuth flow scoped to the link.
+
+If LinkedIn OAuth fails, the page shows an inline error with a **Dismiss** button so the recipient can retry.
+
+<Note>
+  Amplify share links expire at the link's **Live until** date and time. Expired or unpublished links return a 404 instead of the landing page.
+</Note>
+
+## Action types
+
+Each Amplify link contains one or more actions. The landing page previews each action so recipients know what they're signing up for before they connect LinkedIn.
+
+| Action type | What the recipient does |
+| ----------- | ----------------------- |
+| **Engage with a scheduled post** | Like, comment on, or repost a LinkedIn post the admin picked. Upcoming posts show a **Scheduled:** badge; posts already live on LinkedIn show a **Posted:** badge and an embedded LinkedIn preview. |
+| **Create a new post** | Edit and schedule new post copy the admin drafted for them, then publish it to their own LinkedIn. The preview shows the first variant's copy. |
+
+For each action, admins choose which engagement types are enabled (**Like**, **Comment**, **Repost**) and, for likes, which LinkedIn reaction types are allowed.
+
+## Configuring engagements
+
+After the recipient authorizes LinkedIn, the signed-in view replaces the landing with a stepper at the top and a **Connected as** header showing the recipient's LinkedIn name, with a **Sign Out** button to clear the session.
+
+Each tab in the stepper is one action on the link. Select a tab to configure that action.
+
+For an **Engage with a scheduled post** action, the recipient sees a card for every engagement type the admin enabled:
+
+- **Like the Selected Post** — toggle on and pick a reaction from the LinkedIn reactions the admin allowed. The reaction is left within 30 minutes of the post going live.
+- **Comment on the Selected Post** — toggle on and write a comment. The editor supports `@` mentions of LinkedIn profiles and companies, searched directly against LinkedIn from the share page.
+- **Repost the Original Post** — toggle on and edit the repost copy. If the admin added multiple variants, use the variant tabs to load a different draft into the editor. The repost is sent when the post goes live.
+
+If the admin disabled a specific engagement type on the action, that card appears greyed out with the message "Liking this post has been disabled by the creator of this link" (or the equivalent for comment or repost) and no toggle.
+
+Changes auto-save as the recipient toggles switches or edits copy.
+
+## Drafting a new post
+
+For a **Create a new post** action, the recipient sees a LinkedIn editor pre-filled with the admin's draft copy for the default variant. Above the editor, the page reads: **Customize the post below before scheduling it to your LinkedIn profile.**
+
+- If the admin added multiple variants, tabs appear above the editor (**Variant 1**, **Variant 2**, and so on). Selecting a different variant replaces the copy and any attached assets with that variant's draft.
+- If the admin attached LinkedIn media (images, video, or a PDF) to the variant, it appears as a read-only preview alongside the editor. Recipients can't upload, remove, or reorder attachments.
+- The editor supports `@` mentions of LinkedIn profiles and companies, searched directly against LinkedIn from the share page.
+- Edits auto-save as the recipient types.
+
+<Note>
+  Switching variants overwrites the current draft with the selected variant's copy **and** its attached media. If the recipient has been editing, save or copy their changes elsewhere first.
+</Note>
+
+Selecting **Schedule Post** opens a confirmation modal to pick a date and time. Confirming the modal schedules the post, adds a **Your post is scheduled: [date] at [time] [timezone]** banner above the editor, and makes the editor read-only. Use the overflow menu on the banner to **Edit Scheduled Time** or **Unschedule** — unscheduling makes the editor editable again.
+
+## Scheduling and unscheduling engagements
+
+Selecting **Schedule engagements to LinkedIn** opens a confirmation modal to pick when the engagements should run:
+
+- The modal shows the date and time picker, plus a summary of every engagement type currently enabled on the action.
+- If the target post is upcoming, the default time is the target post's scheduled publish time. If the target post is already live on LinkedIn, the default time is **now**.
+- If the target post embeds a repost of another scheduled post, the date picker's minimum is that source repost's publish time and the modal suggests a random time 1–20 minutes after so the engagement doesn't land before the source is live.
+
+Confirming the modal schedules every enabled engagement and swaps the sign-in header for a scheduled banner: **Your engagements are scheduled: [date] at [time] [timezone]**.
+
+While scheduled, the engagement cards are read-only. Use the overflow menu on the banner to:
+
+- **Edit Scheduled Time** — reopen the modal and pick a new time.
+- **Unschedule** — cancel the scheduled engagements. The cards become editable again so the recipient can adjust selections and reschedule.
+
+<Note>
+  Each engagement is queued once. If the recipient reloads the page, their saved toggles, reactions, copy, and scheduled time are all restored.
+</Note>
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Slack Boost" icon="slack" href="/posts/slack-boost">
+    Notify a Slack channel when a post publishes so your team can amplify it.
+  </Card>
+  <Card title="Auto-engagements" icon="thumbs-up" href="/posts/auto-engagements">
+    Automate likes, comments, and reposts across connected accounts.
+  </Card>
+</CardGroup>
