@@ -1,0 +1,95 @@
+---
+title: "Team engagements"
+description: "Coordinate likes, comments, and reposts from connected team accounts to boost a post's reach when it publishes."
+keywords: ["team engagements", "Ordinal team engagements", "LinkedIn team likes", "employee advocacy"]
+icon: "thumbs-up"
+---
+
+Team engagements let your team like, comment, and repost a scheduled post from their connected accounts right after it publishes. Configure the engagements on the post once, and Ordinal fires them from each teammate's connected profile at the delay you set.
+
+![Team Engagements](/images/autoengagements-yc.jpg)
+
+<Note>
+  **Plan availability:** Starter workspaces can only add team engagements from the same account as the posting account. Pro workspaces can use any connected account for team engagements.
+</Note>
+
+## Engagement types
+
+| Type            | What it does                                             | Timing                                        |
+| --------------- | -------------------------------------------------------- | --------------------------------------------- |
+| **Team Likes** | Connected profiles like the post                          | Configurable window (10 minutes to 24 hours) |
+| **Team Comment** | Add a first comment (great for CTAs, hashtags, or links) | Configurable delay (immediate to 24 hours)   |
+| **Team Repost** | Reshare from another connected account                    | Configurable delay (immediate to 24 hours)   |
+
+## Platform support
+
+Not all platforms support every engagement type due to API limitations:
+
+| Platform  | Team Likes | Team Comment | Team Repost |
+| --------- | ---------- | ------------ | ----------- |
+| LinkedIn  | ✅         | ✅            | ✅           |
+| Twitter/X | ✅         | ✅            | ✅           |
+| Instagram | ❌         | ✅            | ❌           |
+| Facebook  | ❌         | ✅            | ❌           |
+
+For platform-specific details, see each [channel's documentation](/social-profiles/overview).
+
+### X (Twitter) eligibility
+
+Because of X API restrictions, only certain accounts can comment or repost on a tweet:
+
+- The **posting account** is always eligible.
+- Any other connected X account must be **@mentioned in the text of the first tweet** to be eligible.
+
+If a connected X account isn't @mentioned, it's disabled in the Team Comment and Team Repost profile pickers. Add the account's `@handle` to the first tweet to unlock it. This rule is enforced everywhere engagements are configured, including the post editor, the [public API](/api/introduction), and [MCP tools](/mcp/tools).
+
+<Note>
+  Only text `@mentions` count. Tagging an account in an image or video does not make it eligible.
+</Note>
+
+## Setting up team engagements
+
+1. Open a post and scroll to the **Team Engagements** section.
+2. Select the engagement type(s) you want to add (Like, Comment, or Repost).
+3. Select which connected account(s) should perform the action.
+4. For comments and reposts, write the content.
+5. Set a delay for each engagement using the delay input (see [Timing](#timing)).
+6. Engagements fire from each connected profile when the post publishes.
+
+<Check>
+  Team engagements are configured per post. They only run once when the post publishes.
+</Check>
+
+## Timing
+
+Every engagement uses a delay you set in the numeric delay input. Enter a number, then choose **mins** or **hr** for the unit. The input also suggests common presets and a **Recently used** list of delays you've recently saved in this workspace.
+
+- **Team Likes** — the value sets the window over which likes trickle in after the post publishes. The first like fires near the start of that window; the rest randomize across it. Minimum is **10 minutes**.
+- **Team Comment and Team Repost** — the value sets how long after publish the comment or repost fires. Minimum is **0** (immediate).
+
+The maximum delay for any engagement is **24 hours**. Values outside the allowed range are rejected when you save the post.
+
+<Note>
+  Team engagements must be added **before** the post is published. Adding team engagements after a post has already been published from Ordinal will not work.
+</Note>
+
+## Best practices
+
+- **Use responsibly** - A few strategic engagements complement genuine activity. Don't overdo it.
+- **Vary your patterns** - Avoid identical timing or comments on every post.
+- **Add value with comments** - Generic "Great post!" comments don't help. Add context, a question, or a useful link.
+
+<Tip>
+  **Need engagement profiles for your whole team?** Bulk discounts are available for engagement-only profiles. Reach out via in-app chat or email [support@tryordinal.com](mailto:support@tryordinal.com).
+</Tip>
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Slack Boost" icon="slack" href="/posts/slack-boost">
+    Notify your team to engage manually.
+  </Card>
+  <Card title="Social Profiles" icon="share-nodes" href="/social-profiles/overview">
+    Connect scheduling and engagement profiles.
+  </Card>
+</CardGroup>
