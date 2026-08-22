@@ -86,7 +86,7 @@
                 ]
               },
               "campaigns/overview",
-              "posts/auto-engagements",
+              "posts/team-engagements",
               "posts/slack-boost",
               "posts/ideas",
               "posts/labels",
@@ -315,6 +315,10 @@
     {
       "source": "/mcp/install/vscode",
       "destination": "/mcp/install/overview"
+    },
+    {
+      "source": "/posts/auto-engagements",
+      "destination": "/posts/team-engagements"
     }
   ]
 }
