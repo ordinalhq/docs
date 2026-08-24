@@ -31,7 +31,7 @@
     },
     {
       "name": "Engagements",
-      "description": "Auto-engagements for posts (likes, comments, reposts)"
+      "description": "Team engagements for posts (likes, comments, reposts)"
     },
     {
       "name": "Invites",
@@ -1030,7 +1030,7 @@
       "delete": {
         "operationId": "engagements-delete",
         "summary": "Delete an engagement",
-        "description": "Remove an auto-engagement from a post",
+        "description": "Remove a team engagement from a post",
         "tags": [
           "Engagements"
         ],
@@ -4179,7 +4179,7 @@
       "get": {
         "operationId": "profiles-listEngagement",
         "summary": "List engagement profiles",
-        "description": "List all engagement-only profiles in the workspace. Engagement profiles can only be used for auto-engagements.",
+        "description": "List all engagement-only profiles in the workspace. Engagement profiles can only be used for team engagements.",
         "tags": [
           "Profiles"
         ],
@@ -4224,7 +4224,7 @@
       "get": {
         "operationId": "profiles-listScheduling",
         "summary": "List scheduling profiles",
-        "description": "List all scheduling profiles in the workspace. Scheduling profiles support scheduling, auto-engagement, and analytics capabilities.",
+        "description": "List all scheduling profiles in the workspace. Scheduling profiles support scheduling, team engagements, and analytics capabilities.",
         "tags": [
           "Profiles"
         ],
