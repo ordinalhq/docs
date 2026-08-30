@@ -66,6 +66,23 @@ Once connected, Slack notifications appear as DMs from the Ordinal app. Click an
   Slack works especially well for approval requests and post failures - you'll see them immediately without checking email.
 </Tip>
 
+### Disconnecting a Slack workspace
+
+When someone connects Slack notifications for the first time, the Slack workspace is linked to Ordinal so teammates whose email matches a Slack user can receive DMs. Teammates who later accept an invite are connected automatically when their email matches a Slack member.
+
+To stop notifications for everyone in a connected Slack workspace:
+
+1. Go to [Integrations → Slack](https://app.tryordinal.com/settings/integrations/slack)
+2. Find the workspace under **Slack Notifications**
+3. Open the **…** menu and select **Disconnect Workspace**
+4. Confirm in the dialog
+
+After disconnecting, no one in the Ordinal workspace receives Slack DMs from that Slack workspace. Reconnecting Slack notifications creates a fresh link - the person who reconnects is shown as "Connected by," and matched teammates are reconnected automatically.
+
+<Note>
+  Disconnecting a workspace only stops Slack DM notifications. It does not affect [Slack Boost](/posts/slack-boost) channels or [scheduled Slack messages](/social-profiles/slack), which are managed separately.
+</Note>
+
 ## Post subscriptions
 
 You receive notifications about posts you're **subscribed** to. Subscriptions determine who gets notified about comments, status changes, and publishing events.
