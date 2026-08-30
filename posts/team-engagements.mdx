@@ -57,7 +57,7 @@ If a connected X account isn't @mentioned, it's disabled in the Team Comment and
 6. After the post publishes, team members can complete the selected engagement actions from their connected profiles.
 
 <Check>
-  Team engagements are configured per post, so set them up before the post publishes.
+  Team engagements are configured per post. Set them up before publish to run automatically, or [add them after publish](#adding-engagements-after-publish) and confirm each one.
 </Check>
 
 ## Timing
@@ -70,8 +70,31 @@ Every engagement uses a delay you set in the numeric delay input. Enter a number
 The maximum delay for any engagement is **24 hours**. Values outside the allowed range are rejected when you save the post.
 
 <Note>
-  Team engagements must be added **before** the post is published. Adding team engagements after a post has already been published from Ordinal will not work.
+  Engagements added before publish run automatically after the post goes live. Engagements added after publish stay unconfirmed until you click **Post** (see [Adding engagements after publish](#adding-engagements-after-publish)).
 </Note>
+
+## Tracking engagement status
+
+After a post publishes, the Team Engagements section switches from editable controls to a status view. Each engagement shows one of four badges:
+
+- **Scheduled** - the engagement is queued and runs after its delay.
+- **Posting** - the engagement is currently being sent to the platform.
+- **Posted** - the engagement completed successfully.
+- **Failed** - the engagement did not complete.
+
+Hover over an engagement to see its details, including the configured delay and the profiles involved. Like rows show up to 10 profile avatars, with a `+N` indicator for the rest. Completed comments and reposts include a **View Comment** or **View Repost** link to the live engagement. Failed engagements include a **View Errors** link that opens the error details.
+
+## Adding engagements after publish
+
+You can add team likes, comments, and reposts to a post that has already published. Engagements added after publish don't run immediately. They appear as unconfirmed cards in the Team Engagements section until you click **Post** to send them.
+
+1. Open the published post and scroll to the **Team Engagements** section.
+2. Add a like, comment, or repost as usual. Likes added after publish appear in a separate unconfirmed card with a delay picker.
+3. Click **Post** on the unconfirmed card to send the engagement. Its badge switches to **Scheduled** and it runs like any other engagement.
+
+Likes confirmed after publish are spread out with randomized delays starting from the moment you click **Post**, within the delay window you set. Comments and reposts must have content before you can confirm them.
+
+Only unconfirmed engagements can be edited or deleted on a published post. Once an engagement is confirmed or completed, it's locked.
 
 ## Best practices
 
