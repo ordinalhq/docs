@@ -4208,7 +4208,9 @@
                       "email": "john@acme.com",
                       "firstName": "John",
                       "lastName": "Doe"
-                    }
+                    },
+                    "lastConnectedAt": null,
+                    "lastConnectedBy": null
                   }
                 ]
               }
@@ -4254,6 +4256,13 @@
                       "email": "john@acme.com",
                       "firstName": "John",
                       "lastName": "Doe"
+                    },
+                    "lastConnectedAt": "2026-03-02T18:24:00.000Z",
+                    "lastConnectedBy": {
+                      "id": "550e8400-e29b-41d4-a716-446655440011",
+                      "email": "jane@acme.com",
+                      "firstName": "Jane",
+                      "lastName": "Smith"
                     }
                   }
                 ]
@@ -7197,6 +7206,19 @@
           },
           "createdBy": {
             "$ref": "#/components/schemas/UserSummary"
+          },
+          "lastConnectedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the profile was most recently reconnected. Null until the first reconnect after the original connection."
+          },
+          "lastConnectedBy": {
+            "allOf": [
+              { "$ref": "#/components/schemas/UserSummary" }
+            ],
+            "nullable": true,
+            "description": "The workspace user who last reconnected the profile. Null until the first reconnect after the original connection."
           }
         }
       },
