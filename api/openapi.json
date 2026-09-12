@@ -568,6 +568,228 @@
       }
     },
     "/approvals": {
+      "get": {
+        "operationId": "approvals-list-workspace",
+        "summary": "List workspace approvals",
+        "description": "List all approval requests across the workspace in one paginated stream. Use for incremental sync by external integrations instead of polling each post individually. Supports keyset pagination and filters by status, post, approver, requester, and date range. Approvals on archived posts are included; filter client-side with `post.archivedAt`. Soft-deleted approvals are omitted from results.",
+        "tags": [
+          "Approvals"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of approvals to return (1-100)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor from the previous response's `nextCursor`. Format is `timestampMs:approvalId`. When paginating, pass the same `sortBy` and `sortOrder` as the initial request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Field to sort results by. Use `updatedAt` for incremental sync so newly-updated approvals stream in order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "createdAt",
+                "updatedAt"
+              ],
+              "default": "createdAt"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order. Use `asc` with `sortBy=updatedAt` for incremental sync.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "desc"
+            }
+          },
+          {
+            "name": "updatedAtMin",
+            "in": "query",
+            "description": "Return approvals updated at or after this time. Pair with `sortBy=updatedAt` and `sortOrder=asc` for incremental sync from a saved checkpoint.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "updatedAtMax",
+            "in": "query",
+            "description": "Return approvals updated at or before this time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "createdAtMin",
+            "in": "query",
+            "description": "Return approvals created at or after this time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "createdAtMax",
+            "in": "query",
+            "description": "Return approvals created at or before this time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "statuses",
+            "in": "query",
+            "description": "Filter by approval statuses. Repeat the parameter to match any of multiple values.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Requested",
+                  "Approved"
+                ]
+              }
+            }
+          },
+          {
+            "name": "postIds",
+            "in": "query",
+            "description": "Filter by post IDs. Repeat the parameter to match any of multiple values.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "approverIds",
+            "in": "query",
+            "description": "Filter by approver user IDs. Repeat the parameter to match any of multiple values.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "requestedByIds",
+            "in": "query",
+            "description": "Filter by IDs of users who requested the approval. Repeat the parameter to match any of multiple values.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of workspace approvals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "approvals": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WorkspaceApproval"
+                      }
+                    },
+                    "nextCursor": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Cursor for the next page, or `null` when there are no more results"
+                    },
+                    "hasMore": {
+                      "type": "boolean",
+                      "description": "Whether more approvals are available"
+                    }
+                  }
+                },
+                "example": {
+                  "approvals": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440200",
+                      "status": "Requested",
+                      "isBlocking": true,
+                      "message": "Please review the messaging before we publish",
+                      "dueDate": "2026-01-14T17:00:00.000Z",
+                      "approvedAt": null,
+                      "createdAt": "2026-01-05T10:30:00.000Z",
+                      "updatedAt": "2026-01-05T10:30:00.000Z",
+                      "postId": "550e8400-e29b-41d4-a716-446655440000",
+                      "approver": {
+                        "id": "550e8400-e29b-41d4-a716-446655440011",
+                        "email": "jane.smith@example.com",
+                        "firstName": "Jane",
+                        "lastName": "Smith",
+                        "createdAt": "2025-01-01T00:00:00.000Z"
+                      },
+                      "requestedBy": {
+                        "id": "550e8400-e29b-41d4-a716-446655440010",
+                        "email": "john.doe@example.com",
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "createdAt": "2025-01-01T00:00:00.000Z"
+                      },
+                      "post": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "url": "https://app.tryordinal.com/your-workspace/posts/550e8400-e29b-41d4-a716-446655440000",
+                        "title": "Launch announcement",
+                        "status": "ForReview",
+                        "channels": ["LinkedIn", "Twitter"],
+                        "publishDate": "2026-01-15",
+                        "publishAt": "2026-01-15T14:00:00.000Z",
+                        "isIdea": false,
+                        "archivedAt": null
+                      }
+                    }
+                  ],
+                  "nextCursor": "1736074200000:550e8400-e29b-41d4-a716-446655440200",
+                  "hasMore": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      },
       "post": {
         "operationId": "approvals-create",
         "summary": "Create approval requests",
@@ -7607,6 +7829,109 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "WorkspaceApproval": {
+        "type": "object",
+        "description": "An approval returned by the workspace-wide list endpoint. Includes both the approver and requester users and a nested post summary.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Requested",
+              "Approved"
+            ]
+          },
+          "isBlocking": {
+            "type": "boolean",
+            "description": "Whether the post is blocked from publishing until this approval is granted"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last time the approval changed. Use with `updatedAtMin` and `sortBy=updatedAt` for incremental sync."
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "approver": {
+            "$ref": "#/components/schemas/ApprovalUser"
+          },
+          "requestedBy": {
+            "$ref": "#/components/schemas/ApprovalUser"
+          },
+          "post": {
+            "type": "object",
+            "description": "Summary of the post this approval belongs to",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Deep link to the post in the Ordinal dashboard"
+              },
+              "title": {
+                "type": "string"
+              },
+              "status": {
+                "$ref": "#/components/schemas/PostStatus"
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Channels the post targets (for example `LinkedIn`, `Twitter`)"
+              },
+              "publishDate": {
+                "type": "string",
+                "nullable": true,
+                "description": "Scheduled publish date (`YYYY-MM-DD`) in the workspace timezone, when set"
+              },
+              "publishAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true,
+                "description": "Scheduled publish timestamp when a specific time is set"
+              },
+              "isIdea": {
+                "type": "boolean",
+                "description": "Whether the post is an idea rather than a scheduled or published post"
+              },
+              "archivedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true,
+                "description": "When the post was archived, if applicable"
+              }
+            }
           }
         }
       },
