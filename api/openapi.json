@@ -571,7 +571,7 @@
       "get": {
         "operationId": "approvals-list-workspace",
         "summary": "List workspace approvals",
-        "description": "List all approval requests across the workspace in one paginated stream. Use for incremental sync by external integrations instead of polling each post individually. Supports keyset pagination and filters by status, post, approver, requester, and date range.",
+        "description": "List all approval requests across the workspace in one paginated stream. Use for incremental sync by external integrations instead of polling each post individually. Supports keyset pagination and filters by status, post, approver, requester, and date range. Approvals on archived posts are included; filter client-side with `post.archivedAt`. Soft-deleted approvals are omitted from results.",
         "tags": [
           "Approvals"
         ],
@@ -764,7 +764,7 @@
                         "id": "550e8400-e29b-41d4-a716-446655440000",
                         "url": "https://app.tryordinal.com/your-workspace/posts/550e8400-e29b-41d4-a716-446655440000",
                         "title": "Launch announcement",
-                        "status": "Draft",
+                        "status": "ForReview",
                         "channels": ["LinkedIn", "Twitter"],
                         "publishDate": "2026-01-15",
                         "publishAt": "2026-01-15T14:00:00.000Z",
@@ -7901,8 +7901,7 @@
                 "type": "string"
               },
               "status": {
-                "type": "string",
-                "description": "Current post status (for example `Draft`, `Scheduled`, `Published`)"
+                "$ref": "#/components/schemas/PostStatus"
               },
               "channels": {
                 "type": "array",
