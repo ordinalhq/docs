@@ -104,6 +104,13 @@
             ]
           },
           {
+            "group": "Monitoring",
+            "icon": "inbox",
+            "pages": [
+              "monitoring/linkedin-monitoring"
+            ]
+          },
+          {
             "group": "Analytics and Reporting",
             "icon": "chart-line",
             "pages": [
