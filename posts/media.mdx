@@ -52,7 +52,7 @@ Click on the paintbrush icon next uploaded image to open the built-in image edit
 </Tabs>
 
 <Note>
-  Ordinal automatically compresses oversized files to meet platform limits.
+  Ordinal automatically compresses oversized files, converts unsupported formats (like WebP or AVIF) to JPEG, and resizes TikTok photos wider than 1080px to meet platform limits. A toast confirms when a file has been changed before upload.
 </Note>
 
 ## Reordering assets
@@ -86,9 +86,12 @@ To remove media from a post:
     | JPG/JPEG | ✅ All platforms       |
     | PNG      | ✅ All platforms       |
     | GIF      | ✅ Static and animated |
-    | WEBP     | ✅ Most platforms      |
+    | WEBP     | ✅ All platforms       |
+    | AVIF     | ✅ All platforms       |
 
     **Limits:** 10MB per image (Ordinal auto-compresses larger files)
+
+    WebP and AVIF are accepted on Instagram, LinkedIn, Twitter/X, Facebook, Threads, TikTok, Discord, and Slack. If the destination platform doesn't accept the format natively, Ordinal converts the image to JPEG before upload and shows a toast explaining the change.
   </Tab>
   <Tab title="Videos">
     | Format | Support         |
@@ -169,7 +172,7 @@ Each platform has unique media capabilities - see your channel's page for limits
 <AccordionGroup>
   <Accordion title="Upload failing">
     - **Check file size**  -  Images under 10MB, videos under 350MB
-    - **Check format**  -  JPG, PNG, GIF for images; MP4, MOV for video
+    - **Check format**  -  JPG, PNG, GIF, WebP, or AVIF for images; MP4, MOV for video
     - **Try refreshing**  -  Connection issues can interrupt uploads
   </Accordion>
   <Accordion title="Video not playing in preview">

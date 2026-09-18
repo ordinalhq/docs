@@ -1,6 +1,6 @@
 ---
 title: "Tools"
-description: "Reference of every tool the Ordinal MCP server exposes for posts, ideas, approvals, comments, analytics, media, and Slack boosts."
+description: "Reference of every tool the Ordinal MCP server exposes for posts, ideas, approvals, comments, analytics, media, Slack boosts, and Amplify."
 keywords: ["Ordinal MCP tools", "MCP tools reference", "Ordinal MCP server tools"]
 ---
 
@@ -23,12 +23,18 @@ Once connected, your assistant has access to the tools below. You don't need to 
 | Tool | What it does |
 |------|---------|
 | `ordinal_search_content` | Searches posts or ideas — by status, labels, campaigns, or date — and can fetch a single post with its comments. |
-| `ordinal_create_post` | Creates a post with LinkedIn, X, Instagram, TikTok, and/or YouTube Shorts content. |
+| `ordinal_create_post` | Creates a post with LinkedIn, X, Instagram, TikTok, and/or YouTube Shorts content, optionally with a workflow status. |
 | `ordinal_create_idea` | Creates an idea (a draft without a scheduled publish time). |
-| `ordinal_manage_post` | Updates, archives, or unarchives a post. |
+| `ordinal_manage_post` | Updates, archives, or unarchives a post, including changing its workflow status. |
 | `ordinal_manage_idea` | Updates, archives, unarchives, or adds an idea to the calendar. |
 | `ordinal_list_post_versions` | Lists saved [versions](/posts/version-history) of a post's draft per channel, with the author and timestamp of each. |
 | `ordinal_get_post_version_content` | Reads the copy of a single saved version, so the assistant can diff two revisions or study how a draft evolved. |
+
+### Post statuses
+
+`ordinal_create_post` and `ordinal_manage_post` accept a `status` of `Tentative`, `ToDo`, `InProgress`, `ForReview`, or `Scheduled`, so the assistant can move posts through the same [workflow statuses](/posts/statuses) you use in the app. New posts default to `ToDo`. `Posted` can't be set through MCP because Ordinal applies it only after a post publishes.
+
+For example, ask "move my draft about the pricing launch to For Review" and the assistant calls `ordinal_manage_post` with `status: "ForReview"`.
 
 ## Media
 
@@ -69,6 +75,19 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 | `ordinal_list_slack_boosts` | Lists Slack broadcasts attached to a post. |
 | `ordinal_manage_slack_boosts` | Creates, updates, or deletes Slack boosts. |
 
+## Amplify
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_list_amplify_links` | Lists published Amplify campaign links (live or completed) with their titles, dates, and short link URLs. Drafts are omitted. |
+| `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. |
+
+Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
+
+`ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link.
+
+For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+
 ## Labels
 
 | Tool | What it does |
@@ -92,5 +111,6 @@ You don't call these tools by name — you describe what you want. Examples:
 - "Show me which posts are waiting on approval from Sarah."
 - "Give me the last 30 days of follower growth on LinkedIn."
 - "Show me how the LinkedIn copy on this post changed between the last two saves."
+- "List everyone who commented through our launch Amplify link, with links to their comments."
 
 The assistant picks the tools, fills in the arguments, and shows you the result.
