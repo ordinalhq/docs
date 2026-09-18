@@ -52,7 +52,7 @@ Click on the paintbrush icon next uploaded image to open the built-in image edit
 </Tabs>
 
 <Note>
-  Ordinal automatically compresses oversized files, converts unsupported formats (like WebP or AVIF) to JPEG, and resizes TikTok photos wider than 1080px to meet platform limits. A toast confirms when a file has been changed before upload.
+  Ordinal automatically compresses oversized files, converts unsupported formats (like WebP, AVIF, HEIC, or HEIF) to JPEG, and resizes TikTok photos wider than 1080px to meet platform limits. A toast confirms when a file has been changed before upload.
 </Note>
 
 ## Reordering assets
@@ -88,10 +88,13 @@ To remove media from a post:
     | GIF      | ✅ Static and animated |
     | WEBP     | ✅ All platforms       |
     | AVIF     | ✅ All platforms       |
+    | HEIC/HEIF | ✅ Converted to JPEG on upload |
 
     **Limits:** 10MB per image (Ordinal auto-compresses larger files)
 
     WebP and AVIF are accepted on Instagram, LinkedIn, Twitter/X, Facebook, Threads, TikTok, Discord, and Slack. If the destination platform doesn't accept the format natively, Ordinal converts the image to JPEG before upload and shows a toast explaining the change.
+
+    HEIC and HEIF files (typically from iPhone cameras) are converted to JPEG in your browser before upload. A toast confirms the conversion. If a file is corrupt and can't be converted, Ordinal shows an error toast and doesn't attach it.
   </Tab>
   <Tab title="Videos">
     | Format | Support         |
@@ -172,7 +175,7 @@ Each platform has unique media capabilities - see your channel's page for limits
 <AccordionGroup>
   <Accordion title="Upload failing">
     - **Check file size**  -  Images under 10MB, videos under 350MB
-    - **Check format**  -  JPG, PNG, GIF, WebP, or AVIF for images; MP4, MOV for video
+    - **Check format**  -  JPG, PNG, GIF, WebP, AVIF, or HEIC/HEIF for images; MP4, MOV for video
     - **Try refreshing**  -  Connection issues can interrupt uploads
   </Accordion>
   <Accordion title="Video not playing in preview">
