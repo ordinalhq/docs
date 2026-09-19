@@ -1,6 +1,6 @@
 ---
 title: "Tools"
-description: "Reference of every tool the Ordinal MCP server exposes for posts, ideas, approvals, comments, analytics, media, Slack boosts, and Amplify."
+description: "Reference of every tool the Ordinal MCP server exposes for posts, ideas, approvals, comments, analytics, media, Slack boosts, Amplify, and LinkedIn monitoring."
 keywords: ["Ordinal MCP tools", "MCP tools reference", "Ordinal MCP server tools"]
 ---
 
@@ -88,6 +88,24 @@ Both tools are read-only and require Amplify to be enabled on your workspace. Li
 
 For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
 
+## LinkedIn Monitoring
+
+| Tool | What it does |
+|------|---------|
+| `ordinal_list_linkedin_monitoring_posts` | Lists inbox posts with unresolved comment counts, or fetches a single post's metadata by ID. |
+| `ordinal_list_linkedin_monitoring_comments` | Returns paginated root comments (with their replies) on an inbox post. |
+| `ordinal_manage_linkedin_monitoring_comments` | Replies to a comment, reacts to it on LinkedIn, or resolves and unresolves it in the inbox. |
+| `ordinal_list_linkedin_monitoring_mentions` | Lists inbound @mentions of your connected pages, or fetches a single mention by ID. |
+| `ordinal_manage_linkedin_monitoring_mentions` | Comments on a mentioning post, reacts to it, or resolves and unresolves the mention. |
+
+These tools appear only for workspaces where LinkedIn Monitoring is enabled, and they act on the same inbox you see in the app. Comments are paginated 10 roots per page by default (max 50); posts and mentions are 20 per page (max 50). Replies and reactions are posted from a scheduling profile — get the `profileId` from `ordinal_get_workspace_context`.
+
+Replying to a comment automatically resolves that comment. Replying to a reply still posts on the thread root. Commenting on a mention does *not* auto-resolve it — resolve separately when you're done. LinkedIn reactions accept `Like`, `Celebrate`, `Love`, `Insightful`, `Support`, or `Funny`; sending the same reaction again removes it.
+
+For example, ask "triage today's LinkedIn comments — reply to anything from a customer and resolve the rest" and the assistant lists unresolved posts, pages through comments, replies where needed, and marks the others resolved.
+
+`ordinal_get_linkedin_mention` under [Platform utilities](#platform-utilities) is different: it looks up a LinkedIn user or company URN to mention in post copy, not an inbox notification.
+
 ## Labels
 
 | Tool | What it does |
@@ -112,5 +130,6 @@ You don't call these tools by name — you describe what you want. Examples:
 - "Give me the last 30 days of follower growth on LinkedIn."
 - "Show me how the LinkedIn copy on this post changed between the last two saves."
 - "List everyone who commented through our launch Amplify link, with links to their comments."
+- "Reply to any unresolved LinkedIn comments on our launch post, then resolve the rest."
 
 The assistant picks the tools, fills in the arguments, and shows you the result.
