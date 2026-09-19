@@ -173,7 +173,7 @@
       "get": {
         "operationId": "analytics-linkedin-posts",
         "summary": "LinkedIn post analytics",
-        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign. For personal profiles, the response also includes saveCount (times the post was saved) and sendCount (times the post was sent via DM). Posts with type `Video` also include videoViewCount, videoViewerCount, and videoWatchTimeSeconds; these fields are null for non-video posts and for video posts that have not yet been synced.",
+        "description": "Retrieve post analytics for a LinkedIn profile within a date range. When a post was published from Ordinal, the response includes an ordinalPost object with the linked post's id, title, labels, and campaign.\n\n**Click metrics by profile type:**\n- Personal (member) profiles return `linkClickCount`, `profileViewFromContentCount`, `premiumCtaClickCount`, and `followerGainedFromContentCount`. `clickCount` is always null.\n- Organization (company page) profiles return `clickCount` for total post clicks. The four member-only fields above are always null.\n\nPersonal profiles also include `saveCount` (times the post was saved) and `sendCount` (times the post was sent via DM). Posts with type `Video` also include `videoViewCount`, `videoViewerCount`, and `videoWatchTimeSeconds`; these fields are null for non-video posts and for video posts that have not yet been synced.",
         "tags": [
           "Analytics"
         ],
@@ -229,6 +229,10 @@
                     "commentCount": 32,
                     "shareCount": 18,
                     "clickCount": 156,
+                    "linkClickCount": null,
+                    "profileViewFromContentCount": null,
+                    "premiumCtaClickCount": null,
+                    "followerGainedFromContentCount": null,
                     "saveCount": 41,
                     "sendCount": 12,
                     "impressionCount": 12500,
@@ -252,7 +256,11 @@
                     "likeCount": 892,
                     "commentCount": 67,
                     "shareCount": 134,
-                    "clickCount": 423,
+                    "clickCount": null,
+                    "linkClickCount": 312,
+                    "profileViewFromContentCount": 87,
+                    "premiumCtaClickCount": 5,
+                    "followerGainedFromContentCount": 24,
                     "saveCount": 156,
                     "sendCount": 48,
                     "impressionCount": 28900,
@@ -8173,7 +8181,28 @@
           },
           "clickCount": {
             "type": "integer",
-            "nullable": true
+            "nullable": true,
+            "description": "Total post clicks. Available for organization (company page) profiles only; null for personal profiles."
+          },
+          "linkClickCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Clicks on links embedded in the post. Available for personal LinkedIn profiles only; null for organization profiles."
+          },
+          "profileViewFromContentCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Profile views driven by this post. Available for personal LinkedIn profiles only; null for organization profiles."
+          },
+          "premiumCtaClickCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Clicks on LinkedIn Premium CTAs (for example, Book an appointment) attached to the post. Available for personal LinkedIn profiles only; null for organization profiles."
+          },
+          "followerGainedFromContentCount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "New followers attributed to this post. Available for personal LinkedIn profiles only; null for organization profiles."
           },
           "saveCount": {
             "type": "integer",
