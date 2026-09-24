@@ -43,7 +43,8 @@
             "pages": [
               "getting-started/overview",
               "getting-started/quickstart",
-              "getting-started/concepts"
+              "getting-started/concepts",
+              "getting-started/command-palette"
             ]
           },
           {
