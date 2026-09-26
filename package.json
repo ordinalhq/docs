@@ -1,0 +1,14 @@
+{
+  "name": "ordinal-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "blume dev",
+    "build": "blume build",
+    "start": "blume preview",
+    "validate": "blume validate"
+  },
+  "dependencies": {
+    "blume": "^2.0.3"
+  }
+}

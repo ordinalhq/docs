@@ -1,8 +1,8 @@
 ---
 title: "Ordinal API"
-sidebarTitle: "Introduction"
 description: "Programmatically manage your Ordinal workspace with the REST API"
-keywords: ["Ordinal API", "Ordinal REST API", "social media API", "Ordinal API docs"]
+sidebar:
+  label: "Introduction"
 ---
 
 ## Overview
@@ -17,11 +17,11 @@ The Ordinal API allows you to programmatically create and manage posts, profiles
 
 ## Quick Start
 
-<Info>
-  **Pro Plan Required**
-  
-  The Ordinal API is available on the Pro plan or higher. [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to access API features.
-</Info>
+:::info
+**Pro Plan Required**
+
+The Ordinal API is available on the Pro plan or higher. [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to access API features.
+:::
 
 <Steps>
   <Step title="Generate an API Key">
@@ -30,7 +30,7 @@ The Ordinal API allows you to programmatically create and manage posts, profiles
   <Step title="Make Your First Request">
     Use the API key as a Bearer token to authenticate your requests:
 
-    We recommend testing the [Get Workspace](/api-reference/workspaces/get-workspace) endpoint to confirm that your API key is working.
+    We recommend testing the [Get Workspace](/api/workspaces/workspace-get) endpoint to confirm that your API key is working.
 
     ```bash
     curl -X GET "https://app.tryordinal.com/api/v1/workspace" \
@@ -57,40 +57,40 @@ The Ordinal API allows you to programmatically create and manage posts, profiles
 ## Available Resources
 
 <CardGroup cols={2}>
-  <Card title="Posts" icon="file-lines" href="/api-reference/posts/list-posts">
+  <Card title="Posts" icon="file-text" href="/api/posts/posts-list">
     Create, list, retrieve, archive, and unarchive posts in your workspace
   </Card>
-  <Card title="File Uploads" icon="cloud-arrow-up" href="/api-reference/file-uploads/upload-a-file-from-a-url">
+  <Card title="File Uploads" icon="cloud-upload" href="/api/file-uploads/uploads-create">
     Upload files from URLs to attach to posts
   </Card>
-  <Card title="Profiles" icon="circle-user" href="/api-reference/profiles/list-scheduling-profiles">
+  <Card title="Profiles" icon="circle-user" href="/api/profiles/profiles-list-scheduling">
     List scheduling and engagement profiles connected to your workspace
   </Card>
-  <Card title="Approvals" icon="circle-check" href="/api-reference/approvals/create-approval-requests">
+  <Card title="Approvals" icon="circle-check" href="/api/approvals/approvals-create">
     Manage approval workflows for posts
   </Card>
-  <Card title="Labels" icon="tag" href="/api-reference/labels/list-all-labels">
+  <Card title="Labels" icon="tag" href="/api/labels/labels-list">
     Create and manage labels for organizing posts
   </Card>
-  <Card title="Subscribers" icon="bell" href="/api-reference/subscribers/list-post-subscribers">
+  <Card title="Subscribers" icon="bell" href="/api/subscribers/subscribers-list">
     Manage post subscribers for notifications
   </Card>
-  <Card title="Comments" icon="comment" href="/api-reference/comments/list-post-comments">
+  <Card title="Comments" icon="message-circle" href="/api/comments/comments-list">
     List and create comments on posts with @mention support
   </Card>
-  <Card title="Inline Comments" icon="highlighter" href="/api-reference/inline-comments/list-inline-comments-on-a-post">
+  <Card title="Inline Comments" icon="highlighter" href="/api/inline-comments/inline-comments-list">
     Retrieve text-anchored comments on post content
   </Card>
-  <Card title="Invites" icon="user-plus" href="/api-reference/invites/list-pending-invites">
+  <Card title="Invites" icon="user-plus" href="/api/invites/invites-list">
     Invite users to your workspace via email
   </Card>
-  <Card title="Analytics" icon="chart-line" href="/api-reference/analytics/get-cpm-values">
+  <Card title="Analytics" icon="chart-line" href="/api/analytics/analytics-cpm-get">
     Retrieve post and follower analytics across platforms
   </Card>
-  <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks/list-webhooks">
+  <Card title="Webhooks" icon="webhook" href="/api/webhooks/webhooks-list">
     Create, list, get, update, and delete webhooks to receive real-time event notifications
   </Card>
-  <Card title="Slack Boosts" icon="slack" href="/api-reference/slack-boosts/create-slack-boost">
+  <Card title="Slack Boosts" icon="slack" href="/api/slack-boosts/slack-boosts-create">
     List Slack channels, then create, list, get, update, and delete Slack Boosts for posts
   </Card>
 </CardGroup>
@@ -114,7 +114,7 @@ If you need a higher rate limit, please reach out to support.
   <Card title="Authentication" icon="key" href="/api/authentication">
     Learn how to authenticate your API requests
   </Card>
-  <Card title="Error Handling" icon="circle-exclamation" href="/api/errors">
+  <Card title="Error Handling" icon="circle-alert" href="/api/errors">
     Understand API error responses
   </Card>
 </CardGroup>

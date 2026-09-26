@@ -1,0 +1,52 @@
+---
+title: "social_profile.reconnect_needed"
+description: "Fired when a social profile needs to be reconnected (e.g. token expired, permissions revoked)"
+sidebar:
+  label: "social_profile.reconnect_needed"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. social_profile.reconnect_needed)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.profile": { type: "object", required: true, description: "The profile that needs reconnecting." },
+    "data.profile.id": { type: "string", required: true, description: "Profile ID." },
+    "data.profile.name": { type: "string | null", description: "Profile display name." },
+    "data.profile.detail": { type: "string | null", description: "Profile vanity name or handle." },
+    "data.profile.channel": { type: "string", required: true, description: "Social channel (e.g. LinkedIn, Twitter)." },
+    "data.profile.profileImageUrl": { type: "string | null", description: "URL of the profile image." },
+    "data.profile.type": { type: "string", description: "Optional. LinkedIn account type (e.g. Company, Personal)." },
+    "data.profile.url": { type: "string", description: "Optional. Profile URL on the social platform." },
+    "data.profile.workspace": { type: "object", required: true, description: "Workspace the profile belongs to. Contains id, slug, and name." },
+    "data.profile.detectedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the reconnect need was detected." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "social_profile.reconnect_needed",
+  "data": {
+    "profile": {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Acme Inc",
+      "detail": "acme-inc",
+      "channel": "LinkedIn",
+      "profileImageUrl": "https://cdn.tryordinal.com/profiles/acme.png",
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "detectedAt": "2025-02-26T09:00:00.000Z"
+    }
+  },
+  "createdAt": "2025-02-26T09:00:00.000Z"
+}
+```
+
+</CodeGroup>

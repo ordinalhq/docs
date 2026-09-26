@@ -1,8 +1,7 @@
 ---
 title: "Instagram"
-description: "Schedule Instagram Feed posts, Reels, and Stories from a Business or Creator account. Add tags, collaborators, and first comments."
-keywords: ["Instagram scheduler", "Ordinal Instagram", "schedule Reels", "Instagram Stories scheduler"]
 icon: "instagram"
+description: "Schedule Instagram Feed posts, Reels, and Stories from a Business or Creator account. Add tags, collaborators, and first comments."
 ---
 
 Instagram rewards polished, visual content - and consistency. In Ordinal, you can schedule Feed Posts, Reels, and Stories, plus use Instagram-specific features like photo tagging, collaborators, and first comments.
@@ -13,20 +12,20 @@ Instagram rewards polished, visual content - and consistency. In Ordinal, you ca
 
 Instagram requires a **Business or Creator account** (not personal) and connects through Facebook.
 
-<Info>
-  You can easily switch your account to a Business or Creator account by following the [instructions here](https://help.instagram.com/502981923235522).
-</Info>
+:::info
+You can easily switch your account to a Business or Creator account by following the [instructions here](https://help.instagram.com/502981923235522).
+:::
 
 <CardGroup cols={2}>
   <Card title="Connecting Instagram" icon="plug" href="#connecting-instagram">
     Connect your Business or Creator account
   </Card>
 
-  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-an-instagram-post">
+  <Card title="Drafting a Post" icon="square-pen" href="#drafting-an-instagram-post">
     Formatting, tagging, and media
   </Card>
 
-  <Card title="Post Types" icon="grid-2" href="#post-types">
+  <Card title="Post Types" icon="layout-grid" href="#post-types">
     Feed, Reels, and Stories
   </Card>
 
@@ -39,9 +38,9 @@ Instagram requires a **Business or Creator account** (not personal) and connects
 
 Go to [**Settings → Profiles → Scheduling**](https://app.tryordinal.com/settings/profiles/scheduling/instagram), click "Connect Instagram", and sign in with Instagram to connect your account.
 
-<Info>
-  Make sure you are logged into the correct Instagram account you wish to connect before going through the integration flow by visiting [instagram.com](http://instagram.com) in your browser. You can always click "More" -\> "Switch Accounts" on Instagram to login to the correct account.
-</Info>
+:::info
+Make sure you are logged into the correct Instagram account you wish to connect before going through the integration flow by visiting [instagram.com](http://instagram.com) in your browser. You can always click "More" -\> "Switch Accounts" on Instagram to login to the correct account.
+:::
 
 ## Drafting an Instagram Post
 
@@ -85,9 +84,9 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 3. Click anywhere on the image where you want the tag to appear
 4. Enter the Instagram handle
 
-<Note>
-  Photo tagging is only available for images in Feed posts. Videos in Feed posts and all Reels content use text-based tagging instead.
-</Note>
+:::note
+Photo tagging is only available for images in Feed posts. Videos in Feed posts and all Reels content use text-based tagging instead.
+:::
 
 ### Instagram-Specific Features
 
@@ -95,12 +94,12 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 
 **Collaborators**: Invite up to **3 other Instagram accounts** to co-author your post. When published, collaborators receive a DM to accept the invitation, and the post appears on both profiles.
 
-<Warning>
-  Tagging as Collaborator only works if each collaborator's Instagram profile meets the following requirements:
+:::warning
+Tagging as Collaborator only works if each collaborator's Instagram profile meets the following requirements:
 
-  - **Profile visibility: Set to Public**
-  - **Tags and Mentions**: Both set to **Allow from everyone** (found in Instagram [Settings → Privacy → Tags & Mentions](https://www.instagram.com/accounts/settings/v2/tags_and_mentions/))
-</Warning>
+- **Profile visibility: Set to Public**
+- **Tags and Mentions**: Both set to **Allow from everyone** (found in Instagram [Settings → Privacy → Tags & Mentions](https://www.instagram.com/accounts/settings/v2/tags_and_mentions/))
+:::
 
 **Cover Photo** (Reels only): Pick any frame from your video or upload a custom thumbnail for your Reel. See [Cover photos for videos](/posts/media#cover-photos-for-videos) for details.
 
@@ -114,8 +113,8 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 
 ## Post Types
 
-<Tabs>
-  <Tab title="Feed Posts">
+<Tabs inline>
+  <Tab title="Feed Posts" id="feed-posts">
     Feed posts appear in your profile grid and followers' feeds. They support up to 10 images/videos.
 
     | Spec | Limit |
@@ -136,7 +135,7 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
 
     Ordinal automatically compresses videos larger than 125MB or wider than 1920px to meet Instagram's requirements.
   </Tab>
-  <Tab title="Reels">
+  <Tab title="Reels" id="reels">
     Reels are short-form vertical videos that appear in the Reels tab and can optionally show in your grid.
 
     | Spec | Limit |
@@ -152,11 +151,11 @@ For planning your profile aesthetic, switch to **Grid Preview** to see how your 
     - **Share to Feed**: Toggle whether the Reel appears in your profile grid.
     - **Trial Reel**: Publish to non-followers first, then graduate manually or automatically based on performance.
 
-    <Tip>
-      Reels consistently get higher organic reach than static posts. If growing your audience is a priority, prioritize Reels.
-    </Tip>
+    :::tip
+    Reels consistently get higher organic reach than static posts. If growing your audience is a priority, prioritize Reels.
+    :::
   </Tab>
-  <Tab title="Stories">
+  <Tab title="Stories" id="stories">
     Stories are ephemeral content that disappears after 24 hours.
 
     | Spec | Limit |
@@ -193,9 +192,9 @@ Make it easy to add a **first comment** after your post goes live. This is the o
 | --- | --- |
 | **First Comment** | Make it easy to add a comment immediately after posting (great for hashtags or CTAs) |
 
-<Tip>
-  Many creators put their hashtags in the first comment to keep captions cleaner. It doesn't affect discoverability.
-</Tip>
+:::tip
+Many creators put their hashtags in the first comment to keep captions cleaner. It doesn't affect discoverability.
+:::
 
 <Card title="Team Engagements" icon="thumbs-up" href="/posts/team-engagements">
   Full guide to setting up timing, best practices, and troubleshooting.
@@ -207,7 +206,7 @@ View post performance in [**Analytics → Instagram**](https://app.tryordinal.co
 
 Analytics sync automatically each day. You can also manually refresh stats using the **Refresh Stats** button (once per hour) to see the latest performance data.
 
-<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+<Card title="Analytics overview" icon="chart-no-axes-combined" href="/analytics/overview">
   Learn more about tracking performance across all your connected profiles.
 </Card>
 
@@ -218,7 +217,7 @@ Analytics sync automatically each day. You can also manually refresh stats using
     Shares authentication with Instagram.
   </Card>
 
-  <Card title="Threads" icon="threads" href="/social-profiles/threads">
+  <Card title="Threads" icon="/icons/threads.svg" href="/social-profiles/threads">
     Also uses Meta authentication.
   </Card>
 </CardGroup>

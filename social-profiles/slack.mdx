@@ -1,8 +1,7 @@
 ---
 title: "Slack"
-description: "Schedule announcements and updates to Slack channels alongside your other social content."
-keywords: ["Slack scheduler", "Ordinal Slack", "schedule Slack messages", "Slack boost"]
 icon: "slack"
+description: "Schedule announcements and updates to Slack channels alongside your other social content."
 ---
 
 Slack scheduling keeps your team in the loop without the manual work. Schedule announcements, content alerts, or recurring updates to any channel - written and timed alongside the rest of your content calendar.
@@ -17,7 +16,7 @@ This page covers **scheduling messages to Slack channels**. Ordinal also offers 
   <Card title="Connecting Slack" icon="plug" href="#connecting-slack">
     Connect your workspace and channels
   </Card>
-  <Card title="Drafting a Message" icon="pen-to-square" href="#drafting-a-slack-message">
+  <Card title="Drafting a Message" icon="square-pen" href="#drafting-a-slack-message">
     Formatting, mentions, and attachments
   </Card>
   <Card title="Attachments" icon="image" href="#attachments">
@@ -38,9 +37,9 @@ Go to [**Settings → Profiles → Scheduling → Slack**](https://app.tryordina
 | Permissions | Post messages to selected channels |
 | Sender      | Your Slack profile (not Ordinal)   |
 
-<Tip>
-  The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel first.
-</Tip>
+:::tip
+The Ordinal app must be invited to private channels. Type `/invite @Ordinal` in the channel first.
+:::
 
 ## Drafting a Slack Message
 
@@ -79,9 +78,9 @@ Tag users, channels, and broadcast to everyone:
 | `<@USER_ID>`    | Mentions a specific user               |
 | `<#CHANNEL_ID>` | Links to another channel               |
 
-<Note>
-  User and channel mentions require Slack IDs (not display names). You can find these in Slack by right-clicking a user or channel and copying the link.
-</Note>
+:::note
+User and channel mentions require Slack IDs (not display names). You can find these in Slack by right-clicking a user or channel and copying the link.
+:::
 
 <Card title="Drafting Posts" icon="keyboard" href="/posts/drafting-posts">
   Full guide to formatting, slash commands, and keyboard shortcuts.
@@ -100,14 +99,14 @@ Drag and drop files into the editor, paste from clipboard, or use the attachment
 
 ## FAQ
 
-<AccordionGroup>
-  <Accordion title="Can't connect">
+<Accordion>
+  <AccordionItem title="Can't connect">
     You may need workspace admin permission to add apps. Check with your Slack admin.
-  </Accordion>
-  <Accordion title="Messages not posting">
+  </AccordionItem>
+  <AccordionItem title="Messages not posting">
     Verify the channel still exists and Ordinal hasn't been removed from your workspace.
-  </Accordion>
-</AccordionGroup>
+  </AccordionItem>
+</Accordion>
 
 ## Use Cases
 
@@ -122,7 +121,7 @@ Ordinal offers additional Slack integrations beyond scheduling:
   <Card title="Notifications" icon="bell" href="/collaboration/notifications">
     Get Slack alerts when posts publish, fail, or need approval.
   </Card>
-  <Card title="Slack Boost" icon="users-medical" href="/posts/slack-boost">
+  <Card title="Slack Boost" icon="user-round-plus" href="/posts/slack-boost">
     Automatically share published social posts with your team for engagement.
   </Card>
 </CardGroup>
@@ -130,7 +129,7 @@ Ordinal offers additional Slack integrations beyond scheduling:
 ## Learn More
 
 <CardGroup cols={2}>
-  <Card title="Discord" icon="discord" href="/social-profiles/discord">
+  <Card title="Discord" icon="/icons/discord.svg" href="/social-profiles/discord">
     Similar use case with webhook-based connection.
   </Card>
   <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">

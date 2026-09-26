@@ -1,8 +1,7 @@
 ---
 title: "Facebook"
-description: "Schedule Facebook Page posts and Reels. Personal profiles aren't supported (Facebook API restriction)."
-keywords: ["Facebook scheduler", "Ordinal Facebook", "schedule Facebook posts", "Facebook Page scheduling"]
 icon: "facebook"
+description: "Schedule Facebook Page posts and Reels. Personal profiles aren't supported (Facebook API restriction)."
 ---
 
 Facebook Pages are still one of the best ways to reach an established audience. In Ordinal, you can schedule feed posts, publish Reels, and manage multiple pages from one place.
@@ -13,21 +12,21 @@ Facebook Pages are still one of the best ways to reach an established audience. 
 
 Facebook Pages represent businesses, brands, organizations, or public figures. When you connect a page, posts appear from the page (not your personal account), and you get access to page-level analytics.
 
-<Warning>
-  Personal profiles can't be connected due to Facebook API restrictions. This applies to all third-party scheduling tools, not just Ordinal.
-</Warning>
+:::warning
+Personal profiles can't be connected due to Facebook API restrictions. This applies to all third-party scheduling tools, not just Ordinal.
+:::
 
 <CardGroup cols={2}>
   <Card title="Connecting Facebook" icon="plug" href="#connecting-facebook">
     Connect your Facebook Pages
   </Card>
-  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-a-facebook-post">
+  <Card title="Drafting a Post" icon="square-pen" href="#drafting-a-facebook-post">
     Formatting, mentions, and media
   </Card>
-  <Card title="Post Types" icon="photo-film" href="#post-types">
+  <Card title="Post Types" icon="images" href="#post-types">
     Feed posts and Reels
   </Card>
-  <Card title="Team Engagements" icon="comment" href="#team-engagements">
+  <Card title="Team Engagements" icon="message-circle" href="#team-engagements">
     Add a first comment from your team
   </Card>
 </CardGroup>
@@ -93,8 +92,8 @@ Mentions become clickable links when published and may notify the tagged Page.
 
 Use the **Feed / Reel** dropdown at the top of the editor to switch between post types.
 
-<Tabs>
-  <Tab title="Feed Posts">
+<Tabs inline>
+  <Tab title="Feed Posts" id="feed-posts">
     Standard posts that appear in your Page's feed. You can include text, images, or video.
 
     **Images:**
@@ -113,11 +112,11 @@ Use the **Feed / Reel** dropdown at the top of the editor to switch between post
     | Duration | Up to 10 minutes |
     | Per post | 1 video only     |
 
-    <Warning>
-      You cannot mix images and videos in the same post. Choose one media type per post.
-    </Warning>
+    :::warning
+    You cannot mix images and videos in the same post. Choose one media type per post.
+    :::
   </Tab>
-  <Tab title="Reels">
+  <Tab title="Reels" id="reels">
     Short-form vertical videos that get higher organic reach than static posts.
 
     | Spec       | Limit                    |
@@ -129,9 +128,9 @@ Use the **Feed / Reel** dropdown at the top of the editor to switch between post
 
     **Cover Photo**: Pick a frame from the video or upload a custom image to use as the thumbnail for your Reel. See [Cover photos for videos](/posts/media#cover-photos-for-videos) for details.
 
-    <Tip>
-      Reels currently get higher organic reach than static posts on Facebook. Use them for timely, engaging content.
-    </Tip>
+    :::tip
+    Reels currently get higher organic reach than static posts on Facebook. Use them for timely, engaging content.
+    :::
   </Tab>
 </Tabs>
 
@@ -151,13 +150,13 @@ Make it easy to add a first comment to your posts after they publish - great for
 
 Configure timing from **immediately** after posting up to **24 hours** later.
 
-<Card title="Team Engagements" icon="comment" href="/posts/team-engagements">
+<Card title="Team Engagements" icon="message-circle" href="/posts/team-engagements">
   Full guide to setting up timing and best practices.
 </Card>
 
-<Note>
-  Team comments require additional Facebook permissions. If you see a permissions banner, reconnect your Facebook Page in **Settings → Profiles** to grant the required access.
-</Note>
+:::note
+Team comments require additional Facebook permissions. If you see a permissions banner, reconnect your Facebook Page in **Settings → Profiles** to grant the required access.
+:::
 
 ## Analytics
 
@@ -175,7 +174,7 @@ View Page performance in [**Analytics → Facebook**](https://app.tryordinal.com
 
 Analytics sync automatically each day. You can also manually refresh stats using the **Refresh Stats** button (once per hour) to see the latest performance data.
 
-<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+<Card title="Analytics overview" icon="chart-no-axes-combined" href="/analytics/overview">
   Learn more about tracking performance across all your connected profiles.
 </Card>
 
@@ -185,7 +184,7 @@ Analytics sync automatically each day. You can also manually refresh stats using
   <Card title="Instagram" icon="instagram" href="/social-profiles/instagram">
     Shares Meta authentication with Facebook.
   </Card>
-  <Card title="Threads" icon="threads" href="/social-profiles/threads">
+  <Card title="Threads" icon="/icons/threads.svg" href="/social-profiles/threads">
     Another Meta platform for text-based posts.
   </Card>
 </CardGroup>

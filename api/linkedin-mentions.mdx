@@ -1,7 +1,6 @@
 ---
 title: "LinkedIn Mentions"
 description: "How to tag people and companies in LinkedIn posts and comments"
-keywords: ["LinkedIn mentions API", "Ordinal LinkedIn tagging", "LinkedIn URN"]
 ---
 
 ## Overview
@@ -24,7 +23,7 @@ When the post is published, LinkedIn will convert these into clickable profile l
 
 ## Finding URNs
 
-Use the [Mention format by username](/api-reference/linkedin/mention-format-by-username) endpoint to look up URNs by LinkedIn username.
+Use the [Mention format by username](/api/linkedin/linkedin-get-mention) endpoint to look up URNs by LinkedIn username.
 
 The username is the part after `/in/` or `/company/` in a LinkedIn profile URL:
 - `linkedin.com/in/johndoe` → `johndoe`
@@ -58,7 +57,7 @@ The response includes pre-formatted `mentionFormat` strings that you can copy di
 
 ## Looking up profiles by URN
 
-If you already have a URN and need to resolve it to a username, name, or profile picture, use the [Get LinkedIn profile by URN](/api-reference/linkedin/get-linkedin-profile-by-urn) endpoint.
+If you already have a URN and need to resolve it to a username, name, or profile picture, use the [Get LinkedIn profile by URN](/api/linkedin/linkedin-get-profile) endpoint.
 
 ### Example request
 
@@ -128,10 +127,10 @@ The mention lookup endpoint provides both `mentionFormat` (full name) and `first
 
 ## Important Notes
 
-<Warning>
+:::warning
 The display name in the mention must be a prefix of the account's actual name. For example, if the account name is "John Doe", you can use `@[John Doe]` or `@[John]`, but not `@[Johnny]` or `@[J. Doe]`.
-</Warning>
+:::
 
-<Note>
+:::note
 Mentions are only supported on LinkedIn. For X (Twitter), use the standard `@username` format directly in your post copy.
-</Note>
+:::

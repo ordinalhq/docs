@@ -1,8 +1,7 @@
 ---
 title: "Discord"
+icon: "/icons/discord.svg"
 description: "Schedule announcements to Discord channels using channel webhooks. No Discord login required."
-keywords: ["Discord scheduler", "Ordinal Discord", "schedule Discord messages"]
-icon: "discord"
 ---
 
 Discord is where communities live - and scheduled announcements keep them engaged. Instead of connecting an account, you create **webhooks** in Discord and add them to Ordinal. Messages post to specific channels through those webhooks, perfect for product updates, event reminders, and recurring community content.
@@ -20,7 +19,7 @@ Webhooks are channel-specific URLs that accept incoming messages. You create the
   <Card title="Adding to Ordinal" icon="plug" href="#adding-the-webhook-to-ordinal">
     Connect your webhook to Ordinal
   </Card>
-  <Card title="Drafting a Message" icon="pen-to-square" href="#drafting-a-discord-message">
+  <Card title="Drafting a Message" icon="square-pen" href="#drafting-a-discord-message">
     Formatting, mentions, and attachments
   </Card>
   <Card title="Use Cases" icon="lightbulb" href="#use-cases">
@@ -53,9 +52,9 @@ This means:
 
 Keep this URL private - it's essentially a posting key for that channel.
 
-<Tip>
-  Name webhooks clearly (like "Product Updates" or "Social Alerts") so it's obvious what's posting. Use a custom avatar to help messages look intentional, not like spam.
-</Tip>
+:::tip
+Name webhooks clearly (like "Product Updates" or "Social Alerts") so it's obvious what's posting. Use a custom avatar to help messages look intentional, not like spam.
+:::
 
 ## Adding the Webhook to Ordinal
 
@@ -101,11 +100,11 @@ Tag users, roles, and broadcast to everyone:
 | `<@USER_ID>`  | Mentions a specific user               |
 | `<@&ROLE_ID>` | Mentions a specific role               |
 
-<Note>
-  User and role mentions require Discord IDs (not display names). You can find these by enabling Developer Mode in Discord settings, then right-clicking a user or role.
+:::note
+User and role mentions require Discord IDs (not display names). You can find these by enabling Developer Mode in Discord settings, then right-clicking a user or role.
 
-  You can read more from the official Discord docs [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID#h_01HRSTXPS5CRSRTWYCGPHZQ37H).
-</Note>
+You can read more from the official Discord docs [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID#h_01HRSTXPS5CRSRTWYCGPHZQ37H).
+:::
 
 <Card title="Drafting Posts" icon="keyboard" href="/posts/drafting-posts">
   Full guide to formatting, slash commands, and keyboard shortcuts.
@@ -125,20 +124,20 @@ Drag and drop files into the editor, paste from clipboard, or use the attachment
 
 ## FAQ
 
-<AccordionGroup>
-  <Accordion title="Webhook not working">
+<Accordion>
+  <AccordionItem title="Webhook not working">
     The webhook may have been deleted in Discord. Create a new one and update it in Ordinal.
-  </Accordion>
-  <Accordion title="Messages not appearing">
+  </AccordionItem>
+  <AccordionItem title="Messages not appearing">
     Verify you're checking the correct channel - each webhook posts to exactly one channel.
-  </Accordion>
-  <Accordion title="Duplicate attachment error">
+  </AccordionItem>
+  <AccordionItem title="Duplicate attachment error">
     Each attachment in a post must have a unique filename. Rename files before uploading if needed.
-  </Accordion>
-  <Accordion title="File too large">
+  </AccordionItem>
+  <AccordionItem title="File too large">
     Discord webhooks have a 10MB file size limit. Compress your files or use a link instead.
-  </Accordion>
-</AccordionGroup>
+  </AccordionItem>
+</Accordion>
 
 ## Use Cases
 

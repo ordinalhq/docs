@@ -1,8 +1,7 @@
 ---
 title: "LinkedIn"
-description: "Schedule posts to LinkedIn personal profiles and company pages. Set up team engagements and track post analytics."
-keywords: ["LinkedIn scheduler", "Ordinal LinkedIn", "schedule LinkedIn posts", "LinkedIn company page scheduling", "LinkedIn team engagements"]
 icon: "linkedin"
+description: "Schedule posts to LinkedIn personal profiles and company pages. Set up team engagements and track post analytics."
 ---
 
 LinkedIn is one of the most-used platforms in Ordinal. You can connect personal profiles (your own profile, execs, employees, etc.), or company pages to publish as your organization.
@@ -17,7 +16,7 @@ With Ordinal, you can connect and schedule to both LinkedIn **Personal Profiles*
   <Card title="Connecting LinkedIn" icon="plug" href="#connecting-linkedin">
     Connect personal profiles and company pages
   </Card>
-  <Card title="Drafting a Post" icon="pen-to-square" href="#drafting-a-linkedin-post">
+  <Card title="Drafting a Post" icon="square-pen" href="#drafting-a-linkedin-post">
     Formatting, tagging, attachments, and more
   </Card>
   <Card title="Team Engagements" icon="thumbs-up" href="#team-engagements">
@@ -36,9 +35,9 @@ There are two types of connections supported for LinkedIn: **scheduling** and **
 
 **For engagement-only**: Go to [**Settings → Profiles → Engagement**](https://app.tryordinal.com/settings/profiles/engagement/linkedin), click on "Connect LinkedIn", and sign in via LinkedIn.
 
-<Tip>
-  If you're a company admin, you'll see your company pages listed after authorization and you can choose which page to connect.
-</Tip>
+:::tip
+If you're a company admin, you'll see your company pages listed after authorization and you can choose which page to connect.
+:::
 
 ## Drafting a LinkedIn Post
 
@@ -47,7 +46,7 @@ There are two types of connections supported for LinkedIn: **scheduling** and **
 | Feature                           | Supported | Notes                                                 |
 | --------------------------------- | --------- | ----------------------------------------------------- |
 | Text posts                        | ✅         | Up to 3,000 characters                                |
-| [Images / GIFs](#images-%26-gifs) | ✅         | Up to 20 images and GIFs per post                     |
+| [Images / GIFs](#images-gifs) | ✅         | Up to 20 images and GIFs per post                     |
 | [Video](#videos)                  | ✅         | Up to 10 minutes                                      |
 | [PDF documents](#pdfs)            | ✅         | Creates a swipeable carousel                          |
 | [External links](#links)          | ✅         | Ability to customize link preview image and text      |
@@ -92,9 +91,9 @@ Tag people and companies in your LinkedIn posts to increase engagement and notif
 
 Ordinal searches LinkedIn by username and displays exact search matches and partial matches to accounts you've tagged before for quick access. For personal accounts, you can choose to display just the first name or the full name in the published post by simply deleting the last name.
 
-<Tip>
-  Mentions become clickable links when published and may notify the tagged account, encouraging them to engage with your post.
-</Tip>
+:::tip
+Mentions become clickable links when published and may notify the tagged account, encouraging them to engage with your post.
+:::
 
 ### Links
 
@@ -111,8 +110,8 @@ Link previews help your content stand out in the feed and give readers context b
 
 ### Post Types
 
-<Tabs>
-  <Tab title="Images & GIFs">
+<Tabs inline>
+  <Tab title="Images & GIFs" id="images-gifs">
     Upload images to create visual posts or carousels:
 
     | Spec       | Limit                             |
@@ -124,7 +123,7 @@ Link previews help your content stand out in the feed and give readers context b
 
     Multiple images automatically create a swipeable carousel. Ordinal compresses oversized images automatically.
   </Tab>
-  <Tab title="Videos">
+  <Tab title="Videos" id="videos">
     Upload video content directly to LinkedIn:
 
     | Spec     | Limit            |
@@ -136,7 +135,7 @@ Link previews help your content stand out in the feed and give readers context b
 
     **Cover Photo**: Pick a frame from your video or upload a custom cover photo, and add custom captions (.SRT file) for accessibility. See [Cover photos for videos](/posts/media#cover-photos-for-videos) for details.
   </Tab>
-  <Tab title="PDFs">
+  <Tab title="PDFs" id="pdfs">
     PDF documents create swipeable document carousels - one of LinkedIn's highest-performing content types:
 
     | Spec     | Limit           |
@@ -149,7 +148,7 @@ Link previews help your content stand out in the feed and give readers context b
 
     **Document title required**: LinkedIn PDF posts require a document title before scheduling. The title appears in the preview bar above the carousel and is the first thing viewers see. If you try to schedule without one, you'll see "Please set a PDF title before scheduling".
   </Tab>
-  <Tab title="Polls">
+  <Tab title="Polls" id="polls">
     Create polls to boost engagement and gather feedback:
 
     | Setting  | Limit                             |
@@ -160,7 +159,7 @@ Link previews help your content stand out in the feed and give readers context b
 
     Polls cannot be combined with images, videos, PDFs, or reposts in the same post.
   </Tab>
-  <Tab title="Reposts">
+  <Tab title="Reposts" id="reposts">
     Reshare any LinkedIn post as a quote repost:
 
     1. Paste a LinkedIn post URL into your post
@@ -179,9 +178,9 @@ Link previews help your content stand out in the feed and give readers context b
 
 ![LinkedIn Team Engagements](/images/linkedin-team-engagements.jpg)
 
-<Note>
-  Team engagements are available for Pro plan workspaces and above. Starter workspaces can only add team engagements from the same account as the post author.
-</Note>
+:::note
+Team engagements are available for Pro plan workspaces and above. Starter workspaces can only add team engagements from the same account as the post author.
+:::
 
 Make it easy for your team to coordinate likes, comments, and reposts from their connected accounts after your post publishes. LinkedIn supports three team engagement types:
 
@@ -203,14 +202,14 @@ View post performance in [**Analytics → LinkedIn**](https://app.tryordinal.com
 
 Analytics sync automatically each day. You can also manually refresh stats using the **Refresh Stats** button (once per hour) to see the latest performance data.
 
-<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+<Card title="Analytics overview" icon="chart-no-axes-combined" href="/analytics/overview">
   Learn more about tracking performance across all your connected profiles.
 </Card>
 
 ## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+  <Card title="Cross-posting" icon="repeat" href="/posts/cross-posting">
     Publish to multiple platforms at once.
   </Card>
   <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">

@@ -1,7 +1,6 @@
 ---
 title: "Error Handling"
 description: "Understanding and handling API error responses"
-keywords: ["Ordinal API errors", "API error codes", "Ordinal error handling"]
 ---
 
 ## Overview
@@ -51,7 +50,7 @@ For validation errors, additional field-level details are included:
 
 Returned when the request contains invalid parameters or fails validation.
 
-<Tabs>
+<Tabs inline>
   <Tab title="Validation Error">
     ```json
     {
@@ -111,7 +110,7 @@ Returned when authentication fails.
 
 Returned when authentication succeeds but the request is not allowed.
 
-<Tabs>
+<Tabs inline>
   <Tab title="Revoked Key">
     ```json
     {
@@ -203,8 +202,8 @@ Returned when you've exceeded the rate limit.
 
 ### Best Practices
 
-<AccordionGroup>
-  <Accordion title="Check HTTP Status Codes">
+<Accordion>
+  <AccordionItem title="Check HTTP Status Codes">
     Always check the HTTP status code before parsing the response body.
 
     ```javascript
@@ -215,9 +214,9 @@ Returned when you've exceeded the rate limit.
       throw new Error(`${error.code}: ${error.message}`);
     }
     ```
-  </Accordion>
+  </AccordionItem>
 
-  <Accordion title="Handle Validation Errors">
+  <AccordionItem title="Handle Validation Errors">
     For 400 errors, check the `data.errors` field for field-specific messages.
 
     ```javascript
@@ -227,9 +226,9 @@ Returned when you've exceeded the rate limit.
       }
     }
     ```
-  </Accordion>
+  </AccordionItem>
 
-  <Accordion title="Implement Retry Logic">
+  <AccordionItem title="Implement Retry Logic">
     For rate limits and server errors, implement retry with exponential backoff.
 
     ```javascript
@@ -248,9 +247,9 @@ Returned when you've exceeded the rate limit.
       throw new Error('Max retries exceeded');
     }
     ```
-  </Accordion>
+  </AccordionItem>
 
-  <Accordion title="Log Errors for Debugging">
+  <AccordionItem title="Log Errors for Debugging">
     Log error responses with context for easier debugging.
 
     ```javascript
@@ -265,8 +264,8 @@ Returned when you've exceeded the rate limit.
       });
     }
     ```
-  </Accordion>
-</AccordionGroup>
+  </AccordionItem>
+</Accordion>
 
 ### Example Error Handler
 

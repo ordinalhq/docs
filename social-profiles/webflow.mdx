@@ -1,7 +1,6 @@
 ---
 title: "Webflow"
 description: "Schedule blog posts and CMS items to a Webflow collection alongside your social posts."
-keywords: ["Webflow scheduler", "Ordinal Webflow", "Webflow CMS publishing", "schedule Webflow posts"]
 icon: "globe"
 ---
 
@@ -17,10 +16,10 @@ This integration works with **Webflow CMS collections** - typically your blog or
   <Card title="Connecting Webflow" icon="plug" href="#connecting-webflow">
     Link your site and CMS collection
   </Card>
-  <Card title="Writing Content" icon="pen-to-square" href="#writing-content">
+  <Card title="Writing Content" icon="square-pen" href="#writing-content">
     Rich text editor and blog formatting
   </Card>
-  <Card title="CMS Fields" icon="table-columns" href="#cms-fields">
+  <Card title="CMS Fields" icon="columns-3" href="#cms-fields">
     Custom fields, slugs, and images
   </Card>
   <Card title="Previewing" icon="eye" href="#previewing-your-post">
@@ -34,9 +33,9 @@ This integration works with **Webflow CMS collections** - typically your blog or
 | Permissions       | Editor or higher on the site                      |
 | What it publishes | CMS collection items (blog posts, articles)       |
 
-<Note>
-  This integration doesn't modify static pages, site design, or ecommerce products - only CMS collection items.
-</Note>
+:::note
+This integration doesn't modify static pages, site design, or ecommerce products - only CMS collection items.
+:::
 
 ## Connecting Webflow
 
@@ -101,19 +100,19 @@ Switch to the **CMS Fields** tab to populate your collection's custom fields. Or
 
 The slug determines your post's URL (e.g., `/blog/your-post-slug`). Ordinal auto-generates slugs from your title, but you can customize them. Click **Sync with Blog Title** to regenerate from the current title.
 
-<Warning>
-  Each slug must be unique within your collection. Duplicate slugs cause publish failures.
-</Warning>
+:::warning
+Each slug must be unique within your collection. Duplicate slugs cause publish failures.
+:::
 
 ### Refreshing fields
 
 If you update your Webflow collection schema (adding new fields, changing requirements), click the refresh link in the CMS Fields tab to pull the latest structure. This ensures Ordinal stays in sync with your Webflow setup.
 
-<Tip>
-  If you're not seeing the fields you expect, you may need to refresh the fields by clicking the refresh link in the CMS Fields tab.
+:::tip
+If you're not seeing the fields you expect, you may need to refresh the fields by clicking the refresh link in the CMS Fields tab.
 
-  This happens automatically when you create a new post to ensure you're always using the latest fields.
-</Tip>
+This happens automatically when you create a new post to ensure you're always using the latest fields.
+:::
 >
 
 ## Previewing Your Post
@@ -129,9 +128,9 @@ Use **Live Site** preview to see the final result with your site's styling. It w
 
 Use **Designer** preview if you want to view the content in Webflow's Designer without it being live for the public.
 
-<Note>
-  Preview posts are automatically removed after 3 minutes. You can also manually unpublish early by clicking **Unpublish Preview**.
-</Note>
+:::note
+Preview posts are automatically removed after 3 minutes. You can also manually unpublish early by clicking **Unpublish Preview**.
+:::
 
 ## Publishing
 
@@ -139,28 +138,28 @@ When you schedule a Webflow post, it'll be published at the scheduled time and w
 
 ## FAQ
 
-<AccordionGroup>
-  <Accordion title="Site not appearing">
+<Accordion>
+  <AccordionItem title="Site not appearing">
     Your Webflow site needs CMS access. Free sites without CMS aren't connectable.
-  </Accordion>
-  <Accordion title="Collection not syncing">
+  </AccordionItem>
+  <AccordionItem title="Collection not syncing">
     Verify your collection has the required fields and that API access is enabled in Webflow site settings.
-  </Accordion>
-  <Accordion title="Field mapping errors">
+  </AccordionItem>
+  <AccordionItem title="Field mapping errors">
     Ensure field types match - text to text, rich text to rich text. Mismatched types can cause silent failures.
-  </Accordion>
-  <Accordion title="Publishing failed">
+  </AccordionItem>
+  <AccordionItem title="Publishing failed">
     Check that required Webflow fields are populated, the slug is unique, and you haven't hit CMS item limits.
-  </Accordion>
-  <Accordion title="Slug already exists">
+  </AccordionItem>
+  <AccordionItem title="Slug already exists">
     Each post needs a unique slug. If you're republishing or have a naming conflict, change the slug in the CMS Fields tab.
-  </Accordion>
-</AccordionGroup>
+  </AccordionItem>
+</Accordion>
 
 ## Learn More
 
 <CardGroup cols={2}>
-  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+  <Card title="Cross-posting" icon="repeat" href="/posts/cross-posting">
     Publish to multiple platforms at once.
   </Card>
   <Card title="Approvals" icon="circle-check" href="/collaboration/approvals">
