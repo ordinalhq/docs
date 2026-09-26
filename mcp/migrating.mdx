@@ -1,22 +1,21 @@
 ---
 title: "Migrating from the old MCP"
 description: "How to migrate from the old API-key Ordinal MCP server to the new OAuth-based server at app.tryordinal.com/mcp."
-keywords: ["Ordinal MCP migration", "Ordinal MCP OAuth", "MCP API key migration"]
 ---
 
 ## Why migrate?
 
 The old MCP server at `https://app.tryordinal.com/api/mcp` used a workspace API key that you pasted into your assistant's config. It's been replaced by the new server at `https://app.tryordinal.com/mcp`, which signs you in with OAuth — no key-pasting, and you can reach every workspace you belong to from one connection.
 
-<Warning>
-  **Remove the old server first.** If you leave both servers installed, your assistant sees duplicate tool names (e.g. two versions of `create_post`) and may pick the wrong one or refuse to run either. Always delete the old entry before installing the new one.
-</Warning>
+:::warning
+**Remove the old server first.** If you leave both servers installed, your assistant sees duplicate tool names (e.g. two versions of `create_post`) and may pick the wrong one or refuse to run either. Always delete the old entry before installing the new one.
+:::
 
 ## Step 1 — Remove the old server
 
 Pick your client below.
 
-<Tabs>
+<Tabs inline>
   <Tab title="Claude">
     The old Ordinal server was installed as a **local MCP server** in Claude Desktop, configured via `claude_desktop_config.json`. Remove it like this:
 
@@ -115,9 +114,9 @@ Since the old server used a workspace API key, revoke it so it can't be used aga
   </Step>
 </Steps>
 
-<Info>
-  You can skip this step if the same API key is still used for something else (for example, the REST API). The old MCP server will stop accepting requests regardless.
-</Info>
+:::info
+You can skip this step if the same API key is still used for something else (for example, the REST API). The old MCP server will stop accepting requests regardless.
+:::
 
 ## Step 3 — Install the new server
 
@@ -125,14 +124,14 @@ Follow the [install guide](/mcp/install/overview) for your client — Claude, Cl
 
 ## After migrating
 
-<AccordionGroup>
-  <Accordion title="Tool names have changed">
+<Accordion>
+  <AccordionItem title="Tool names have changed">
     The new server's tools are named and organized differently. For example, the old server had separate `create_post` and `update_post` tools — the new server uses `ordinal_create_post` and `ordinal_manage_post`. See the full [tools reference](/mcp/tools).
-  </Accordion>
-  <Accordion title="You now pass workspaceSlug explicitly">
+  </AccordionItem>
+  <AccordionItem title="You now pass workspaceSlug explicitly">
     The old API key was tied to a single workspace. The new server signs you in as a user, so every tool call takes a `workspaceSlug` argument. Call `ordinal_get_workspace_context` with no arguments to list your workspaces and get the slug.
-  </Accordion>
-  <Accordion title="My assistant still shows the old tools">
+  </AccordionItem>
+  <AccordionItem title="My assistant still shows the old tools">
     You probably didn't fully restart the client, or the old entry is still in config. Double-check the config file, fully quit the app (not just close the window), and relaunch.
-  </Accordion>
-</AccordionGroup>
+  </AccordionItem>
+</Accordion>

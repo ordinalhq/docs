@@ -1,7 +1,6 @@
 ---
 title: "File Uploads"
 description: "Upload media to Ordinal from a public URL or a local file, then attach the returned assetId when creating posts via the API."
-keywords: ["Ordinal API file upload", "upload media Ordinal", "post media API", "local file upload"]
 ---
 
 ## Overview
@@ -11,7 +10,7 @@ The Ordinal API supports two ways to upload media:
 - **URL upload** — submit a publicly accessible URL and Ordinal downloads the file for you.
 - **Local file upload** — request signed credentials, then upload the file directly to the returned `uploadUrl`.
 
-Both flows are asynchronous. You receive an upload job ID, poll until the status is `ready`, then use the returned `assetId` when [creating posts](/api-reference/posts/create-post).
+Both flows are asynchronous. You receive an upload job ID, poll until the status is `ready`, then use the returned `assetId` when [creating posts](/api/posts/posts-create).
 
 ## Choosing a flow
 
@@ -35,9 +34,9 @@ Both flows are asynchronous. You receive an upload job ID, poll until the status
 | GIFs | 15 MB |
 | Videos | 350 MB |
 
-<Note>
+:::note
 Images cannot exceed 36 megapixels total resolution.
-</Note>
+:::
 
 ## Upload statuses
 
@@ -56,13 +55,13 @@ Use this flow when the file is already hosted somewhere Ordinal can reach over t
 
 <Steps>
   <Step title="Submit the file URL">
-    [POST to `/uploads`](/api-reference/file-uploads/upload-a-file-from-a-url) with the publicly accessible URL of the file.
+    [POST to `/uploads`](/api/file-uploads/uploads-create) with the publicly accessible URL of the file.
   </Step>
   <Step title="Receive an upload job ID">
     The API returns an upload job ID with `pending` status.
   </Step>
   <Step title="Poll for status">
-    [Poll `GET /uploads/{id}`](/api-reference/file-uploads/get-upload-status) until the status changes to `ready`.
+    [Poll `GET /uploads/{id}`](/api/file-uploads/uploads-get) until the status changes to `ready`.
   </Step>
   <Step title="Use the asset ID">
     Once ready, use the returned `assetId` in the `assetIds` array when creating posts.
@@ -88,9 +87,9 @@ curl -X POST "https://app.tryordinal.com/api/v1/uploads" \
 }
 ```
 
-<Warning>
+:::warning
 The file URL must be publicly accessible. URLs that require authentication or sit behind a firewall will fail.
-</Warning>
+:::
 
 ## Local file upload
 
@@ -98,13 +97,13 @@ Use this flow when the file is on disk, in private storage, or otherwise not rea
 
 <Steps>
   <Step title="Prepare the upload">
-    [POST to `/uploads/prepare`](/api-reference/file-uploads/prepare-a-local-file-upload) with the file's `filename`, `mimetype`, and `size` in bytes.
+    [POST to `/uploads/prepare`](/api/file-uploads/uploads-prepare) with the file's `filename`, `mimetype`, and `size` in bytes.
   </Step>
   <Step title="Upload the file">
     POST the file to the returned `uploadUrl` as `multipart/form-data` with three form fields: `params` (the JSON string from the prepare response), `signature` (the signature from the prepare response), and `file` (the local file bytes). Copy `params` and `signature` verbatim — do not modify them. Ordinal is notified automatically when processing finishes.
   </Step>
   <Step title="Poll for status">
-    [Poll `GET /uploads/{id}`](/api-reference/file-uploads/get-upload-status) until the status changes to `ready`.
+    [Poll `GET /uploads/{id}`](/api/file-uploads/uploads-get) until the status changes to `ready`.
   </Step>
   <Step title="Use the asset ID">
     Once ready, use the returned `assetId` in the `assetIds` array when creating posts.
@@ -243,10 +242,10 @@ Include the `assetId` in the `assetIds` array when creating a post:
 
 ## Important notes
 
-<Note>
+:::note
 Uploads expire within 24 hours if not used in a post. Once an upload expires, create a new upload job.
-</Note>
+:::
 
-<Note>
+:::note
 For videos, the `duration` field in the ready response contains the video length in seconds. For images, this field is `null`.
-</Note>
+:::

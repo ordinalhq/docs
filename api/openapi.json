@@ -27,7 +27,7 @@
     },
     {
       "name": "Comments",
-      "description": "Post comments for team collaboration. Supports @mentions using the format @[Display Name](userId)."
+      "description": "Post comments for team collaboration. Supports @mentions using the format `@[Display Name](userId)`."
     },
     {
       "name": "Engagements",

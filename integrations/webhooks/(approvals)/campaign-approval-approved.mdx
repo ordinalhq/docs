@@ -1,0 +1,73 @@
+---
+title: "campaign.approval.approved"
+description: "Fired when an approver grants approval for a campaign"
+sidebar:
+  label: "campaign.approval.approved"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. campaign.approval.approved)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.approval": { type: "object", required: true, description: "The approval that was granted." },
+    "data.approval.id": { type: "string", required: true, description: "Approval ID." },
+    "data.approval.isBlocking": { type: "boolean", required: true, description: "Whether this approval blocked the campaign until granted." },
+    "data.approval.message": { type: "string", description: "Optional message attached to the approval request." },
+    "data.approval.dueDate": { type: "string", description: "ISO 8601 due date for the approval, if set." },
+    "data.approval.createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the approval was created." },
+    "data.approval.status": { type: "string", required: true, description: "Always Approved for this event." },
+    "data.approval.approvedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the approver granted approval." },
+    "data.approval.approvedBy": { type: "object", required: true, description: "User who approved. Contains id, firstName, lastName, and email." },
+    "data.approval.requestedBy": { type: "object", required: true, description: "User who originally requested approval. Contains id, firstName, lastName, and email." },
+    "data.approval.campaign": { type: "object", required: true, description: "Campaign that was approved. Contains id, name, startDate, and endDate." },
+    "data.approval.workspace": { type: "object", required: true, description: "Workspace the campaign belongs to. Contains id, slug, and name." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "campaign.approval.approved",
+  "data": {
+    "approval": {
+      "id": "550e8400-e29b-41d4-a716-446655440710",
+      "isBlocking": true,
+      "message": "Legal sign-off needed for this campaign.",
+      "dueDate": "2025-03-05T17:00:00.000Z",
+      "createdAt": "2025-02-26T14:00:00.000Z",
+      "status": "Approved",
+      "approvedAt": "2025-02-26T16:15:00.000Z",
+      "approvedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440021",
+        "firstName": "Sam",
+        "lastName": "Chen",
+        "email": "sam@example.com"
+      },
+      "requestedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "campaign": {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "name": "Launch 2025",
+        "startDate": "2025-01-01",
+        "endDate": "2025-12-31"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      }
+    }
+  },
+  "createdAt": "2025-02-26T16:15:00.000Z"
+}
+```
+
+</CodeGroup>

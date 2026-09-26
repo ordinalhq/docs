@@ -1,43 +1,32 @@
-# Mintlify Starter Kit
+# Ordinal Docs
 
-Use the starter kit to get your docs deployed and ready to customize.
-
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
-
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+The source for Ordinal's documentation, built with [Blume](https://useblume.dev).
 
 ## Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
 ```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
-mint dev
+npm install
+npm run dev
 ```
 
-View your local preview at `http://localhost:3000`.
+View your local preview at `http://localhost:4321`.
 
-## Publishing changes
+Before opening a PR, run a production build and the link checker:
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+```
+npm run build
+npm run validate
+```
 
-## Need help?
+## Layout
 
-### Troubleshooting
+- Pages are `.mdx` files in the topic folders (`getting-started/`, `social-profiles/`, `api/`, …). A page's URL is its path, unless its frontmatter sets `slug`.
+- Folders wrapped in parentheses, like `(calendar-and-posts)/`, group pages in the sidebar without adding a URL segment.
+- Each folder's `meta.ts` sets its sidebar title, icon, and page order.
+- Header tabs, the API references, and redirects live in `blume.config.ts`.
+- The API and Agency API endpoint pages are generated from `api/openapi.json` and `agency-api/openapi.json`. Edit the spec, not the pages.
+- Static assets live in `public/` and are served from the site root (`public/images/foo.jpg` → `/images/foo.jpg`).
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+## Resources
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+- [Blume documentation](https://useblume.dev/docs)

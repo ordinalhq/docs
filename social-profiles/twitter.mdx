@@ -1,8 +1,7 @@
 ---
 title: "Twitter / X"
+icon: "/icons/x.svg"
 description: "Schedule individual tweets, build multi-tweet threads, coordinate team engagements, and track tweet performance."
-keywords: ["Twitter scheduler", "X scheduler", "Ordinal Twitter", "schedule tweets", "Twitter thread scheduler"]
-icon: "x-twitter"
 ---
 
 Twitter is one of the fastest platforms for real-time engagement. In Ordinal, you can schedule individual tweets, build multi-tweet threads, and coordinate team engagements - all timed to publish when your audience is most active.
@@ -17,7 +16,7 @@ With Ordinal, you can connect Twitter accounts for both **scheduling** and **eng
   <Card title="Connecting Twitter" icon="plug" href="#connecting-twitter">
     Connect for scheduling or engagement
   </Card>
-  <Card title="Drafting a Tweet" icon="pen-to-square" href="#drafting-a-tweet">
+  <Card title="Drafting a Tweet" icon="square-pen" href="#drafting-a-tweet">
     Formatting, mentions, media, and threads
   </Card>
   <Card title="Team Engagements" icon="thumbs-up" href="#team-engagements">
@@ -47,7 +46,7 @@ There are two types of connections supported for Twitter: **scheduling** and **e
 | [Images](#images)                     | ✅         | Up to 4 per tweet                           |
 | [GIFs](#gifs)                         | ✅         | Up to 1280px x 1280px                       |
 | [Videos](#videos)                     | ✅         | Up to 2:20 (10 min for verified)            |
-| [Threads](#threads)                   | ✅         | Multi-tweet sequences with individual media |
+| [Threads](#tweet-threads)             | ✅         | Multi-tweet sequences with individual media |
 | Polls                                 | ❌         | Not currently supported                     |
 
 ### Drafting & Formatting
@@ -69,10 +68,9 @@ The Twitter editor supports Unicode formatting for **bold** and _italic_ text:
 
 Twitter Premium subscribers can post tweets up to **4,000 characters** - far beyond the standard 280 limit. Ordinal automatically detects your account type and adjusts the character counter accordingly.
 
-
-<Tip>
-  If your profile is verified you'll see a blue checkmark badge in the editor. If you're not seeing it and you should send us a support message and we'll get it updated.
-</Tip>
+:::tip
+If your profile is verified you'll see a blue checkmark badge in the editor. If you're not seeing it and you should send us a support message and we'll get it updated.
+:::
 
 Long-form tweets display with a "**Show more**" link in the feed. Note that Twitter does not show link preview images on long-form tweets.
 
@@ -95,15 +93,15 @@ For a more realistic preview, click the **Feed Preview** button to see your twee
 3. Enter Twitter handles (without the @)
 4. Add up to 10 users per tweet
 
-<Note>
-  Photo tagging only works for public accounts. If a tagged user has disabled photo-tagging, the tweet will post without their tag.
-</Note>
+:::note
+Photo tagging only works for public accounts. If a tagged user has disabled photo-tagging, the tweet will post without their tag.
+:::
 
 ### Media Options
 You can upload up to 4 attachments per tweet.
 
-<Tabs>
-  <Tab title="Images">
+<Tabs inline>
+  <Tab title="Images" id="images">
     Multiple images display in a grid layout. Add alt text for accessibility via the image options.
 
     | Spec      | Limit          |
@@ -111,7 +109,7 @@ You can upload up to 4 attachments per tweet.
     | Formats   | JPG, PNG, WEBP |
     | Size      | 5MB per image  |
   </Tab>
-  <Tab title="Videos">
+  <Tab title="Videos" id="videos">
     Attach video content to any Tweet(s).
 
     | Spec     | Limit                               |
@@ -125,7 +123,7 @@ You can upload up to 4 attachments per tweet.
 
     You don't need to re-encode videos that exceed these specs. Ordinal automatically converts HEVC videos to H.264 and reduces videos above 60 fps to 60 fps before publishing to Twitter.
   </Tab>
-  <Tab title="GIFs">
+  <Tab title="GIFs" id="gifs">
     Add animated GIFs to your tweets:
 
     | Spec      | Limit    |
@@ -173,9 +171,9 @@ The thread position updates instantly, and you can preview the final order befor
 
 ![X Team Engagements](/images/x-team-engagements.jpg)
 
-<Note>
-  Team engagements are available for **Pro** plan workspaces and above. Starter workspaces can only add team engagements from the same account as the tweet author.
-</Note>
+:::note
+Team engagements are available for **Pro** plan workspaces and above. Starter workspaces can only add team engagements from the same account as the tweet author.
+:::
 
 Make it easy for your team to coordinate likes, replies, and retweets from their connected accounts after your tweet publishes. Twitter supports these team engagement types:
 
@@ -197,14 +195,14 @@ View tweet performance in [**Analytics → X**](https://app.tryordinal.com/analy
 
 Analytics sync automatically each day. You can also manually refresh stats using the **Refresh Stats** button (once per hour) to see the latest performance data.
 
-<Card title="Analytics overview" icon="chart-mixed" href="/analytics/overview">
+<Card title="Analytics overview" icon="chart-no-axes-combined" href="/analytics/overview">
   Learn more about tracking performance across all your connected profiles.
 </Card>
 
 ## Learn more
 
 <CardGroup cols={2}>
-  <Card title="Cross-posting" icon="arrows-repeat" href="/posts/cross-posting">
+  <Card title="Cross-posting" icon="repeat" href="/posts/cross-posting">
     Publish to multiple platforms at once.
   </Card>
   <Card title="Scheduling posts" icon="clock" href="/posts/scheduling-posts">

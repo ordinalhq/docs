@@ -1,8 +1,8 @@
 ---
 title: "Ordinal MCP server"
-sidebarTitle: "Introduction"
 description: "The Ordinal MCP server lets Claude, Cursor, Codex, and other AI assistants work inside your Ordinal workspace."
-keywords: ["Ordinal MCP", "Ordinal MCP server", "MCP server", "Claude MCP", "Cursor MCP", "social media MCP"]
+sidebar:
+  label: "Introduction"
 ---
 
 ## What is it?
@@ -38,7 +38,7 @@ Want to see live examples of the MCP in action? Click here to check out our [MCP
 </Frame>
 
 <CardGroup cols={2}>
-  <Card title="Posts and ideas" icon="file-lines">
+  <Card title="Posts and ideas" icon="file-text">
     Create, update, search, and archive posts across LinkedIn, X, and Instagram.
   </Card>
 
@@ -50,7 +50,7 @@ Want to see live examples of the MCP in action? Click here to check out our [MCP
     Post performance and follower growth for every connected platform.
   </Card>
 
-  <Card title="Media uploads" icon="cloud-arrow-up">
+  <Card title="Media uploads" icon="cloud-upload">
     Attach images and videos to posts from a URL.
   </Card>
 
@@ -69,15 +69,15 @@ See the full [tools reference](/mcp/tools) for everything.
 
 The MCP server uses **OAuth** — the same kind of sign-in you use when connecting Google or GitHub to a third-party app. Your MCP client opens a browser, you sign in to Ordinal, and the client is granted access on your behalf.
 
-<Info>
-  **No API keys.** The old MCP server used workspace API keys that you copied into your assistant's config. The new server signs you in as a user, so the assistant can reach every workspace you belong to.
-</Info>
+:::info
+**No API keys.** The old MCP server used workspace API keys that you copied into your assistant's config. The new server signs you in as a user, so the assistant can reach every workspace you belong to.
+:::
 
 ## Already using the old MCP server?
 
 If you previously set up the server at `https://app.tryordinal.com/api/mcp` with an API key, you'll need to swap it out. The old and new servers can't coexist — if both are configured, your assistant will see duplicate tools and get confused.
 
-<Card title="Migration guide" icon="arrow-right-arrow-left" href="/mcp/migrating">
+<Card title="Migration guide" icon="arrow-left-right" href="/mcp/migrating">
   Remove the old server and set up the new one
 </Card>
 
