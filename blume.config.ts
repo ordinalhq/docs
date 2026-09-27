@@ -23,17 +23,6 @@ export default defineConfig({
     fonts: { body: "inter" },
   },
 
-  // Mintlify serves pages from the repo root, so scope Blume to the content folders.
-  content: {
-    root: ".",
-    include: [
-      "index.mdx",
-      "help-center.mdx",
-      "[(]calendar-and-posts[)]/**/*.mdx",
-      "{getting-started,social-profiles,collaboration,analytics,account,integrations,referrals,api,mcp,agency-api}/**/*.mdx",
-    ],
-  },
-
   navigation: {
     // Guides owns the root so every existing page keeps its URL; the other tabs scope by prefix.
     tabs: [
@@ -52,8 +41,8 @@ export default defineConfig({
   },
 
   reference: [
-    openapi({ spec: "./api/openapi.json", route: "/api" }),
-    openapi({ spec: "./agency-api/openapi.json", route: "/agency-api" }),
+    openapi({ spec: "./docs/api/openapi.json", route: "/api" }),
+    openapi({ spec: "./docs/agency-api/openapi.json", route: "/agency-api" }),
   ],
 
   // A server build so Vercel serves the redirects as real 301s (a Git-connected

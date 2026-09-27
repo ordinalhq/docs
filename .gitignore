@@ -5,3 +5,4 @@ dist/
 .vercel/
 .blume-verify/
 .env*
+.DS_Store

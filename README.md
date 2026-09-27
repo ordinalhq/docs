@@ -20,11 +20,11 @@ npm run validate
 
 ## Layout
 
-- Pages are `.mdx` files in the topic folders (`getting-started/`, `social-profiles/`, `api/`, …). A page's URL is its path, unless its frontmatter sets `slug`.
+- Pages are `.mdx` files under `docs/`, in topic folders (`docs/getting-started/`, `docs/social-profiles/`, `docs/api/`, …). A page's URL is its path inside `docs/`, unless its frontmatter sets `slug`. (Content lives in `docs/` so Vercel doesn't treat a top-level `api/` folder as serverless functions.)
 - Folders wrapped in parentheses, like `(calendar-and-posts)/`, group pages in the sidebar without adding a URL segment.
 - Each folder's `meta.ts` sets its sidebar title, icon, and page order.
 - Header tabs, the API references, and redirects live in `blume.config.ts`.
-- The API and Agency API endpoint pages are generated from `api/openapi.json` and `agency-api/openapi.json`. Edit the spec, not the pages.
+- The API and Agency API endpoint pages are generated from `docs/api/openapi.json` and `docs/agency-api/openapi.json`. Edit the spec, not the pages.
 - Static assets live in `public/` and are served from the site root (`public/images/foo.jpg` → `/images/foo.jpg`).
 
 ## Resources
