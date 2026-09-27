@@ -1,4 +1,5 @@
 import { defineConfig } from "blume";
+import { gateway } from "blume/ai";
 import { vercel } from "blume/deploy";
 import { openapi } from "blume/reference";
 import endpointRedirects from "./endpoint-redirects.json" with { type: "json" };
@@ -59,6 +60,33 @@ export default defineConfig({
   deployment: vercel(),
 
   search: { indexing: { includeHiddenPages: true } },
+
+  // "Edit on GitHub" page action and header repo link.
+  github: { owner: "ordinalhq", repo: "docs", branch: "master" },
+
+  // Needs full git history on Vercel: set VERCEL_DEEP_CLONE=true on the project.
+  lastModified: "git",
+
+  ai: {
+    assistant: {
+      enabled: true,
+      // Authenticates with the deployment's OIDC token on Vercel; no key to manage.
+      provider: gateway({ model: "anthropic/claude-sonnet-5" }),
+      instructions:
+        "You answer questions about Ordinal, a social media management platform for B2B marketing teams, using only these docs. Most readers are marketers, not engineers, unless they ask about the API, MCP, or webhooks. If the docs don't cover something, say so and suggest contacting support@tryordinal.com.",
+      suggestions: [
+        { label: "How do I connect a LinkedIn profile?", icon: "linkedin" },
+        { label: "How do approvals work?", icon: "circle-check" },
+        { label: "How do team engagements work?", icon: "thumbs-up" },
+        { label: "How do I create a post with the API?", icon: "code" },
+      ],
+    },
+  },
+
+  agents: {
+    // Separate from Ordinal's product MCP server, which the /mcp pages document.
+    mcp: { enabled: true, route: "/docs-mcp", name: "ordinal-docs" },
+  },
 
   redirects: [
     { from: "/api/mcp", to: "/mcp/introduction" },
