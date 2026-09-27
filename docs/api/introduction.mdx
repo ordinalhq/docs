@@ -1,0 +1,121 @@
+---
+title: "Ordinal API"
+description: "Programmatically manage your Ordinal workspace with the REST API"
+sidebar:
+  label: "Introduction"
+---
+
+## Overview
+
+The Ordinal API allows you to programmatically create and manage posts, profiles, approvals, labels, and analytics data within your workspace. The API follows REST conventions and uses JSON for request and response bodies.
+
+<Card title="Base URL" icon="globe">
+  ```
+  https://app.tryordinal.com/api/v1
+  ```
+</Card>
+
+## Quick Start
+
+:::info
+**Pro Plan Required**
+
+The Ordinal API is available on the Pro plan or higher. [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to access API features.
+:::
+
+<Steps>
+  <Step title="Generate an API Key">
+    Navigate to your workspace settings and create a new API key. See the [Authentication](/api/authentication) guide for details.
+  </Step>
+  <Step title="Make Your First Request">
+    Use the API key as a Bearer token to authenticate your requests:
+
+    We recommend testing the [Get Workspace](/api/workspaces/workspace-get) endpoint to confirm that your API key is working.
+
+    ```bash
+    curl -X GET "https://app.tryordinal.com/api/v1/workspace" \
+      -H "Authorization: Bearer your_api_key"
+    ```
+
+    Confirm that you see your workspace information in the response.
+
+    ```json
+    {
+      "id": "your-workspace-uuid",
+      "name": "Your Workspace",
+      "slug": "your-workspace",
+      "timezone": "America/New_York",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+    ```
+  </Step>
+  <Step title="Explore Endpoints">
+    Browse the endpoint documentation to discover all available operations for posts, profiles, approvals, and more.
+  </Step>
+</Steps>
+
+## Available Resources
+
+<CardGroup cols={2}>
+  <Card title="Posts" icon="file-text" href="/api/posts/posts-list">
+    Create, list, retrieve, archive, and unarchive posts in your workspace
+  </Card>
+  <Card title="File Uploads" icon="cloud-upload" href="/api/file-uploads/uploads-create">
+    Upload files from URLs to attach to posts
+  </Card>
+  <Card title="Profiles" icon="circle-user" href="/api/profiles/profiles-list-scheduling">
+    List scheduling and engagement profiles connected to your workspace
+  </Card>
+  <Card title="Approvals" icon="circle-check" href="/api/approvals/approvals-create">
+    Manage approval workflows for posts
+  </Card>
+  <Card title="Labels" icon="tag" href="/api/labels/labels-list">
+    Create and manage labels for organizing posts
+  </Card>
+  <Card title="Subscribers" icon="bell" href="/api/subscribers/subscribers-list">
+    Manage post subscribers for notifications
+  </Card>
+  <Card title="Comments" icon="message-circle" href="/api/comments/comments-list">
+    List and create comments on posts with @mention support
+  </Card>
+  <Card title="Inline Comments" icon="highlighter" href="/api/inline-comments/inline-comments-list">
+    Retrieve text-anchored comments on post content
+  </Card>
+  <Card title="Invites" icon="user-plus" href="/api/invites/invites-list">
+    Invite users to your workspace via email
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="/api/analytics/analytics-cpm-get">
+    Retrieve post and follower analytics across platforms
+  </Card>
+  <Card title="Webhooks" icon="webhook" href="/api/webhooks/webhooks-list">
+    Create, list, get, update, and delete webhooks to receive real-time event notifications
+  </Card>
+  <Card title="Slack Boosts" icon="slack" href="/api/slack-boosts/slack-boosts-create">
+    List Slack channels, then create, list, get, update, and delete Slack Boosts for posts
+  </Card>
+</CardGroup>
+
+## Rate Limiting
+
+API requests are rate limited to ensure fair usage of 100 requests per minute per workspace. The limit is shared across all API keys in a workspace. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with information about when your quota resets.
+
+```json
+{
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Rate limit of 100 requests per 60s exceeded. Quota resets in 45 seconds"
+}
+```
+
+If you need a higher rate limit, please reach out to support.
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/api/authentication">
+    Learn how to authenticate your API requests
+  </Card>
+  <Card title="Error Handling" icon="circle-alert" href="/api/errors">
+    Understand API error responses
+  </Card>
+</CardGroup>
+

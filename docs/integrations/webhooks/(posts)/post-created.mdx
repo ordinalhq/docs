@@ -1,0 +1,91 @@
+---
+title: "post.created"
+description: "Fired when a new post is created"
+sidebar:
+  label: "post.created"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. post.created)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.post": { type: "object", required: true, description: "The created post." },
+    "data.post.id": { type: "string", required: true, description: "Post ID." },
+    "data.post.title": { type: "string", required: true, description: "Post title." },
+    "data.post.status": { type: "string", required: true, description: "Post status." },
+    "data.post.channels": { type: "array", required: true, description: "Channels the post is scheduled for." },
+    "data.post.campaign": { type: "object | null", description: "Campaign if assigned. Contains id, name, startDate, and endDate." },
+    "data.post.url": { type: "string", required: true, description: "Ordinal post URL." },
+    "data.post.workspace": { type: "object", required: true, description: "Workspace the post belongs to. Contains id, slug, and name." },
+    "data.post.createdBy": { type: "object", required: true, description: "User who created the post. Contains id, firstName, lastName, and email." },
+    "data.post.createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the post was created." },
+    "data.post.labels": { type: "array", required: true, description: "Labels attached to the post. Each contains id, name, color, and backgroundColor." },
+    "data.post.linkedIn": { type: "object | null", description: "LinkedIn content when the post includes LinkedIn. Contains profile (id, name, detail), copy, and assets (id, name, url, mimetype, size, width, height, duration)." },
+    "data.post.x": { type: "object | null", description: "X/Twitter content when the post includes Twitter. Contains profile (id, name, detail) and tweets (array of { copy, assets })." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "post.created",
+  "data": {
+    "post": {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "New Draft",
+      "status": "draft",
+      "channels": ["LinkedIn"],
+      "campaign": null,
+      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+      "labels": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440400",
+          "name": "Marketing",
+          "color": "#9333ea",
+          "backgroundColor": "#f3e8ff"
+        }
+      ],
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "createdAt": "2025-02-26T12:00:00.000Z",
+      "linkedIn": {
+        "profile": {
+          "id": "550e8400-e29b-41d4-a716-446655440002",
+          "name": "Acme Inc",
+          "detail": "acme-inc"
+        },
+        "copy": "Excited to share our latest product update!",
+        "assets": [
+          {
+            "id": "550e8400-e29b-41d4-a716-446655440010",
+            "name": "product-photo.jpg",
+            "url": "https://cdn.tryordinal.com/assets/product-photo.jpg",
+            "mimetype": "image/jpeg",
+            "size": 245678,
+            "width": 1920,
+            "height": 1080,
+            "duration": null
+          }
+        ]
+      },
+      "x": null
+    }
+  },
+  "createdAt": "2025-02-26T12:00:00.000Z"
+}
+```
+
+</CodeGroup>

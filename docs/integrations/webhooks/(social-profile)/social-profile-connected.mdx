@@ -1,0 +1,59 @@
+---
+title: "social_profile.connected"
+description: "Fired when a social profile is connected to the workspace"
+sidebar:
+  label: "social_profile.connected"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. social_profile.connected)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.profile": { type: "object", required: true, description: "The connected profile." },
+    "data.profile.id": { type: "string", required: true, description: "Profile ID." },
+    "data.profile.name": { type: "string | null", description: "Profile display name." },
+    "data.profile.detail": { type: "string | null", description: "Profile vanity name or handle." },
+    "data.profile.channel": { type: "string", required: true, description: "Social channel (e.g. LinkedIn, Twitter)." },
+    "data.profile.profileImageUrl": { type: "string | null", description: "URL of the profile image." },
+    "data.profile.type": { type: "string", description: "Optional. LinkedIn account type (e.g. Company, Personal)." },
+    "data.profile.url": { type: "string", description: "Optional. Profile URL on the social platform." },
+    "data.profile.workspace": { type: "object", required: true, description: "Workspace the profile was connected to. Contains id, slug, and name." },
+    "data.profile.connectedBy": { type: "object", required: true, description: "User who connected the profile. Contains id, firstName, lastName, and email." },
+    "data.profile.connectedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the profile was connected." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "social_profile.connected",
+  "data": {
+    "profile": {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Acme Inc",
+      "detail": "acme-inc",
+      "channel": "LinkedIn",
+      "profileImageUrl": "https://cdn.tryordinal.com/profiles/acme.png",
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "connectedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "connectedAt": "2025-02-26T10:00:00.000Z"
+    }
+  },
+  "createdAt": "2025-02-26T10:00:00.000Z"
+}
+```
+
+</CodeGroup>

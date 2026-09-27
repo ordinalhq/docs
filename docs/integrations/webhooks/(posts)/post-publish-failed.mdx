@@ -1,0 +1,67 @@
+---
+title: "post.publish_failed"
+description: "Fired when a post fails to publish"
+sidebar:
+  label: "post.publish_failed"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. post.publish_failed)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.post": { type: "object", required: true, description: "The post that failed to publish." },
+    "data.post.id": { type: "string", required: true, description: "Post ID." },
+    "data.post.title": { type: "string", required: true, description: "Post title." },
+    "data.post.channel": { type: "string", required: true, description: "Channel where publish failed." },
+    "data.post.error": { type: "string", required: true, description: "Error message describing the failure." },
+    "data.post.campaign": { type: "object | null", description: "Campaign if assigned. Contains id, name, startDate, and endDate." },
+    "data.post.url": { type: "string", required: true, description: "Ordinal post URL." },
+    "data.post.profile": { type: "object", required: true, description: "Profile that attempted to publish. Contains id, name, and detail." },
+    "data.post.scheduledPublishAt": { type: "string", required: true, description: "ISO 8601 timestamp when publish was attempted." },
+    "data.post.workspace": { type: "object", required: true, description: "Workspace the post belongs to. Contains id, slug, and name." },
+    "data.post.createdBy": { type: "object", required: true, description: "User who created the post. Contains id, firstName, lastName, and email." },
+    "data.post.failedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the publish failed." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "post.publish_failed",
+  "data": {
+    "post": {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "Q4 Product Launch Announcement",
+      "channel": "LinkedIn",
+      "error": "Token expired",
+      "campaign": null,
+      "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001",
+      "profile": {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "name": "Acme Inc",
+        "detail": "acme-inc"
+      },
+      "scheduledPublishAt": "2025-03-01T14:00:00.000Z",
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "createdBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "failedAt": "2025-03-01T14:00:05.000Z"
+    }
+  },
+  "createdAt": "2025-03-01T14:00:05.000Z"
+}
+```
+
+</CodeGroup>

@@ -1,0 +1,73 @@
+---
+title: "Shortlinks"
+description: "Shorten links inside the post editor and track clicks by destination, country, referrer, device, and browser."
+icon: "link"
+---
+
+Shortlinks let you track clicks on the links you share in your posts. Instead of posting a long URL, you can shorten it with one click - and Ordinal will automatically track how many people clicked, where they came from, and what devices they used.
+
+![Shortlink Analytics](/images/shortlink-analytics.jpg)
+
+## Creating shortlinks
+
+Shortlinks are created right inside the post editor - no need to leave your draft or visit a separate page. They work out of the box with Ordinal's default domain (`ordnl.link`).
+
+![Creating Shortlink](/images/creating-shortlink.jpg)
+
+**To shorten a link:**
+
+1. Add a link to your post (paste a URL or use `Cmd/Ctrl + K` to insert one)
+2. Click on the link in the editor
+3. In the popover that appears, toggle **Shorten Link?** on
+4. The URL is replaced with a tracked shortlink automatically
+
+The shortened link will look something like `ordnl.link/abc123`. When your post publishes, every click on that link is tracked. Shortlinks will also retain the same Open Graph image and title as the original URL.
+
+:::tip
+You can always toggle shortening off to revert back to the original URL.
+:::
+
+### Custom domains
+
+By default, shortlinks use `ordnl.link`. If you'd prefer a branded domain like `go.yourcompany.com`, you can connect your Dub account.
+
+<Card title="Dub Integration" icon="globe" href="/integrations/dub">
+  Set up a custom domain for your shortlinks.
+</Card>
+
+## Click analytics
+
+Once your post publishes and people start clicking, you can view detailed analytics in the [**Analytics**](https://app.tryordinal.com/analytics) section of Ordinal. Click data appears under the **Clicks Overview** tab.
+
+![Link Analytics View](/images/link-analytics-view.jpg)
+
+### Available metrics
+
+| Metric                        | What it shows                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| **Total clicks**              | Overall click count across all your shortlinks, displayed as a timeseries chart |
+| **Clicks by link**            | Which shortlinks received the most clicks                                       |
+| **Clicks by destination URL** | Which destination URLs received the most traffic                                |
+| **Countries**                 | Geographic breakdown of where clicks originated                                 |
+| **Regions**                   | More granular location data within countries                                    |
+| **Referrers**                 | Where the traffic came from (social platform, direct, other websites)           |
+| **Devices**                   | Mobile vs. desktop breakdown                                                    |
+| **Browsers**                  | Chrome, Safari, Firefox, etc.                                                   |
+| **Operating systems**         | Windows, macOS, iOS, Android, etc.                                              |
+
+Use the date range filter to zoom in on specific time periods - helpful for measuring campaign performance or comparing week-over-week trends.
+
+:::tip
+Click analytics only track links that were shortened using Ordinal's link shortener. Regular links in your posts aren't tracked.
+:::
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Dub Integration" icon="globe" href="/integrations/dub">
+    Use a custom domain for your shortlinks.
+  </Card>
+  <Card title="Analytics Overview" icon="chart-line" href="/analytics/overview">
+    Explore all your performance metrics.
+  </Card>
+</CardGroup>
