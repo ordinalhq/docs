@@ -62,15 +62,12 @@ export default defineConfig({
 
   search: { indexing: { includeHiddenPages: true } },
 
-  // Same PostHog project as the app, so docs visits join up with product usage.
-  // The project token is public (the app ships it to browsers too).
+  // POSTHOG_API_KEY comes from Infisical, one project token per environment, so
+  // production and dev traffic land in separate PostHog projects. Unset = no analytics.
   // Also records "Was this page helpful?" answers, which go nowhere without an adapter.
-  analytics: [
-    posthog({
-      key: "phc_FFvumSUx5lKPV97OODRXFgsbCGrqaTb8Z7Z9AGK4cQr",
-      host: "https://us.i.posthog.com",
-    }),
-  ],
+  analytics: process.env.POSTHOG_API_KEY
+    ? [posthog({ key: process.env.POSTHOG_API_KEY, host: "https://us.i.posthog.com" })]
+    : [],
 
   // "Edit on GitHub" page action and header repo link.
   github: { owner: "ordinalhq", repo: "docs", branch: "master" },

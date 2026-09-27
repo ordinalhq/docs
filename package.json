@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "blume dev",
+    "dev": "infisical run --env=dev -- blume dev",
     "build": "blume build",
     "start": "blume preview",
     "validate": "blume validate"
