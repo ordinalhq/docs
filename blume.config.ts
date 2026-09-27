@@ -1,5 +1,6 @@
 import { defineConfig } from "blume";
 import { gateway } from "blume/ai";
+import { posthog } from "blume/analytics";
 import { vercel } from "blume/deploy";
 import { openapi } from "blume/reference";
 import endpointRedirects from "./endpoint-redirects.json" with { type: "json" };
@@ -60,6 +61,16 @@ export default defineConfig({
   deployment: vercel(),
 
   search: { indexing: { includeHiddenPages: true } },
+
+  // Same PostHog project as the app, so docs visits join up with product usage.
+  // The project token is public (the app ships it to browsers too).
+  // Also records "Was this page helpful?" answers, which go nowhere without an adapter.
+  analytics: [
+    posthog({
+      key: "phc_FFvumSUx5lKPV97OODRXFgsbCGrqaTb8Z7Z9AGK4cQr",
+      host: "https://us.i.posthog.com",
+    }),
+  ],
 
   // "Edit on GitHub" page action and header repo link.
   github: { owner: "ordinalhq", repo: "docs", branch: "master" },

@@ -3,3 +3,5 @@ dist/
 .blume/
 .astro/
 .vercel/
+.blume-verify/
+.env*
