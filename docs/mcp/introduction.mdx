@@ -70,16 +70,8 @@ See the full [tools reference](/mcp/tools) for everything.
 The MCP server uses **OAuth** — the same kind of sign-in you use when connecting Google or GitHub to a third-party app. Your MCP client opens a browser, you sign in to Ordinal, and the client is granted access on your behalf.
 
 :::info
-**No API keys.** The old MCP server used workspace API keys that you copied into your assistant's config. The new server signs you in as a user, so the assistant can reach every workspace you belong to.
+**No API keys.** The server signs you in as a user, so there's nothing to copy into your assistant's config, and the assistant can reach every workspace you belong to.
 :::
-
-## Already using the old MCP server?
-
-If you previously set up the server at `https://app.tryordinal.com/api/mcp` with an API key, you'll need to swap it out. The old and new servers can't coexist — if both are configured, your assistant will see duplicate tools and get confused.
-
-<Card title="Migration guide" icon="arrow-left-right" href="/mcp/migrating">
-  Remove the old server and set up the new one
-</Card>
 
 ## Next steps
 

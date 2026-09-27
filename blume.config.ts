@@ -92,6 +92,7 @@ export default defineConfig({
     { from: "/mcp/install/cursor", to: "/mcp/install/overview" },
     { from: "/mcp/install/vscode", to: "/mcp/install/overview" },
     { from: "/posts/auto-engagements", to: "/posts/team-engagements" },
+    { from: "/mcp/migrating", to: "/mcp/install/overview" },
     // Mintlify slugged endpoints by summary under /api-reference; Blume slugs by operationId.
     ...endpointRedirects,
   ],
