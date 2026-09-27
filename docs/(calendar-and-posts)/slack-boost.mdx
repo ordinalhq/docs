@@ -82,12 +82,12 @@ You can list connected Slack channels and manage slack boosts programmatically. 
 
 | Action | Method | Path | Description |
 | ------ | ------ | ---- | ----------- |
-| List webhooks | `GET` | `/slack-webhooks` | List connected marketing boost channels (use `id` as `slackWebhookId` when creating a boost) |
-| List for post | `GET` | `/posts/{postId}/slack-boosts` | List all slack boosts for a given post |
-| Create | `POST` | `/slack-boosts` | Attach a boost to a post and Slack channel |
-| Get | `GET` | `/slack-boosts/{id}` | Get one slack boost by ID |
-| Update | `PATCH` | `/slack-boosts/{id}` | Update copy or target channel |
-| Delete | `DELETE` | `/slack-boosts/{id}` | Remove the boost |
+| [List webhooks](/api/slack-boosts/slack-webhooks-list) | `GET` | `/slack-webhooks` | List connected marketing boost channels (use `id` as `slackWebhookId` when creating a boost) |
+| [List for post](/api/slack-boosts/slack-boosts-list-by-post) | `GET` | `/posts/{postId}/slack-boosts` | List all slack boosts for a given post |
+| [Create](/api/slack-boosts/slack-boosts-create) | `POST` | `/slack-boosts` | Attach a boost to a post and Slack channel |
+| [Get](/api/slack-boosts/slack-boosts-get) | `GET` | `/slack-boosts/{id}` | Get one slack boost by ID |
+| [Update](/api/slack-boosts/slack-boosts-update) | `PATCH` | `/slack-boosts/{id}` | Update copy or target channel |
+| [Delete](/api/slack-boosts/slack-boosts-delete) | `DELETE` | `/slack-boosts/{id}` | Remove the boost |
 
 ### List Slack webhooks
 
@@ -105,7 +105,7 @@ curl -X GET "https://app.tryordinal.com/api/v1/posts/550e8400-e29b-41d4-a716-446
 
 ### Create slack boost
 
-Use a post ID and a `slackWebhookId` from `GET /slack-webhooks` or from a [connected marketing boost channel](https://app.tryordinal.com/settings/integrations/slack).
+Use a post ID and a `slackWebhookId` from [`GET /slack-webhooks`](/api/slack-boosts/slack-webhooks-list) or from a [connected marketing boost channel](https://app.tryordinal.com/settings/integrations/slack).
 
 ```bash
 curl -X POST "https://app.tryordinal.com/api/v1/slack-boosts" \
