@@ -8,7 +8,7 @@ User-facing docs for Ordinal (https://app.tryordinal.com), built with [Blume](ht
 - `npm run build` — production build; fails on frontmatter or config errors
 - `npm run validate` — broken links, anchors, and assets. 0 errors is required; the existing warnings are known (tab deep links the checker can't see, and duplicate "Overview"/"File Uploads" labels)
 
-If a dev server is already running, use `npx blume build --isolated` so the build doesn't corrupt its runtime.
+Stop any running `blume dev` before building: Blume refuses to build while a dev server holds the `.blume` runtime. (`--isolated` doesn't work here; with the `vercel()` adapter its function bundle can't find `node_modules`.)
 
 ## Where things go
 
