@@ -85,7 +85,9 @@ Both tools are read-only and require Amplify to be enabled on your workspace. Li
 
 `ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link.
 
-For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+Repost and post actions also include `stats` for the LinkedIn post they created: impressions, unique impressions, likes, comments, shares, saves, sends, link clicks, video views, and when the stats were last updated. `stats` is `null` until the post's stats first sync, and an individual metric is `null` when LinkedIn doesn't report it. Like and comment actions don't include `stats`.
+
+For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on. Ask "which reposts of our launch link got the most impressions?" to compare how each engager's post performed.
 
 ## LinkedIn Monitoring
 
