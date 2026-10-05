@@ -135,6 +135,14 @@ Returned when authentication succeeds but the request is not allowed.
     }
     ```
   </Tab>
+  <Tab title="Plan Without API Access">
+    ```json
+    {
+      "code": "FORBIDDEN",
+      "message": "API access requires a Pro plan or above"
+    }
+    ```
+  </Tab>
   <Tab title="Engagement Profile">
     ```json
     {
@@ -148,6 +156,7 @@ Returned when authentication succeeds but the request is not allowed.
 **Common causes:**
 - API key has been revoked or expired
 - Insufficient permissions for the operation
+- The workspace's plan doesn't include API access (Pro plan or higher required)
 - Attempting to use engagement-only profiles for analytics
 
 ### 404 Not Found

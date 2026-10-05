@@ -22,7 +22,7 @@ API keys are scoped to a specific workspace and provide access to all resources 
 :::info
 **Pro Plan Required**
 
-The Ordinal API is available on the Pro plan or higher. [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to access API features.
+The Ordinal API is available on the Pro plan or higher. [Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to access API features. If your workspace moves to a plan without API access, its existing API keys stop working and requests return a [`403` error](#plan-without-api-access).
 :::
 
 <Steps>
@@ -169,6 +169,21 @@ If the API key doesn't have the required permissions:
 
 **Status Code:** `403 Forbidden`
 
+### Plan Without API Access
+
+If your workspace's plan doesn't include API access (for example, after downgrading below Pro):
+
+```json
+{
+  "code": "FORBIDDEN",
+  "message": "API access requires a Pro plan or above"
+}
+```
+
+**Status Code:** `403 Forbidden`
+
+[Upgrade your workspace](https://app.tryordinal.com/settings/pricing) to the Pro plan or higher to use your API keys again.
+
 ### Insufficient Credits
 
 If your account has run out of API credits:
@@ -201,7 +216,7 @@ If you've exceeded your usage quota:
 | ------------------- | ----------- | ----------------------------------------------------------- |
 | `UNAUTHORIZED`      | 401         | Missing or invalid API key                                  |
 | `TOO_MANY_REQUESTS` | 429         | Rate limit exceeded                                         |
-| `FORBIDDEN`         | 403         | Key revoked, expired, disabled, or insufficient permissions |
+| `FORBIDDEN`         | 403         | Key revoked, expired, or disabled; insufficient permissions; or plan without API access |
 
 ## Best Practices
 
