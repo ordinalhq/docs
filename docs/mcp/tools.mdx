@@ -21,13 +21,21 @@ Once connected, your assistant has access to the tools below. You don't need to 
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_search_content` | Searches posts or ideas — by status, labels, campaigns, or date — and can fetch a single post with its comments. |
+| `ordinal_search_content` | Searches posts or ideas — by status, labels, campaigns, or date — and can fetch a single post with its comments. Every post and idea it returns includes its [notes](/posts/overview#notes). |
 | `ordinal_create_post` | Creates a post with LinkedIn, X, Instagram, TikTok, and/or YouTube Shorts content, optionally with a workflow status. |
 | `ordinal_create_idea` | Creates an idea (a draft without a scheduled publish time). |
 | `ordinal_manage_post` | Updates, archives, or unarchives a post, including changing its workflow status. |
 | `ordinal_manage_idea` | Updates, archives, unarchives, or adds an idea to the calendar. |
 | `ordinal_list_post_versions` | Lists saved [versions](/posts/version-history) of a post's draft per channel, with the author and timestamp of each. |
 | `ordinal_get_post_version_content` | Reads the copy of a single saved version, so the assistant can diff two revisions or study how a draft evolved. |
+
+### Notes
+
+`ordinal_create_post`, `ordinal_create_idea`, `ordinal_manage_post`, and `ordinal_manage_idea` can write a post's or idea's [notes](/posts/overview#notes), and `ordinal_search_content` returns them, so the assistant can read the internal context your team left on a draft. Posts and ideas without notes return `null`, and setting `notes` to `null` with a manage tool clears them.
+
+Notes don't support mentions. If the assistant writes a mention into a note, Ordinal keeps the person's name as plain text.
+
+For example, ask "what notes did we leave on the pricing launch post?" and the assistant calls `ordinal_search_content` to fetch the post and read its notes.
 
 ### Post statuses
 
