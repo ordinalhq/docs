@@ -19,7 +19,7 @@ Stop any running `blume dev` before building: Blume refuses to build while a dev
 - **API endpoints are generated from `docs/api/openapi.json`** (Agency API: `docs/agency-api/openapi.json`). Never hand-write an endpoint page. Add or change the operation in the spec, with an `operationId`, a `summary`, and one of the existing `tags`. Its page is served at `/api/<tag-slug>/<operationId-in-kebab-case>` (tag `File Uploads` + `uploads-get` → `/api/file-uploads/uploads-get`). Conceptual API pages (`docs/api/introduction.mdx`, `docs/api/authentication.mdx`, …) are normal MDX.
 - **MCP tools** are documented in `docs/mcp/tools.mdx`.
 - **Webhook events** are documented in `docs/integrations/webhooks/`, grouped into `(social-profile)/`, `(posts)/`, `(approvals)/`, `(invites)/`. List new events in `docs/integrations/webhooks/event-types.mdx` as well.
-- **Images** go in `public/images/` and are referenced as `/images/<file>`.
+- **Images** go in `public/images/` and are referenced as `/images/<file>`. A page with a hero screenshot sets it as its link preview with `seo: { image: /images/<file> }` in frontmatter; pages without one get a generated card. Skip thin or near-square images, which crop badly in previews.
 - **Tabs, redirects, and API references** are configured in `blume.config.ts`. If a page moves or is renamed, add a `redirects` entry from the old URL.
 
 ## Writing pages
