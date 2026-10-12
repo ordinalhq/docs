@@ -49,6 +49,9 @@ export default defineConfig({
   // project ignores the vercel.json a static build writes into dist/).
   deployment: vercel(),
 
+  // Generated social cards for pages without their own `seo.image`.
+  seo: { og: { logo: "/logo/ordinal-lightmode.svg" } },
+
   search: { indexing: { includeHiddenPages: true } },
 
   // POSTHOG_API_KEY comes from Infisical, one project token per environment, so

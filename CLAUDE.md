@@ -19,12 +19,20 @@ Stop any running `blume dev` before building: Blume refuses to build while a dev
 - **API endpoints are generated from `docs/api/openapi.json`** (Agency API: `docs/agency-api/openapi.json`). Never hand-write an endpoint page. Add or change the operation in the spec, with an `operationId`, a `summary`, and one of the existing `tags`. Its page is served at `/api/<tag-slug>/<operationId-in-kebab-case>` (tag `File Uploads` + `uploads-get` → `/api/file-uploads/uploads-get`). Conceptual API pages (`docs/api/introduction.mdx`, `docs/api/authentication.mdx`, …) are normal MDX.
 - **MCP tools** are documented in `docs/mcp/tools.mdx`.
 - **Webhook events** are documented in `docs/integrations/webhooks/`, grouped into `(social-profile)/`, `(posts)/`, `(approvals)/`, `(invites)/`. List new events in `docs/integrations/webhooks/event-types.mdx` as well.
-- **Images** go in `public/images/` and are referenced as `/images/<file>`.
-- **Tabs, redirects, and API references** are configured in `blume.config.ts`. If a page moves or is renamed, add a `redirects` entry from the old URL.
+- **Images** go in `public/images/` and are referenced as `/images/<file>`.- **Tabs, redirects, and API references** are configured in `blume.config.ts`. If a page moves or is renamed, add a `redirects` entry from the old URL.
 
 ## Writing pages
 
 Every page needs frontmatter with `title` and `description`. The frontmatter schema is strict: unknown keys fail the build. Valid extras include `icon`, `slug`, `sidebar: { label, order, hidden }`, and `noindex`. Don't repeat the title as an H1; start the body at `##`.
+
+**Link previews:** when a page contains an image, set its first image as the page's social preview in frontmatter, and keep it in sync if that first image changes:
+
+```yaml
+seo:
+  image: /images/<first-image-on-the-page>
+```
+
+Pages with no image get a generated Ordinal card automatically; don't add `seo.image` to them.
 
 Blume syntax. This repo migrated from Mintlify, so Mintlify components will not render:
 
