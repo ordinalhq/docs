@@ -1,0 +1,53 @@
+---
+title: "invite.created"
+description: "Fired when a user is invited to the workspace. If the invitee already has an account, they are added directly and no email is sent."
+sidebar:
+  label: "invite.created"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. invite.created)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.invite": { type: "object", required: true, description: "The invite." },
+    "data.invite.id": { type: "string", required: true, description: "Invite ID." },
+    "data.invite.email": { type: "string", required: true, description: "Email address of the invited user." },
+    "data.invite.createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the invite was created." },
+    "data.invite.invitedBy": { type: "object", required: true, description: "User who sent the invite. Contains id, firstName, lastName, and email." },
+    "data.invite.workspace": { type: "object", required: true, description: "Workspace the user was invited to. Contains id, slug, and name." },
+    "data.invite.sentEmail": { type: "boolean", required: true, description: "Whether an invitation email was sent. If the invitee already had an account, they are added directly and no email is sent (false)." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "invite.created",
+  "data": {
+    "invite": {
+      "id": "550e8400-e29b-41d4-a716-446655440600",
+      "email": "newmember@example.com",
+      "createdAt": "2025-02-26T11:00:00.000Z",
+      "invitedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "sentEmail": true
+    }
+  },
+  "createdAt": "2025-02-26T11:00:00.000Z"
+}
+```
+
+</CodeGroup>

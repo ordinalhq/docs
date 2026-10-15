@@ -1,0 +1,290 @@
+[
+  {
+    "from": "/api-reference/analytics/linkedin-follower-growth",
+    "to": "/api/analytics/analytics-linkedin-followers"
+  },
+  {
+    "from": "/api-reference/analytics/linkedin-post-analytics",
+    "to": "/api/analytics/analytics-linkedin-posts"
+  },
+  {
+    "from": "/api-reference/analytics/x-follower-growth",
+    "to": "/api/analytics/analytics-x-followers"
+  },
+  {
+    "from": "/api-reference/analytics/x-post-analytics",
+    "to": "/api/analytics/analytics-x-posts"
+  },
+  {
+    "from": "/api-reference/analytics/get-cpm-values",
+    "to": "/api/analytics/analytics-cpm-get"
+  },
+  {
+    "from": "/api-reference/analytics/update-cpm-values",
+    "to": "/api/analytics/analytics-cpm-update"
+  },
+  {
+    "from": "/api-reference/approvals/list-workspace-approvals",
+    "to": "/api/approvals/approvals-list-workspace"
+  },
+  {
+    "from": "/api-reference/approvals/create-approval-requests",
+    "to": "/api/approvals/approvals-create"
+  },
+  {
+    "from": "/api-reference/approvals/delete-approval",
+    "to": "/api/approvals/approvals-delete"
+  },
+  {
+    "from": "/api-reference/approvals/list-post-approvals",
+    "to": "/api/approvals/approvals-list"
+  },
+  {
+    "from": "/api-reference/engagements/list-for-a-post",
+    "to": "/api/engagements/engagements-list"
+  },
+  {
+    "from": "/api-reference/engagements/create-for-a-post",
+    "to": "/api/engagements/engagements-create"
+  },
+  {
+    "from": "/api-reference/engagements/update-an-engagement",
+    "to": "/api/engagements/engagements-update"
+  },
+  {
+    "from": "/api-reference/engagements/delete-an-engagement",
+    "to": "/api/engagements/engagements-delete"
+  },
+  {
+    "from": "/api-reference/invites/list-pending-invites",
+    "to": "/api/invites/invites-list"
+  },
+  {
+    "from": "/api-reference/invites/create-an-invite",
+    "to": "/api/invites/invites-create"
+  },
+  {
+    "from": "/api-reference/invites/delete-an-invite",
+    "to": "/api/invites/invites-delete"
+  },
+  {
+    "from": "/api-reference/labels/list-all-labels",
+    "to": "/api/labels/labels-list"
+  },
+  {
+    "from": "/api-reference/labels/create-a-label",
+    "to": "/api/labels/labels-create"
+  },
+  {
+    "from": "/api-reference/labels/delete-a-label",
+    "to": "/api/labels/labels-delete"
+  },
+  {
+    "from": "/api-reference/linkedin-leads/list-posts",
+    "to": "/api/linkedin-leads/linkedin-leads-list-posts"
+  },
+  {
+    "from": "/api-reference/linkedin-leads/get-posts-leads",
+    "to": "/api/linkedin-leads/linkedin-leads-get-leads-by-post"
+  },
+  {
+    "from": "/api-reference/linkedin/mention-format-by-username",
+    "to": "/api/linkedin/linkedin-get-mention"
+  },
+  {
+    "from": "/api-reference/linkedin/get-linkedin-profile-by-urn",
+    "to": "/api/linkedin/linkedin-get-profile"
+  },
+  {
+    "from": "/api-reference/instagram/search-instagram-locations",
+    "to": "/api/instagram/instagram-search-locations"
+  },
+  {
+    "from": "/api-reference/ideas/list-ideas",
+    "to": "/api/ideas/ideas-list"
+  },
+  {
+    "from": "/api-reference/ideas/create-idea",
+    "to": "/api/ideas/ideas-create"
+  },
+  {
+    "from": "/api-reference/ideas/get-idea",
+    "to": "/api/ideas/ideas-get"
+  },
+  {
+    "from": "/api-reference/ideas/update-idea",
+    "to": "/api/ideas/ideas-update"
+  },
+  {
+    "from": "/api-reference/ideas/archive-idea",
+    "to": "/api/ideas/ideas-archive"
+  },
+  {
+    "from": "/api-reference/ideas/unarchive-idea",
+    "to": "/api/ideas/ideas-unarchive"
+  },
+  {
+    "from": "/api-reference/ideas/add-idea-to-calendar",
+    "to": "/api/ideas/ideas-add-to-calendar"
+  },
+  {
+    "from": "/api-reference/posts/list-posts",
+    "to": "/api/posts/posts-list"
+  },
+  {
+    "from": "/api-reference/posts/create-post",
+    "to": "/api/posts/posts-create"
+  },
+  {
+    "from": "/api-reference/posts/get-post",
+    "to": "/api/posts/posts-get"
+  },
+  {
+    "from": "/api-reference/posts/update-post",
+    "to": "/api/posts/posts-update"
+  },
+  {
+    "from": "/api-reference/posts/archive-post",
+    "to": "/api/posts/posts-archive"
+  },
+  {
+    "from": "/api-reference/posts/unarchive-post",
+    "to": "/api/posts/posts-unarchive"
+  },
+  {
+    "from": "/api-reference/posts/schedule-or-reschedule-post",
+    "to": "/api/posts/posts-schedule"
+  },
+  {
+    "from": "/api-reference/posts/unschedule-post",
+    "to": "/api/posts/posts-unschedule"
+  },
+  {
+    "from": "/api-reference/posts/list-post-draft-versions",
+    "to": "/api/posts/posts-list-versions"
+  },
+  {
+    "from": "/api-reference/posts/get-post-version-content",
+    "to": "/api/posts/posts-get-version-content"
+  },
+  {
+    "from": "/api-reference/file-uploads/upload-a-file-from-a-url",
+    "to": "/api/file-uploads/uploads-create"
+  },
+  {
+    "from": "/api-reference/file-uploads/prepare-a-local-file-upload",
+    "to": "/api/file-uploads/uploads-prepare"
+  },
+  {
+    "from": "/api-reference/file-uploads/get-upload-status",
+    "to": "/api/file-uploads/uploads-get"
+  },
+  {
+    "from": "/api-reference/profiles/list-engagement-profiles",
+    "to": "/api/profiles/profiles-list-engagement"
+  },
+  {
+    "from": "/api-reference/profiles/list-scheduling-profiles",
+    "to": "/api/profiles/profiles-list-scheduling"
+  },
+  {
+    "from": "/api-reference/comments/list-post-comments",
+    "to": "/api/comments/comments-list"
+  },
+  {
+    "from": "/api-reference/comments/create-a-comment-on-a-post",
+    "to": "/api/comments/comments-create"
+  },
+  {
+    "from": "/api-reference/comments/delete-a-comment",
+    "to": "/api/comments/comments-delete"
+  },
+  {
+    "from": "/api-reference/inline-comments/list-inline-comments-on-a-post",
+    "to": "/api/inline-comments/inline-comments-list"
+  },
+  {
+    "from": "/api-reference/subscribers/list-post-subscribers",
+    "to": "/api/subscribers/subscribers-list"
+  },
+  {
+    "from": "/api-reference/subscribers/add-subscribers-to-post",
+    "to": "/api/subscribers/subscribers-create"
+  },
+  {
+    "from": "/api-reference/subscribers/delete-subscriber",
+    "to": "/api/subscribers/subscribers-delete"
+  },
+  {
+    "from": "/api-reference/users/list-workspace-users",
+    "to": "/api/users/users-list"
+  },
+  {
+    "from": "/api-reference/webhooks/list-webhooks",
+    "to": "/api/webhooks/webhooks-list"
+  },
+  {
+    "from": "/api-reference/webhooks/create-webhook",
+    "to": "/api/webhooks/webhooks-create"
+  },
+  {
+    "from": "/api-reference/webhooks/get-webhook",
+    "to": "/api/webhooks/webhooks-get"
+  },
+  {
+    "from": "/api-reference/webhooks/update-webhook",
+    "to": "/api/webhooks/webhooks-update"
+  },
+  {
+    "from": "/api-reference/webhooks/delete-webhook",
+    "to": "/api/webhooks/webhooks-delete"
+  },
+  {
+    "from": "/api-reference/slack-boosts/list-post-s-slack-boosts",
+    "to": "/api/slack-boosts/slack-boosts-list-by-post"
+  },
+  {
+    "from": "/api-reference/slack-boosts/create-slack-boost",
+    "to": "/api/slack-boosts/slack-boosts-create"
+  },
+  {
+    "from": "/api-reference/slack-boosts/get-slack-boost",
+    "to": "/api/slack-boosts/slack-boosts-get"
+  },
+  {
+    "from": "/api-reference/slack-boosts/update-slack-boost",
+    "to": "/api/slack-boosts/slack-boosts-update"
+  },
+  {
+    "from": "/api-reference/slack-boosts/delete-slack-boost",
+    "to": "/api/slack-boosts/slack-boosts-delete"
+  },
+  {
+    "from": "/api-reference/slack-boosts/list-slack-webhooks",
+    "to": "/api/slack-boosts/slack-webhooks-list"
+  },
+  {
+    "from": "/api-reference/workspaces/get-workspace",
+    "to": "/api/workspaces/workspace-get"
+  },
+  {
+    "from": "/agency-api-reference/workspaces/list-workspaces",
+    "to": "/agency-api/workspaces/workspaces-list"
+  },
+  {
+    "from": "/agency-api-reference/workspaces/create-workspace",
+    "to": "/agency-api/workspaces/workspaces-create"
+  },
+  {
+    "from": "/agency-api-reference/workspaces/get-workspace",
+    "to": "/agency-api/workspaces/workspaces-get"
+  },
+  {
+    "from": "/agency-api-reference/api-keys/create-workspace-api-key",
+    "to": "/agency-api/api-keys/api-keys-create"
+  },
+  {
+    "from": "/agency-api-reference/api-keys/list-workspace-api-keys",
+    "to": "/agency-api/api-keys/api-keys-list"
+  }
+]

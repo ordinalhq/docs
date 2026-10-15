@@ -1,0 +1,67 @@
+---
+title: "social_profile.disconnected"
+description: "Fired when a social profile is disconnected from the workspace"
+sidebar:
+  label: "social_profile.disconnected"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. social_profile.disconnected)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.profile": { type: "object", required: true, description: "The disconnected profile." },
+    "data.profile.id": { type: "string", required: true, description: "Profile ID." },
+    "data.profile.name": { type: "string | null", description: "Profile display name." },
+    "data.profile.detail": { type: "string | null", description: "Profile vanity name or handle." },
+    "data.profile.channel": { type: "string", required: true, description: "Social channel (e.g. LinkedIn, Twitter)." },
+    "data.profile.profileImageUrl": { type: "string | null", description: "URL of the profile image." },
+    "data.profile.type": { type: "string", description: "Optional. LinkedIn account type (e.g. Company, Personal)." },
+    "data.profile.url": { type: "string", description: "Optional. Profile URL on the social platform." },
+    "data.profile.workspace": { type: "object", required: true, description: "Workspace the profile was disconnected from. Contains id, slug, and name." },
+    "data.profile.disconnectedBy": { type: "object", required: true, description: "User who disconnected the profile. Contains id, firstName, lastName, and email." },
+    "data.profile.disconnectedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the profile was disconnected." },
+    "data.profile.unscheduledPosts": { type: "array", required: true, description: "Posts that were unscheduled due to the disconnect. Each item contains id, title, and url." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "social_profile.disconnected",
+  "data": {
+    "profile": {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Acme Inc",
+      "detail": "acme-inc",
+      "channel": "LinkedIn",
+      "profileImageUrl": null,
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      },
+      "disconnectedBy": {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com"
+      },
+      "disconnectedAt": "2025-02-26T11:00:00.000Z",
+      "unscheduledPosts": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440001",
+          "title": "Q4 Product Launch Announcement",
+          "url": "https://app.tryordinal.com/acme/posts/550e8400-e29b-41d4-a716-446655440001"
+        }
+      ]
+    }
+  },
+  "createdAt": "2025-02-26T11:00:00.000Z"
+}
+```
+
+</CodeGroup>
