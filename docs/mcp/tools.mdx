@@ -86,14 +86,27 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_list_amplify_links` | Lists published Amplify campaign links (live or completed) with their titles, dates, and short link URLs. Drafts are omitted. |
+| `ordinal_search_amplify_links` | Searches Amplify campaign links in any state (draft, live, or completed), or fetches one link by ID. Can include each link's actions with the post copy, media, and cover photo behind them. |
 | `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. |
 
-Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
+Both tools are read-only and require Amplify to be enabled on your workspace. In `ordinal_list_amplify_engagers`, like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
+
+`ordinal_search_amplify_links` returns links newest first, 20 per page by default (max 100). Narrow the results by state, label, or the person who created the link. Each link includes its title, state, dates, creator, labels, short link URL, and number of actions. Pass a link ID to fetch a single link in full; filters and pagination are ignored when you do.
+
+With content included (the default when you fetch one link by ID), each link also lists its actions:
+
+- **Engage actions** ask recipients to like, comment on, or repost a target post. They include the Ordinal post ID, the LinkedIn URL once the post is live, and the post's copy and media.
+- **Create-post actions** ask recipients to publish their own post. They include each variant's copy, media, and cover photo.
+
+Media links in the response are signed download links that expire after 24 hours. Ask the assistant again for fresh links instead of saving them.
+
+:::warning
+`ordinal_search_amplify_links` replaces `ordinal_list_amplify_links`. If a saved prompt or agent calls `ordinal_list_amplify_links` by name, update it to use the new tool.
+:::
 
 `ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link.
 
-For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_search_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on. Or ask "what copy and images did we give people in our draft Amplify links?" and the assistant searches drafts with their content included.
 
 ## LinkedIn Monitoring
 
