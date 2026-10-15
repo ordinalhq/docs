@@ -26,6 +26,7 @@ Both flows are asynchronous. You receive an upload job ID, poll until the status
 |------|---------|
 | Images | JPEG, PNG, GIF, WebP |
 | Videos | MP4, QuickTime (MOV) |
+| Documents | PDF (LinkedIn only) |
 
 ## File size limits
 
@@ -34,6 +35,7 @@ Both flows are asynchronous. You receive an upload job ID, poll until the status
 | Images | 10 MB |
 | GIFs | 15 MB |
 | Videos | 350 MB |
+| PDFs | 100 MB |
 
 <Note>
 Images cannot exceed 36 megapixels total resolution.
@@ -238,8 +240,47 @@ Include the `assetId` in the `assetIds` array when creating a post:
 
 | Platform | Max attachments |
 |----------|-----------------|
-| X (Twitter) | 4 |
-| LinkedIn | 20 |
+| X (Twitter) | 4 images or videos |
+| LinkedIn | 20 images, 1 video, or 1 PDF |
+
+X and Instagram accept only images and videos. Attaching a PDF to either channel returns a `400` error.
+
+## LinkedIn document (carousel) posts
+
+LinkedIn displays a PDF as a swipeable document carousel. Several images attached to one post display as a grid instead, so use a PDF when you want a carousel.
+
+To publish a document post, upload the PDF with either flow above (`mimetype: "application/pdf"` for local uploads), then include its `assetId` in `linkedIn.assetIds`. A PDF must be the only attachment on the post.
+
+Set `linkedIn.documentTitle` to control the title LinkedIn shows on the document. If you omit it, Ordinal uses the PDF's filename without its extension. For example, `q3-report.pdf` becomes `q3-report`.
+
+```json
+{
+  "title": "Q3 report carousel",
+  "publishAt": "2026-02-10T14:00:00.000Z",
+  "status": "Scheduled",
+  "linkedIn": {
+    "profileId": "b3e7f1c9-2d4a-4f8b-a6c1-9e5d7b2f8a3c",
+    "copy": "Swipe through our Q3 highlights.",
+    "assetIds": ["a7c2e4b9-5d1f-4a8e-9c3b-2f6d8e1a4b7c"],
+    "documentTitle": "Q3 2026 Highlights"
+  }
+}
+```
+
+The `documentTitle` value is returned on the `linkedIn` object of post and idea responses, and is `null` when no PDF is attached.
+
+When you update a post or idea:
+
+- A `documentTitle` you send always replaces the current title.
+- If you attach a new PDF without a `documentTitle`, the filename is used only when the post doesn't already have a title.
+
+<Warning>
+Sending `documentTitle` on a post without a PDF returns a `400` error. On update, Ordinal checks the attachments in your request. If your request doesn't change attachments, it checks the attachments already on the post.
+</Warning>
+
+<Note>
+LinkedIn limits documents to 300 pages. Ordinal doesn't check page count, so keep your PDF within that limit to avoid publish failures.
+</Note>
 
 ## Important notes
 
@@ -248,5 +289,5 @@ Uploads expire within 24 hours if not used in a post. Once an upload expires, cr
 </Note>
 
 <Note>
-For videos, the `duration` field in the ready response contains the video length in seconds. For images, this field is `null`.
+For videos, the `duration` field in the ready response contains the video length in seconds. For images and PDFs, this field is `null`.
 </Note>
