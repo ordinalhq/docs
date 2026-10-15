@@ -47,7 +47,7 @@ For example, ask "move my draft about the pricing launch to For Review" and the 
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_create_upload` | Uploads an image or video from a URL, or prepares signed credentials so a local file can be uploaded. |
+| `ordinal_create_upload` | Uploads an image, video, or PDF from a URL, or prepares signed credentials so a local file can be uploaded. PDFs are LinkedIn-only and publish as document (carousel) posts. |
 | `ordinal_get_upload` | Checks whether an upload is ready. |
 
 For a local file, the assistant calls `ordinal_create_upload` with `filename`, `mimetype`, and `size`, POSTs the file to the returned `uploadUrl` with `params` and `signature`, then polls `ordinal_get_upload` until status is `ready`.

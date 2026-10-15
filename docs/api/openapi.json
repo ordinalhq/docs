@@ -2328,9 +2328,14 @@
                         "type": "string",
                         "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
                       },
+                      "documentTitle": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Title shown on a PDF document post. Only valid when the LinkedIn content has a PDF attached; otherwise the request fails with a 400. Defaults to the PDF's filename without its extension."
+                      },
                       "assets": {
                         "type": "array",
-                        "description": "Array of assets to attach. Maximum 20 attachments.",
+                        "description": "Array of assets to attach. Attach up to 20 images, one video, or one PDF. A PDF publishes as a swipeable document (carousel) post and can't be combined with other attachments.",
                         "items": {
                           "$ref": "#/components/schemas/ChannelAssetRef"
                         },
@@ -2588,6 +2593,11 @@
                     "properties": {
                       "copy": {
                         "type": "string"
+                      },
+                      "documentTitle": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Title shown on a PDF document post. Always overrides the current title. Only valid when the post has a PDF attached: either in this request's attachments, or already on the post if the request doesn't change attachments. Otherwise the request fails with a 400. If you attach a new PDF without sending a title, the filename is used only when the post has no title yet."
                       },
                       "assets": {
                         "type": "array",
@@ -4156,7 +4166,7 @@
       "post": {
         "operationId": "uploads-create",
         "summary": "Upload a file from a URL",
-        "description": "Uploads a file by downloading it from the provided URL. The file will be processed asynchronously. Poll the GET endpoint to check when it's ready, then use the returned assetId in post creation.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\n**Additional constraints:**\n- Images cannot exceed 36 megapixels\n- URL must be publicly accessible",
+        "description": "Uploads a file by downloading it from the provided URL. The file will be processed asynchronously. Poll the GET endpoint to check when it's ready, then use the returned assetId in post creation.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n- Documents: PDF (LinkedIn only)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n- PDFs: 100 MB max\n\n**Additional constraints:**\n- Images cannot exceed 36 megapixels\n- URL must be publicly accessible",
         "tags": [
           "File Uploads"
         ],
@@ -4213,7 +4223,7 @@
       "post": {
         "operationId": "uploads-prepare",
         "summary": "Prepare a local file upload",
-        "description": "Creates an upload job and returns signed credentials so you can POST a local file directly to the returned `uploadUrl`. After preparing, POST the file to `uploadUrl` as multipart form data with the returned `params`, `signature`, and `file` fields, then poll `GET /uploads/{id}` until status is `ready`.\n\nSee [File uploads](/api/file-uploads#local-file-upload) for a full walkthrough and curl examples.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n\nThe returned credentials are short-lived. Upload the file before `expiresAt`.",
+        "description": "Creates an upload job and returns signed credentials so you can POST a local file directly to the returned `uploadUrl`. After preparing, POST the file to `uploadUrl` as multipart form data with the returned `params`, `signature`, and `file` fields, then poll `GET /uploads/{id}` until status is `ready`.\n\nSee [File uploads](/api/file-uploads#local-file-upload) for a full walkthrough and curl examples.\n\n**Supported file types:**\n- Images: JPEG, PNG, GIF, WebP\n- Videos: MP4, QuickTime (MOV)\n- Documents: PDF (LinkedIn only)\n\n**File size limits:**\n- Images: 10 MB max\n- GIFs: 15 MB max\n- Videos: 350 MB max\n- PDFs: 100 MB max\n\nThe returned credentials are short-lived. Upload the file before `expiresAt`.",
         "tags": [
           "File Uploads"
         ],
@@ -5850,6 +5860,11 @@
               "copy": {
                 "type": "string"
               },
+              "documentTitle": {
+                "type": "string",
+                "nullable": true,
+                "description": "Title shown on the PDF document post. `null` when no PDF is attached."
+              },
               "assets": {
                 "type": "array",
                 "description": "Assets attached to the LinkedIn content",
@@ -5939,6 +5954,11 @@
               "copy": {
                 "type": "string"
               },
+              "documentTitle": {
+                "type": "string",
+                "nullable": true,
+                "description": "Title shown on the PDF document post. `null` when no PDF is attached."
+              },
               "assets": {
                 "type": "array",
                 "items": {
@@ -6012,6 +6032,11 @@
             "properties": {
               "copy": {
                 "type": "string"
+              },
+              "documentTitle": {
+                "type": "string",
+                "nullable": true,
+                "description": "Title shown on the PDF document post. `null` when no PDF is attached."
               },
               "assets": {
                 "type": "array",
@@ -6139,6 +6164,11 @@
               },
               "copy": {
                 "type": "string"
+              },
+              "documentTitle": {
+                "type": "string",
+                "nullable": true,
+                "description": "Title shown on the PDF document post. `null` when no PDF is attached."
               },
               "assets": {
                 "type": "array",
@@ -6355,9 +6385,14 @@
             "type": "string",
             "description": "Post content text. To tag someone, use the format `@[Display Name](urn)`. See [LinkedIn Mentions](/api/linkedin-mentions) for details."
           },
+          "documentTitle": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Title shown on a PDF document post. Only valid when the LinkedIn content has a PDF attached; otherwise the request fails with a 400. Defaults to the PDF's filename without its extension."
+          },
           "assets": {
             "type": "array",
-            "description": "Array of assets to attach to the post. Obtain asset IDs by uploading files via the Uploads API. Maximum 20 attachments for LinkedIn posts.",
+            "description": "Array of assets to attach to the post. Obtain asset IDs by uploading files via the Uploads API. Attach up to 20 images, one video, or one PDF. A PDF publishes as a swipeable document (carousel) post and can't be combined with other attachments.",
             "items": {
               "$ref": "#/components/schemas/ChannelAssetRef"
             },
@@ -7133,6 +7168,11 @@
             "properties": {
               "copy": {
                 "type": "string"
+              },
+              "documentTitle": {
+                "type": "string",
+                "nullable": true,
+                "description": "Title shown on the PDF document post. `null` when no PDF is attached."
               },
               "assets": {
                 "type": "array",
