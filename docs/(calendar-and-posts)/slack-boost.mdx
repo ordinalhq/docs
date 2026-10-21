@@ -60,6 +60,10 @@ The Slack message includes:
 
 When the post publishes, your configured channels receive the notification.
 
+:::note
+Slack doesn't send notifications for mentions inside a formatted message. If your custom message tags someone, a user group, or `@here`, `@channel`, or `@everyone`, Ordinal sends it as a separate plain message right after the boost so the people you tagged are notified. Custom messages without mentions stay inside the boost.
+:::
+
 ### Auto-boost
 
 Newly connected channels start with auto-boost **off**. To turn it on, open **Integrations → Slack**, select the channel, toggle **Notify channel of all posts by default**, and select **Confirm**. From then on, every new post automatically includes a Slack Boost to that channel — you can still remove the boost from individual posts.
