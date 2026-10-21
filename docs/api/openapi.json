@@ -1346,7 +1346,7 @@
       "post": {
         "operationId": "invites-create",
         "summary": "Create an invite",
-        "description": "Invite a user to the workspace by email. If the user already has an Ordinal account, they will be added to the workspace immediately. Otherwise, an invite email will be sent.",
+        "description": "Invite a user to the workspace by email. If the user already has an Ordinal account, they will be added to the workspace immediately. Otherwise, an invite email will be sent. Returns 409 CONFLICT (\"User already invited\") if the email already has a pending invite in the workspace; this check runs before any seat upgrade, so a duplicate request never adds a paid seat.",
         "tags": [
           "Invites"
         ],
