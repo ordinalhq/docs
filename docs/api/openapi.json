@@ -5065,7 +5065,7 @@
       "post": {
         "operationId": "webhooks-create",
         "summary": "Create webhook",
-        "description": "Create a webhook for the current workspace. The webhook will receive events for the specified topics.",
+        "description": "Create a webhook for the current workspace. The webhook will receive events for the specified topics. The signing secret is included in this response and omitted from later reads.",
         "tags": [
           "Webhooks"
         ],
@@ -5154,7 +5154,7 @@
                     "signingSecret": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_."
+                      "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_. Only returned when the webhook is created."
                     },
                     "createdAt": { "type": "string", "format": "date-time" }
                   }
@@ -5183,7 +5183,7 @@
       "get": {
         "operationId": "webhooks-get",
         "summary": "Get webhook",
-        "description": "Get a webhook by ID for the current workspace, including the signing secret used to verify deliveries.",
+        "description": "Get a webhook by ID for the current workspace.",
         "tags": ["Webhooks"],
         "parameters": [
           {
@@ -5199,22 +5199,7 @@
             "description": "Webhook details",
             "content": {
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    { "$ref": "#/components/schemas/Webhook" },
-                    {
-                      "type": "object",
-                      "required": ["signingSecret"],
-                      "properties": {
-                        "signingSecret": {
-                          "type": "string",
-                          "nullable": true,
-                          "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_."
-                        }
-                      }
-                    }
-                  ]
-                },
+                "schema": { "$ref": "#/components/schemas/Webhook" },
                 "example": {
                   "id": "550e8400-e29b-41d4-a716-446655440900",
                   "name": "CRM Sync",
@@ -5222,7 +5207,6 @@
                   "description": "Sync published posts to our CRM",
                   "headers": { "X-Custom-Header": "value" },
                   "topics": ["post.published", "post.archived"],
-                  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
                   "createdAt": "2026-01-15T10:00:00.000Z",
                   "createdBy": {
                     "id": "550e8400-e29b-41d4-a716-446655440010",

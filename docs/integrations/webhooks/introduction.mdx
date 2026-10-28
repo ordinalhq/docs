@@ -95,7 +95,7 @@ Response:
 }
 ```
 
-(Note: Create response omits `description`, `headers`, and `createdBy`. It includes `signingSecret`. Use Get for the full webhook object.)
+(Note: Create response omits `description`, `headers`, and `createdBy`. `signingSecret` is only returned here. Save it from this response, or copy it later from the webhook's configure page.)
 
 ### Get webhook
 
@@ -114,7 +114,6 @@ Response:
   "description": "Sync published posts to our CRM",
   "headers": { "X-Custom-Header": "value" },
   "topics": ["post.published", "post.archived"],
-  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
   "createdAt": "2026-01-15T10:00:00.000Z",
   "createdBy": {
     "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -125,7 +124,7 @@ Response:
 }
 ```
 
-`signingSecret` is the secret for this webhook. It is omitted from the list response.
+Get and list omit `signingSecret`.
 
 ### Update webhook
 
@@ -182,7 +181,7 @@ See [Event types](/integrations/webhooks/event-types) for the full list of suppo
 
 ## Verify deliveries
 
-Every delivery is signed. Read the raw request body before parsing JSON, then verify it with this webhook's signing secret. The secret is on the webhook's configure page and in the `signingSecret` field from [Get webhook](#get-webhook).
+Every delivery is signed. Read the raw request body before parsing JSON, then verify it with this webhook's signing secret. The secret is in the [Create webhook](#create-webhook) response and on the webhook's configure page.
 
 | Header | Description |
 | --- | --- |
