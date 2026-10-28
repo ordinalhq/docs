@@ -3,6 +3,6 @@ import { defineMeta } from "blume";
 export default defineMeta({
   title: "Account and Billing",
   icon: "user",
-  order: 6,
+  order: 8,
   pages: ["user-preferences", "subscription-plans"],
 });

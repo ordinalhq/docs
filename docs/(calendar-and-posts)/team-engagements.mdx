@@ -7,7 +7,11 @@ seo:
   image: /images/team-engagements-yc.jpg
 ---
 
-Team engagements make it easy for your team to like, comment, and repost a scheduled post from their connected accounts after it publishes. Choose the engagement actions and team members for each post, then coordinate their timing to support the post's initial visibility.
+Team engagements make it easy for your team to like, comment, and repost a post from their connected accounts after it publishes. Choose the engagement actions and team members for each post, then coordinate their timing to support the post's initial visibility. You can add them before the post goes out or to a post that is already live.
+
+:::note
+Team engagements were previously called Auto-Engagements. Only the name changed.
+:::
 
 ![Team Engagements](/images/team-engagements-yc.jpg)
 
@@ -56,23 +60,31 @@ Only text `@mentions` count. Tagging an account in an image or video does not ma
 3. Select which connected account(s) should take the action.
 4. For comments and reposts, write the content.
 5. Set a delay for each engagement using the delay input (see [Timing](#timing)).
-6. After the post publishes, team members can complete the selected engagement actions from their connected profiles.
+6. After the post publishes, Ordinal runs each engagement from the selected profile at the time you set.
 
-:::success
-Team engagements are configured per post, so set them up before the post publishes.
-:::
+## Engagements on published posts
+
+You can also add team engagements to a post that has already gone live:
+
+1. Open a **Posted** post and scroll to the **Team Engagements** section.
+2. Add a like, comment or repost and choose the profile.
+3. Click **Post** to send them.
+
+On a published post, each engagement shows a status badge: **Scheduled**, **Posted** or **Failed**. Hover a badge to see who engaged and open the comment or repost on the platform.
+
+Engagements on published posts work on LinkedIn, X, Instagram and Facebook.
 
 ## Timing
 
-Every engagement uses a delay you set in the numeric delay input. Enter a number, then choose **mins** or **hr** for the unit. The input also suggests common presets and a **Recently used** list of delays you've recently saved in this workspace, making it easier to coordinate when team members engage.
+Every engagement uses a delay you set in the numeric delay input. Enter exactly how long after publish it should run, then choose **mins** or **hrs** for the unit. The input also suggests common presets and a **Recently used** list of delays saved in this workspace, making it easier to coordinate when team members engage.
 
-- **Team Likes** — the value sets the window in which team members can like the post after it publishes. Minimum is **10 minutes**.
-- **Team Comment and Team Repost** — the value sets how long after publishing team members can add the comment or repost. Minimum is **0** (immediate).
+- **Team Likes** — the value sets the window in which likes go out after the post publishes. Likes are randomized inside that window. Minimum is **10 minutes**.
+- **Team Comment and Team Repost** — the value sets how long after publishing the comment or repost goes out. Minimum is **0** (immediate).
 
 The maximum delay for any engagement is **24 hours**. Values outside the allowed range are rejected when you save the post.
 
 :::note
-Team engagements must be added **before** the post is published. Adding team engagements after a post has already been published from Ordinal will not work.
+Likes added through the [API](/api/introduction) or [MCP](/mcp/tools) without a delay default to 10 minutes.
 :::
 
 ## Best practices

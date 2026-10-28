@@ -1,0 +1,64 @@
+---
+title: "Analytics and editing"
+description: "See who opened, connected and engaged through an Amplify link, and learn what you can change while the link is live."
+icon: "chart-line"
+---
+
+Every published link shows who did what, and stays editable while it is live.
+
+<Frame>
+  ![Analytics card on a live Amplify link with the View activity page below it](/images/amplify/analytics.png)
+</Frame>
+
+## Analytics card
+
+A published link shows an **Analytics** card with:
+
+| Metric | What it counts |
+| --- | --- |
+| **Opens** | How many times the link was opened |
+| **Connections** | How many people connected LinkedIn |
+| **Likes**, **Comments**, **Reposts** | Engagements completed through an **Engage with a post** action |
+| **Posts** | Posts published through a **Publish a post** action |
+
+Only the metrics for the actions you configured appear.
+
+## View activity
+
+Click **View activity** to open a page that lists each person who connected, scheduled or published, one row per action, with a link to their LinkedIn profile.
+
+From an MCP client, `ordinal_list_amplify_engagers` returns the same people, with impressions, likes, comments and shares on the reposts and posts they made. See the [Amplify tools](/mcp/tools#amplify).
+
+## Editing a live link
+
+While a link is live you can change:
+
+- The internal title and the public **Link Title**
+- The brief
+- The comment, repost and post variants
+- The like, comment and repost toggles and the reaction types
+
+On a live link the variant editor has an explicit **Edit** and **Save**. Saving a variant updates the copy for every recipient who has not scheduled yet.
+
+These are locked after publish:
+
+- Adding or removing actions
+- Changing the target post
+- Changing the URL slug
+
+Completed links are read-only.
+
+## Deleting a link
+
+Right-click a link in the Amplify list and choose **Delete Link**.
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Sharing a link" icon="send" href="/amplify/sharing-a-link">
+    What recipients see and how they schedule.
+  </Card>
+  <Card title="MCP tools" icon="server" href="/mcp/tools#amplify">
+    Search links and list engagers from an AI assistant.
+  </Card>
+</CardGroup>
