@@ -1,0 +1,65 @@
+---
+title: "linkedin.monitoring.mention.created"
+description: "Fired when a connected LinkedIn company page is mentioned in a LinkedIn post"
+sidebar:
+  label: "linkedin.monitoring.mention.created"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. linkedin.monitoring.mention.created)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.mention": { type: "object", required: true, description: "The mention." },
+    "data.mention.id": { type: "string", required: true, description: "Mention ID." },
+    "data.mention.activityUrn": { type: "string", required: true, description: "LinkedIn activity URN of the post that mentioned the page." },
+    "data.mention.commentary": { type: "string | null", description: "Text of the post that mentioned the page." },
+    "data.mention.postUrl": { type: "string", required: true, description: "LinkedIn URL of the post that mentioned the page." },
+    "data.mention.publishedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the mentioning post was published." },
+    "data.mention.lastModifiedAt": { type: "string", required: true, description: "ISO 8601 timestamp from LinkedIn for this notification. This is not the same as publishedAt or the webhook createdAt." },
+    "data.mention.isCompanyAuthor": { type: "boolean", required: true, description: "Whether the mentioned company page authored the post." },
+    "data.mention.author": { type: "object", required: true, description: "Author of the mentioning post. Contains urn, name, profileImageUrl, and type (User or Organization). name, profileImageUrl, and type can be null." },
+    "data.mention.companyPage": { type: "object", required: true, description: "Connected company page that was mentioned. Contains id, name, and profileImageUrl. name and profileImageUrl can be null." },
+    "data.mention.workspace": { type: "object", required: true, description: "Workspace the company page is connected to. Contains id, slug, and name." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "linkedin.monitoring.mention.created",
+  "data": {
+    "mention": {
+      "id": "550e8400-e29b-41d4-a716-446655440060",
+      "activityUrn": "urn:li:activity:7123456789012345678",
+      "commentary": "Shoutout to Acme for the launch.",
+      "postUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7123456789012345678",
+      "publishedAt": "2026-10-28T20:03:26.911Z",
+      "lastModifiedAt": "2026-10-28T20:03:27.155Z",
+      "isCompanyAuthor": false,
+      "author": {
+        "urn": "urn:li:person:abc",
+        "name": "Alex Roe",
+        "profileImageUrl": "https://example.com/alex.png",
+        "type": "User"
+      },
+      "companyPage": {
+        "id": "550e8400-e29b-41d4-a716-446655440061",
+        "name": "Acme Inc",
+        "profileImageUrl": "https://example.com/acme.png"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      }
+    }
+  },
+  "createdAt": "2026-10-28T20:03:33.037Z"
+}
+```
+
+</CodeGroup>

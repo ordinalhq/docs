@@ -97,3 +97,14 @@ Events for workspace invitations:
 | ---------- | ----------- |
 | [`invite.created`](/integrations/webhooks/invite-created) | A user is invited to the workspace. If the invitee already has an account, they are added directly and no email is sent. |
 | [`invite.accepted`](/integrations/webhooks/invite-accepted) | A user accepts a workspace invite |
+
+## LinkedIn Monitoring
+
+Events for comments and mentions on a connected LinkedIn company page:
+
+| Event Type | Description |
+| ---------- | ----------- |
+| [`linkedin.monitoring.comment.created`](/integrations/webhooks/linkedin-monitoring-comment-created) | Someone comments on a connected company page post, including replies |
+| [`linkedin.monitoring.comment.edited`](/integrations/webhooks/linkedin-monitoring-comment-edited) | A comment or reply on a connected company page post is edited |
+| [`linkedin.monitoring.comment.deleted`](/integrations/webhooks/linkedin-monitoring-comment-deleted) | A comment or reply on a connected company page post is deleted |
+| [`linkedin.monitoring.mention.created`](/integrations/webhooks/linkedin-monitoring-mention-created) | A connected company page is mentioned in a LinkedIn post |

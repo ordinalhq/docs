@@ -1,0 +1,77 @@
+---
+title: "linkedin.monitoring.comment.edited"
+description: "Fired when a comment or reply on a connected LinkedIn company page post is edited"
+sidebar:
+  label: "linkedin.monitoring.comment.edited"
+---
+
+All webhook payloads follow a consistent top-level structure with event-specific data nested within the `data` object.
+
+<TypeTable
+  type={{
+    "type": { type: "string", required: true, description: "The event type (e.g. linkedin.monitoring.comment.edited)." },
+    "data": { type: "object", required: true, description: "Event-specific payload for this webhook." },
+    "data.comment": { type: "object", required: true, description: "The edited comment." },
+    "data.comment.id": { type: "string", required: true, description: "Comment ID." },
+    "data.comment.urn": { type: "string", required: true, description: "LinkedIn comment URN." },
+    "data.comment.commentary": { type: "string | null", description: "Updated comment text." },
+    "data.comment.imageUrl": { type: "string | null", description: "Image attached to the comment, if any." },
+    "data.comment.commentUrl": { type: "string | null", description: "LinkedIn URL that opens the comment on the post." },
+    "data.comment.publishedAt": { type: "string", required: true, description: "ISO 8601 timestamp when the comment was first published." },
+    "data.comment.lastModifiedAt": { type: "string", required: true, description: "ISO 8601 timestamp from LinkedIn for this edit notification." },
+    "data.comment.parentCommentId": { type: "string | null", description: "Parent comment ID when this comment is a reply. Null for a comment on the post." },
+    "data.comment.isCompanyAuthor": { type: "boolean", required: true, description: "Whether the company page that owns the post authored the comment." },
+    "data.comment.author": { type: "object", required: true, description: "Comment author. Contains urn, name, profileImageUrl, and type (User or Organization). name, profileImageUrl, and type can be null." },
+    "data.comment.post": { type: "object", required: true, description: "Company page post that was commented on. Contains id, commentary, url (Ordinal monitoring inbox), postUrl (LinkedIn), and publishedAt." },
+    "data.comment.companyPage": { type: "object", required: true, description: "Company page that owns the post. Contains id, name, and profileImageUrl." },
+    "data.comment.workspace": { type: "object", required: true, description: "Workspace the company page is connected to. Contains id, slug, and name." },
+    "createdAt": { type: "string", required: true, description: "ISO 8601 timestamp when the webhook event was created." },
+  }}
+/>
+
+<CodeGroup>
+
+```json Example
+{
+  "type": "linkedin.monitoring.comment.edited",
+  "data": {
+    "comment": {
+      "id": "550e8400-e29b-41d4-a716-446655440070",
+      "urn": "urn:li:comment:(activity:7123456789012345678,9001)",
+      "commentary": "Nice post — updated",
+      "imageUrl": null,
+      "commentUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7123456789012345678?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7123456789012345678%2C9001%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%289001%2Curn%3Ali%3Aactivity%3A7123456789012345678%29",
+      "publishedAt": "2026-10-28T20:03:26.911Z",
+      "lastModifiedAt": "2026-10-28T20:10:00.000Z",
+      "parentCommentId": null,
+      "isCompanyAuthor": false,
+      "author": {
+        "urn": "urn:li:person:abc",
+        "name": "Jane Doe",
+        "profileImageUrl": "https://example.com/jane.png",
+        "type": "User"
+      },
+      "post": {
+        "id": "550e8400-e29b-41d4-a716-446655440071",
+        "commentary": "Company post",
+        "url": "https://app.tryordinal.com/acme/monitoring?tab=comments&postId=550e8400-e29b-41d4-a716-446655440071",
+        "postUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7123456789012345678",
+        "publishedAt": "2026-10-01T12:00:00.000Z"
+      },
+      "companyPage": {
+        "id": "550e8400-e29b-41d4-a716-446655440061",
+        "name": "Acme Inc",
+        "profileImageUrl": "https://example.com/acme.png"
+      },
+      "workspace": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "slug": "acme",
+        "name": "Acme Inc"
+      }
+    }
+  },
+  "createdAt": "2026-10-28T20:10:04.000Z"
+}
+```
+
+</CodeGroup>
