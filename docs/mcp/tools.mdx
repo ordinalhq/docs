@@ -89,7 +89,7 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 | `ordinal_search_amplify_links` | Searches Amplify links — draft, live, and completed — by state, label, or creator, or fetches a single link by ID. With `includeContent`, each action comes with its content: the target post (Ordinal post ID, LinkedIn URL once live, copy, assets, and cover photo) for engage actions, and the variants (copy, assets, and cover photo) for create-post actions. |
 | `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. Reposts and posts include the LinkedIn stats of the resulting post. |
 
-Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
+Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content. For what a link is and how recipients use it, see the [Amplify guide](/amplify/overview).
 
 `ordinal_search_amplify_links` is paginated (default 20 per page, max 100) and accepts `states`, `labelIds`, and `createdById` filters. Pass `linkId` to fetch one link in full. `includeContent` defaults to on when `linkId` is given and off otherwise, so broad searches stay small.
 
