@@ -5065,7 +5065,7 @@
       "post": {
         "operationId": "webhooks-create",
         "summary": "Create webhook",
-        "description": "Create a webhook for the current workspace. The webhook will receive events for the specified topics.",
+        "description": "Create a webhook for the current workspace. The webhook will receive events for the specified topics. The signing secret is included in this response and omitted from later reads.",
         "tags": [
           "Webhooks"
         ],
@@ -5151,6 +5151,11 @@
                       "type": "array",
                       "items": { "type": "string" }
                     },
+                    "signingSecret": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_. Only returned when the webhook is created."
+                    },
                     "createdAt": { "type": "string", "format": "date-time" }
                   }
                 },
@@ -5159,6 +5164,7 @@
                   "name": "CRM Sync",
                   "url": "https://example.com/webhooks/ordinal",
                   "topics": ["post.published", "post.archived"],
+                  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
                   "createdAt": "2026-01-15T10:00:00.000Z"
                 }
               }

@@ -90,11 +90,12 @@ Response:
   "name": "CRM Sync",
   "url": "https://example.com/webhooks/ordinal",
   "topics": ["post.published", "post.archived"],
+  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
   "createdAt": "2026-01-15T10:00:00.000Z"
 }
 ```
 
-(Note: Create response omits `description`, `headers`, and `createdBy`; use Get for the full webhook object.)
+(Note: Create response omits `description`, `headers`, and `createdBy`. `signingSecret` is only returned here. Save it from this response, or copy it later from the webhook's configure page.)
 
 ### Get webhook
 
@@ -102,6 +103,28 @@ Response:
 curl -X GET "https://app.tryordinal.com/api/v1/webhooks/550e8400-e29b-41d4-a716-446655440900" \
   -H "Authorization: Bearer your_api_key"
 ```
+
+Response:
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440900",
+  "name": "CRM Sync",
+  "url": "https://example.com/webhooks/ordinal",
+  "description": "Sync published posts to our CRM",
+  "headers": { "X-Custom-Header": "value" },
+  "topics": ["post.published", "post.archived"],
+  "createdAt": "2026-01-15T10:00:00.000Z",
+  "createdBy": {
+    "id": "550e8400-e29b-41d4-a716-446655440010",
+    "email": "john@acme.com",
+    "firstName": "John",
+    "lastName": "Doe"
+  }
+}
+```
+
+Get and list omit `signingSecret`.
 
 ### Update webhook
 
@@ -155,3 +178,36 @@ All webhook deliveries use the same envelope. The request body is JSON:
 Your endpoint should respond with a `2xx` status code to acknowledge receipt.
 
 See [Event types](/integrations/webhooks/event-types) for the full list of supported events and links to each payload schema.
+
+## Verify deliveries
+
+Every delivery is signed. Read the raw request body before parsing JSON, then verify it with this webhook's signing secret. The secret is in the [Create webhook](#create-webhook) response and on the webhook's configure page.
+
+| Header | Description |
+| --- | --- |
+| `webhook-id` | Stable id for this event. The same id is sent again on a retry. |
+| `webhook-timestamp` | Unix timestamp, in seconds, for when the delivery was signed. |
+| `webhook-signature` | One or more space-separated signatures, each `v1,<base64>`. |
+| `webhook-topic` | Event type. Matches `type` in the body. Convenience header — it is not covered by the signature, so don't rely on it for trust decisions. |
+
+The signature is base64(HMAC-SHA256(key, `{webhook-id}.{webhook-timestamp}.{raw body}`)). The key is the signing secret with the `whsec_` prefix removed, then base64-decoded. During a secret rotation the header can contain two signatures. The request is valid when any of them matches.
+
+The [Standard Webhooks](https://github.com/standard-webhooks/standard-webhooks) libraries run this check for you:
+
+```bash
+npm install standardwebhooks
+```
+
+```javascript
+import { Webhook } from "standardwebhooks";
+
+const webhook = new Webhook(signingSecret);
+
+webhook.verify(rawBody, {
+  "webhook-id": headers["webhook-id"],
+  "webhook-timestamp": headers["webhook-timestamp"],
+  "webhook-signature": headers["webhook-signature"],
+});
+```
+
+`verify` throws when the signature does not match, or when `webhook-timestamp` is more than five minutes from the current time. Reject the request when verification fails. Respond with `2xx` only after it succeeds.
