@@ -5151,6 +5151,11 @@
                       "type": "array",
                       "items": { "type": "string" }
                     },
+                    "signingSecret": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_."
+                    },
                     "createdAt": { "type": "string", "format": "date-time" }
                   }
                 },
@@ -5159,6 +5164,7 @@
                   "name": "CRM Sync",
                   "url": "https://example.com/webhooks/ordinal",
                   "topics": ["post.published", "post.archived"],
+                  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
                   "createdAt": "2026-01-15T10:00:00.000Z"
                 }
               }
@@ -5177,7 +5183,7 @@
       "get": {
         "operationId": "webhooks-get",
         "summary": "Get webhook",
-        "description": "Get a webhook by ID for the current workspace.",
+        "description": "Get a webhook by ID for the current workspace, including the signing secret used to verify deliveries.",
         "tags": ["Webhooks"],
         "parameters": [
           {
@@ -5193,7 +5199,22 @@
             "description": "Webhook details",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Webhook" },
+                "schema": {
+                  "allOf": [
+                    { "$ref": "#/components/schemas/Webhook" },
+                    {
+                      "type": "object",
+                      "required": ["signingSecret"],
+                      "properties": {
+                        "signingSecret": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Secret used to verify the webhook-signature header. Prefixed with whsec_."
+                        }
+                      }
+                    }
+                  ]
+                },
                 "example": {
                   "id": "550e8400-e29b-41d4-a716-446655440900",
                   "name": "CRM Sync",
@@ -5201,6 +5222,7 @@
                   "description": "Sync published posts to our CRM",
                   "headers": { "X-Custom-Header": "value" },
                   "topics": ["post.published", "post.archived"],
+                  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
                   "createdAt": "2026-01-15T10:00:00.000Z",
                   "createdBy": {
                     "id": "550e8400-e29b-41d4-a716-446655440010",
