@@ -22,11 +22,17 @@ Use webhooks to get real-time notifications on events happening across your Ordi
 
 In this guide, we'll show you how to configure webhooks and document the available events you can listen to.
 
+:::note
+**Plan availability:** Webhooks are available on the Growth plan and above. See [Billing & Plans](/account/subscription-plans).
+:::
+
 ## Managing webhooks
 
 You can manage webhooks via the dashboard or the API.
 
 **Dashboard:** Navigate to [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks) to create, view, edit, and delete webhooks.
+
+Each webhook in the list shows whether it is **Active** or **Errored**. Hover over an errored webhook to see its last error. To confirm an endpoint works, open the webhook's menu and select **Send Test Event**. If the webhook is disabled, Ordinal enables it for the test and disables it again if the test fails.
 
 **API:** The webhooks API supports full CRUD operations. All endpoints require [API key authentication](/api/authentication).
 
@@ -95,7 +101,7 @@ Response:
 }
 ```
 
-(Note: Create response omits `description`, `headers`, and `createdBy`. `signingSecret` is only returned here. Save it from this response, or copy it later from the webhook's configure page.)
+(Note: Create response omits `description`, `headers`, and `createdBy`. Save `signingSecret` from this response. You can also read it later with [Get webhook](#get-webhook) or copy it from the webhook's configure page.)
 
 ### Get webhook
 
@@ -114,6 +120,7 @@ Response:
   "description": "Sync published posts to our CRM",
   "headers": { "X-Custom-Header": "value" },
   "topics": ["post.published", "post.archived"],
+  "signingSecret": "whsec_dGVzdF9zaWduaW5nX3NlY3JldA",
   "createdAt": "2026-01-15T10:00:00.000Z",
   "createdBy": {
     "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -124,7 +131,7 @@ Response:
 }
 ```
 
-Get and list omit `signingSecret`.
+Get returns `signingSecret` (`null` if the secret is unavailable). List omits it.
 
 ### Update webhook
 
@@ -181,7 +188,7 @@ See [Event types](/integrations/webhooks/event-types) for the full list of suppo
 
 ## Verify deliveries
 
-Every delivery is signed. Read the raw request body before parsing JSON, then verify it with this webhook's signing secret. The secret is in the [Create webhook](#create-webhook) response and on the webhook's configure page.
+Every delivery is signed. Read the raw request body before parsing JSON, then verify it with this webhook's signing secret. Ordinal shows the secret once when you create the webhook. After that, read it with [Get webhook](#get-webhook) (`signingSecret`, prefixed `whsec_`) or open the webhook's configure page under [**Settings → Integrations → Webhooks**](https://app.tryordinal.com/settings/integrations/webhooks), where it is masked with options to reveal and copy it.
 
 | Header | Description |
 | --- | --- |

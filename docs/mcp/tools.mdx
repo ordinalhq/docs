@@ -56,7 +56,7 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_get_analytics` | Fetches post performance or follower growth for LinkedIn, X, Instagram, or Facebook. |
+| `ordinal_get_analytics` | Fetches post performance or follower growth for LinkedIn, X, Instagram, or Facebook. For LinkedIn posts from personal (member) profiles, post metrics include link clicks, profile views from content, follower gains from content, and Premium CTA clicks. Company pages report total post clicks instead, so these member metrics are `null` for them. LinkedIn video posts also include video views, viewers, and watch time when available. |
 
 ## Collaboration
 
@@ -86,14 +86,20 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_list_amplify_links` | Lists published Amplify campaign links (live or completed) with their titles, dates, and short link URLs. Drafts are omitted. |
-| `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. |
+| `ordinal_search_amplify_links` | Searches Amplify links — draft, live, and completed — by state, label, or creator, or fetches a single link by ID. With `includeContent`, each action comes with its content: the target post (Ordinal post ID, LinkedIn URL once live, copy, assets, and cover photo) for engage actions, and the variants (copy, assets, and cover photo) for create-post actions. |
+| `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. Reposts and posts include the LinkedIn stats of the resulting post. |
 
 Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
 
-`ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link.
+`ordinal_search_amplify_links` is paginated (default 20 per page, max 100) and accepts `states`, `labelIds`, and `createdById` filters. Pass `linkId` to fetch one link in full. `includeContent` defaults to on when `linkId` is given and off otherwise, so broad searches stay small.
 
-For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+`ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link. Repost and post actions carry `stats` for the person's resulting post: impressions, unique impressions, likes, comments, shares, saves, sends, link clicks, video views, and when the stats were last synced. `stats` is `null` until the post's stats sync, and individual metrics are `null` when LinkedIn didn't report them.
+
+:::note
+`ordinal_search_amplify_links` replaces `ordinal_list_amplify_links`. Update any prompts or agents that call the old tool by name.
+:::
+
+For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_search_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names, permalinks, and post stats your team can follow up on.
 
 ## LinkedIn Monitoring
 
@@ -105,7 +111,7 @@ For example, ask "who engaged with our launch Amplify link?" and the assistant c
 | `ordinal_list_linkedin_monitoring_mentions` | Lists inbound @mentions of your connected pages, or fetches a single mention by ID. |
 | `ordinal_manage_linkedin_monitoring_mentions` | Comments on a mentioning post, reacts to it, or resolves and unresolves the mention. |
 
-These tools appear only for workspaces where LinkedIn Monitoring is enabled, and they act on the same inbox you see in the app. Comments are paginated 10 roots per page by default (max 50); posts and mentions are 20 per page (max 50). Replies and reactions are posted from a scheduling profile — get the `profileId` from `ordinal_get_workspace_context`.
+These tools appear only for workspaces where [LinkedIn Monitoring](/monitoring/linkedin) is enabled, and they act on the same inbox you see in the app. Comments are paginated 10 roots per page by default (max 50); posts and mentions are 20 per page (max 50). Replies and reactions are posted from a scheduling profile — get the `profileId` from `ordinal_get_workspace_context`.
 
 Replying to a comment automatically resolves that comment. Replying to a reply still posts on the thread root. Commenting on a mention does *not* auto-resolve it — resolve separately when you're done. LinkedIn reactions accept `Like`, `Celebrate`, `Love`, `Insightful`, `Support`, or `Funny`; sending the same reaction again removes it.
 
