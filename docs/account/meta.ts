@@ -4,5 +4,5 @@ export default defineMeta({
   title: "Account and Billing",
   icon: "user",
   order: 6,
-  pages: ["user-preferences", "subscription-plans"],
+  pages: ["user-preferences", "single-sign-on", "subscription-plans"],
 });
