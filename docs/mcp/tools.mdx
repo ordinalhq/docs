@@ -86,14 +86,41 @@ For a local file, the assistant calls `ordinal_create_upload` with `filename`, `
 
 | Tool | What it does |
 |------|---------|
-| `ordinal_list_amplify_links` | Lists published Amplify campaign links (live or completed) with their titles, dates, and short link URLs. Drafts are omitted. |
+| `ordinal_search_amplify_links` | Searches Amplify links (draft, live, or completed) by state, label, or creator, or fetches one by ID. With `includeContent`, it also returns each action's target post and copy variants with their media. |
 | `ordinal_list_amplify_engagers` | Lists the people who completed actions on a published Amplify link — one entry per person with their name, headline, LinkedIn profile URL, and every like, comment, repost, or post they completed, each with a permalink. |
+| `ordinal_create_amplify_link` | Creates a draft Amplify link in one call: title, notes, labels, and actions. |
+| `ordinal_manage_amplify_link` | Updates, publishes, or deletes an existing Amplify link, and adds or removes its actions and copy variants. |
 
-Both tools are read-only and require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
+All Amplify tools require Amplify to be enabled on your workspace. Like permalinks point at the campaign's target post; comment, repost, and post permalinks point at the engager's own content.
 
 `ordinal_list_amplify_engagers` is paginated (default 50 per page, max 100) and accepts an optional `action` filter. The filter only narrows which people are returned — each person's list of actions still includes everything they completed on the link.
 
-For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_list_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+For example, ask "who engaged with our launch Amplify link?" and the assistant calls `ordinal_search_amplify_links` to find the link, then `ordinal_list_amplify_engagers` to return names and permalinks your team can follow up on.
+
+### Creating and editing links
+
+`ordinal_create_amplify_link` always creates a **draft**. Drafts aren't sent to anyone until they're published. Each action is one of:
+
+- **Engage** — recipients like, comment on, or repost a target post. Point it at an Ordinal post ID (scheduled or already published) or a LinkedIn post URL from one of your workspace's profiles, and choose which of like, comment, and repost to allow. Reposts need at least one copy variant.
+- **Create post** — recipients publish their own post, starting from one of your copy variants. Variants can include media uploaded with `ordinal_create_upload` (see [Media](#media)).
+
+The assistant checks every input before writing anything, so an invalid action never leaves a half-built link behind.
+
+`ordinal_manage_amplify_link` takes one of these actions:
+
+| Action | What it does |
+|------|---------|
+| `update` | Changes the title, notes, labels, engagement settings, target post, or variant copy and media. Only the fields you mention change; nothing left out is deleted. |
+| `add_variant` / `remove_variant` | Adds or removes a copy variant on an action. |
+| `add_action` / `remove_action` | Adds or removes an action. Drafts only. |
+| `publish` | Creates the short link and makes the link live. Requires an end date; the share title and short link slug default to ones built from the link title. |
+| `delete` | Deletes a draft. Published links can't be deleted this way. |
+
+Because this tool can change or delete links, most assistants ask you to approve each call. Once a link is published, you can still change its engagement settings, copy, and variants, but not its target posts or actions. Changing a variant's copy on a live link also updates it in recipients' drafts that haven't been scheduled yet.
+
+Both tools return the link with an `editUrl` that opens it in Ordinal; `ordinal_manage_amplify_link` also returns the `shareUrl` to send to your team once the link is published.
+
+For example, ask "create an Amplify link asking the sales team to like and repost our launch post, with two repost variants" and the assistant creates the draft and shares the edit link. Then say "publish it, ending Friday at 5pm" to make it live.
 
 ## LinkedIn Monitoring
 
@@ -137,6 +164,7 @@ You don't call these tools by name — you describe what you want. Examples:
 - "Give me the last 30 days of follower growth on LinkedIn."
 - "Show me how the LinkedIn copy on this post changed between the last two saves."
 - "List everyone who commented through our launch Amplify link, with links to their comments."
+- "Create a draft Amplify link asking the team to repost our product launch post."
 - "Reply to any unresolved LinkedIn comments on our launch post, then resolve the rest."
 
 The assistant picks the tools, fills in the arguments, and shows you the result.
