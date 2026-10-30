@@ -1,0 +1,54 @@
+---
+title: "Single Sign-On (SSO)"
+description: "Sign in to Ordinal through your company's identity provider, join by invite, and what changes when your company requires SSO."
+icon: "key-round"
+---
+
+With single sign-on (SSO), your team signs in to Ordinal through your company's identity provider (for example, Microsoft Entra ID) instead of email codes or Google. SSO is set up for your company's email domain, so it applies to everyone who signs in with an email address on that domain.
+
+## Setting up SSO
+
+The Ordinal team turns on SSO for your company. To get started, contact support at [support@tryordinal.com](mailto:support@tryordinal.com) with the email domain your team uses. Your IT team connects your identity provider, and once it's verified, Ordinal links it to your domain.
+
+## Signing in with SSO
+
+1. Go to the [Ordinal login page](https://app.tryordinal.com/login)
+2. Enter your work email address
+3. Click **Continue With Email**
+
+Instead of emailing you a code, Ordinal sends you to your company's identity provider. Sign in there and you're brought back to Ordinal. This works the same way when you sign up or accept an invite.
+
+You can also open Ordinal from your identity provider's app dashboard (for example, a tile in Microsoft My Apps).
+
+:::tip
+Once your company uses SSO, always sign in with your work email and **Continue With Email**, even if you used **Continue with Google** before.
+:::
+
+## Joining your team
+
+When your company signs in with SSO, people join Ordinal by invite. If you sign in with an email on your company's domain but haven't been invited to a workspace yet, you'll see **Ask for an invite** instead of the option to create a new workspace.
+
+Ask a teammate who already uses Ordinal to [invite you](/collaboration/team-permissions) using your work email, then sign in again.
+
+## When SSO is required
+
+Your company can also require SSO. When it does:
+
+- Every sign-in has to come through your identity provider. Sessions started with an email code or **Continue with Google** are signed out.
+- Sessions last a set number of hours (24 by default, configurable for your company). After that, you're sent back to the login page to sign in through SSO again.
+- Connected tools such as the [MCP server](/mcp/introduction) need a recent SSO sign-in as well.
+
+If your session isn't from a recent SSO sign-in, the login page shows: "Your company requires single sign-on. Continue with your work email to sign in."
+
+To turn off SSO, change the session length, or start requiring SSO, contact support at [support@tryordinal.com](mailto:support@tryordinal.com).
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Team Permissions" icon="users" href="/collaboration/team-permissions">
+    Invite teammates and manage workspace members.
+  </Card>
+  <Card title="User Preferences" icon="user" href="/account/user-preferences">
+    Update your profile and sign-in details.
+  </Card>
+</CardGroup>
