@@ -49,6 +49,14 @@ If a connected X account isn't @mentioned, it's disabled in the Team Comment and
 Only text `@mentions` count. Tagging an account in an image or video does not make it eligible.
 :::
 
+#### When X blocks a quote repost
+
+A Team Repost on X with text is posted as a quote of the tweet. A Team Repost with no text is a plain repost.
+
+X sometimes rejects a quote even from an eligible account. When that happens, Ordinal tries once more and posts the repost text as a regular tweet with the original tweet's link added at the end. X still shows the original tweet as a quote card under the text.
+
+Ordinal skips this retry, and the repost fails, when the text plus the link would go over X's character limit. Keep quote repost text short so the link still fits.
+
 ## Setting up team engagements
 
 1. Open a post and scroll to the **Team Engagements** section.
