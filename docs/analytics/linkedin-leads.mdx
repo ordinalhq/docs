@@ -1,0 +1,77 @@
+---
+title: "LinkedIn Leads"
+description: "Export the people who reacted to, commented on, or reposted a LinkedIn profile's posts as a CSV, filtered by publish date, engagement type, labels, and campaign."
+icon: "id-card"
+---
+
+LinkedIn Leads shows you who engages with a LinkedIn profile's posts. When LinkedIn Leads is turned on for a profile in your workspace, **Leads (LinkedIn)** appears in the sidebar.
+
+## Exporting leads
+
+Export everyone who engaged with a profile's posts during a set timeframe, across all of that profile's posts at once.
+
+1. Open **Leads (LinkedIn)** from the sidebar
+2. Click **Export** in the header
+3. Choose your filters (see below)
+4. Click **Export CSV**
+
+Ordinal loads the engagements and shows progress for each engagement type as it goes. When it finishes, the CSV downloads automatically.
+
+### Filters
+
+- **Profile** - The LinkedIn profile to export leads for. Only profiles with LinkedIn Leads turned on are listed.
+- **Posts published between** - The date range of the posts to include. Presets include **Last month**, **This month**, and **Last 7**, **30**, or **90 days**.
+- **Engagement types** - Any combination of **Reactions**, **Comments**, and **Reposts**. At least one must be selected.
+- **Labels and campaign** - Only include posts with the selected [labels](/posts/labels) or [campaign](/campaigns/overview).
+
+:::note
+The date range filters by when a **post was published**, not when someone engaged with it. Every engagement on a post published in the range is included, even if it came in after the range ended.
+:::
+
+:::info
+An export can cover up to **90 days**. For a longer period, split it into several exports.
+:::
+
+:::warning
+Only posts published through Ordinal have labels and campaigns. Adding a label or campaign filter leaves out posts published directly on LinkedIn.
+:::
+
+### Rows
+
+Choose how the CSV is laid out:
+
+- **One per person** - Each person appears once, with how many of the matching posts they engaged with and their reaction, comment, and repost counts. People who engaged with the most posts are listed first.
+- **One per engagement** - Each reaction, comment, or repost is its own row, with the engagement type, the comment text, and the post it was on.
+
+### CSV columns
+
+Both layouts include each person's details:
+
+| Column | Description |
+| --- | --- |
+| `first_name`, `last_name` | The person's name |
+| `headline` | Their LinkedIn headline |
+| `url` | Their LinkedIn profile URL |
+| `follower_count` | Their follower count |
+| `job_title`, `company`, `company_url`, `company_industry`, `location` | Details of their current job |
+
+**One per person** adds:
+
+| Column | Description |
+| --- | --- |
+| `posts_engaged_count` | How many matching posts they engaged with |
+| `reactions_count`, `comments_count`, `reposts_count` | How many of each engagement type they left on matching posts |
+| `most_recent_post_url`, `most_recent_post_published_at` | The most recently published matching post they engaged with |
+
+**One per engagement** adds:
+
+| Column | Description |
+| --- | --- |
+| `engagement_type` | `Like` (reaction), `Comment`, or `Repost` |
+| `engagement_text` | The comment text, for comments |
+| `engaged_at` | When the comment or repost was made. Empty for reactions. |
+| `post_url`, `post_published_at` | The post that was engaged with |
+
+## Leads in the API
+
+You can also pull LinkedIn leads programmatically with the [LinkedIn Leads API](/api/linkedin-leads/linkedin-leads-list-posts).
