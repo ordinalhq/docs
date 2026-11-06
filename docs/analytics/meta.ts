@@ -4,5 +4,5 @@ export default defineMeta({
   title: "Analytics and Reporting",
   icon: "chart-line",
   order: 5,
-  pages: ["overview", "shortlinks"],
+  pages: ["overview", "shortlinks", "linkedin-leads"],
 });
